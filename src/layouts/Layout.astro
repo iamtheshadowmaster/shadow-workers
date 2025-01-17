@@ -1,13 +1,47 @@
+---
+import '../styles/global.css';
+import favicon from '../assets/favicon.svg';
+---
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href={favicon.src} />
+		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+		<!--<script src="https://kit.fontawesome.com/05150f1c15.js" crossorigin="anonymous"></script> -->
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Shadow - Get yourself on Autopilot</title>
+		<meta name="description" content="Shadow - The new AI task management tool that works for you, automating tasks so you can focus on what matters." />
+		<style>
+			.magic-button {
+				background: transparent;
+				position: relative;
+				border: none;
+				z-index: 1;
+			}
+			.magic-button::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				padding: 2px;
+				background: linear-gradient(45deg, #00BFFF, #FF007F, #FFFFFF);
+				-webkit-mask: 
+					linear-gradient(#fff 0 0) content-box, 
+					linear-gradient(#fff 0 0);
+				mask: 
+					linear-gradient(#fff 0 0) content-box, 
+					linear-gradient(#fff 0 0);
+				-webkit-mask-composite: xor;
+				mask-composite: exclude;
+				pointer-events: none;
+			}
+			.magic-button:hover {
+				background: linear-gradient(45deg, #00BFFF20, #FF007F20, #FFFFFF20);
+			}
+		</style>
 	</head>
-	<body>
+	<body class="bg-black text-gray-100 min-h-screen">
 		<slot />
 	</body>
 </html>
@@ -18,5 +52,6 @@
 		margin: 0;
 		width: 100%;
 		height: 100%;
+		font-family: 'Nunito', system-ui, sans-serif;
 	}
 </style>

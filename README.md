@@ -1,48 +1,54 @@
-# Astro Starter Kit: Basics
+# Shadow Landing Page
 
-```sh
-npm create astro@latest -- --template basics
-```
+A high-performance landing page for Shadow, built with Astro and Tailwind CSS.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Features
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- ⚡️ Super fast loading time with Astro
+- 🎨 Modern design with Tailwind CSS
+- 📝 Waitlist functionality with Supabase
+- 📱 Fully responsive
+- 🔒 Type-safe API endpoints
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## Quick Start
 
-## 🚀 Project Structure
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Inside of your Astro project, you'll see the following folders and files:
+3. Set up Supabase:
+   - Create a new project at [Supabase](https://supabase.com)
+   - Create a new table called `waitlist` with columns:
+     - `id` (uuid, primary key)
+     - `email` (text, unique)
+     - `created_at` (timestamp with timezone)
+   - Copy your project URL and anon key
+   - Create `.env` file from `.env.example` and add your Supabase credentials
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+5. Build for production:
+   ```bash
+   npm run build
+   ```
 
-## 🧞 Commands
+## Deployment
 
-All commands are run from the root of the project, from a terminal:
+This project is configured for deployment on Vercel:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+1. Push your code to GitHub
+2. Import the project in Vercel
+3. Add your environment variables in Vercel's project settings
+4. Deploy!
 
-## 👀 Want to learn more?
+## Tech Stack
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- [Astro](https://astro.build)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Supabase](https://supabase.com)
+- [Vercel](https://vercel.com)

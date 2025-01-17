@@ -1,0 +1,14 @@
+---
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+---
+
+<Nav />
+<main class="relative isolate">
+  <div class="mx-auto max-w-4xl px-6 py-16 sm:py-24 lg:px-8">
+    <div class="text-base leading-7">
+      <slot />
+    </div>
+  </div>
+</main>
+<Footer />
