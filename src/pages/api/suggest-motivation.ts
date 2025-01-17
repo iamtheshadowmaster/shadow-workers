@@ -9,7 +9,23 @@ export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
   try {
+    if (!import.meta.env.OPENAI_API_KEY) {
+      throw new Error('OpenAI API key is not configured');
+    }
+
     const { job, tools } = await request.json();
+
+    if (!job || !tools) {
+      return new Response(
+        JSON.stringify({ error: 'Both job and tools are required' }),
+        {
+          status: 400,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+    }
 
     const prompt = `Given this person's job as "${job}" and their daily tools "${tools}", write 2 sentences to show motivation to join Shadow's Customer Advisory Board (CAB). Keep it concise and playful.`;
 
@@ -39,9 +55,12 @@ export const POST: APIRoute = async ({ request }) => {
       }
     );
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error in suggest-motivation:', error);
     return new Response(
-      JSON.stringify({ error: 'Failed to generate motivation' }),
+      JSON.stringify({ 
+        error: 'Failed to generate motivation',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      }),
       {
         status: 500,
         headers: {
