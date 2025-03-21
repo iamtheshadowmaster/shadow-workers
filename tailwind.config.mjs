@@ -4,8 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        'shadow-blue': '#00BFFF',
-        'shadow-magenta': '#FF007F',
+        'shadow-blue': '#3B82F6', // More professional blue (similar to Notion/OpenAI)
+        'shadow-magenta': '#F43F5E', // Refined magenta
+        'shadow-indigo': '#6366F1', // Secondary accent color
+        'shadow-purple': '#8B5CF6', // Additional accent
+        'shadow-teal': '#14B8A6', // Success color
+      },
+      fontFamily: {
+        sans: ['Inter var', 'Inter', 'Nunito', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['SF Pro Display', 'Inter', 'Nunito', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
     },
   },
