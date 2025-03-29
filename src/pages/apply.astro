@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+// Remove the server-side import as we'll use client-side only
+// import { supabase } from '../lib/supabase';
 ---
 
 <Layout title="Apply - Shadow">
@@ -10,146 +12,264 @@ import Footer from '../components/Footer.astro';
     <div class="mx-auto max-w-7xl px-6 lg:px-8 py-12">
       <div class="mx-auto max-w-2xl">
         <div class="text-center mb-16">
-          <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h1 class="text-left text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Join our founding waitlist
           </h1>
-          <p class="mt-6 text-lg leading-8 text-gray-300">
-            Be part of shaping the future of productivity. As one of our first users, you'll get exclusive early access to Shadow, share your insights, and help us build the ultimate AI-powered task management app that gets things done. Your feedback will directly influence our features and design.
-          </p>
         </div>
 
         <form id="applicationForm" class="space-y-8">
-          <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-            <div>
-              <label for="first-name" class="block text-sm font-medium leading-6 text-white">
-                First name
-              </label>
-              <div class="mt-2">
-                <input
-                  type="text"
-                  name="firstName"
-                  id="first-name"
-                  required
-                  placeholder="First name"
-                  class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
-                />
-              </div>
+
+                    <!-- Progress bar -->
+                    <div class="relative pt-1">
+                      <div class="flex justify-between pb-2">
+                        <span class="step-indicator text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-white bg-gray-700">Hey</span>
+                        <span class="step-indicator text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-500 bg-gray-700">You</span>
+                        <span class="step-indicator text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-500 bg-gray-700">Get</span>
+                        <span class="step-indicator text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-500 bg-gray-700">Work</span>
+                        <span class="step-indicator text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-500 bg-gray-700">Done</span>
+                      </div>
+                      <div class="flex mb-2 items-center justify-between">
+                        <div class="flex-1">
+                          <div class="relative h-2 rounded-full overflow-hidden bg-gray-700">
+                            <div class="progress-bar w-0 h-full bg-shadow-blue transition-all duration-300 ease-in-out"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+          <!-- Step 0: Introduction -->
+          <div id="step0" class="form-step">
+            <div class="text-left mb-8">
+              <h3 class="text-xl font-semibold text-white mb-4">Modern Achievers,</h3>
+              <p class="text-gray-300">
+                AI is changing the way we work. Top performers will get more done. Shadow is the platform for these top performers to get more done. Join the waitlist now.
+              </p>
             </div>
+          </div>
 
-            <div>
-              <label for="last-name" class="block text-sm font-medium leading-6 text-white">
-                Last name
-              </label>
-              <div class="mt-2">
-                <input
-                  type="text"
-                  name="lastName"
-                  id="last-name"
-                  required
-                  placeholder="Last name"
-                  class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div class="sm:col-span-2">
-              <label for="job" class="block text-sm font-medium leading-6 text-white">
-                What's your job?
-              </label>
-              <div class="mt-2">
-                <input
-                  type="text"
-                  name="job"
-                  id="job"
-                  required
-                  placeholder="Drop a few keywords"
-                  class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div class="space-y-4 sm:col-span-2">
-              <div>
-                <div class="flex items-center gap-2 mb-1">
-                  <label for="tools" class="block text-sm font-medium leading-6 text-white">
-                    What tools do you use to work?
-                  </label>
-                  <button
-                    type="button"
-                    id="suggestTools"
-                    class="magic-button"
-                  >
-                    <span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                      </svg>
-                    </span>
-                  </button>
-                  <div id="toolsSuggestion" class="mt-1 text-sm text-gray-400 hidden"></div>
-
+          <!-- Step 1: Job Position -->
+          <div id="step1" class="form-step hidden">
+            <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+              <div class="sm:col-span-2">
+                <label for="email" class="block text-sm font-medium leading-6 text-white">
+                  Email address
+                </label>
+                <div class="mt-2">
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    required
+                    placeholder="firstname.lastname@company.com"
+                    class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
+                  />
                 </div>
-                <input
-                  type="text"
-                  name="tools"
-                  id="tools"
-                  required
-                  placeholder="List the tools you use daily"
-                  class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
-                />
               </div>
-            </div>
 
-            <div class="space-y-4 sm:col-span-2">
-              <div>
-                <div class="flex items-center gap-2 mb-1">
-                  <label for="why" class="block text-sm font-medium leading-6 text-white">
-                    Why do you want to join our CAB?
-                  </label>
-                  <button
-                    type="button"
-                    id="suggestMotivation"
-                    class="magic-button"
-                  >
-                    <span>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                      </svg>
-                    </span>
-                  </button>
-                  <div id="motivationSuggestion" class="mt-1 text-sm text-gray-400 hidden"></div>
+              <div class="sm:col-span-2">
+                <label for="company" class="block text-sm font-medium leading-6 text-white">
+                  Company name
+                </label>
+                <div class="mt-2">
+                  <input
+                    type="text"
+                    name="company"
+                    id="company"
+                    required
+                    placeholder="Your company name"
+                    class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
+                  />
                 </div>
-                <textarea
-                  id="why"
-                  name="why"
-                  rows="4"
-                  required
-                  placeholder="Tell us why you want to join our Customer Advisory Board"
-                  class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
-                ></textarea>
               </div>
-            </div>
 
-            <div class="sm:col-span-2">
-              <label for="email" class="block text-sm font-medium leading-6 text-white">
-                Oh, and your email please
-              </label>
-              <div class="mt-2">
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  required
-                  placeholder="firstname.lastname@company.com"
-                  class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
-                />
+              <div class="sm:col-span-2">
+                <label for="position" class="block text-sm font-medium leading-6 text-white">
+                  Position
+                </label>
+                <div class="mt-2">
+                  <select
+                    id="position"
+                    name="position"
+                    required
+                    class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
+                  >
+                    <option value="">Select your position</option>
+                    <option value="Product Manager">Product Manager</option>
+                    <option value="Account Manager">Account Manager</option>
+                    <option value="Account Executive">Account Executive</option>
+                    <option value="Customer Success Manager">Customer Success Manager</option>
+                    <option value="Founder">Founder</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div id="otherPositionContainer" class="sm:col-span-2 hidden">
+                <label for="otherPosition" class="block text-sm font-medium leading-6 text-white">
+                  Please specify your position
+                </label>
+                <div class="mt-2">
+                  <input
+                    type="text"
+                    name="otherPosition"
+                    id="otherPosition"
+                    placeholder="Your position"
+                    class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
+                  />
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="mt-10">
+          <!-- Step 2: Tools -->
+          <div id="step2" class="form-step hidden">
+            <div class="space-y-6">
+              <h3 class="text-lg font-medium text-white">What tools are you using?</h3>
+              
+              <div class="space-y-4">
+                <div>
+                  <div class="flex flex-wrap gap-3" id="toolChips">
+                    <!-- Tool chips will be dynamically added here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Tasks Selection -->
+          <div id="step3" class="form-step hidden">
+            <div class="space-y-6">
+              <h3 class="text-lg font-medium text-white">Tell us about your work</h3>
+              <div>
+                <label for="most-hated" class="block text-sm font-medium leading-6 text-white">
+                  What do you hate doing the most?
+                </label>
+                <div class="mt-2">
+                  <textarea
+                    id="most-hated"
+                    name="most_hated"
+                    rows="3"
+                    required
+                    class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div>
+                <label for="time-consuming" class="block text-sm font-medium leading-6 text-white">
+                  What feels like it should be easy, but takes forever?
+                </label>
+                <div class="mt-2">
+                  <textarea
+                    id="time-consuming"
+                    name="time_consuming"
+                    rows="3"
+                    required
+                    class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div>
+                <label for="shadow-fix" class="block text-sm font-medium leading-6 text-white">
+                  If someone could shadow you today, what would you ask them to fix first?
+                </label>
+                <div class="mt-2">
+                  <textarea
+                    id="shadow-fix"
+                    name="shadow_fix"
+                    rows="3"
+                    required
+                    class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div>
+                <label for="not-doing" class="block text-sm font-medium leading-6 text-white">
+                  What should you be doing, but you don't (because of time, laziness,...)?
+                </label>
+                <div class="mt-2">
+                  <textarea
+                    id="not-doing"
+                    name="not_doing"
+                    rows="3"
+                    required
+                    class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 4: Submit -->
+          <div id="step4" class="form-step hidden">
+            <div class="text-left mb-8">
+              <h3 class="text-xl font-semibold text-white mb-4">Boom, done!</h3>
+              <p class="text-gray-300">
+                Thanks for your time. We'll put some thought into it and get back to you when we think we can get you 10x more productive.
+              </p>
+              
+              <!-- Share section -->
+              <div class="mt-10">
+                <h4 class="text-lg font-medium text-white mb-4">Share with a friend</h4>
+                <p class="text-gray-400 text-sm mb-6">Know someone who would benefit from Shadow? Share it privately:</p>
+                
+                <div class="flex justify-left space-x-6">
+                  <!-- Email sharing -->
+                  <a href="#" id="shareEmail" class="share-button">
+                    <div class="flex flex-col items-center">
+                      <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <span class="text-sm text-gray-300 mt-2">Email</span>
+                    </div>
+                  </a>
+                  
+
+                  
+                  <!-- WhatsApp sharing -->
+                  <a href="#" id="shareWhatsApp" class="share-button">
+                    <div class="flex flex-col items-center">
+                      <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                      </div>
+                      <span class="text-sm text-gray-300 mt-2">WhatsApp</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation buttons -->
+          <div class="flex justify-between mt-8" id="navigationButtons">
+            <div>
+              <button
+                type="button"
+                id="prevStep"
+                class="hidden rounded-full bg-gray-600 px-3.5 py-2 text-md font-semibold text-white shadow-sm hover:bg-opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
+              >
+                Previous
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                id="nextStep"
+                class="rounded-full bg-shadow-blue px-3.5 py-2 text-md font-semibold text-white shadow-sm hover:bg-opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-shadow-blue"
+              >
+                Next
+              </button>
+            </div>
             <button
               type="submit"
-              class="rounded-full bg-shadow-blue px-3.5 py-2 text-md font-semibold text-white shadow-sm hover:bg-opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-shadow-blue"
+              id="submitButton"
+              class="hidden rounded-full bg-shadow-blue px-3.5 py-2 text-md font-semibold text-white shadow-sm hover:bg-opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-shadow-blue"
             >
               Submit
             </button>
@@ -183,143 +303,568 @@ import Footer from '../components/Footer.astro';
   .magic-button:hover span {
     background: linear-gradient(45deg, #3B82F610, #F43F5E10, #FFFFFF10);
   }
+
+  .task-chip input[type="checkbox"]:checked + span {
+    background: linear-gradient(45deg, #3B82F6, #F43F5E);
+    color: white;
+    padding-right: 2.5rem;
+  }
+  .task-chip input[type="checkbox"]:checked + span::after {
+    content: '✓';
+    position: absolute;
+    right: 1rem;
+    opacity: 1;
+  }
+  .task-chip span {
+    position: relative;
+    transition: all 0.2s ease-in-out;
+  }
+  .task-chip:hover span {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Success animation styles */
+  .success-animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .checkmark {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #3B82F6;
+    stroke-miterlimit: 10;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+  }
+  
+  .checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #3B82F6;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+  }
+  
+  .checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+  }
+  
+  @keyframes stroke {
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  @keyframes scale {
+    0%, 100% {
+      transform: none;
+    }
+    50% {
+      transform: scale3d(1.1, 1.1, 1);
+    }
+  }
+  
+  @keyframes fill {
+    100% {
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+    }
+  }
+  
+  .success-title {
+    animation: fadeInUp 0.8s ease-in-out 0.5s forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Share buttons styles */
+  .share-button {
+    transition: transform 0.3s ease;
+  }
+  
+  .share-button:hover {
+    transform: translateY(-5px);
+  }
 </style>
 
 <script>
+  // Import Supabase client directly in the client-side script
+  import { createClient } from '@supabase/supabase-js';
+
+  // Initialize Supabase client
+  const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+  const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+  // Form elements
   const form = document.getElementById('applicationForm') as HTMLFormElement;
   const messageDiv = document.getElementById('formMessage');
-  const toolsSuggestionDiv = document.getElementById('toolsSuggestion');
-  const motivationSuggestionDiv = document.getElementById('motivationSuggestion');
-  const jobInput = document.getElementById('job') as HTMLInputElement;
-  const toolsInput = document.getElementById('tools') as HTMLInputElement;
-  const whyInput = document.getElementById('why') as HTMLTextAreaElement;
+  const positionSelect = document.getElementById('position') as HTMLSelectElement;
+  const otherPositionContainer = document.getElementById('otherPositionContainer');
+  const otherPositionInput = document.getElementById('otherPosition') as HTMLInputElement;
 
-  document.getElementById('suggestTools')?.addEventListener('click', async () => {
-    if (!jobInput.value) {
-      toolsSuggestionDiv!.textContent = 'Please fill in your job first';
-      toolsSuggestionDiv!.classList.remove('hidden');
-      return;
+  // Random placeholders for text areas
+  const placeholders = {
+    'most-hated': [
+      "Manual data entry from emails into our CRM",
+      "Creating weekly status reports from multiple sources",
+      "Following up on unanswered emails",
+      "Scheduling meetings across different time zones"
+    ],
+    'time-consuming': [
+      "Finding the right information in old email threads",
+      "Getting updates from team members for project status",
+      "Formatting documents to match company guidelines",
+      "Organizing meeting notes and action items"
+    ],
+    'shadow-fix': [
+      "Automate our customer onboarding process",
+      "Create a better system for tracking team tasks",
+      "Streamline our email response workflow",
+      "Improve our meeting scheduling process"
+    ],
+    'not-doing': [
+      "Regular follow-ups with potential leads",
+      "Documenting processes and procedures",
+      "Analyzing customer feedback data",
+      "Keeping our knowledge base up to date"
+    ]
+  };
+
+  // Function to animate text character by character
+  async function animateText(textarea: HTMLTextAreaElement, text: string) {
+    let currentText = '';
+    for (let i = 0; i < text.length; i++) {
+      currentText += text[i];
+      textarea.placeholder = currentText;
+      await new Promise(resolve => setTimeout(resolve, 50));
     }
+  }
 
-    toolsSuggestionDiv!.textContent = 'Thinking...';
-    toolsSuggestionDiv!.classList.remove('hidden');
-
-    try {
-      const response = await fetch('/api/suggest-tools', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ job: jobInput.value }),
-      });
-
-      if (!response.ok) throw new Error('Failed to get suggestions');
-
-      const data = await response.json();
-      toolsInput.value = data.tools;
-      toolsSuggestionDiv!.classList.add('hidden');
-    } catch (error) {
-      toolsSuggestionDiv!.textContent = 'Failed to get suggestions. Please try again.';
+  // Function to set random placeholder with animation and delay
+  function setRandomPlaceholder(textareaId: string, index: number = 0) {
+    const textarea = document.getElementById(textareaId) as HTMLTextAreaElement;
+    if (textarea && placeholders[textareaId]) {
+      const randomIndex = Math.floor(Math.random() * placeholders[textareaId].length);
+      const newPlaceholder = placeholders[textareaId][randomIndex];
+      setTimeout(() => {
+        animateText(textarea, newPlaceholder);
+      }, index * 500); // Add 500ms delay for each subsequent field
     }
+  }
+
+  // Set initial random placeholders with staggered animation
+  Object.keys(placeholders).forEach((id, index) => setRandomPlaceholder(id, index));
+
+  // Change placeholders periodically (every 5 seconds) with staggered animation
+  setInterval(() => {
+    Object.keys(placeholders).forEach((id, index) => setRandomPlaceholder(id, index));
+  }, 5000);
+  const otherToolsInput = document.getElementById('otherTools') as HTMLInputElement;
+
+  // Track if user has interacted with the form
+  let formInteracted = false;
+
+  // Add event listeners to track form interaction
+  document.querySelectorAll('input, select, textarea').forEach(element => {
+    element.addEventListener('input', () => {
+      formInteracted = true;
+    });
+    element.addEventListener('change', () => {
+      formInteracted = true;
+    });
+    element.addEventListener('focus', () => {
+      formInteracted = true;
+    });
   });
+  // Navigation elements
+  const prevButton = document.getElementById('prevStep');
+  const nextButton = document.getElementById('nextStep');
+  const submitButton = document.getElementById('submitButton');
+  const progressBar = document.querySelector('.progress-bar') as HTMLElement;
+  const stepIndicators = document.querySelectorAll('.step-indicator');
 
-  document.getElementById('suggestMotivation')?.addEventListener('click', async () => {
-    if (!jobInput.value || !toolsInput.value) {
-      motivationSuggestionDiv!.textContent = 'Please fill in your job and tools first';
-      motivationSuggestionDiv!.classList.remove('hidden');
-      return;
-    }
+  // Form steps
+  const formSteps = document.querySelectorAll('.form-step');
+  let currentStep = 0;
 
-    motivationSuggestionDiv!.textContent = 'Thinking...';
-    motivationSuggestionDiv!.classList.remove('hidden');
+  // Tool suggestions by position
+  const toolSuggestions = {
+    "Product Manager": ["Jira", "Asana", "Trello", "Notion", "Miro", "Figma", "Slack", "Zoom", "Microsoft Teams", "Confluence", "Amplitude", "Mixpanel", "Google Analytics", "Productboard"],
+    "Account Manager": ["Salesforce", "HubSpot", "Monday.com", "Asana", "Slack", "Zoom", "Outreach", "LinkedIn Sales Navigator", "DocuSign", "Calendly", "Gong", "SalesLoft"],
+    "Account Executive": ["Salesforce", "HubSpot", "Pipedrive", "Close", "Slack", "Zoom", "Outreach", "LinkedIn Sales Navigator", "DocuSign", "Calendly", "Gong", "SalesLoft"],
+    "Customer Success Manager": ["Gainsight", "Totango", "ChurnZero", "Salesforce", "Intercom", "Zendesk", "Front", "Help Scout", "Calendly", "Gong", "Customer.io", "Mixpanel"],
+    "Founder": ["Notion", "Asana", "Trello", "GitHub", "Slack", "Zoom", "Discord", "LinkedIn", "Stripe", "QuickBooks", "Google Workspace", "Zapier"]
+  };
 
-    try {
-      const response = await fetch('/api/suggest-motivation', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          job: jobInput.value,
-          tools: toolsInput.value 
-        }),
-      });
-
-      if (!response.ok) throw new Error('Failed to get suggestions');
-
-      const data = await response.json();
-      whyInput.value = data.motivation;
-      motivationSuggestionDiv!.classList.add('hidden');
-    } catch (error) {
-      motivationSuggestionDiv!.textContent = 'Failed to get suggestions. Please try again.';
-    }
-  });
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  function createToolChip(tool) {
+    const label = document.createElement('label');
+    label.className = 'task-chip cursor-pointer';
     
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.name = 'tools';
+    input.value = tool;
+    input.className = 'hidden';
+    
+    const span = document.createElement('span');
+    span.className = 'inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-white/5 text-white hover:bg-white/10 transition-colors relative';
+    span.textContent = tool;
+
+    // Add click handler to toggle selected state
+    label.addEventListener('click', (e) => {
+      e.preventDefault();
+      input.checked = !input.checked;
+      if (input.checked) {
+        span.classList.add('bg-shadow-blue', 'text-white');
+        span.style.paddingRight = '2.5rem';
+        span.style.position = 'relative';
+        if (!span.querySelector('.checkmark')) {
+          const checkmark = document.createElement('span');
+          checkmark.className = 'checkmark';
+          checkmark.textContent = '✓';
+          checkmark.style.position = 'absolute';
+          checkmark.style.right = '1rem';
+          span.appendChild(checkmark);
+        }
+      } else {
+        span.classList.remove('bg-shadow-blue', 'text-white');
+        span.style.paddingRight = '1rem';
+        const checkmark = span.querySelector('.checkmark');
+        if (checkmark) {
+          span.removeChild(checkmark);
+        }
+      }
+    });
+    
+    label.appendChild(input);
+    label.appendChild(span);
+    return label;
+  }
+
+  // Handle position change
+  positionSelect?.addEventListener('change', (e) => {
+    const target = e.target as HTMLSelectElement;
+    const toolChipsContainer = document.getElementById('toolChips');
+    
+    if (target.value === 'other') {
+      otherPositionContainer?.classList.remove('hidden');
+      otherPositionInput?.setAttribute('required', 'true');
+    } else {
+      otherPositionContainer?.classList.add('hidden');
+      otherPositionInput?.removeAttribute('required');
+      otherPositionInput.value = '';
+      
+      // Update tool suggestions
+      if (toolChipsContainer && toolSuggestions[target.value]) {
+        toolChipsContainer.innerHTML = '';
+        toolSuggestions[target.value].forEach(tool => {
+          toolChipsContainer.appendChild(createToolChip(tool));
+        });
+      }
+    }
+  });
+
+  // Navigation event listeners
+  prevButton?.addEventListener('click', () => {
+    if (currentStep > 0) {
+      updateStep(currentStep - 1);
+    }
+  });
+
+  // Remove this duplicate event listener block
+  nextButton?.addEventListener('click', async () => {
+    if (validateStep(currentStep)) {
+      if (currentStep === 3) { // Changed from 2 to 3 - Now at step 3 (work questions), before moving to step 4
+        if (!messageDiv) return;
+        
+        messageDiv.className = 'mt-4 text-center text-sm text-gray-300';
+
+        const formData = new FormData(form);
+        const selectedTools = Array.from(document.querySelectorAll('input[name="tools"]:checked')).map(cb => (cb as HTMLInputElement).value);
+        
+        const data = {
+          email: formData.get('email')?.toString().trim() || '',
+          company: formData.get('company')?.toString().trim() || '',
+          position: formData.get('position')?.toString().trim() || '',
+          otherPosition: formData.get('otherPosition')?.toString().trim() || '',
+          tools: selectedTools.join(', '),
+          most_hated: formData.get('most_hated')?.toString().trim() || '',
+          time_consuming: formData.get('time_consuming')?.toString().trim() || '',
+          shadow_fix: formData.get('shadow_fix')?.toString().trim() || '',
+          not_doing: formData.get('not_doing')?.toString().trim() || ''
+        };
+
+        try {
+          const { error } = await supabase
+            .from('waitlist')
+            .insert({
+              email: data.email,
+              company: data.company,
+              position: data.position,
+              other_position: data.otherPosition,
+              tools: data.tools,
+              most_hated: data.most_hated,
+              time_consuming: data.time_consuming,
+              shadow_fix: data.shadow_fix,
+              not_doing: data.not_doing,
+              created_at: new Date().toISOString()
+            });
+          
+          if (error) {
+            if (error.code === '23505') { // Unique violation
+              throw new Error('Email already registered');
+            }
+            throw new Error('Database error: ' + error.message);
+          }
+
+          messageDiv.className = 'mt-4 text-center text-sm text-shadow-blue';
+          updateStep(currentStep + 1);
+        } catch (error) {
+          messageDiv.textContent = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+          messageDiv.className = 'mt-4 text-center text-sm text-red-500';
+        }
+      } else if (currentStep < formSteps.length - 1) {
+        updateStep(currentStep + 1);
+      }
+    }
+  });
+
+  // Form submission - now just prevents default since we handle submission at step 3
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+  });
+  
+  // Share functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const shareEmail = document.getElementById('shareEmail');
+    const shareWhatsApp = document.getElementById('shareWhatsApp');
+    
+    const shareUrl = window.location.origin + '/apply';
+    const shareTitle = 'Join Shadow - Get 10x More Productive';
+    const shareText = 'I just applied to Shadow, a platform that helps top performers get more done with AI. Check it out!';
+    
+    if (shareEmail) {
+      shareEmail.addEventListener('click', (e) => {
+        e.preventDefault();
+        const shareUrl = window.location.origin + '/apply';
+        const shareTitle = 'Join Shadow - Get 10x More Productive';
+        const shareText = 'I just applied to Shadow, a platform that helps top performers get more done with AI. Check it out!';
+        
+        // Gmail specific link
+        const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&su=${encodeURIComponent(shareTitle)}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}`;
+        
+        // Try to open in a new window/tab
+        window.open(gmailLink, '_blank');
+      });
+    }
+    
+
+    
+    if (shareWhatsApp) {
+      shareWhatsApp.addEventListener('click', (e) => {
+        e.preventDefault();
+        const whatsappLink = `https://wa.me/?text=${encodeURIComponent(shareText + '\n\n' + shareUrl)}`;
+        window.open(whatsappLink, '_blank');
+      });
+    }
+  });
+
+  // Navigation functions
+  function updateStep(step: number) {
+    // Ensure step is within valid range
+    if (step < 0 || step > formSteps.length - 1) return;
+    
+    formSteps.forEach((s, index) => {
+      if (index === step) {
+        s.classList.remove('hidden');
+        s.classList.add('active');
+      } else {
+        s.classList.add('hidden');
+        s.classList.remove('active');
+      }
+    });
+
+    // Update progress bar and indicators
+    const progress = (step / (formSteps.length - 1)) * 100;
+    progressBar.style.width = `${progress}%`;
+
+    stepIndicators.forEach((indicator, index) => {
+      if (index <= step) {
+        indicator.classList.add('text-white');
+        indicator.classList.remove('text-gray-500');
+      } else {
+        indicator.classList.remove('text-white');
+        indicator.classList.add('text-gray-500');
+      }
+    });
+
+    // Update button visibility
+    if (step === 0) {
+      prevButton?.classList.add('hidden');
+      nextButton?.classList.remove('hidden');
+      submitButton?.classList.add('hidden');
+    } else if (step === formSteps.length - 1) {
+      prevButton?.classList.remove('hidden');
+      nextButton?.classList.add('hidden');
+      submitButton?.classList.add('hidden');
+    } else {
+      prevButton?.classList.remove('hidden');
+      nextButton?.classList.remove('hidden');
+      submitButton?.classList.add('hidden');
+    }
+
+    // Hide all buttons on step 4
+    if (step === 4) {
+      document.getElementById('navigationButtons')?.classList.add('hidden');
+    }
+
+    currentStep = step;
+  }
+
+  // Validate current step
+  function validateStep(step: number): boolean {
+    // Skip validation for step 0 since it's just an introduction
+    if (step === 0) return true;
+    
+    const currentStepElement = document.getElementById(`step${step}`);
+    if (!currentStepElement) return false;
+    
+    // Only validate if user has interacted with the form or is trying to proceed to the next step
+    const isUserAttemptingToSubmit = document.activeElement === nextButton || document.activeElement === submitButton;
+    
+    // If we're just entering a new step and not trying to submit, don't show validation errors yet
+    if (!isUserAttemptingToSubmit) return true;
+    
+    const requiredFields = currentStepElement.querySelectorAll('[required]');
+    let isValid = true;
+    
+    // For step 2, at least one tool should be selected
+    if (step === 2) {
+      const selectedTools = document.querySelectorAll('input[name="tools"]:checked');
+      if (selectedTools.length === 0) return false;
+    }
+    
+    requiredFields.forEach(field => {
+      if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement || field instanceof HTMLSelectElement) {
+        if (!field.value.trim()) {
+          isValid = false;
+        }
+      }
+    });
+    
+    return isValid;
+  }
+
+  // Submit form data to Supabase
+  async function submitFormData() {
     if (!messageDiv) return;
     
-    messageDiv.textContent = 'Submitting...';
     messageDiv.className = 'mt-4 text-center text-sm text-gray-300';
 
     const formData = new FormData(form);
+    const selectedTools = Array.from(document.querySelectorAll('input[name="tools"]:checked')).map(cb => (cb as HTMLInputElement).value);
     
-    // Create a clean data object with only the fields we need
-    const data = {
-      firstName: formData.get('firstName')?.toString().trim() || '',
-      lastName: formData.get('lastName')?.toString().trim() || '',
-      job: formData.get('job')?.toString().trim() || '',
-      tools: formData.get('tools')?.toString().trim() || '',
-      why: formData.get('why')?.toString().trim() || '',
-      email: formData.get('email')?.toString().trim() || ''
-    } as const; // Make the object type readonly
-
-    // Validate required fields
-    for (const [key, value] of Object.entries(data)) {
-      if (!value) {
-        messageDiv.textContent = `Please fill in the ${key} field`;
-        messageDiv.className = 'mt-4 text-center text-sm text-red-500';
-        return;
-      }
-    }
-
     try {
-      // Stringify the data with only the fields we need
-      const jsonData = JSON.stringify({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        job: data.job,
-        tools: data.tools,
-        why: data.why,
-        email: data.email
-      });
-
-      console.log('Sending JSON:', jsonData);
-
-      const response = await fetch('/api/apply', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonData
-      });
-
-      console.log('Response status:', response.status);
-      const responseData = await response.json();
-      console.log('Response data:', responseData);
-
-      if (response.ok) {
-        messageDiv.textContent = 'Thank you for applying! We will get back to you soon.';
-        messageDiv.className = 'mt-4 text-center text-sm text-shadow-blue';
-        form.reset();
-      } else {
-        throw new Error(responseData.error || responseData.message || 'Failed to submit application');
+      console.log("Submitting to Supabase...");
+      const { error } = await supabase
+        .from('waitlist')
+        .insert({
+          email: formData.get('email')?.toString().trim() || '',
+          company: formData.get('company')?.toString().trim() || '',
+          position: formData.get('position') === 'other' 
+            ? formData.get('otherPosition')?.toString().trim() 
+            : formData.get('position')?.toString().trim(),
+          tools: selectedTools.join(', '),
+          most_hated: formData.get('most_hated')?.toString().trim() || '',
+          time_consuming: formData.get('time_consuming')?.toString().trim() || '',
+          shadow_fix: formData.get('shadow_fix')?.toString().trim() || '',
+          not_doing: formData.get('not_doing')?.toString().trim() || '',
+          created_at: new Date().toISOString()
+        });
+      
+      console.log("Supabase response received");
+      
+      if (error) {
+        console.error("Supabase error:", error);
+        if (error.code === '23505') { // Unique violation
+          throw new Error('Email already registered');
+        }
+        throw new Error('Database error: ' + error.message);
       }
+
+      messageDiv.className = 'mt-4 text-center text-sm text-shadow-blue';
+      updateStep(4); // Move to the final step (step 4)
     } catch (error) {
-      console.error('Submission error:', error);
+      console.error("Submission error:", error);
       messageDiv.textContent = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
       messageDiv.className = 'mt-4 text-center text-sm text-red-500';
     }
+  }
+
+  // Remove ALL previous event listeners for these buttons
+  // Keep only these event listeners at the bottom of the script
+  
+  // Clear any existing event listeners (important to prevent duplicates)
+  const newPrevButton = prevButton?.cloneNode(true);
+  const newNextButton = nextButton?.cloneNode(true);
+  const newSubmitButton = submitButton?.cloneNode(true);
+  
+  if (prevButton && newPrevButton) {
+    prevButton.parentNode?.replaceChild(newPrevButton, prevButton);
+  }
+  
+  if (nextButton && newNextButton) {
+    nextButton.parentNode?.replaceChild(newNextButton, nextButton);
+  }
+  
+  if (submitButton && newSubmitButton) {
+    submitButton.parentNode?.replaceChild(newSubmitButton, submitButton);
+  }
+  
+  // Re-assign the variables to the new elements
+  const prevButtonNew = document.getElementById('prevStep');
+  const nextButtonNew = document.getElementById('nextStep');
+  const submitButtonNew = document.getElementById('submitButton');
+  
+  // Add event listeners to the new elements
+  prevButtonNew?.addEventListener('click', () => {
+    if (currentStep > 0) {
+      updateStep(currentStep - 1);
+    }
   });
+
+  nextButtonNew?.addEventListener('click', async () => {
+    if (validateStep(currentStep)) {
+      if (currentStep === 3) { // At step 3 (work questions), submit the form
+        await submitFormData();
+      } else if (currentStep < formSteps.length - 1) {
+        updateStep(currentStep + 1);
+      }
+    }
+  });
+
+  // Form submission handler
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+  });
+  
+  // Remove all other event listeners for these buttons throughout the file
 </script>
