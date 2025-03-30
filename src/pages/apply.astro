@@ -420,32 +420,164 @@ import Footer from '../components/Footer.astro';
   const otherPositionContainer = document.getElementById('otherPositionContainer');
   const otherPositionInput = document.getElementById('otherPosition') as HTMLInputElement;
 
-  // Random placeholders for text areas
+  // Placeholders for text areas by position
   const placeholders = {
-    'most-hated': [
-      "Manual data entry from emails into our CRM",
-      "Creating weekly status reports from multiple sources",
-      "Following up on unanswered emails",
-      "Scheduling meetings across different time zones"
-    ],
-    'time-consuming': [
-      "Finding the right information in old email threads",
-      "Getting updates from team members for project status",
-      "Formatting documents to match company guidelines",
-      "Organizing meeting notes and action items"
-    ],
-    'shadow-fix': [
-      "Automate our customer onboarding process",
-      "Create a better system for tracking team tasks",
-      "Streamline our email response workflow",
-      "Improve our meeting scheduling process"
-    ],
-    'not-doing': [
-      "Regular follow-ups with potential leads",
-      "Documenting processes and procedures",
-      "Analyzing customer feedback data",
-      "Keeping our knowledge base up to date"
-    ]
+    'Product Manager': {
+      'most-hated': [
+        "Creating weekly status reports from multiple sources",
+        "Manually updating project timelines across tools",
+        "Collecting and organizing feedback from stakeholders",
+        "Documenting feature requirements repeatedly"
+      ],
+      'time-consuming': [
+        "Finding the right information in old email threads",
+        "Getting updates from team members for project status",
+        "Prioritizing feature requests from different stakeholders",
+        "Creating presentations for executive reviews"
+      ],
+      'shadow-fix': [
+        "Automate our sprint reporting process",
+        "Create a better system for tracking feature requests",
+        "Streamline our user feedback collection",
+        "Improve our product documentation workflow"
+      ],
+      'not-doing': [
+        "Regular competitive analysis",
+        "Documenting product decisions and rationales",
+        "Analyzing product usage metrics",
+        "Keeping our product roadmap up to date"
+      ]
+    },
+    'Account Manager': {
+      'most-hated': [
+        "Manual data entry from emails into our CRM",
+        "Creating client reports from multiple data sources",
+        "Following up on unanswered client emails",
+        "Scheduling meetings with multiple stakeholders"
+      ],
+      'time-consuming': [
+        "Finding client information across different platforms",
+        "Preparing for client review meetings",
+        "Formatting client-facing documents",
+        "Tracking client requests and action items"
+      ],
+      'shadow-fix': [
+        "Automate our client onboarding process",
+        "Create a better system for tracking client requests",
+        "Streamline our client communication workflow",
+        "Improve our client reporting process"
+      ],
+      'not-doing': [
+        "Regular check-ins with all clients",
+        "Documenting client interactions thoroughly",
+        "Analyzing client satisfaction data",
+        "Proactive outreach to at-risk accounts"
+      ]
+    },
+    'Account Executive': {
+      'most-hated': [
+        "Manually logging sales activities in CRM",
+        "Creating custom sales proposals",
+        "Following up with prospects who went cold",
+        "Scheduling demos across different time zones"
+      ],
+      'time-consuming': [
+        "Finding relevant information for prospect questions",
+        "Preparing for sales calls and demos",
+        "Customizing pitch decks for different industries",
+        "Tracking deal progress and next steps"
+      ],
+      'shadow-fix': [
+        "Automate our prospect follow-up process",
+        "Create a better system for tracking sales opportunities",
+        "Streamline our proposal creation workflow",
+        "Improve our demo scheduling process"
+      ],
+      'not-doing': [
+        "Regular prospecting to fill the pipeline",
+        "Documenting sales calls and customer objections",
+        "Analyzing win/loss patterns",
+        "Keeping our competitive intelligence up to date"
+      ]
+    },
+    'Customer Success Manager': {
+      'most-hated': [
+        "Creating customer health reports manually",
+        "Tracking customer issues across multiple tools",
+        "Following up on customer support tickets",
+        "Scheduling training sessions with customers"
+      ],
+      'time-consuming': [
+        "Finding customer usage data across platforms",
+        "Preparing for quarterly business reviews",
+        "Creating custom training materials",
+        "Tracking customer adoption metrics"
+      ],
+      'shadow-fix': [
+        "Automate our customer health monitoring",
+        "Create a better system for tracking customer issues",
+        "Streamline our customer onboarding workflow",
+        "Improve our customer training process"
+      ],
+      'not-doing': [
+        "Regular proactive check-ins with all customers",
+        "Documenting customer success stories",
+        "Analyzing customer usage patterns",
+        "Creating self-service resources for customers"
+      ]
+    },
+    'Founder': {
+      'most-hated': [
+        "Managing my overflowing inbox",
+        "Creating investor updates and reports",
+        "Following up on partnership opportunities",
+        "Scheduling meetings with potential clients/investors"
+      ],
+      'time-consuming': [
+        "Finding information scattered across tools and emails",
+        "Preparing for investor and board meetings",
+        "Switching context between different business areas",
+        "Tracking company KPIs from multiple sources"
+      ],
+      'shadow-fix': [
+        "Automate our investor reporting process",
+        "Create a better system for tracking company priorities",
+        "Streamline our hiring and onboarding workflow",
+        "Improve our financial reporting process"
+      ],
+      'not-doing': [
+        "Regular strategic planning sessions",
+        "Documenting company processes and procedures",
+        "Analyzing market trends and opportunities",
+        "Keeping our company wiki up to date"
+      ]
+    },
+    'default': {
+      'most-hated': [
+        "Manual data entry from emails into our systems",
+        "Creating reports from multiple sources",
+        "Following up on unanswered emails",
+        "Scheduling meetings across different time zones"
+      ],
+      'time-consuming': [
+        "Finding the right information in old email threads",
+        "Getting updates from team members for project status",
+        "Formatting documents to match company guidelines",
+        "Organizing meeting notes and action items"
+      ],
+      'shadow-fix': [
+        "Automate our most repetitive processes",
+        "Create a better system for tracking tasks",
+        "Streamline our communication workflow",
+        "Improve our meeting scheduling process"
+      ],
+      'not-doing': [
+        "Regular follow-ups with important contacts",
+        "Documenting processes and procedures",
+        "Analyzing relevant data for insights",
+        "Keeping our knowledge base up to date"
+      ]
+    }
   };
 
   // Function to animate text character by character
@@ -456,27 +588,67 @@ import Footer from '../components/Footer.astro';
       textarea.placeholder = currentText;
       await new Promise(resolve => setTimeout(resolve, 50));
     }
+    return true; // Return true when animation is complete
   }
 
-  // Function to set random placeholder with animation and delay
+  // Store the current placeholder index for each textarea
+  const currentPlaceholderIndices = {};
+
+  // Function to set placeholder with animation and cycle through all options
   function setRandomPlaceholder(textareaId: string, index: number = 0) {
     const textarea = document.getElementById(textareaId) as HTMLTextAreaElement;
-    if (textarea && placeholders[textareaId]) {
-      const randomIndex = Math.floor(Math.random() * placeholders[textareaId].length);
-      const newPlaceholder = placeholders[textareaId][randomIndex];
-      setTimeout(() => {
-        animateText(textarea, newPlaceholder);
-      }, index * 500); // Add 500ms delay for each subsequent field
+    if (!textarea) return;
+    
+    // Get current position selection
+    const currentPosition = positionSelect?.value || '';
+    
+    // Determine which placeholder set to use
+    const positionKey = currentPosition && placeholders[currentPosition] ? currentPosition : 'default';
+    
+    if (placeholders[positionKey] && placeholders[positionKey][textareaId]) {
+      const options = placeholders[positionKey][textareaId];
+      
+      // Initialize the index for this textarea if it doesn't exist
+      if (!currentPlaceholderIndices[textareaId]) {
+        currentPlaceholderIndices[textareaId] = 0;
+      }
+      
+      // Get the next placeholder in sequence
+      const placeholderIndex = currentPlaceholderIndices[textareaId];
+      const newPlaceholder = options[placeholderIndex];
+      
+      // Update the index for next time, cycling back to 0 if we reach the end
+      currentPlaceholderIndices[textareaId] = (placeholderIndex + 1) % options.length;
+      
+      return animateText(textarea, newPlaceholder);
     }
+    return Promise.resolve(true);
   }
 
-  // Set initial random placeholders with staggered animation
-  Object.keys(placeholders).forEach((id, index) => setRandomPlaceholder(id, index));
+  // Function to animate placeholders sequentially
+  async function animatePlaceholdersSequentially() {
+    const textareaIds = Object.keys(placeholders['default']);
+    
+    for (let i = 0; i < textareaIds.length; i++) {
+      await setRandomPlaceholder(textareaIds[i]);
+    }
+    
+    // After all animations are done, schedule the next round
+    setTimeout(animatePlaceholdersSequentially, 2000);
+  }
 
-  // Change placeholders periodically (every 5 seconds) with staggered animation
-  setInterval(() => {
+  // Start the sequential animation
+  animatePlaceholdersSequentially();
+  
+  // Reset placeholder indices when position changes
+  positionSelect?.addEventListener('change', () => {
+    // Reset all indices to start the animation from the beginning
+    Object.keys(placeholders).forEach(id => {
+      currentPlaceholderIndices[id] = 0;
+    });
+    // Update placeholders with the new position
     Object.keys(placeholders).forEach((id, index) => setRandomPlaceholder(id, index));
-  }, 5000);
+  });
   const otherToolsInput = document.getElementById('otherTools') as HTMLInputElement;
 
   // Track if user has interacted with the form
@@ -507,11 +679,11 @@ import Footer from '../components/Footer.astro';
 
   // Tool suggestions by position
   const toolSuggestions = {
-    "Product Manager": ["Jira", "Asana", "Trello", "Notion", "Miro", "Figma", "Slack", "Zoom", "Microsoft Teams", "Confluence", "Amplitude", "Mixpanel", "Google Analytics", "Productboard"],
-    "Account Manager": ["Salesforce", "HubSpot", "Monday.com", "Asana", "Slack", "Zoom", "Outreach", "LinkedIn Sales Navigator", "DocuSign", "Calendly", "Gong", "SalesLoft"],
-    "Account Executive": ["Salesforce", "HubSpot", "Pipedrive", "Close", "Slack", "Zoom", "Outreach", "LinkedIn Sales Navigator", "DocuSign", "Calendly", "Gong", "SalesLoft"],
-    "Customer Success Manager": ["Gainsight", "Totango", "ChurnZero", "Salesforce", "Intercom", "Zendesk", "Front", "Help Scout", "Calendly", "Gong", "Customer.io", "Mixpanel"],
-    "Founder": ["Notion", "Asana", "Trello", "GitHub", "Slack", "Zoom", "Discord", "LinkedIn", "Stripe", "QuickBooks", "Google Workspace", "Zapier"]
+    "Product Manager": ["Jira", "Asana", "Trello", "Notion", "Miro", "Figma", "Slack", "Zoom", "Whatsapp", "Microsoft Teams", "Confluence", "Amplitude", "Loom", "Mixpanel", "Pendo", "Aha!", "Typeform", "Hotjar", "Google Analytics", "Productboard", "Google Workspace", "Office 365", "ChatGPT", "Gemini for Workplace", "Claude", "NotebookLM", "v0", "Cursor", "Lovable", "Windsurf", "Trae", "Bolt", "Zapier", "Make.com", "N8N"],
+    "Account Manager": ["Salesforce", "HubSpot", "Attio", "Pipedrive", "Monday.com", "Asana", "Slack", "Whatsapp", "Zoom", "Outreach", "LinkedIn Sales Navigator", "DocuSign", "Loom", "Calendly", "Gong", "SalesLoft", "ChatGPT", "Gemini for Workspace", "Claude"],
+    "Account Executive": ["Salesforce", "HubSpot", "Attio", "Pipedrive", "Close", "Slack", "Zoom", "Outreach", "Whatsapp", "LinkedIn Sales Navigator", "Apollo", "Brevo", "DocuSign", "Loom", "Calendly", "Gong", "SalesLoft"],
+    "Customer Success Manager": ["Planhat", "Gainsight", "Totango", "ChurnZero", "Salesforce", "Intercom", "Whatsapp", "Zendesk", "Front", "Help Scout", "Calendly", "Gong", "Customer.io", "Mixpanel"],
+    "Founder": ["Notion", "Asana", "Trello", "GitHub", "Slack", "Zoom", "Discord", "LinkedIn", "Stripe", "QuickBooks", "Google Workspace", "Office 365", "Zapier", "Superhuman", "ChatGPT", "Gemini for Workspace", "Claude", "NotebookLM", "v0", "Cursor", "Lovable", "Windsurf", "Trae", "Bolt", "Zapier", "Make.com", "N8N", "Webflow", "Bubble", "Whatsapp"],
   };
 
   function createToolChip(tool) {
@@ -579,6 +751,9 @@ import Footer from '../components/Footer.astro';
           toolChipsContainer.appendChild(createToolChip(tool));
         });
       }
+      
+      // Update placeholders based on new position
+      Object.keys(placeholders['default']).forEach((id, index) => setRandomPlaceholder(id, index));
     }
   });
 
