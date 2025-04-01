@@ -215,21 +215,7 @@ import Footer from '../components/Footer.astro';
                 <h4 class="text-lg font-medium text-white mb-4">Share with a friend</h4>
                 <p class="text-gray-400 text-sm mb-6">Know someone who would benefit from Shadow? Share it privately:</p>
                 
-                <div class="flex justify-left space-x-6">
-                  <!-- Email sharing -->
-                  <a href="#" id="shareEmail" class="share-button">
-                    <div class="flex flex-col items-center">
-                      <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <span class="text-sm text-gray-300 mt-2">Email</span>
-                    </div>
-                  </a>
-                  
-
-                  
+                <div class="flex justify-left">
                   <!-- WhatsApp sharing -->
                   <a href="#" id="shareWhatsApp" class="share-button">
                     <div class="flex flex-col items-center">
@@ -251,7 +237,7 @@ import Footer from '../components/Footer.astro';
             <div>
               <button
                 type="button"
-                id="prevStep"
+                id="prevButton"
                 class="hidden rounded-full bg-gray-600 px-3.5 py-2 text-md font-semibold text-white shadow-sm hover:bg-opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
               >
                 Previous
@@ -508,10 +494,10 @@ import Footer from '../components/Footer.astro';
         "Scheduling training sessions with customers"
       ],
       'time-consuming': [
-        "Finding customer usage data across platforms",
-        "Preparing for quarterly business reviews",
-        "Creating custom training materials",
-        "Tracking customer adoption metrics"
+        "Finding customer information across different platforms",
+        "Preparing for customer review meetings",
+        "Creating custom reports for customers",
+        "Tracking customer success metrics"
       ],
       'shadow-fix': [
         "Automate our customer health monitoring",
@@ -649,7 +635,6 @@ import Footer from '../components/Footer.astro';
     // Update placeholders with the new position
     Object.keys(placeholders).forEach((id, index) => setRandomPlaceholder(id, index));
   });
-  const otherToolsInput = document.getElementById('otherTools') as HTMLInputElement;
 
   // Track if user has interacted with the form
   let formInteracted = false;
@@ -666,8 +651,9 @@ import Footer from '../components/Footer.astro';
       formInteracted = true;
     });
   });
+  
   // Navigation elements
-  const prevButton = document.getElementById('prevStep');
+  const prevButton = document.getElementById('prevButton');
   const nextButton = document.getElementById('nextStep');
   const submitButton = document.getElementById('submitButton');
   const progressBar = document.querySelector('.progress-bar') as HTMLElement;
@@ -676,7 +662,7 @@ import Footer from '../components/Footer.astro';
   // Form steps
   const formSteps = document.querySelectorAll('.form-step');
   let currentStep = 0;
-
+  
   // Tool suggestions by position
   const toolSuggestions = {
     "Product Manager": ["Jira", "Asana", "Trello", "Notion", "Miro", "Figma", "Slack", "Zoom", "Whatsapp", "Microsoft Teams", "Confluence", "Amplitude", "Loom", "Mixpanel", "Pendo", "Aha!", "Typeform", "Hotjar", "Google Analytics", "Productboard", "Google Workspace", "Office 365", "ChatGPT", "Gemini for Workplace", "Claude", "NotebookLM", "v0", "Cursor", "Lovable", "Windsurf", "Trae", "Bolt", "Zapier", "Make.com", "N8N"],
@@ -707,7 +693,6 @@ import Footer from '../components/Footer.astro';
       if (input.checked) {
         span.classList.add('bg-shadow-blue', 'text-white');
         span.style.paddingRight = '2.5rem';
-        span.style.position = 'relative';
         if (!span.querySelector('.checkmark')) {
           const checkmark = document.createElement('span');
           checkmark.className = 'checkmark';
@@ -739,6 +724,38 @@ import Footer from '../components/Footer.astro';
     if (target.value === 'other') {
       otherPositionContainer?.classList.remove('hidden');
       otherPositionInput?.setAttribute('required', 'true');
+      
+      // Create a mixed set of tools for 'other' position
+      if (toolChipsContainer) {
+        toolChipsContainer.innerHTML = '';
+        
+        // Get all available positions except 'other'
+        const positions = Object.keys(toolSuggestions);
+        
+        // Create a set to avoid duplicates
+        const mixedToolsSet = new Set();
+        
+        // Add some tools from each position
+        positions.forEach(position => {
+          const positionTools = toolSuggestions[position];
+          // Take a random selection of 3-5 tools from each position
+          const numTools = Math.floor(Math.random() * 3) + 10; // 3-12 tools
+          
+          for (let i = 0; i < numTools && i < positionTools.length; i++) {
+            // Get a random tool from this position
+            const randomIndex = Math.floor(Math.random() * positionTools.length);
+            mixedToolsSet.add(positionTools[randomIndex]);
+          }
+        });
+        
+        // Convert set to array and limit to a reasonable number (max 25)
+        const mixedTools = Array.from(mixedToolsSet).slice(0, 25);
+        
+        // Add the mixed tools to the container
+        mixedTools.forEach(tool => {
+          toolChipsContainer.appendChild(createToolChip(tool as string));
+        });
+      }
     } else {
       otherPositionContainer?.classList.add('hidden');
       otherPositionInput?.removeAttribute('required');
@@ -764,209 +781,36 @@ import Footer from '../components/Footer.astro';
     }
   });
 
-  // Remove this duplicate event listener block
   nextButton?.addEventListener('click', async () => {
     if (validateStep(currentStep)) {
-      if (currentStep === 3) { // Changed from 2 to 3 - Now at step 3 (work questions), before moving to step 4
-        if (!messageDiv) return;
-        
-        messageDiv.className = 'mt-4 text-center text-sm text-gray-300';
-
-        const formData = new FormData(form);
-        const selectedTools = Array.from(document.querySelectorAll('input[name="tools"]:checked')).map(cb => (cb as HTMLInputElement).value);
-        
-        const data = {
-          email: formData.get('email')?.toString().trim() || '',
-          company: formData.get('company')?.toString().trim() || '',
-          position: formData.get('position')?.toString().trim() || '',
-          otherPosition: formData.get('otherPosition')?.toString().trim() || '',
-          tools: selectedTools.join(', '),
-          most_hated: formData.get('most_hated')?.toString().trim() || '',
-          time_consuming: formData.get('time_consuming')?.toString().trim() || '',
-          shadow_fix: formData.get('shadow_fix')?.toString().trim() || '',
-          not_doing: formData.get('not_doing')?.toString().trim() || ''
-        };
-
-        try {
-          const { error } = await supabase
-            .from('waitlist')
-            .insert({
-              email: data.email,
-              company: data.company,
-              position: data.position,
-              other_position: data.otherPosition,
-              tools: data.tools,
-              most_hated: data.most_hated,
-              time_consuming: data.time_consuming,
-              shadow_fix: data.shadow_fix,
-              not_doing: data.not_doing,
-              created_at: new Date().toISOString()
-            });
-          
-          if (error) {
-            if (error.code === '23505') { // Unique violation
-              throw new Error('Email already registered');
-            }
-            throw new Error('Database error: ' + error.message);
-          }
-
-          messageDiv.className = 'mt-4 text-center text-sm text-shadow-blue';
-          updateStep(currentStep + 1);
-        } catch (error) {
-          messageDiv.textContent = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
-          messageDiv.className = 'mt-4 text-center text-sm text-red-500';
-        }
+      // If we're on the last input step (step 3), submit the form data
+      if (currentStep === 3) {
+        await submitFormToSupabase();
       } else if (currentStep < formSteps.length - 1) {
+        // Otherwise just go to the next step
         updateStep(currentStep + 1);
       }
     }
   });
-
-  // Form submission - now just prevents default since we handle submission at step 3
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-  });
   
-  // Share functionality
-  document.addEventListener('DOMContentLoaded', () => {
-    const shareEmail = document.getElementById('shareEmail');
-    const shareWhatsApp = document.getElementById('shareWhatsApp');
-    
-    const shareUrl = window.location.origin + '/apply';
-    const shareTitle = 'Join Shadow - Get 10x More Productive';
-    const shareText = 'I just applied to Shadow, a platform that helps top performers get more done with AI. Check it out!';
-    
-    if (shareEmail) {
-      shareEmail.addEventListener('click', (e) => {
-        e.preventDefault();
-        const shareUrl = window.location.origin + '/apply';
-        const shareTitle = 'Join Shadow - Get 10x More Productive';
-        const shareText = 'I just applied to Shadow, a platform that helps top performers get more done with AI. Check it out!';
-        
-        // Gmail specific link
-        const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&su=${encodeURIComponent(shareTitle)}&body=${encodeURIComponent(shareText + '\n\n' + shareUrl)}`;
-        
-        // Try to open in a new window/tab
-        window.open(gmailLink, '_blank');
-      });
-    }
-    
-
-    
-    if (shareWhatsApp) {
-      shareWhatsApp.addEventListener('click', (e) => {
-        e.preventDefault();
-        const whatsappLink = `https://wa.me/?text=${encodeURIComponent(shareText + '\n\n' + shareUrl)}`;
-        window.open(whatsappLink, '_blank');
-      });
-    }
-  });
-
-  // Navigation functions
-  function updateStep(step: number) {
-    // Ensure step is within valid range
-    if (step < 0 || step > formSteps.length - 1) return;
-    
-    formSteps.forEach((s, index) => {
-      if (index === step) {
-        s.classList.remove('hidden');
-        s.classList.add('active');
-      } else {
-        s.classList.add('hidden');
-        s.classList.remove('active');
-      }
-    });
-
-    // Update progress bar and indicators
-    const progress = (step / (formSteps.length - 1)) * 100;
-    progressBar.style.width = `${progress}%`;
-
-    stepIndicators.forEach((indicator, index) => {
-      if (index <= step) {
-        indicator.classList.add('text-white');
-        indicator.classList.remove('text-gray-500');
-      } else {
-        indicator.classList.remove('text-white');
-        indicator.classList.add('text-gray-500');
-      }
-    });
-
-    // Update button visibility
-    if (step === 0) {
-      prevButton?.classList.add('hidden');
-      nextButton?.classList.remove('hidden');
-      submitButton?.classList.add('hidden');
-    } else if (step === formSteps.length - 1) {
-      prevButton?.classList.remove('hidden');
-      nextButton?.classList.add('hidden');
-      submitButton?.classList.add('hidden');
-    } else {
-      prevButton?.classList.remove('hidden');
-      nextButton?.classList.remove('hidden');
-      submitButton?.classList.add('hidden');
-    }
-
-    // Hide all buttons on step 4
-    if (step === 4) {
-      document.getElementById('navigationButtons')?.classList.add('hidden');
-    }
-
-    currentStep = step;
-  }
-
-  // Validate current step
-  function validateStep(step: number): boolean {
-    // Skip validation for step 0 since it's just an introduction
-    if (step === 0) return true;
-    
-    const currentStepElement = document.getElementById(`step${step}`);
-    if (!currentStepElement) return false;
-    
-    // Only validate if user has interacted with the form or is trying to proceed to the next step
-    const isUserAttemptingToSubmit = document.activeElement === nextButton || document.activeElement === submitButton;
-    
-    // If we're just entering a new step and not trying to submit, don't show validation errors yet
-    if (!isUserAttemptingToSubmit) return true;
-    
-    const requiredFields = currentStepElement.querySelectorAll('[required]');
-    let isValid = true;
-    
-    // For step 2, at least one tool should be selected
-    if (step === 2) {
-      const selectedTools = document.querySelectorAll('input[name="tools"]:checked');
-      if (selectedTools.length === 0) return false;
-    }
-    
-    requiredFields.forEach(field => {
-      if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement || field instanceof HTMLSelectElement) {
-        if (!field.value.trim()) {
-          isValid = false;
-        }
-      }
-    });
-    
-    return isValid;
-  }
-
-  // Submit form data to Supabase
-  async function submitFormData() {
+  // Handle form submission via Supabase
+  async function submitFormToSupabase() {
     if (!messageDiv) return;
     
     messageDiv.className = 'mt-4 text-center text-sm text-gray-300';
+    messageDiv.textContent = 'Submitting your application...';
 
     const formData = new FormData(form);
     const selectedTools = Array.from(document.querySelectorAll('input[name="tools"]:checked')).map(cb => (cb as HTMLInputElement).value);
     
     try {
-      console.log("Submitting to Supabase...");
       const { error } = await supabase
         .from('waitlist')
         .insert({
           email: formData.get('email')?.toString().trim() || '',
           company: formData.get('company')?.toString().trim() || '',
-          position: formData.get('position') === 'other' 
-            ? formData.get('otherPosition')?.toString().trim() 
-            : formData.get('position')?.toString().trim(),
+          position: formData.get('position')?.toString().trim() || '',
+          other_position: formData.get('otherPosition')?.toString().trim() || '',
           tools: selectedTools.join(', '),
           most_hated: formData.get('most_hated')?.toString().trim() || '',
           time_consuming: formData.get('time_consuming')?.toString().trim() || '',
@@ -975,17 +819,14 @@ import Footer from '../components/Footer.astro';
           created_at: new Date().toISOString()
         });
       
-      console.log("Supabase response received");
-      
       if (error) {
-        console.error("Supabase error:", error);
         if (error.code === '23505') { // Unique violation
           throw new Error('Email already registered');
         }
         throw new Error('Database error: ' + error.message);
       }
 
-      messageDiv.className = 'mt-4 text-center text-sm text-shadow-blue';
+      messageDiv.textContent = ''; // Clear the message
       updateStep(4); // Move to the final step (step 4)
     } catch (error) {
       console.error("Submission error:", error);
@@ -993,53 +834,158 @@ import Footer from '../components/Footer.astro';
       messageDiv.className = 'mt-4 text-center text-sm text-red-500';
     }
   }
-
-  // Remove ALL previous event listeners for these buttons
-  // Keep only these event listeners at the bottom of the script
   
-  // Clear any existing event listeners (important to prevent duplicates)
-  const newPrevButton = prevButton?.cloneNode(true);
-  const newNextButton = nextButton?.cloneNode(true);
-  const newSubmitButton = submitButton?.cloneNode(true);
+  // No need to clone and replace buttons as we already have the correct references
+  // We'll just use the original button references: prevButton, nextButton, and submitButton
   
-  if (prevButton && newPrevButton) {
-    prevButton.parentNode?.replaceChild(newPrevButton, prevButton);
-  }
-  
-  if (nextButton && newNextButton) {
-    nextButton.parentNode?.replaceChild(newNextButton, nextButton);
-  }
-  
-  if (submitButton && newSubmitButton) {
-    submitButton.parentNode?.replaceChild(newSubmitButton, submitButton);
-  }
-  
-  // Re-assign the variables to the new elements
-  const prevButtonNew = document.getElementById('prevStep');
-  const nextButtonNew = document.getElementById('nextStep');
-  const submitButtonNew = document.getElementById('submitButton');
-  
-  // Add event listeners to the new elements
-  prevButtonNew?.addEventListener('click', () => {
-    if (currentStep > 0) {
-      updateStep(currentStep - 1);
-    }
-  });
-
-  nextButtonNew?.addEventListener('click', async () => {
-    if (validateStep(currentStep)) {
-      if (currentStep === 3) { // At step 3 (work questions), submit the form
-        await submitFormData();
-      } else if (currentStep < formSteps.length - 1) {
-        updateStep(currentStep + 1);
-      }
-    }
-  });
+  // Event listeners for navigation buttons are already defined above
 
   // Form submission handler
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
   });
+
+  // Function to validate the current step before proceeding
+  function validateStep(step) {
+    switch (step) {
+      case 0: // Introduction step - no validation needed
+        return true;
+      case 1: // Job Position step
+        const email = document.getElementById('email') as HTMLInputElement;
+        const company = document.getElementById('company') as HTMLInputElement;
+        const position = document.getElementById('position') as HTMLSelectElement;
+        const otherPosition = document.getElementById('otherPosition') as HTMLInputElement;
+        
+        if (!email.value.trim()) {
+          messageDiv.textContent = 'Please enter your email address';
+          messageDiv.className = 'mt-4 text-center text-sm text-red-500';
+          return false;
+        }
+        
+        if (!company.value.trim()) {
+          messageDiv.textContent = 'Please enter your company name';
+          messageDiv.className = 'mt-4 text-center text-sm text-red-500';
+          return false;
+        }
+        
+        if (!position.value) {
+          messageDiv.textContent = 'Please select your position';
+          messageDiv.className = 'mt-4 text-center text-sm text-red-500';
+          return false;
+        }
+        
+        if (position.value === 'other' && !otherPosition.value.trim()) {
+          messageDiv.textContent = 'Please specify your position';
+          messageDiv.className = 'mt-4 text-center text-sm text-red-500';
+          return false;
+        }
+        
+        messageDiv.textContent = '';
+        return true;
+        
+      case 2: // Tools step - no required validation
+        return true;
+        
+      case 3: // Tasks Selection step
+        const mostHated = document.getElementById('most-hated') as HTMLTextAreaElement;
+        const timeConsuming = document.getElementById('time-consuming') as HTMLTextAreaElement;
+        const shadowFix = document.getElementById('shadow-fix') as HTMLTextAreaElement;
+        const notDoing = document.getElementById('not-doing') as HTMLTextAreaElement;
+        
+        if (!mostHated.value.trim()) {
+          messageDiv.textContent = 'Please tell us what you hate doing the most';
+          messageDiv.className = 'mt-4 text-center text-sm text-red-500';
+          return false;
+        }
+        
+        if (!timeConsuming.value.trim()) {
+          messageDiv.textContent = 'Please tell us what takes forever';
+          messageDiv.className = 'mt-4 text-center text-sm text-red-500';
+          return false;
+        }
+        
+        if (!shadowFix.value.trim()) {
+          messageDiv.textContent = 'Please tell us what you would ask someone to fix first';
+          messageDiv.className = 'mt-4 text-center text-sm text-red-500';
+          return false;
+        }
+        
+        if (!notDoing.value.trim()) {
+          messageDiv.textContent = 'Please tell us what you should be doing but are not';
+          messageDiv.className = 'mt-4 text-center text-sm text-red-500';
+          return false;
+        }
+        
+        messageDiv.textContent = '';
+        return true;
+        
+      default:
+        return true;
+    }
+  }
   
-  // Remove all other event listeners for these buttons throughout the file
-</script>
+  // Function to update the form step
+  function updateStep(step) {
+    // Hide all steps
+    formSteps.forEach((stepElement, index) => {
+      stepElement.classList.add('hidden');
+      if (stepIndicators[index]) {
+        stepIndicators[index].classList.remove('text-white');
+        stepIndicators[index].classList.add('text-gray-500');
+      }
+    });
+    
+    // Show the current step
+    if (formSteps[step]) {
+      formSteps[step].classList.remove('hidden');
+      if (stepIndicators[step]) {
+        stepIndicators[step].classList.remove('text-gray-500');
+        stepIndicators[step].classList.add('text-white');
+      }
+    }
+    
+    // Update progress bar
+    if (progressBar) {
+      const progress = (step / (formSteps.length - 1)) * 100;
+      progressBar.style.width = `${progress}%`;
+    }
+    
+    // Update navigation buttons
+    if (prevButton) {
+      if (step > 0 && step !== 4) {
+        prevButton.classList.remove('hidden');
+      } else {
+        prevButton.classList.add('hidden');
+      }
+    }
+    
+    if (nextButton && submitButton) {
+      if (step === 3) { // Last input step
+        nextButton.textContent = 'Submit';
+      } else {
+        nextButton.textContent = 'Next';
+      }
+      
+      if (step === 4) { // Thank you step
+        nextButton.classList.add('hidden');
+        submitButton.classList.add('hidden');
+      } else {
+        nextButton.classList.remove('hidden');
+        submitButton.classList.add('hidden');
+      }
+    }
+    
+    currentStep = step;
+  }
+
+  // Initialize the form
+  updateStep(0);
+  
+  // Set up WhatsApp sharing functionality
+  const shareWhatsAppButton = document.getElementById('shareWhatsApp');
+  shareWhatsAppButton?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const text = encodeURIComponent('Check out Shadow - a platform that helps you get 10x more done: https://shadow.com');
+    window.open(`https://wa.me/?text=${text}`, '_blank');
+  });
+  </script>
