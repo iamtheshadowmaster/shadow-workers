@@ -667,9 +667,10 @@ import Footer from '../components/Footer.astro';
   const toolSuggestions = {
     "Product Manager": ["Jira", "Asana", "Trello", "Notion", "Miro", "Figma", "Slack", "Zoom", "Whatsapp", "Microsoft Teams", "Confluence", "Amplitude", "Loom", "Mixpanel", "Pendo", "Aha!", "Typeform", "Hotjar", "Google Analytics", "Productboard", "Google Workspace", "Office 365", "ChatGPT", "Gemini for Workplace", "Claude", "NotebookLM", "v0", "Cursor", "Lovable", "Windsurf", "Trae", "Bolt", "Zapier", "Make.com", "N8N"],
     "Account Manager": ["Salesforce", "HubSpot", "Attio", "Pipedrive", "Monday.com", "Asana", "Slack", "Whatsapp", "Zoom", "Outreach", "LinkedIn Sales Navigator", "DocuSign", "Loom", "Calendly", "Gong", "SalesLoft", "ChatGPT", "Gemini for Workspace", "Claude"],
-    "Account Executive": ["Salesforce", "HubSpot", "Attio", "Pipedrive", "Close", "Slack", "Zoom", "Outreach", "Whatsapp", "LinkedIn Sales Navigator", "Apollo", "Brevo", "DocuSign", "Loom", "Calendly", "Gong", "SalesLoft"],
+    "Account Executive": ["Salesforce", "HubSpot", "Attio", "Pipedrive", "Close", "Slack", "Zoom", "Outreach", "Whatsapp", "LinkedIn Sales Navigator", "Apollo", "Brevo", "Lemlist", "DocuSign", "Loom", "Calendly", "Gong", "SalesLoft"],
     "Customer Success Manager": ["Planhat", "Gainsight", "Totango", "ChurnZero", "Salesforce", "Intercom", "Whatsapp", "Zendesk", "Front", "Help Scout", "Calendly", "Gong", "Customer.io", "Mixpanel"],
     "Founder": ["Notion", "Asana", "Trello", "GitHub", "Slack", "Zoom", "Discord", "LinkedIn", "Stripe", "QuickBooks", "Google Workspace", "Office 365", "Zapier", "Superhuman", "ChatGPT", "Gemini for Workspace", "Claude", "NotebookLM", "v0", "Cursor", "Lovable", "Windsurf", "Trae", "Bolt", "Zapier", "Make.com", "N8N", "Webflow", "Bubble", "Whatsapp"],
+    "Other": ["Google Workspace", "Office 365", "Slack", "Zoom", "ChatGPT", "Zapier", "Make.com", "N8N", "Whatsapp", "Notion", "Trello", "Smartsheet", "GitHub", "Gitlab", "Supabase", "Discord", "LinkedIn", "Stripe", "QuickBooks", "Zapier", "Superhuman", "Gemini for Workspace", "Claude", "NotebookLM", "v0", "Cursor", "Lovable", "Windsurf", "Trae", "Bolt", "Webflow", "Bubble"],
   };
 
   function createToolChip(tool) {
@@ -725,36 +726,17 @@ import Footer from '../components/Footer.astro';
       otherPositionContainer?.classList.remove('hidden');
       otherPositionInput?.setAttribute('required', 'true');
       
-      // Create a mixed set of tools for 'other' position
+      // Use predefined tools for 'other' position
       if (toolChipsContainer) {
         toolChipsContainer.innerHTML = '';
+        const otherTools = toolSuggestions['Other'];
         
-        // Get all available positions except 'other'
-        const positions = Object.keys(toolSuggestions);
-        
-        // Create a set to avoid duplicates
-        const mixedToolsSet = new Set();
-        
-        // Add some tools from each position
-        positions.forEach(position => {
-          const positionTools = toolSuggestions[position];
-          // Take a random selection of 3-5 tools from each position
-          const numTools = Math.floor(Math.random() * 3) + 10; // 3-12 tools
-          
-          for (let i = 0; i < numTools && i < positionTools.length; i++) {
-            // Get a random tool from this position
-            const randomIndex = Math.floor(Math.random() * positionTools.length);
-            mixedToolsSet.add(positionTools[randomIndex]);
-          }
+        // Add all predefined tools for 'Other' position
+        otherTools.forEach(tool => {
+          const toolChip = createToolChip(tool);
+          toolChipsContainer.appendChild(toolChip);
         });
-        
-        // Convert set to array and limit to a reasonable number (max 25)
-        const mixedTools = Array.from(mixedToolsSet).slice(0, 25);
-        
-        // Add the mixed tools to the container
-        mixedTools.forEach(tool => {
-          toolChipsContainer.appendChild(createToolChip(tool as string));
-        });
+    
       }
     } else {
       otherPositionContainer?.classList.add('hidden');
