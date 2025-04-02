@@ -1,0 +1,762 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+// Import Supabase client
+import { supabase } from '../lib/supabase';
+---
+
+<Layout title="Leaderboard - Shadow">
+  <Nav />
+  <main class="min-h-screen bg-black pt-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 py-12">
+      <div class="mx-auto max-w-2xl">
+        <div class="flex justify-between items-center mb-8">
+          <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Leaderboard
+          </h1>
+          <button
+            id="openSubmitPanel"
+            class="rounded-full bg-shadow-blue px-3.5 py-2 text-md font-semibold text-white shadow-sm hover:bg-opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-shadow-blue"
+          >
+            Submit task
+          </button>
+        </div>
+        <p class="text-lg text-gray-300 mb-8">
+          Check what fellow workers want to automate, and submit your ideas.
+        </p>
+
+        <!-- Filters -->
+        <div class="mb-8 flex flex-wrap gap-4 items-center justify-between">
+          <div class="flex flex-wrap gap-3">
+            <button 
+              class="filter-chip active px-4 py-2 rounded-full bg-gray-800 text-white text-sm font-medium transition-all hover:bg-gray-700" 
+              data-sort="newest"
+            >
+              Recents
+            </button>
+            <button 
+              class="filter-chip px-4 py-2 rounded-full bg-gray-800 text-white text-sm font-medium transition-all hover:bg-gray-700" 
+              data-sort="mostUpvotes"
+            >
+              Hated
+            </button>
+            <button 
+              class="filter-chip px-4 py-2 rounded-full bg-gray-800 text-white text-sm font-medium transition-all hover:bg-gray-700" 
+              data-sort="mostDownvotes"
+            >
+              Sweaters
+            </button>
+            <button 
+              class="filter-chip px-4 py-2 rounded-full bg-gray-800 text-white text-sm font-medium transition-all hover:bg-gray-700" 
+              data-sort="mostPlease"
+            >
+              Fix it
+            </button>
+            <button 
+              class="filter-chip px-4 py-2 rounded-full bg-gray-800 text-white text-sm font-medium transition-all hover:bg-gray-700" 
+              data-sort="mostShould"
+            >
+              Should do
+            </button>
+            
+            <!-- Category filter dropdown -->
+            <div class="relative inline-block">
+              <button 
+                id="categoryFilterButton"
+                class="category-dropdown-toggle px-4 py-2 rounded-full bg-gray-800 text-white text-sm font-medium transition-all hover:bg-gray-700 flex items-center gap-2 cursor-pointer"
+              >
+                <span id="selectedCategory">All jobs</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div id="categoryDropdown" class="hidden absolute z-10 mt-2 w-48 rounded-md bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="categoryFilterButton">
+                  <button class="category-option block w-full px-4 py-2 text-left text-sm text-white hover:bg-gray-700 active" data-category="">All jobs</button>
+                  <button class="category-option block w-full px-4 py-2 text-left text-sm text-white hover:bg-gray-700" data-category="Product Manager">Product Manager</button>
+                  <button class="category-option block w-full px-4 py-2 text-left text-sm text-white hover:bg-gray-700" data-category="Account Manager">Account Manager</button>
+                  <button class="category-option block w-full px-4 py-2 text-left text-sm text-white hover:bg-gray-700" data-category="Account Executive">Account Executive</button>
+                  <button class="category-option block w-full px-4 py-2 text-left text-sm text-white hover:bg-gray-700" data-category="Customer Success Manager">Customer Success Manager</button>
+                  <button class="category-option block w-full px-4 py-2 text-left text-sm text-white hover:bg-gray-700" data-category="Founder">Founder</button>
+                  <button class="category-option block w-full px-4 py-2 text-left text-sm text-white hover:bg-gray-700" data-category="Other">Other</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Task List -->
+        <div id="taskList" class="space-y-6">
+          <!-- Tasks will be dynamically inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Task Detail Modal -->
+    <div id="taskModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+      <div class="bg-gray-900 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8 relative">
+        <button
+          id="closeTaskModal"
+          class="absolute top-4 right-4 text-white hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-full p-1"
+          aria-label="Close modal"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        
+        <div id="taskModalContent" class="space-y-6">
+          <!-- Task details will be inserted here -->
+        </div>
+        
+        <!-- Comments Section -->
+        <div class="mt-8 pt-6 border-t border-gray-700">
+          <h3 class="text-xl font-semibold text-white mb-4">Comments</h3>
+          
+          <!-- Comments List -->
+          <div id="commentsList" class="space-y-4 mb-6">
+            <!-- Comments will be inserted here -->
+          </div>
+          
+          <!-- Comment Form -->
+          <form id="commentForm" class="space-y-4">
+            <input type="hidden" id="commentTaskId" name="taskId" value="" />
+            <div>
+              <label for="commentContent" class="block text-sm font-medium text-white mb-1">Comment</label>
+              <textarea 
+                id="commentContent" 
+                name="content" 
+                rows="3" 
+                class="w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
+                required
+              ></textarea>
+            </div>
+            <div class="flex justify-end">
+              <button
+                type="submit"
+                class="rounded-full bg-shadow-blue px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-shadow-blue"
+              >
+                Post Comment
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Side Panel for Task Submission -->
+    <div id="submitPanel" class="fixed inset-y-0 right-0 w-96 bg-gray-900 p-8 transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto shadow-lg z-50 h-full">
+      <button
+        id="closeSubmitPanel"
+        class="absolute top-4 right-4 text-white hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-full p-1"
+        aria-label="Close panel"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <h2 class="text-2xl font-bold text-white mb-6">Submit a Task</h2>
+      <form id="taskForm" class="space-y-6">
+        <div>
+          <label for="title" class="block text-sm font-medium leading-6 text-white">
+            Title
+          </label>
+          <div class="mt-2">
+            <input
+              type="text"
+              name="title"
+              id="title"
+              required
+              placeholder="Enter a clear title for your task"
+              class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="description" class="block text-sm font-medium leading-6 text-white">
+            Description
+          </label>
+          <div class="mt-2">
+            <textarea
+              id="description"
+              name="description"
+              rows="4"
+              required
+              placeholder="Describe the task you'd like to automate"
+              class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
+            ></textarea>
+          </div>
+        </div>
+
+        <div>
+          <label for="category" class="block text-sm font-medium leading-6 text-white">
+            Job
+          </label>
+          <div class="mt-2">
+            <select
+              id="category"
+              name="category"
+              required
+              class="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
+            >
+              <option value="">Select a category</option>
+              <option value="Product Manager">Product Manager</option>
+              <option value="Account Manager">Account Manager</option>
+              <option value="Account Executive">Account Executive</option>
+              <option value="Customer Success Manager">Customer Success Manager</option>
+              <option value="Founder">Founder</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex justify-end">
+          <button
+            type="submit"
+            class="rounded-full bg-shadow-blue px-3.5 py-2 text-md font-semibold text-white shadow-sm hover:bg-opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-shadow-blue"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style is:global>
+  .task-card {
+    @apply bg-gray-800/80 rounded-xl p-6 transition-all duration-200 shadow-lg shadow-gray-900/50 border border-gray-700/30 cursor-pointer;
+  }
+
+  .task-card:hover {
+    @apply bg-gray-700/80 shadow-xl transform scale-[1.02];
+  }
+
+  .reaction-button {
+    @apply flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium cursor-pointer hover:bg-white/10;
+  }
+
+  .reaction-button.voted {
+    @apply bg-white/10;
+  }
+  
+  .filter-chip.active {
+    background-color: #00BFFF;
+    color: #000;
+  }
+  
+  .category-dropdown-toggle {
+    cursor: pointer;
+  }
+  
+  .category-dropdown-toggle.active {
+    background-color: #00BFFF;
+    color: #000;
+  }
+  
+  .category-option {
+    cursor: pointer;
+  }
+  
+  .category-option.active {
+    background-color: rgba(0, 191, 255, 0.2);
+  }
+</style>
+
+<script>
+  import { createClient } from '@supabase/supabase-js';
+
+  // Initialize Supabase client
+  const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+  const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+  // DOM Elements
+  const taskForm = document.getElementById('taskForm');
+  const taskList = document.getElementById('taskList');
+  const filterChips = document.querySelectorAll('.filter-chip');
+  const openSubmitPanel = document.getElementById('openSubmitPanel');
+  const closeSubmitPanel = document.getElementById('closeSubmitPanel');
+  const submitPanel = document.getElementById('submitPanel');
+  const categoryFilterButton = document.getElementById('categoryFilterButton');
+  const categoryDropdown = document.getElementById('categoryDropdown');
+  const categoryOptions = document.querySelectorAll('.category-option');
+  const selectedCategoryText = document.getElementById('selectedCategory');
+  
+  // Task Modal Elements
+  const taskModal = document.getElementById('taskModal');
+  const closeTaskModal = document.getElementById('closeTaskModal');
+  const taskModalContent = document.getElementById('taskModalContent');
+  const commentsList = document.getElementById('commentsList');
+  const commentForm = document.getElementById('commentForm');
+  const commentTaskId = document.getElementById('commentTaskId');
+  let currentTaskId = null;
+
+  // Category dropdown functionality
+  let selectedCategory = '';
+
+  // Ensure panel is hidden by default
+  if (submitPanel) {
+    submitPanel.classList.add('translate-x-full');
+  }
+
+  // Ensure 'Most recent' filter is active by default
+  const defaultFilter = document.querySelector('.filter-chip[data-sort="newest"]');
+  if (defaultFilter) {
+    filterChips.forEach(c => c.classList.remove('active'));
+    defaultFilter.classList.add('active');
+  }
+
+  // Load tasks on page load
+  loadTasks();
+  
+  // Pre-fill author name from localStorage if available
+  const savedAuthorName = localStorage.getItem('commentAuthorName');
+  if (savedAuthorName && document.getElementById('authorName')) {
+    (document.getElementById('authorName') as HTMLInputElement).value = savedAuthorName;
+  }
+
+  // Event Listeners
+  taskForm?.addEventListener('submit', handleSubmit);
+  
+  // Filter chip functionality
+  filterChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      // Update active state on buttons
+      filterChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      
+      // Load tasks with the selected filter
+      loadTasks();
+    });
+  });
+  
+  // Toggle dropdown visibility
+  categoryFilterButton?.addEventListener('click', () => {
+    categoryDropdown?.classList.toggle('hidden');
+  });
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (categoryDropdown && categoryFilterButton && !categoryFilterButton.contains(e.target as Node) && !categoryDropdown.contains(e.target as Node)) {
+      categoryDropdown.classList.add('hidden');
+    }
+  });
+  
+  // Handle category selection
+  categoryOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      const category = option.getAttribute('data-category') || '';
+      selectedCategory = category;
+      
+      // Update active state on options
+      categoryOptions.forEach(opt => opt.classList.remove('active'));
+      option.classList.add('active');
+      
+      // Update button text
+      if (selectedCategoryText) {
+        selectedCategoryText.textContent = category || 'All jobs';
+      }
+      
+      // Toggle active state on button
+      if (category) {
+        categoryFilterButton?.classList.add('active');
+      } else {
+        categoryFilterButton?.classList.remove('active');
+      }
+      
+      // Hide dropdown
+      categoryDropdown?.classList.add('hidden');
+      
+      // Load tasks with the selected filter
+      loadTasks();
+    });
+  });
+  
+  // Panel open/close functionality
+  if (openSubmitPanel) {
+    openSubmitPanel.addEventListener('click', () => {
+      if (submitPanel) {
+        submitPanel.classList.remove('translate-x-full');
+      }
+    });
+  }
+  
+  if (closeSubmitPanel) {
+    closeSubmitPanel.addEventListener('click', () => {
+      if (submitPanel) {
+        submitPanel.classList.add('translate-x-full');
+      }
+    });
+  }
+  
+  // Task modal functionality
+  if (closeTaskModal) {
+    closeTaskModal.addEventListener('click', () => {
+      if (taskModal) {
+        taskModal.classList.add('hidden');
+      }
+    });
+  }
+  
+  // Close modal when clicking outside the content
+  if (taskModal) {
+    taskModal.addEventListener('click', (e) => {
+      if (e.target === taskModal) {
+        taskModal.classList.add('hidden');
+      }
+    });
+  }
+  
+  // Comment form submission
+  if (commentForm) {
+    commentForm.addEventListener('submit', handleCommentSubmit);
+  }
+
+  async function handleSubmit(e: Event) {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    try {
+      const { data, error } = await supabase
+        .from('leaderboard')
+        .insert([
+          {
+            title: formData.get('title'),
+            description: formData.get('description'),
+            category: formData.get('category'),
+            upvotes: 0,
+            downvotes: 0
+          }
+        ]);
+
+      if (error) throw error;
+
+      form.reset();
+      loadTasks();
+      submitPanel?.classList.add('translate-x-full');
+    } catch (error) {
+      console.error('Error submitting task:', error);
+    }
+  }
+
+  // Helper function to check if user has voted on a task
+  function hasUserVoted(taskId: string, voteType: string): boolean {
+    const votes = JSON.parse(localStorage.getItem('userVotes') || '{}');
+    return votes[taskId] === voteType;
+  }
+
+  // Helper function to save user's vote
+  function saveUserVote(taskId: string, voteType: string): void {
+    const votes = JSON.parse(localStorage.getItem('userVotes') || '{}');
+    votes[taskId] = voteType;
+    localStorage.setItem('userVotes', JSON.stringify(votes));
+  }
+
+  async function loadTasks() {
+    if (!taskList) return;
+
+    // Get the sort value from the active filter chip
+    const activeChip = document.querySelector('.filter-chip.active');
+    const sortValue = activeChip ? activeChip.getAttribute('data-sort') || 'newest' : 'newest';
+    let query = supabase.from('leaderboard').select('*');
+    
+    // Apply category filter if selected
+    if (selectedCategory) {
+      query = query.eq('category', selectedCategory);
+    }
+
+    switch (sortValue) {
+      case 'oldest':
+        query = query.order('created_at', { ascending: true });
+        break;
+      case 'mostUpvotes':
+        query = query.order('hate', { ascending: false });
+        break;
+      case 'mostDownvotes':
+        query = query.order('sweat', { ascending: false });
+        break;
+      case 'mostPlease':
+        query = query.order('please', { ascending: true });
+        break;
+      case 'mostShould':
+        query = query.order('should', { ascending: true });
+        break;
+      default: // newest
+        query = query.order('created_at', { ascending: false });
+    }
+
+    try {
+      const { data: tasks, error } = await query;
+
+      if (error) throw error;
+
+      taskList.innerHTML = tasks
+        .map(
+          (task) => {
+            // Check if user has already voted on this task
+            const hasUpvoted = hasUserVoted(task.id, 'up');
+            const hasDownvoted = hasUserVoted(task.id, 'down');
+            
+            return `
+            <div class="task-card" data-task-id="${task.id}">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-semibold text-white">${task.title}</h3>
+                <span class="text-xs text-shadow-blue hover:text-white transition-colors" title="Click to view details and comments">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                  </svg>
+                  Comments
+                </span>
+              </div>
+              <p class="text-gray-300 mb-4">${task.description}</p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-400">${task.category}</span>
+                <div class="flex gap-2">
+                  <button class="reaction-button ${hasUserVoted(task.id, 'hate') ? 'voted' : ''}" data-reaction="hate" ${hasUserVoted(task.id, 'hate') ? 'disabled' : ''}>
+                    <span>🤢</span>
+                    <span>${task.hate || 0}</span>
+                  </button>
+                  <button class="reaction-button ${hasUserVoted(task.id, 'sweat') ? 'voted' : ''}" data-reaction="sweat" ${hasUserVoted(task.id, 'sweat') ? 'disabled' : ''}>
+                    <span>🥵</span>
+                    <span>${task.sweat || 0}</span>
+                  </button>
+                  <button class="reaction-button ${hasUserVoted(task.id, 'please') ? 'voted' : ''}" data-reaction="please" ${hasUserVoted(task.id, 'please') ? 'disabled' : ''}>
+                    <span>🙏</span>
+                    <span>${task.please || 0}</span>
+                  </button>
+                  <button class="reaction-button ${hasUserVoted(task.id, 'should') ? 'voted' : ''}" data-reaction="should" ${hasUserVoted(task.id, 'should') ? 'disabled' : ''}>
+                    <span>🫣</span>
+                    <span>${task.should || 0}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+          }
+        )
+        .join('');
+
+      // Add reaction event listeners
+      document.querySelectorAll('.reaction-button').forEach((button) => {
+        if (!button.hasAttribute('disabled')) {
+          button.addEventListener('click', handleVote);
+        }
+      });
+      
+      // Add click event listeners to task cards for opening the modal
+      document.querySelectorAll('.task-card').forEach((card) => {
+        card.addEventListener('click', (e) => {
+          // Don't open modal if clicking on a reaction button
+          if (e.target.closest('.reaction-button')) return;
+          
+          const taskId = card.dataset.taskId;
+          if (taskId) {
+            openTaskModal(taskId);
+          }
+        });
+      });
+    } catch (error) {
+      console.error('Error loading tasks:', error);
+    }
+  }
+
+  async function handleVote(e: Event) {
+    const button = e.currentTarget as HTMLButtonElement;
+    const taskCard = button.closest('.task-card');
+    if (!taskCard) return;
+
+    const taskId = taskCard.dataset.taskId;
+    const reactionType = button.dataset.reaction;
+    if (!taskId || !reactionType) return;
+
+    // Check if user has already reacted with this reaction
+    if (hasUserVoted(taskId, reactionType)) {
+      return; // User has already used this reaction
+    }
+
+    try {
+      // Get current reaction count
+      const { data: currentTask, error: fetchError } = await supabase
+        .from('leaderboard')
+        .select('*')
+        .eq('id', taskId)
+        .single();
+
+      if (fetchError) throw fetchError;
+
+      // Calculate new count
+      const currentCount = currentTask?.[reactionType] || 0;
+      const newCount = currentCount + 1;
+
+      // Update the reaction count in the database
+      const { error: updateError } = await supabase
+        .from('leaderboard')
+        .update({ [reactionType]: newCount })
+        .eq('id', taskId);
+
+      if (updateError) throw updateError;
+
+      // Save user's reaction to localStorage
+      saveUserVote(taskId, reactionType);
+
+      // Update UI
+      const countSpan = button.querySelectorAll('span')[1];
+      if (countSpan) {
+        countSpan.textContent = String(newCount);
+      }
+      button.classList.add('voted');
+      button.disabled = true;
+
+      // Refresh the list to maintain sort order
+      loadTasks();
+    } catch (error) {
+      console.error('Error updating reaction:', error);
+    }
+  }
+  
+  // Function to open the task modal and load task details
+  async function openTaskModal(taskId: string) {
+    if (!taskModal || !taskModalContent) return;
+    
+    currentTaskId = taskId;
+    
+    try {
+      // Fetch task details
+      const { data: task, error } = await supabase
+        .from('leaderboard')
+        .select('*')
+        .eq('id', taskId)
+        .single();
+      
+      if (error) throw error;
+      
+      if (task) {
+        // Populate modal content
+        taskModalContent.innerHTML = `
+          <h2 class="text-2xl font-bold text-white mb-2">${task.title}</h2>
+          <p class="text-gray-300 mb-4">${task.description}</p>
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-gray-800 text-sm text-gray-300">${task.category}</span>
+            <span class="text-sm text-gray-400">Posted ${new Date(task.created_at).toLocaleDateString()}</span>
+          </div>
+          <div class="flex gap-2 mt-4">
+            <div class="reaction-count flex items-center gap-1">
+              <span>🤢</span>
+              <span>${task.hate || 0}</span>
+            </div>
+            <div class="reaction-count flex items-center gap-1">
+              <span>🥵</span>
+              <span>${task.sweat || 0}</span>
+            </div>
+            <div class="reaction-count flex items-center gap-1">
+              <span>🙏</span>
+              <span>${task.please || 0}</span>
+            </div>
+            <div class="reaction-count flex items-center gap-1">
+              <span>🫣</span>
+              <span>${task.should || 0}</span>
+            </div>
+          </div>
+        `;
+        
+        // Set the task ID in the comment form
+        if (commentTaskId) {
+          commentTaskId.value = taskId;
+        }
+        
+        // Load comments for this task
+        loadComments(taskId);
+        
+        // Show the modal
+        taskModal.classList.remove('hidden');
+      }
+    } catch (error) {
+      console.error('Error loading task details:', error);
+    }
+  }
+  
+  // Function to load comments for a task
+  async function loadComments(taskId: string) {
+    if (!commentsList) return;
+    
+    try {
+      const { data: comments, error } = await supabase
+        .from('comments')
+        .select('*')
+        .eq('task_id', taskId)
+        .order('created_at', { ascending: true });
+      
+      if (error) throw error;
+      
+      if (comments && comments.length > 0) {
+        // Display comments
+        commentsList.innerHTML = comments.map(comment => `
+          <div class="comment bg-gray-800/50 rounded-lg p-4">
+            <div class="flex justify-left items-center mb-2">
+              <span class="text-xs text-gray-400">${new Date(comment.created_at).toLocaleString()}</span>
+            </div>
+            <p class="text-gray-300">${comment.content}</p>
+          </div>
+        `).join('');
+      } else {
+        // No comments yet
+        commentsList.innerHTML = `<p class="text-gray-400">No comments yet. Be the first to comment!</p>`;
+      }
+    } catch (error) {
+      console.error('Error loading comments:', error);
+      commentsList.innerHTML = `<p class="text-red-400">Error loading comments. Please try again.</p>`;
+    }
+  }
+  
+  // Function to handle comment submission
+  async function handleCommentSubmit(e: Event) {
+    e.preventDefault();
+    
+    if (!commentForm) return;
+    
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    const taskId = formData.get('taskId') as string;
+    const content = formData.get('content') as string;
+    
+    if (!taskId || !content) {
+      alert('Please fill out all fields');
+      return;
+    }
+    
+    try {
+      // Insert the comment into the database
+      const { data, error } = await supabase
+        .from('comments')
+        .insert([
+          {
+            task_id: taskId,
+            content: content
+          }
+        ]);
+      
+      if (error) throw error;
+      
+      // Clear the form
+      form.reset();
+      
+      // Keep the task ID in the form
+      if (commentTaskId) {
+        commentTaskId.value = taskId;
+      }
+      
+      // Reload comments to show the new comment
+      loadComments(taskId);
+    } catch (error) {
+      console.error('Error submitting comment:', error);
+      alert('Error submitting comment. Please try again.');
+    }
+  }
+</script>
