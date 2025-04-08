@@ -39,6 +39,23 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
 
         <!-- Filters -->
         <div class="mb-8 flex flex-wrap gap-4 items-center justify-between">
+          <!-- Search Bar -->
+          <div class="w-full mb-4">
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                </svg>
+              </div>
+              <input 
+                type="search" 
+                id="searchInput" 
+                class="block w-full p-3 pl-10 text-sm rounded-lg bg-gray-800 border-gray-700 placeholder-gray-400 text-white focus:ring-shadow-blue focus:border-shadow-blue" 
+                placeholder="Search tasks..." 
+              />
+            </div>
+          </div>
+          
           <div class="flex flex-wrap gap-3">
             <button 
               class="filter-chip active px-4 py-2 rounded-full bg-gray-800 text-white text-sm font-medium transition-all hover:bg-gray-700" 
@@ -298,6 +315,7 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
   const categoryDropdown = document.getElementById('categoryDropdown');
   const categoryOptions = document.querySelectorAll('.category-option');
   const selectedCategoryText = document.getElementById('selectedCategory');
+  const searchInput = document.getElementById('searchInput');
   
   // Task Modal Elements
   const taskModal = document.getElementById('taskModal');
@@ -310,6 +328,7 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
 
   // Category dropdown functionality
   let selectedCategory = '';
+  let searchQuery = '';
 
   // Ensure panel is hidden by default
   if (submitPanel) {
@@ -334,6 +353,12 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
 
   // Event Listeners
   taskForm?.addEventListener('submit', handleSubmit);
+  
+  // Search input functionality
+  searchInput?.addEventListener('input', (e) => {
+    searchQuery = (e.target as HTMLInputElement).value.toLowerCase().trim();
+    loadTasks();
+  });
   
   // Filter chip functionality
   filterChips.forEach(chip => {
@@ -519,8 +544,15 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
           commentCount: countError ? 0 : count || 0
         };
       }));
+      
+      // Filter tasks by search query if provided
+      const filteredTasks = searchQuery
+        ? tasksWithCommentCounts.filter(task => 
+            task.title.toLowerCase().includes(searchQuery) || 
+            task.description.toLowerCase().includes(searchQuery))
+        : tasksWithCommentCounts;
 
-      taskList.innerHTML = tasksWithCommentCounts
+      taskList.innerHTML = filteredTasks
         .map(
           (task) => {
             // Check if user has already voted on this task
