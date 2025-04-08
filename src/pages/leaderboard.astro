@@ -575,19 +575,19 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
                 <span class="text-sm text-gray-400 mb-2 sm:mb-0">${task.category}</span>
                 <div class="flex flex-wrap gap-2">
                   <button class="reaction-button ${hasUserVoted(task.id, 'hate') ? 'voted' : ''}" data-reaction="hate" ${hasUserVoted(task.id, 'hate') ? 'disabled' : ''}>
-                    <img src="/src/assets/Hate.png" alt="Hate" class="w-6 h-6">
+                    <img src="/src/assets/Hate.svg" alt="Hate" class="w-6 h-6" />
                     <span>${task.hate || 0}</span>
                   </button>
                   <button class="reaction-button ${hasUserVoted(task.id, 'sweat') ? 'voted' : ''}" data-reaction="sweat" ${hasUserVoted(task.id, 'sweat') ? 'disabled' : ''}>
-                    <img src="/src/assets/Pain.png" alt="Pain" class="w-6 h-6">
+                    <img src="/src/assets/Pain.svg" alt="Pain" class="w-6 h-6" />
                     <span>${task.sweat || 0}</span>
                   </button>
                   <button class="reaction-button ${hasUserVoted(task.id, 'please') ? 'voted' : ''}" data-reaction="please" ${hasUserVoted(task.id, 'please') ? 'disabled' : ''}>
-                    <img src="/src/assets/Please.png" alt="Please" class="w-6 h-6">
+                    <img src="/src/assets/Please.svg" alt="Please" class="w-6 h-6" />
                     <span>${task.please || 0}</span>
                   </button>
                   <button class="reaction-button ${hasUserVoted(task.id, 'should') ? 'voted' : ''}" data-reaction="should" ${hasUserVoted(task.id, 'should') ? 'disabled' : ''}>
-                    <img src="/src/assets/Hide.png" alt="Hide" class="w-6 h-6">
+                    <img src="/src/assets/Hide.svg" alt="Hide" class="w-6 h-6">
                     <span>${task.should || 0}</span>
                   </button>
                 </div>
