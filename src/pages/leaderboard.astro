@@ -2,6 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+import hateIcon from '../assets/Hate.svg';
+import hideIcon from '../assets/Hide.svg';
+import painIcon from '../assets/Pain.svg';
+import pleaseIcon from '../assets/Please.svg';
 
 // Import Supabase client
 import { supabase } from '../lib/supabase';
@@ -575,19 +580,19 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
                 <span class="text-sm text-gray-400 mb-2 sm:mb-0">${task.category}</span>
                 <div class="flex flex-wrap gap-2">
                   <button class="reaction-button ${hasUserVoted(task.id, 'hate') ? 'voted' : ''}" data-reaction="hate" ${hasUserVoted(task.id, 'hate') ? 'disabled' : ''}>
-                    <img src="/src/assets/Hate.svg" alt="Hate" class="w-6 h-6" />
+                    <img src="/Hate.svg" alt="hate icon" class="h-5 w-auto" />
                     <span>${task.hate || 0}</span>
                   </button>
                   <button class="reaction-button ${hasUserVoted(task.id, 'sweat') ? 'voted' : ''}" data-reaction="sweat" ${hasUserVoted(task.id, 'sweat') ? 'disabled' : ''}>
-                    <img src="/src/assets/Pain.svg" alt="Pain" class="w-6 h-6" />
+                    <i class="fas fa-fire text-orange-500 text-lg"></i>
                     <span>${task.sweat || 0}</span>
                   </button>
                   <button class="reaction-button ${hasUserVoted(task.id, 'please') ? 'voted' : ''}" data-reaction="please" ${hasUserVoted(task.id, 'please') ? 'disabled' : ''}>
-                    <img src="/src/assets/Please.svg" alt="Please" class="w-6 h-6" />
+                    <i class="fas fa-pray text-blue-400 text-lg"></i>
                     <span>${task.please || 0}</span>
                   </button>
                   <button class="reaction-button ${hasUserVoted(task.id, 'should') ? 'voted' : ''}" data-reaction="should" ${hasUserVoted(task.id, 'should') ? 'disabled' : ''}>
-                    <img src="/src/assets/Hide.svg" alt="Hide" class="w-6 h-6">
+                    <i class="fas fa-check-circle text-green-500 text-lg"></i>
                     <span>${task.should || 0}</span>
                   </button>
                 </div>
@@ -678,60 +683,83 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
   
   // Function to open the task modal and load task details
   async function openTaskModal(taskId: string) {
-    if (!taskModal || !taskModalContent) return;
+    if (!taskModal || !taskModalContent || !commentsList) return;
     
     currentTaskId = taskId;
+    commentTaskId.value = taskId;
     
     try {
       // Fetch task details
-      const { data: task, error } = await supabase
+      const { data: task, error: taskError } = await supabase
         .from('leaderboard')
         .select('*')
         .eq('id', taskId)
         .single();
       
-      if (error) throw error;
+      if (taskError) throw taskError;
       
-      if (task) {
-        // Populate modal content
-        taskModalContent.innerHTML = `
-          <h2 class="text-2xl font-bold text-white mb-2">${task.title}</h2>
-          <p class="text-gray-300 mb-4">${task.description}</p>
-          <div class="flex items-center gap-2">
-            <span class="px-3 py-1 rounded-full bg-gray-800 text-sm text-gray-300">${task.category}</span>
-            <span class="text-sm text-gray-400">Posted ${new Date(task.created_at).toLocaleDateString()}</span>
+      // Fetch comments for this task
+      const { data: comments, error: commentsError } = await supabase
+        .from('comments')
+        .select('*')
+        .eq('task_id', taskId)
+        .order('created_at', { ascending: false });
+      
+      if (commentsError) throw commentsError;
+      
+      // Check if user has already voted on this task
+      const hasUpvoted = hasUserVoted(taskId, 'up');
+      const hasDownvoted = hasUserVoted(taskId, 'down');
+      
+      // Populate task details
+      taskModalContent.innerHTML = `
+        <h2 class="text-2xl font-bold text-white mb-2">${task.title}</h2>
+        <p class="text-gray-300 mb-6">${task.description}</p>
+        
+        <div class="flex flex-wrap items-center justify-between">
+          <div class="flex items-center gap-2 mb-4 sm:mb-0">
+            <span class="px-3 py-1 rounded-full bg-gray-800 text-xs font-medium text-gray-300">${task.category}</span>
           </div>
-          <div class="flex gap-2 mt-4">
-            <div class="reaction-count flex items-center gap-1">
-              <span>🤢</span>
+          
+          <div class="flex flex-wrap gap-2">
+            <button class="reaction-button ${hasUserVoted(taskId, 'hate') ? 'voted' : ''}" data-reaction="hate" ${hasUserVoted(taskId, 'hate') ? 'disabled' : ''}>
+              <i class="fas fa-thumbs-down text-red-500 text-lg"></i>
               <span>${task.hate || 0}</span>
-            </div>
-            <div class="reaction-count flex items-center gap-1">
-              <span>🥵</span>
+            </button>
+            <button class="reaction-button ${hasUserVoted(taskId, 'sweat') ? 'voted' : ''}" data-reaction="sweat" ${hasUserVoted(taskId, 'sweat') ? 'disabled' : ''}>
+              <i class="fas fa-fire text-orange-500 text-lg"></i>
               <span>${task.sweat || 0}</span>
-            </div>
-            <div class="reaction-count flex items-center gap-1">
-              <span>🙏</span>
+            </button>
+            <button class="reaction-button ${hasUserVoted(taskId, 'please') ? 'voted' : ''}" data-reaction="please" ${hasUserVoted(taskId, 'please') ? 'disabled' : ''}>
+              <i class="fas fa-pray text-blue-400 text-lg"></i>
               <span>${task.please || 0}</span>
-            </div>
-            <div class="reaction-count flex items-center gap-1">
-              <span>🫣</span>
+            </button>
+            <button class="reaction-button ${hasUserVoted(taskId, 'should') ? 'voted' : ''}" data-reaction="should" ${hasUserVoted(taskId, 'should') ? 'disabled' : ''}>
+              <i class="fas fa-check-circle text-green-500 text-lg"></i>
               <span>${task.should || 0}</span>
-            </div>
+            </button>
           </div>
-        `;
-        
-        // Set the task ID in the comment form
-        if (commentTaskId) {
-          commentTaskId.value = taskId;
-        }
-        
-        // Load comments for this task
-        loadComments(taskId);
-        
-        // Show the modal
-        taskModal.classList.remove('hidden');
+        </div>
+      `;
+      
+      // Load comments for this task
+      if (comments && comments.length > 0) {
+        // Display comments
+        commentsList.innerHTML = comments.map(comment => `
+          <div class="comment bg-gray-800/50 rounded-lg p-4">
+            <div class="flex justify-left items-center mb-2">
+              <span class="text-xs text-gray-400">${new Date(comment.created_at).toLocaleString()}</span>
+            </div>
+            <p class="text-gray-300">${comment.content}</p>
+          </div>
+        `).join('');
+      } else {
+        // No comments yet
+        commentsList.innerHTML = `<p class="text-gray-400">No comments yet. Be the first to comment!</p>`;
       }
+      
+      // Show the modal
+      taskModal.classList.remove('hidden');
     } catch (error) {
       console.error('Error loading task details:', error);
     }
@@ -746,7 +774,7 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
         .from('comments')
         .select('*')
         .eq('task_id', taskId)
-        .order('created_at', { ascending: true });
+        .order('created_at', { ascending: false });
       
       if (error) throw error;
       
