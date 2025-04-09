@@ -5,7 +5,8 @@ import vercel from '@astrojs/vercel/serverless';
 import icon from "astro-icon";
 
 export default defineConfig({
-  integrations: [tailwind()],
+  integrations: [tailwind(), partytown({ config: { forward: ['dataLayer.push'] } })],
   output: 'server',
   adapter: vercel(),
 });
+

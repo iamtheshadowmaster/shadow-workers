@@ -264,10 +264,50 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
 
   .reaction-button {
     @apply flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium cursor-pointer hover:bg-white/10;
+    position: relative;
   }
 
   .reaction-button.voted {
-    @apply bg-white/10;
+    @apply bg-white/20 ring-2 ring-shadow-blue;
+    transform: scale(1.05);
+  }
+  
+  /* Tooltip styles */
+  .reaction-button .tooltip {
+    visibility: hidden;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 12px;
+    margin-bottom: 5px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  /* Arrow for tooltip */
+  .reaction-button .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+  }
+  
+  /* Show tooltip on hover */
+  .reaction-button:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
   }
   
   .filter-chip.active {
@@ -485,17 +525,75 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
     }
   }
 
-  // Helper function to check if user has voted on a task
-  function hasUserVoted(taskId: string, voteType: string): boolean {
-    const votes = JSON.parse(localStorage.getItem('userVotes') || '{}');
-    return votes[taskId] === voteType;
+  // Helper function to check if user has voted on a task with a specific reaction type
+  function hasUserVoted(taskId: string, reactionType: string): boolean {
+    try {
+      if (!taskId || !reactionType) {
+        return false;
+      }
+      
+      const votes = JSON.parse(localStorage.getItem('userVotes') || '{}');
+      // Check if this task has any votes and if the specific reaction type is active
+      return votes[taskId] && votes[taskId][reactionType] === true;
+    } catch (error) {
+      console.error('Error checking user votes:', error);
+      return false;
+    }
   }
 
   // Helper function to save user's vote
-  function saveUserVote(taskId: string, voteType: string): void {
-    const votes = JSON.parse(localStorage.getItem('userVotes') || '{}');
-    votes[taskId] = voteType;
-    localStorage.setItem('userVotes', JSON.stringify(votes));
+  function saveUserVote(taskId: string, reactionType: string | null): void {
+    // Ensure taskId is a string and not a reaction type
+    if (!taskId || typeof taskId !== 'string') {
+      console.error('Invalid taskId provided to saveUserVote:', taskId);
+      return;
+    }
+    
+    // Ensure reactionType is valid
+    if (reactionType !== null && typeof reactionType !== 'string') {
+      console.error('Invalid reactionType provided to saveUserVote:', reactionType);
+      return;
+    }
+    
+    try {
+      const votes = JSON.parse(localStorage.getItem('userVotes') || '{}');
+      
+      // Initialize the task's votes object if it doesn't exist
+      if (!votes[taskId]) {
+        votes[taskId] = {};
+      }
+      
+      if (reactionType === null) {
+        // This case is no longer used, but kept for backward compatibility
+        // Now we toggle specific reaction types instead of removing all votes
+      } else {
+        // Only toggle the vote if it's currently true (removing a vote)
+        // or if it's undefined/false (adding a vote for the first time)
+        const currentVoteState = votes[taskId][reactionType];
+        
+        if (currentVoteState === true) {
+          // If already voted, remove the vote
+          delete votes[taskId][reactionType];
+        } else {
+          // If not voted yet, first clear any existing votes for this task
+          // to ensure only one reaction type can be active at a time
+          Object.keys(votes[taskId]).forEach(key => {
+            delete votes[taskId][key];
+          });
+          // Then add the new vote
+          votes[taskId][reactionType] = true;
+        }
+        
+        // If no reactions left for this task, clean up the object
+        if (Object.keys(votes[taskId]).length === 0) {
+          delete votes[taskId];
+        }
+      }
+      
+      localStorage.setItem('userVotes', JSON.stringify(votes));
+    } catch (error) {
+      console.error('Error saving user vote:', error);
+    }
   }
 
   async function loadTasks() {
@@ -577,22 +675,26 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
               </div>
               <p class="text-gray-300 mb-4">${task.description}</p>
               <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between">
-                <span class="text-sm text-gray-400 mb-2 sm:mb-0">${task.category}</span>
+                <span class="px-3 py-1 text-sm rounded-full bg-gray-800 text-gray-400 mb-2 sm:mb-0">${task.category}</span>
                 <div class="flex flex-wrap gap-2">
-                  <button class="reaction-button ${hasUserVoted(task.id, 'hate') ? 'voted' : ''}" data-reaction="hate" ${hasUserVoted(task.id, 'hate') ? 'disabled' : ''}>
-                    <img src="/Hate.svg" alt="hate icon" class="h-5 w-auto" />
+                  <button class="reaction-button ${hasUserVoted(task.id, 'hate') ? 'voted' : ''}" data-reaction="hate">
+                    <span class="tooltip">I hate doing this</span>
+                    <img src="/Hate.svg" alt="hate icon" class="h-6 w-6 rounded" />
                     <span>${task.hate || 0}</span>
                   </button>
-                  <button class="reaction-button ${hasUserVoted(task.id, 'sweat') ? 'voted' : ''}" data-reaction="sweat" ${hasUserVoted(task.id, 'sweat') ? 'disabled' : ''}>
-                    <i class="fas fa-fire text-orange-500 text-lg"></i>
+                  <button class="reaction-button ${hasUserVoted(task.id, 'sweat') ? 'voted' : ''}" data-reaction="sweat">
+                    <span class="tooltip">This makes me sweat</span>
+                    <img src="/Pain.svg" alt="pain icon" class="h-6 w-6 rounded" />
                     <span>${task.sweat || 0}</span>
                   </button>
-                  <button class="reaction-button ${hasUserVoted(task.id, 'please') ? 'voted' : ''}" data-reaction="please" ${hasUserVoted(task.id, 'please') ? 'disabled' : ''}>
-                    <i class="fas fa-pray text-blue-400 text-lg"></i>
+                  <button class="reaction-button ${hasUserVoted(task.id, 'please') ? 'voted' : ''}" data-reaction="please">
+                    <span class="tooltip">Please fix this</span>
+                    <img src="/Please.svg" alt="please icon" class="h-6 w-6 rounded" />
                     <span>${task.please || 0}</span>
                   </button>
-                  <button class="reaction-button ${hasUserVoted(task.id, 'should') ? 'voted' : ''}" data-reaction="should" ${hasUserVoted(task.id, 'should') ? 'disabled' : ''}>
-                    <i class="fas fa-check-circle text-green-500 text-lg"></i>
+                  <button class="reaction-button ${hasUserVoted(task.id, 'should') ? 'voted' : ''}" data-reaction="should">
+                    <span class="tooltip">We should do this</span>
+                    <img src="/Hide.svg" alt="hide icon" class="h-6 w-6 rounded" />
                     <span>${task.should || 0}</span>
                   </button>
                 </div>
@@ -628,17 +730,25 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
   }
 
   async function handleVote(e: Event) {
+    e.stopPropagation(); // Prevent opening the task modal when clicking on reaction buttons
     const button = e.currentTarget as HTMLButtonElement;
     const taskCard = button.closest('.task-card');
-    if (!taskCard) return;
+    if (!taskCard) {
+      console.error('No task card found for this reaction button');
+      return;
+    }
 
-    const taskId = taskCard.dataset.taskId;
-    const reactionType = button.dataset.reaction;
-    if (!taskId || !reactionType) return;
-
-    // Check if user has already reacted with this reaction
-    if (hasUserVoted(taskId, reactionType)) {
-      return; // User has already used this reaction
+    const taskId = taskCard.getAttribute('data-task-id');
+    const reactionType = button.getAttribute('data-reaction');
+    
+    if (!taskId) {
+      console.error('No task ID found for this task card');
+      return;
+    }
+    
+    if (!reactionType) {
+      console.error('No reaction type found for this button');
+      return;
     }
 
     try {
@@ -649,11 +759,64 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
         .eq('id', taskId)
         .single();
 
-      if (fetchError) throw fetchError;
+      if (fetchError) {
+        console.error('Error fetching task:', fetchError);
+        throw fetchError;
+      }
 
+      if (!currentTask) {
+        console.error('No task found with ID:', taskId);
+        return;
+      }
+
+      // Check if user has already reacted with this reaction
+      const alreadyVoted = hasUserVoted(taskId, reactionType);
+      
       // Calculate new count
-      const currentCount = currentTask?.[reactionType] || 0;
-      const newCount = currentCount + 1;
+      const currentCount = currentTask[reactionType] || 0;
+      let newCount;
+      
+      if (alreadyVoted) {
+        // User is toggling off their vote for this reaction
+        newCount = Math.max(0, currentCount - 1);
+        button.classList.remove('voted');
+      } else {
+        // User is adding a new vote for this reaction
+        newCount = currentCount + 1;
+        
+        // First, remove 'voted' class from all reaction buttons for this task
+        // and update the database counts for any previously voted reaction
+        const allReactionButtons = taskCard.querySelectorAll('.reaction-button');
+        for (const otherButton of allReactionButtons) {
+          const otherReactionType = otherButton.getAttribute('data-reaction');
+          if (otherReactionType && otherReactionType !== reactionType && hasUserVoted(taskId, otherReactionType)) {
+            // Update UI for the previously voted button
+            otherButton.classList.remove('voted');
+            
+            // Update count in database for the previously voted reaction
+            const prevCount = currentTask[otherReactionType] || 0;
+            const newPrevCount = Math.max(0, prevCount - 1);
+            
+            // Update the count in the UI
+            const otherCountSpan = otherButton.querySelectorAll('span')[1];
+            if (otherCountSpan) {
+              otherCountSpan.textContent = String(newPrevCount);
+            }
+            
+            // Update the count in the database
+            await supabase
+              .from('leaderboard')
+              .update({ [otherReactionType]: newPrevCount })
+              .eq('id', taskId);
+          }
+        }
+        
+        // Now add the 'voted' class to the current button
+        button.classList.add('voted');
+      }
+      
+      // Toggle this specific reaction type in localStorage
+      saveUserVote(taskId, reactionType);
 
       // Update the reaction count in the database
       const { error: updateError } = await supabase
@@ -661,21 +824,21 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
         .update({ [reactionType]: newCount })
         .eq('id', taskId);
 
-      if (updateError) throw updateError;
-
-      // Save user's reaction to localStorage
-      saveUserVote(taskId, reactionType);
+      if (updateError) {
+        console.error('Error updating task:', updateError);
+        throw updateError;
+      }
 
       // Update UI
       const countSpan = button.querySelectorAll('span')[1];
       if (countSpan) {
         countSpan.textContent = String(newCount);
       }
-      button.classList.add('voted');
-      button.disabled = true;
-
-      // Refresh the list to maintain sort order
-      loadTasks();
+      
+      // We don't need to refresh the entire list immediately
+      // This would cause the active state to disappear
+      // The button state is already updated with classList.add/remove('voted')
+      // and the count is updated in the UI
     } catch (error) {
       console.error('Error updating reaction:', error);
     }
@@ -707,9 +870,9 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
       
       if (commentsError) throw commentsError;
       
-      // Check if user has already voted on this task
-      const hasUpvoted = hasUserVoted(taskId, 'up');
-      const hasDownvoted = hasUserVoted(taskId, 'down');
+      // These variables are no longer needed since we check each reaction type individually
+      // const hasUpvoted = hasUserVoted(taskId, 'up');
+      // const hasDownvoted = hasUserVoted(taskId, 'down');
       
       // Populate task details
       taskModalContent.innerHTML = `
@@ -722,20 +885,20 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
           </div>
           
           <div class="flex flex-wrap gap-2">
-            <button class="reaction-button ${hasUserVoted(taskId, 'hate') ? 'voted' : ''}" data-reaction="hate" ${hasUserVoted(taskId, 'hate') ? 'disabled' : ''}>
-              <i class="fas fa-thumbs-down text-red-500 text-lg"></i>
+            <button class="reaction-button ${hasUserVoted(taskId, 'hate') ? 'voted' : ''}" data-reaction="hate">
+                <img src="/Hate.svg" alt="hate icon" class="h-6 w-6 rounded" />
               <span>${task.hate || 0}</span>
             </button>
-            <button class="reaction-button ${hasUserVoted(taskId, 'sweat') ? 'voted' : ''}" data-reaction="sweat" ${hasUserVoted(taskId, 'sweat') ? 'disabled' : ''}>
-              <i class="fas fa-fire text-orange-500 text-lg"></i>
+            <button class="reaction-button ${hasUserVoted(taskId, 'sweat') ? 'voted' : ''}" data-reaction="sweat">
+                <img src="/Pain.svg" alt="pain icon" class="h-6 w-6 rounded" />
               <span>${task.sweat || 0}</span>
             </button>
-            <button class="reaction-button ${hasUserVoted(taskId, 'please') ? 'voted' : ''}" data-reaction="please" ${hasUserVoted(taskId, 'please') ? 'disabled' : ''}>
-              <i class="fas fa-pray text-blue-400 text-lg"></i>
+            <button class="reaction-button ${hasUserVoted(taskId, 'please') ? 'voted' : ''}" data-reaction="please">
+                <img src="/Please.svg" alt="please icon" class="h-6 w-6 rounded" />
               <span>${task.please || 0}</span>
             </button>
-            <button class="reaction-button ${hasUserVoted(taskId, 'should') ? 'voted' : ''}" data-reaction="should" ${hasUserVoted(taskId, 'should') ? 'disabled' : ''}>
-              <i class="fas fa-check-circle text-green-500 text-lg"></i>
+            <button class="reaction-button ${hasUserVoted(taskId, 'should') ? 'voted' : ''}" data-reaction="should">
+                <img src="/Hide.svg" alt="hide icon" class="h-6 w-6 rounded" />
               <span>${task.should || 0}</span>
             </button>
           </div>
@@ -760,6 +923,11 @@ const uniqueCategories = categories ? [...new Set(categories.map(item => item.ca
       
       // Show the modal
       taskModal.classList.remove('hidden');
+      
+      // Add reaction event listeners to modal buttons
+      taskModalContent.querySelectorAll('.reaction-button').forEach((button) => {
+        button.addEventListener('click', handleVote);
+      });
     } catch (error) {
       console.error('Error loading task details:', error);
     }
