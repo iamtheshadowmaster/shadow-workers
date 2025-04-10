@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import favicon from '../assets/favicon.svg';
+import PostHog from '../components/posthog.astro';
 ---
 <!doctype html>
 <html lang="en" class="scroll-smooth">
@@ -15,6 +16,7 @@ import favicon from '../assets/favicon.svg';
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<title>Shadow - Get yourself on Autopilot</title>
 		<meta name="description" content="Shadow - The new AI task management tool that works for you, automating tasks so you can focus on what matters." />
+		<PostHog />
 		<style>
 			.magic-button {
 				background: transparent;
