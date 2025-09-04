@@ -212,6 +212,8 @@ const { title, subtitle, backgroundColor = "bg-gradient-to-b from-black to-gray-
     let ticking = false;
     
     function updateTransform() {
+      if (!scrollTrigger || !slackCard || !shadowCard) return;
+      
       const rect = scrollTrigger.getBoundingClientRect();
       const scrollTriggerHeight = scrollTrigger.offsetHeight;
       const windowHeight = window.innerHeight;
