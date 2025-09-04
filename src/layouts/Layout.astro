@@ -14,8 +14,8 @@ import PostHog from '../components/posthog.astro';
 		<!--<script src="https://kit.fontawesome.com/05150f1c15.js" crossorigin="anonymous"></script> -->
 		<meta name="generator" content={Astro.generator} />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-		<title>Shadow - Your better self</title>
-		<meta name="description" content="Shadow - Train your AI clone and getter better at your job." />
+		<title>Shadow - From Communication Chaos to Clarity</title>
+		<meta name="description" content="Shadow is the AI-first Slack alternative that transforms every conversation into organized tasks, searchable notes, and actionable insights. Join the future of team communication." />
 		<PostHog />
 		<style>
 			.magic-button {
@@ -45,7 +45,7 @@ import PostHog from '../components/posthog.astro';
 			}
 		</style>
 	</head>
-	<body class="bg-black text-gray-100 min-h-screen">
+	<body class="bg-black text-gray-100 min-h-screen antialiased overflow-x-hidden">
 		<slot />
 	</body>
 </html>
@@ -57,5 +57,18 @@ import PostHog from '../components/posthog.astro';
 		width: 100%;
 		height: 100%;
 		font-family: 'Inter var', 'Inter', 'Nunito', system-ui, sans-serif;
+		font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+		scroll-behavior: smooth;
+	}
+	
+	/* Enhanced smooth scrolling for webkit browsers */
+	@supports (-webkit-overflow-scrolling: touch) {
+		html {
+			scroll-behavior: auto;
+		}
+		
+		html.smooth-scroll {
+			scroll-behavior: smooth;
+		}
 	}
 </style>

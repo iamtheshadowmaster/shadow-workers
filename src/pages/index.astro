@@ -2,21 +2,95 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
-import UseCases from '../components/UseCases.astro';
-import WaitlistForm from '../components/CallToAction.astro';
+import FeatureSection from '../components/FeatureSection.astro';
+import CallToAction from '../components/CallToAction.astro';
 import Footer from '../components/Footer.astro';
-import PostHogLayout from '../layouts/PostHogLayout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Define slide data for each feature section
+const taskExtractionSlides = [
+  {
+    title: "Detect action items",
+    gradients: "from-yellow-500/20 via-orange-500/20 to-pink-500/20",
+    iconGradients: "from-yellow-500 to-orange-500"
+  },
+  {
+    title: "Add context automatically",
+    gradients: "from-blue-500/20 via-purple-500/20 to-pink-500/20",
+    iconGradients: "from-blue-500 to-purple-500"
+  },
+  {
+    title: "Confirm before tracking",
+    gradients: "from-green-500/20 via-teal-500/20 to-blue-500/20",
+    iconGradients: "from-green-500 to-teal-500"
+  }
+];
+
+const informationOrgSlides = [
+  {
+    title: "Decisions become notes and announcements",
+    gradients: "from-purple-500/20 via-pink-500/20 to-red-500/20",
+    iconGradients: "from-purple-500 to-pink-500"
+  },
+  {
+    title: "Tribal knowledge becomes searchable history",
+    gradients: "from-indigo-500/20 via-blue-500/20 to-cyan-500/20",
+    iconGradients: "from-indigo-500 to-blue-500"
+  },
+  {
+    title: "Every tasks becomes a note",
+    gradients: "from-emerald-500/20 via-green-500/20 to-lime-500/20",
+    iconGradients: "from-emerald-500 to-green-500"
+  }
+];
+
+const aiAgentSlides = [
+  {
+    title: "No @mentions or commands. AI contributes when helpful.",
+    gradients: "from-orange-500/20 via-red-500/20 to-pink-500/20",
+    iconGradients: "from-orange-500 to-red-500"
+  },
+  {
+    title: "AI recalls all project history, decisions, and context",
+    gradients: "from-teal-500/20 via-cyan-500/20 to-blue-500/20",
+    iconGradients: "from-teal-500 to-cyan-500"
+  },
+  {
+    title: "AI manages follow-ups, reminders, and status updates",
+    gradients: "from-violet-500/20 via-purple-500/20 to-indigo-500/20",
+    iconGradients: "from-violet-500 to-purple-500"
+  }
+];
 ---
+
 <Layout>
   <Nav />
-  <main>
-    <Hero />
-    <UseCases />
-    <WaitlistForm />
-  </main>
+  <Hero />
+  
+  <!-- Feature Sections -->
+  <FeatureSection 
+    title="Every chat becomes a task"
+    subtitle="AI turns conversations into trackable work automatically"
+    category="tasks"
+    slides={taskExtractionSlides}
+    backgroundColor="bg-gradient-to-b from-black to-gray-900"
+  />
+  
+  <FeatureSection 
+    title="Conversations become knowledge"
+    subtitle="AI sorts every message into Notes, Announcements, and Updates"
+    category="knowledge"
+    slides={informationOrgSlides}
+    backgroundColor="bg-gradient-to-b from-gray-900 to-black"
+  />
+  
+  <FeatureSection 
+    title="AI teammate that just works"
+    subtitle="Native AI that participates in conversations like a human colleague"
+    category="agent"
+    slides={aiAgentSlides}
+    backgroundColor="bg-gradient-to-b from-black to-gray-900"
+  />
+  
+  <CallToAction />
   <Footer />
 </Layout>
-
