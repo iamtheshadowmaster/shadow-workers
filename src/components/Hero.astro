@@ -47,9 +47,18 @@
 
 <style>
   #rotating-word {
-    min-width: 280px;
+    min-width: 200px;
     text-align: left;
     position: relative;
+  }
+  
+  @media (max-width: 768px) {
+    #rotating-word {
+      text-align: center;
+      display: block;
+      width: 100%;
+      min-width: unset;
+    }
   }
 </style>
 
