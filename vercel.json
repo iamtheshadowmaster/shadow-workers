@@ -3,7 +3,6 @@
     {
       "source": "/oauth-callback",
       "destination": "https://api.nango.dev/oauth/callback",
-      "permanent": true,
       "statusCode": 308
     }
   ]
