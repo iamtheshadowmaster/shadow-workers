@@ -1,3 +1,5 @@
+## Release
+15-12-2025: Slack page
 
 # Shadow Landing Page
 
