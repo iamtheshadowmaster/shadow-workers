@@ -3,7 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import Stakes from '../components/Stakes.astro';
-import Plan from '../components/Plan.astro';
+import SoloMode from '../components/SoloMode.astro';
+import TeamModeCondensed from '../components/TeamModeCondensed.astro';
+import PricingPanel from '../components/PricingPanel.astro';
 import SocialProof from '../components/SocialProof.astro';
 import ProductFeatures from '../components/ProductFeatures.astro';
 import AIFeatures from '../components/AIFeatures.astro';
@@ -28,9 +30,15 @@ import Footer from '../components/Footer.astro';
     <Stakes />
 
     <!-- 3. THE PLAN: Solo Mode - How it works -->
-    <Plan />
+    <SoloMode />
 
-    <!-- 4. SOCIAL PROOF: Trust & positioning -->
+    <!-- 4. TEAM MODE: Multiply the impact -->
+    <TeamModeCondensed />
+
+    <!-- 5. PRICING PANEL: Choose your plan -->
+    <PricingPanel />
+
+    <!-- 6. SOCIAL PROOF: Trust & positioning -->
     <SocialProof />
 
     <!-- 3. PRODUCT FEATURES: Three-card grid -->

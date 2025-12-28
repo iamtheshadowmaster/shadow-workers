@@ -1,0 +1,388 @@
+---
+---
+
+<!-- Pricing Panel Section -->
+<div id="pricing-section" class="relative bg-black py-32">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-6 leading-tight tracking-tight">
+        Choose your plan
+      </h2>
+    </div>
+
+    <!-- Tab Switcher -->
+    <div class="flex justify-center mb-12">
+      <div class="inline-flex items-center gap-2 bg-gray-900/50 border border-gray-800 rounded-lg p-1">
+        <button
+          id="solo-tab"
+          class="tab-button active px-6 py-2.5 rounded-md text-sm font-medium transition-all duration-300"
+        >
+          Solo Mode
+        </button>
+        <button
+          id="team-tab"
+          class="tab-button px-6 py-2.5 rounded-md text-sm font-medium transition-all duration-300"
+        >
+          Team & Enterprise
+        </button>
+      </div>
+    </div>
+
+    <!-- Solo Mode Plans -->
+    <div id="solo-plans" class="plans-container grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+      <!-- Free Plan -->
+      <div class="relative bg-gradient-to-br from-gray-900/50 to-gray-950/50 border border-gray-800 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300">
+        <!-- Icon -->
+        <div class="mb-6">
+          <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3" stroke-width="2"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2v4m0 12v4M2 12h4m12 0h4"/>
+          </svg>
+        </div>
+
+        <!-- Plan Name -->
+        <h3 class="text-2xl font-bold text-white mb-2">Free</h3>
+        <p class="text-gray-400 mb-6">Try Shadow</p>
+
+        <!-- Price -->
+        <div class="mb-6">
+          <span class="text-4xl font-bold text-white">$0</span>
+          <p class="text-sm text-gray-400 mt-2">Free for everyone</p>
+        </div>
+
+        <!-- CTA Button -->
+        <a
+          href="#"
+          class="block w-full text-center bg-white hover:bg-gray-100 text-black font-semibold px-6 py-3 rounded-lg transition-all duration-300 mb-8"
+        >
+          Get Started Free
+        </a>
+
+        <!-- Features -->
+        <div class="space-y-4">
+          <p class="text-sm font-semibold text-white mb-4">Everything in Free:</p>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Basic goal tracking and daily check-ins</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">AI-powered task generation from conversations</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Personal system prompt with role and context</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Unlimited conversations and notes</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Web, iOS, and Android access</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pro Plan -->
+      <div class="relative bg-gradient-to-br from-gray-900/50 to-gray-950/50 border border-gray-800 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-300">
+        <!-- Icon -->
+        <div class="mb-6">
+          <svg class="w-12 h-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="8" r="3" stroke-width="2"/>
+            <circle cx="7" cy="16" r="2" stroke-width="2"/>
+            <circle cx="17" cy="16" r="2" stroke-width="2"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11v2m-5 3v-2m10 2v-2"/>
+          </svg>
+        </div>
+
+        <!-- Plan Name -->
+        <h3 class="text-2xl font-bold text-white mb-2">Pro</h3>
+        <p class="text-gray-400 mb-6">For daily productivity</p>
+
+        <!-- Price -->
+        <div class="mb-6">
+          <span class="text-4xl font-bold text-white">$20</span>
+          <p class="text-sm text-gray-400 mt-2">Per month with annual discount ($240 billed upfront), $25 if billed monthly.</p>
+        </div>
+
+        <!-- CTA Button -->
+        <a
+          href="#"
+          class="block w-full text-center bg-white hover:bg-gray-100 text-black font-semibold px-6 py-3 rounded-lg transition-all duration-300 mb-8"
+        >
+          Start Pro Trial
+        </a>
+
+        <!-- Features -->
+        <div class="space-y-4">
+          <p class="text-sm font-semibold text-white mb-4">Everything in Free, plus:</p>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Advanced AI model with extended thinking</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Unlimited projects to organize goals</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Connect Google Workspace, Slack, and GitHub</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Advanced search and filtering</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Priority support</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Custom integrations with MCP</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Analytics and insights dashboard</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Export your data anytime</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Team Mode Plans -->
+    <div id="team-plans" class="plans-container hidden grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+      <!-- Team Plan -->
+      <div class="relative bg-gradient-to-br from-gray-900/50 to-gray-950/50 border border-gray-800 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300">
+        <!-- Icon -->
+        <div class="mb-6">
+          <svg class="w-12 h-12 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>
+        </div>
+
+        <!-- Plan Name -->
+        <h3 class="text-2xl font-bold text-white mb-2">Team</h3>
+        <p class="text-gray-400 mb-6">For teams that want to collaborate</p>
+
+        <!-- Price -->
+        <div class="mb-6">
+          <span class="text-4xl font-bold text-white">$30</span>
+          <span class="text-gray-400 text-lg">/user</span>
+          <p class="text-sm text-gray-400 mt-2">Per month, billed annually</p>
+        </div>
+
+        <!-- CTA Button -->
+        <a
+          href="#"
+          class="block w-full text-center bg-white hover:bg-gray-100 text-black font-semibold px-6 py-3 rounded-lg transition-all duration-300 mb-8"
+        >
+          Start with Team
+        </a>
+
+        <!-- Features -->
+        <div class="space-y-4">
+          <p class="text-sm font-semibold text-white mb-4">Everything in Pro, plus:</p>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Shared OKRs across the entire team</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Team collaboration with shared projects</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Centralized admin console</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Unified billing and seat management</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Team analytics and insights</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Priority support</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">SSO available</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enterprise Plan -->
+      <div class="relative bg-gradient-to-br from-gray-900/50 to-gray-950/50 border border-gray-800 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-300">
+        <!-- Icon -->
+        <div class="mb-6">
+          <svg class="w-12 h-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+          </svg>
+        </div>
+
+        <!-- Plan Name -->
+        <h3 class="text-2xl font-bold text-white mb-2">Enterprise</h3>
+        <p class="text-gray-400 mb-6">For organizations that need more</p>
+
+        <!-- Price -->
+        <div class="mb-6">
+          <span class="text-2xl font-bold text-white">Custom pricing</span>
+          <p class="text-sm text-gray-400 mt-2">Contact us for a quote</p>
+        </div>
+
+        <!-- CTA Button -->
+        <a
+          href="#"
+          class="block w-full text-center bg-white hover:bg-gray-100 text-black font-semibold px-6 py-3 rounded-lg transition-all duration-300 mb-8"
+        >
+          Contact Sales
+        </a>
+
+        <!-- Features -->
+        <div class="space-y-4">
+          <p class="text-sm font-semibold text-white mb-4">Everything in Team, plus:</p>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Unlimited usage for large teams</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">SSO (SAML) and SCIM for user management</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Advanced security controls and audit logs</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">On-premise or private cloud deployment available</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Dedicated support and guaranteed SLAs</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Custom training for your teams</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-gray-400 text-sm">Flexible contract terms</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer Note -->
+    <div class="text-center mt-12">
+      <p class="text-sm text-gray-500">Prices shown do not include applicable taxes. Usage limits apply.</p>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .tab-button {
+    color: #9ca3af;
+  }
+
+  .tab-button.active {
+    background: #374151;
+    color: white;
+  }
+
+  .tab-button:hover:not(.active) {
+    color: white;
+  }
+</style>
+
+<script>
+  const soloTab = document.getElementById('solo-tab');
+  const teamTab = document.getElementById('team-tab');
+  const soloPlans = document.getElementById('solo-plans');
+  const teamPlans = document.getElementById('team-plans');
+
+  soloTab?.addEventListener('click', () => {
+    soloTab.classList.add('active');
+    teamTab?.classList.remove('active');
+    soloPlans?.classList.remove('hidden');
+    soloPlans?.classList.add('grid');
+    teamPlans?.classList.remove('grid');
+    teamPlans?.classList.add('hidden');
+  });
+
+  teamTab?.addEventListener('click', () => {
+    teamTab.classList.add('active');
+    soloTab?.classList.remove('active');
+    teamPlans?.classList.remove('hidden');
+    teamPlans?.classList.add('grid');
+    soloPlans?.classList.remove('grid');
+    soloPlans?.classList.add('hidden');
+  });
+</script>

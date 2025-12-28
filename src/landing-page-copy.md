@@ -66,6 +66,8 @@ One manager onboards. Whole team gets aligned.
 **Sales team?** Everyone knows which deals matter.
 **Product squad?** Everyone pulls toward the same launch.
 **Dev team?** Everyone knows what's critical.
+**Founders?** Entire company aligned on your vision.
+**Portfolio teams?** Every portfolio company hitting targets.
 
 ### CTA
 **Get your team aligned**
