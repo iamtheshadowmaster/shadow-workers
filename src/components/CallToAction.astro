@@ -1,34 +1,39 @@
 ---
 ---
 
-<section id="cta" class="pt-32">
-  <div class="max-w-6xl mx-auto px-6">
-    
-    <!-- Scroll-Triggered CTA Section -->
-    <div class="h-[200vh] relative" id="ctaScroll">
-      <!-- Sticky container that holds the content -->
-      <div class="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden text-center">
-        
-        <!-- Title - always visible and sticky -->
+<section id="cta" class="py-40 bg-black border-t border-gray-900">
+  <div class="max-w-4xl mx-auto px-6">
+
+    <!-- CTA Section -->
+    <div class="relative">
+      <!-- Content -->
+      <div class="flex flex-col items-center justify-center text-center">
+
+        <!-- Title -->
         <div class="mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-            Time to break up with Slack?
+          <h2 class="text-5xl md:text-6xl font-bold text-white mb-8 leading-tight">
+            Start hitting your goals.<br/>
+            <span class="text-gray-400">No setup required.</span>
           </h2>
+          <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+            Join thousands of managers and teams achieving more with less chaos.
+          </p>
         </div>
-        
-        <!-- Content that appears during scroll -->
+
+
+        <!-- Content -->
         <div class="relative w-full max-w-2xl">
           <div class="backdrop-blur-sm rounded-2xl p-8">
             <!-- Form State -->
             <div id="signup-form" class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-lg mx-auto mb-6">
-              <input 
+              <input
                 id="email-input"
-                type="email" 
-                placeholder="your@email.com" 
-                class="flex-1 px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white text-base"
+                type="email"
+                placeholder="your@email.com"
+                class="flex-1 px-6 py-4 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 text-base"
               />
-              <button id="signup-button" class="bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors min-w-[160px] h-12">
-                <span id="cta-button-text" class="block text-center min-h-[1.25rem]">Get early access</span>
+              <button id="signup-button" class="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:scale-105 transition-all duration-300 min-w-[200px] shadow-xl">
+                <span id="cta-button-text" class="block text-center min-h-[1.25rem]">Start Free Trial</span>
               </button>
             </div>
             
@@ -49,27 +54,35 @@
                 <p class="text-red-400 text-sm" id="error-text"></p>
               </div>
             </div>
-            
+
+
             <p id="form-subtitle" class="text-gray-500 text-sm text-center">
-              No spam, just early access when we launch
+              No credit card required • 14-day free trial • Cancel anytime
             </p>
           </div>
         </div>
-        
+
+        <!-- Secondary CTA -->
+        <div class="mt-8">
+          <a href="#demo" class="text-gray-400 hover:text-white transition-colors text-sm underline">
+            Or book a 15-minute demo with our team
+          </a>
+        </div>
+
       </div>
     </div>
-    
+
   </div>
 </section>
 
 <script>
   const phrases = [
-    "Get early access",
-    "Be bold",
-    "You're the best",
-    "You're different",
-    "Click here",
-    "Yes you can"
+    "Start Free Trial",
+    "Take back control",
+    "Join 3,200+ managers",
+    "Hit your goals",
+    "Lead with confidence",
+    "Transform your team"
   ];
   
   let currentPhraseIndex = 0;
@@ -92,7 +105,7 @@
   emailInput?.addEventListener('focus', () => {
     if (typingTimeout) clearTimeout(typingTimeout);
     isTypingAnimation = false;
-    if (buttonText) buttonText.textContent = "Getting closer";
+    if (buttonText) buttonText.textContent = "Almost there...";
   });
   
   emailInput?.addEventListener('blur', () => {
@@ -191,7 +204,7 @@
       isTypingAnimation = true;
       setTimeout(typeWriter, 500);
     } else {
-      if (buttonText) buttonText.textContent = 'Getting closer';
+      if (buttonText) buttonText.textContent = 'Almost there...';
     }
   }
 

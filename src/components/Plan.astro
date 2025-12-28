@@ -1,0 +1,166 @@
+---
+---
+
+<!-- Scroll container that creates the scroll distance -->
+<div id="plan-section" class="relative bg-black" style="height: 250vh;">
+  <!-- Fixed/sticky content -->
+  <div id="plan-sticky" class="sticky top-0 min-h-screen flex items-center bg-black py-16">
+    <div class="max-w-7xl mx-auto px-6 w-full">
+      <!-- Title -->
+      <div class="text-center mb-12">
+        <h2 class="text-xl md:text-3xl lg:text-4xl font-medium text-white mb-6 leading-tight tracking-tight">
+          Zero setup. Instant strategy. Daily progress.
+        </h2>
+      </div>
+
+      <div class="flex items-center gap-12">
+        <!-- Left: Content -->
+        <div class="flex-1 flex flex-col justify-between">
+          <div id="step-content" class="transition-opacity duration-500">
+            <!-- Step content will be dynamically shown here -->
+          </div>
+
+          <!-- Progress Indicator at bottom -->
+          <div class="mt-12">
+            <div class="flex items-center">
+              <div class="step-indicator flex items-center" data-step="1">
+                <div class="step-dot w-3 h-3 rounded-full transition-all duration-300 bg-white border-2 border-gray-600"></div>
+                <div class="step-line h-0.5 w-12 bg-gray-800 transition-all duration-300"></div>
+              </div>
+              <div class="step-indicator flex items-center" data-step="2">
+                <div class="step-dot w-3 h-3 rounded-full transition-all duration-300 bg-white border-2 border-gray-600"></div>
+                <div class="step-line h-0.5 w-12 bg-gray-800 transition-all duration-300"></div>
+              </div>
+              <div class="step-indicator flex items-center" data-step="3">
+                <div class="step-dot w-3 h-3 rounded-full transition-all duration-300 bg-white border-2 border-gray-600"></div>
+                <div class="step-line h-0.5 w-12 bg-gray-800 transition-all duration-300"></div>
+              </div>
+              <div class="step-indicator flex items-center" data-step="4">
+                <div class="step-dot w-3 h-3 rounded-full transition-all duration-300 bg-white border-2 border-gray-600"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Screenshot -->
+        <div class="flex-1 hidden lg:block">
+          <div id="step-image" class="rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 aspect-[4/3] overflow-hidden border border-gray-800 transition-all duration-500">
+            <!-- Screenshot will be shown here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const steps = [
+    {
+      number: 1,
+      title: "Instant onboarding",
+      description: "Give Shadow your role, company URL and current biggest goal. Shadow starts gathering a comprehensive context, better than you ever would.",
+      image: "/images/step-1.png"
+    },
+    {
+      number: 2,
+      title: "Personal roadmap",
+      description: "Shadow creates your personal system prompt—capturing your role, company context, and objectives into a strategic blueprint that persists across every conversation.",
+      image: "/images/step-2.png"
+    },
+    {
+      number: 3,
+      title: "Daily reality check",
+      description: "Every morning, Shadow asks one targeted question about your goals. It's like having your smartest colleague tap you on the shoulder.",
+      image: "/images/step-3.png"
+    },
+    {
+      number: 4,
+      title: "Plug your tools",
+      description: "Connect Slack, Calendar, Gmail, Google Drive, Notion, GitHub, Salesforce, Linear and more so Shadow can read your patterns and help you work better.",
+      image: "/images/step-4.png"
+    }
+  ];
+
+  let currentStep = 0;
+
+  function renderStep(index: number) {
+    const step = steps[index];
+    const contentDiv = document.getElementById('step-content');
+    const imageDiv = document.getElementById('step-image');
+
+    if (contentDiv) {
+      contentDiv.innerHTML = `
+        <div class="mb-4">
+          <span class="text-sm font-medium text-gray-500">${step.number}/4</span>
+        </div>
+        <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">
+          ${step.title}
+        </h3>
+        <p class="text-xl text-gray-400 leading-relaxed max-w-xl">
+          ${step.description}
+        </p>
+      `;
+    }
+
+    if (imageDiv) {
+      imageDiv.innerHTML = `
+        <img src="${step.image}" alt="${step.title}" class="w-full h-full object-cover" />
+      `;
+    }
+
+    // Update progress indicators
+    document.querySelectorAll('.step-indicator').forEach((indicator, i) => {
+      const stepDot = indicator.querySelector('.step-dot');
+      const stepLine = indicator.querySelector('.step-line');
+
+      if (i < index) {
+        // Completed steps
+        stepDot?.classList.remove('bg-white', 'border-gray-600');
+        stepDot?.classList.add('bg-black', 'border-white');
+        stepLine?.classList.remove('bg-gray-800');
+        stepLine?.classList.add('bg-white');
+      } else if (i === index) {
+        // Current step
+        stepDot?.classList.remove('bg-white', 'border-gray-600');
+        stepDot?.classList.add('bg-black', 'border-white');
+        stepLine?.classList.remove('bg-white');
+        stepLine?.classList.add('bg-gray-800');
+      } else {
+        // Future steps
+        stepDot?.classList.remove('bg-black', 'border-white');
+        stepDot?.classList.add('bg-white', 'border-gray-600');
+        stepLine?.classList.remove('bg-white');
+        stepLine?.classList.add('bg-gray-800');
+      }
+    });
+  }
+
+  function updateStepBasedOnScroll() {
+    const section = document.getElementById('plan-section') as HTMLElement;
+    if (!section) return;
+
+    const rect = section.getBoundingClientRect();
+    const sectionHeight = section.offsetHeight;
+    const viewportHeight = window.innerHeight;
+
+    // Calculate scroll progress through the section (0 to 1)
+    const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - viewportHeight)));
+
+    // Determine which step to show (0-3)
+    const newStep = Math.min(3, Math.floor(scrollProgress * 4));
+
+    // Update step
+    if (newStep !== currentStep) {
+      currentStep = newStep;
+      renderStep(currentStep);
+    }
+  }
+
+  // Initialize
+  renderStep(0);
+
+  // Update on scroll
+  window.addEventListener('scroll', updateStepBasedOnScroll);
+  // Initial update
+  updateStepBasedOnScroll();
+</script>

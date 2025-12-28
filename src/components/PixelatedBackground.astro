@@ -1,0 +1,168 @@
+---
+// Pixelated gradient background component
+---
+
+<div class="pixelated-background">
+  <div class="pixel-grid"></div>
+</div>
+
+<style>
+  .pixelated-background {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .pixel-grid {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(40, 1fr);
+    grid-template-rows: repeat(25, 1fr);
+    gap: 0;
+  }
+
+  @media (max-width: 768px) {
+    .pixel-grid {
+      grid-template-columns: repeat(20, 1fr);
+      grid-template-rows: repeat(30, 1fr);
+    }
+  }
+</style>
+
+<script>
+  // Generate pixels dynamically
+  const grid = document.querySelector('.pixel-grid');
+
+  if (grid) {
+    const cols = window.innerWidth <= 768 ? 20 : 40;
+    const rows = window.innerWidth <= 768 ? 30 : 25;
+    const totalPixels = cols * rows;
+
+    // Create pixels
+    for (let i = 0; i < totalPixels; i++) {
+      const pixel = document.createElement('div');
+      pixel.className = 'pixel';
+      pixel.style.gridColumn = (i % cols) + 1;
+      pixel.style.gridRow = Math.floor(i / cols) + 1;
+      grid.appendChild(pixel);
+    }
+
+    // Apply gradient colors to pixels
+    const pixels = grid.querySelectorAll('.pixel');
+
+    function updatePixelColors() {
+      pixels.forEach((pixel, i) => {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+
+        // Calculate position ratios (0 to 1)
+        const x = col / cols;
+        const y = row / rows;
+
+        // Create a gradient effect similar to the image
+        // Top-left to center: cyan/blue gradient
+        // Center to bottom-right: pink/magenta gradient
+
+        let r, g, b;
+
+        // Distance from top-left corner
+        const distFromTopLeft = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+
+        // Distance from center-right
+        const centerRightX = 0.7;
+        const centerRightY = 0.4;
+        const distFromCenterRight = Math.sqrt(
+          Math.pow(x - centerRightX, 2) + Math.pow(y - centerRightY, 2)
+        );
+
+        // Create color mixing
+        const blueFactor = Math.max(0, 1 - distFromTopLeft * 1.5);
+        const pinkFactor = Math.max(0, 1 - distFromCenterRight * 2);
+
+        // Blue-ish gradient from top-left
+        const blueR = 20 + blueFactor * 80;
+        const blueG = 40 + blueFactor * 120;
+        const blueB = 100 + blueFactor * 155;
+
+        // Pink-ish gradient from center-right
+        const pinkR = 180 + pinkFactor * 75;
+        const pinkG = 40 + pinkFactor * 100;
+        const pinkB = 140 + pinkFactor * 115;
+
+        // Mix the colors
+        r = Math.min(255, blueR * (1 - pinkFactor) + pinkR * pinkFactor);
+        g = Math.min(255, blueG * (1 - pinkFactor) + pinkG * pinkFactor);
+        b = Math.min(255, blueB * (1 - pinkFactor) + pinkB * pinkFactor);
+
+        // Apply darkness to corners
+        const darkness = Math.max(
+          Math.min(distFromTopLeft, distFromCenterRight) - 0.3,
+          0
+        ) * 0.8;
+
+        r *= (1 - darkness);
+        g *= (1 - darkness);
+        b *= (1 - darkness);
+
+        const htmlPixel = pixel as HTMLElement;
+        htmlPixel.style.backgroundColor = `rgb(${Math.floor(r)}, ${Math.floor(g)}, ${Math.floor(b)})`;
+
+        // Add random animation delay for organic feel
+        htmlPixel.style.animationDelay = `${Math.random() * 3}s`;
+      });
+    }
+
+    updatePixelColors();
+  }
+</script>
+
+<style is:global>
+  .pixel {
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+    animation: pixelPulse 8s ease-in-out infinite;
+  }
+
+  @keyframes pixelPulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.05);
+    }
+  }
+
+  .pixel:hover {
+    transform: scale(1.2) !important;
+    filter: brightness(1.4);
+    z-index: 1;
+    box-shadow: 0 0 20px currentColor;
+    transition: all 0.15s ease;
+  }
+
+  /* Add blur effect for softer gradients */
+  .pixel-grid {
+    filter: blur(2px);
+  }
+
+  /* Optional: Add scanline effect */
+  .pixelated-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.1) 0px,
+      rgba(0, 0, 0, 0.05) 1px,
+      transparent 2px,
+      transparent 3px
+    );
+    pointer-events: none;
+    opacity: 0.3;
+  }
+</style>

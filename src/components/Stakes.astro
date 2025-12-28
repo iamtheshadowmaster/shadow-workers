@@ -1,0 +1,78 @@
+---
+---
+
+<!-- Scroll container that creates the scroll distance -->
+<div id="stakes-section" class="relative bg-black" style="height: 200vh;">
+  <!-- Fixed/sticky content -->
+  <div id="stakes-sticky" class="sticky top-0 h-screen flex items-center justify-center">
+    <div class="max-w-5xl mx-auto px-6">
+      <!-- Headline -->
+      <h2 class="text-xl md:text-2xl lg:text-3xl font-medium text-white/60 text-center mb-16 leading-relaxed">
+        Or just keep going like this
+      </h2>
+
+      <!-- Scrolling Content with highlighted words -->
+      <div id="stakes-content" class="text-2xl md:text-3xl lg:text-4xl font-normal text-white/40 text-center leading-relaxed max-w-4xl mx-auto">
+        You know, keep <span class="highlight-word" data-index="0">spending half</span> your week on stuff that doesn't move the needle,
+        <span class="highlight-word" data-index="1">watching competitors pull ahead</span> while you're stuck in meetings,
+        <span class="highlight-word" data-index="2">losing your best people</span> to teams that actually have their shit together,
+        and <span class="highlight-word" data-index="3">watching your team quietly lose faith</span> in where you're taking them.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Scroll-based word highlighting
+  const highlightWords = document.querySelectorAll('.highlight-word');
+  const stakesSection = document.getElementById('stakes-section') as HTMLElement;
+
+  function updateHighlights() {
+    if (!stakesSection) return;
+
+    const rect = stakesSection.getBoundingClientRect();
+    const sectionHeight = stakesSection.offsetHeight;
+    const viewportHeight = window.innerHeight;
+
+    // Calculate scroll progress through the section (0 to 1)
+    const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - viewportHeight)));
+
+    // Determine which words should be highlighted based on scroll progress
+    const totalWords = highlightWords.length;
+
+    highlightWords.forEach((word, index) => {
+      const wordThreshold = index / (totalWords); // When this word should start highlighting (first word starts at 0)
+      const nextThreshold = (index + 1) / (totalWords); // When next word starts
+
+      if (scrollProgress >= wordThreshold) {
+        // Calculate opacity for this word (0 to 1)
+        const wordProgress = Math.min(1, (scrollProgress - wordThreshold) / (nextThreshold - wordThreshold));
+        const opacity = 0.4 + (0.6 * wordProgress); // From 0.4 to 1.0
+
+        (word as HTMLElement).style.setProperty('--word-opacity', opacity.toString());
+        word.classList.add('active');
+      } else {
+        (word as HTMLElement).style.setProperty('--word-opacity', '0.4');
+        word.classList.remove('active');
+      }
+    });
+  }
+
+  // Update on scroll
+  window.addEventListener('scroll', updateHighlights);
+  // Initial update
+  updateHighlights();
+</script>
+
+<style>
+  .highlight-word {
+    --word-opacity: 0.4;
+    color: rgba(255, 255, 255, var(--word-opacity));
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    display: inline;
+  }
+
+  .highlight-word.active {
+    text-shadow: 0 0 20px rgba(255, 255, 255, calc(var(--word-opacity) * 0.3));
+  }
+</style>
