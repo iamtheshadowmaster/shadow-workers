@@ -396,119 +396,136 @@
 </style>
 
 <script>
-  // Main tab switching (Individual vs Team/Enterprise)
-  const individualTab = document.getElementById('individual-tab');
-  const teamEnterpriseTab = document.getElementById('team-enterprise-tab');
-  const individualPlans = document.getElementById('individual-plans');
-  const teamEnterprisePlans = document.getElementById('team-enterprise-plans');
+  // Wait for the DOM so listeners reliably attach when Astro hoists scripts
+  document.addEventListener('DOMContentLoaded', () => {
+    // Main tab switching (Individual vs Team/Enterprise)
+    const individualTab = document.getElementById('individual-tab');
+    const teamEnterpriseTab = document.getElementById('team-enterprise-tab');
+    const individualPlans = document.getElementById('individual-plans');
+    const teamEnterprisePlans = document.getElementById('team-enterprise-plans');
 
-  individualTab?.addEventListener('click', () => {
-    individualTab.classList.add('active');
-    teamEnterpriseTab?.classList.remove('active');
-    individualPlans?.classList.remove('hidden');
-    individualPlans?.classList.add('grid');
-    teamEnterprisePlans?.classList.remove('grid');
-    teamEnterprisePlans?.classList.add('hidden');
-  });
+    individualTab?.addEventListener('click', () => {
+      individualTab.classList.add('active');
+      teamEnterpriseTab?.classList.remove('active');
+      individualPlans?.classList.remove('hidden');
+      individualPlans?.classList.add('grid');
+      teamEnterprisePlans?.classList.remove('grid');
+      teamEnterprisePlans?.classList.add('hidden');
+    });
 
-  teamEnterpriseTab?.addEventListener('click', () => {
-    teamEnterpriseTab.classList.add('active');
-    individualTab?.classList.remove('active');
-    teamEnterprisePlans?.classList.remove('hidden');
-    teamEnterprisePlans?.classList.add('grid');
-    individualPlans?.classList.remove('grid');
-    individualPlans?.classList.add('hidden');
-  });
+    teamEnterpriseTab?.addEventListener('click', () => {
+      teamEnterpriseTab.classList.add('active');
+      individualTab?.classList.remove('active');
+      teamEnterprisePlans?.classList.remove('hidden');
+      teamEnterprisePlans?.classList.add('grid');
+      individualPlans?.classList.remove('grid');
+      individualPlans?.classList.add('hidden');
+    });
 
-  // Pro plan period toggle
-  const proToggle = document.querySelector('.pro-period-toggle');
-  proToggle?.addEventListener('change', (e) => {
-    const isAnnual = e.target.checked;
+    // Pro plan period toggle
+    const proToggle = document.querySelector('.pro-period-toggle');
+    proToggle?.addEventListener('change', (e) => {
+      const target = e.target;
+      if (!(target instanceof HTMLInputElement)) return;
+      const isAnnual = target.checked;
 
-    if (isAnnual) {
-      // Show annual pricing
-      document.querySelectorAll('.pro-monthly-price').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.pro-annual-price').forEach(el => el.classList.remove('hidden'));
-      document.querySelectorAll('.pro-monthly-billing').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.pro-annual-billing').forEach(el => el.classList.remove('hidden'));
-      document.querySelectorAll('.pro-savings').forEach(el => el.classList.remove('hidden'));
-    } else {
-      // Show monthly pricing
-      document.querySelectorAll('.pro-annual-price').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.pro-monthly-price').forEach(el => el.classList.remove('hidden'));
-      document.querySelectorAll('.pro-annual-billing').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.pro-monthly-billing').forEach(el => el.classList.remove('hidden'));
-      document.querySelectorAll('.pro-savings').forEach(el => el.classList.add('hidden'));
-    }
-  });
+      if (isAnnual) {
+        // Show annual pricing
+        document.querySelectorAll('.pro-monthly-price').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.pro-annual-price').forEach(el => el.classList.remove('hidden'));
+        document.querySelectorAll('.pro-monthly-billing').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.pro-annual-billing').forEach(el => el.classList.remove('hidden'));
+        document.querySelectorAll('.pro-savings').forEach(el => el.classList.remove('hidden'));
+      } else {
+        // Show monthly pricing
+        document.querySelectorAll('.pro-annual-price').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.pro-monthly-price').forEach(el => el.classList.remove('hidden'));
+        document.querySelectorAll('.pro-annual-billing').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.pro-monthly-billing').forEach(el => el.classList.remove('hidden'));
+        document.querySelectorAll('.pro-savings').forEach(el => el.classList.add('hidden'));
+      }
+    });
 
-  // Team plan period toggle
-  const teamToggle = document.querySelector('.team-period-toggle');
-  teamToggle?.addEventListener('change', (e) => {
-    const isAnnual = e.target.checked;
+    // Team plan period toggle
+    const teamToggle = document.querySelector('.team-period-toggle');
+    teamToggle?.addEventListener('change', (e) => {
+      const target = e.target;
+      if (!(target instanceof HTMLInputElement)) return;
+      const isAnnual = target.checked;
 
-    if (isAnnual) {
-      // Show annual pricing
-      document.querySelectorAll('.team-monthly-price').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.team-annual-price').forEach(el => el.classList.remove('hidden'));
-      document.querySelectorAll('.team-monthly-billing').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.team-annual-billing').forEach(el => el.classList.remove('hidden'));
-      document.querySelectorAll('.team-savings').forEach(el => el.classList.remove('hidden'));
-    } else {
-      // Show monthly pricing
-      document.querySelectorAll('.team-annual-price').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.team-monthly-price').forEach(el => el.classList.remove('hidden'));
-      document.querySelectorAll('.team-annual-billing').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.team-monthly-billing').forEach(el => el.classList.remove('hidden'));
-      document.querySelectorAll('.team-savings').forEach(el => el.classList.add('hidden'));
-    }
-  });
+      if (isAnnual) {
+        // Show annual pricing
+        document.querySelectorAll('.team-monthly-price').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.team-annual-price').forEach(el => el.classList.remove('hidden'));
+        document.querySelectorAll('.team-monthly-billing').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.team-annual-billing').forEach(el => el.classList.remove('hidden'));
+        document.querySelectorAll('.team-savings').forEach(el => el.classList.remove('hidden'));
+      } else {
+        // Show monthly pricing
+        document.querySelectorAll('.team-annual-price').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.team-monthly-price').forEach(el => el.classList.remove('hidden'));
+        document.querySelectorAll('.team-annual-billing').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.team-monthly-billing').forEach(el => el.classList.remove('hidden'));
+        document.querySelectorAll('.team-savings').forEach(el => el.classList.add('hidden'));
+      }
+    });
 
-  // Pro credits dropdown change handler
-  const proCreditsSelect = document.getElementById('pro-credits');
-  proCreditsSelect?.addEventListener('change', (e) => {
-    const selectedOption = e.target.options[e.target.selectedIndex];
-    const monthlyPrice = parseFloat(selectedOption.getAttribute('data-monthly-price'));
-    const annualPrice = parseFloat(selectedOption.getAttribute('data-annual-price'));
+    // Pro credits dropdown change handler
+    const proCreditsSelect = document.getElementById('pro-credits');
+    proCreditsSelect?.addEventListener('change', (e) => {
+      const target = e.target;
+      if (!(target instanceof HTMLSelectElement)) return;
+      const selectedOption = target.options[target.selectedIndex];
+      const monthlyPriceAttr = selectedOption.getAttribute('data-monthly-price');
+      const annualPriceAttr = selectedOption.getAttribute('data-annual-price');
+      if (!monthlyPriceAttr || !annualPriceAttr) return;
+      const monthlyPrice = parseFloat(monthlyPriceAttr);
+      const annualPrice = parseFloat(annualPriceAttr);
 
-    // Update prices
-    const proMonthlyPriceEl = document.querySelector('.pro-monthly-price');
-    const proAnnualPriceEl = document.querySelector('.pro-annual-price');
-    const proAnnualTotalEl = document.querySelector('.pro-annual-total');
-    const proSavingsEl = document.querySelector('.pro-savings');
+      // Update prices
+      const proMonthlyPriceEl = document.querySelector('.pro-monthly-price');
+      const proAnnualPriceEl = document.querySelector('.pro-annual-price');
+      const proAnnualTotalEl = document.querySelector('.pro-annual-total');
+      const proSavingsEl = document.querySelector('.pro-savings');
 
-    if (proMonthlyPriceEl) proMonthlyPriceEl.textContent = `$${monthlyPrice}`;
-    if (proAnnualPriceEl) proAnnualPriceEl.textContent = `$${annualPrice}`;
-    if (proAnnualTotalEl) proAnnualTotalEl.textContent = `$${annualPrice * 12}`;
+      if (proMonthlyPriceEl) proMonthlyPriceEl.textContent = `$${monthlyPrice}`;
+      if (proAnnualPriceEl) proAnnualPriceEl.textContent = `$${annualPrice}`;
+      if (proAnnualTotalEl) proAnnualTotalEl.textContent = `$${annualPrice * 12}`;
 
-    // Calculate and update savings (20% of annual total)
-    const annualSavings = (monthlyPrice * 12) - (annualPrice * 12);
-    if (proSavingsEl) {
-      proSavingsEl.textContent = `Save $${Math.round(annualSavings)}`;
-    }
-  });
+      // Calculate and update savings (20% of annual total)
+      const annualSavings = (monthlyPrice * 12) - (annualPrice * 12);
+      if (proSavingsEl) {
+        proSavingsEl.textContent = `Save $${Math.round(annualSavings)}`;
+      }
+    });
 
-  // Team credits dropdown change handler
-  const teamCreditsSelect = document.getElementById('team-credits');
-  teamCreditsSelect?.addEventListener('change', (e) => {
-    const selectedOption = e.target.options[e.target.selectedIndex];
-    const monthlyPrice = parseFloat(selectedOption.getAttribute('data-monthly-price'));
-    const annualPrice = parseFloat(selectedOption.getAttribute('data-annual-price'));
+    // Team credits dropdown change handler
+    const teamCreditsSelect = document.getElementById('team-credits');
+    teamCreditsSelect?.addEventListener('change', (e) => {
+      const target = e.target;
+      if (!(target instanceof HTMLSelectElement)) return;
+      const selectedOption = target.options[target.selectedIndex];
+      const monthlyPriceAttr = selectedOption.getAttribute('data-monthly-price');
+      const annualPriceAttr = selectedOption.getAttribute('data-annual-price');
+      if (!monthlyPriceAttr || !annualPriceAttr) return;
+      const monthlyPrice = parseFloat(monthlyPriceAttr);
+      const annualPrice = parseFloat(annualPriceAttr);
 
-    // Update prices
-    const teamMonthlyPriceEl = document.querySelector('.team-monthly-price');
-    const teamAnnualPriceEl = document.querySelector('.team-annual-price');
-    const teamAnnualTotalEl = document.querySelector('.team-annual-total');
-    const teamSavingsEl = document.querySelector('.team-savings');
+      // Update prices
+      const teamMonthlyPriceEl = document.querySelector('.team-monthly-price');
+      const teamAnnualPriceEl = document.querySelector('.team-annual-price');
+      const teamAnnualTotalEl = document.querySelector('.team-annual-total');
+      const teamSavingsEl = document.querySelector('.team-savings');
 
-    if (teamMonthlyPriceEl) teamMonthlyPriceEl.textContent = `$${monthlyPrice}`;
-    if (teamAnnualPriceEl) teamAnnualPriceEl.textContent = `$${annualPrice}`;
-    if (teamAnnualTotalEl) teamAnnualTotalEl.textContent = `$${annualPrice * 12}`;
+      if (teamMonthlyPriceEl) teamMonthlyPriceEl.textContent = `$${monthlyPrice}`;
+      if (teamAnnualPriceEl) teamAnnualPriceEl.textContent = `$${annualPrice}`;
+      if (teamAnnualTotalEl) teamAnnualTotalEl.textContent = `$${annualPrice * 12}`;
 
-    // Calculate and update savings (20% of annual total)
-    const annualSavings = (monthlyPrice * 12) - (annualPrice * 12);
-    if (teamSavingsEl) {
-      teamSavingsEl.textContent = `Save $${Math.round(annualSavings)}/user`;
-    }
+      // Calculate and update savings (20% of annual total)
+      const annualSavings = (monthlyPrice * 12) - (annualPrice * 12);
+      if (teamSavingsEl) {
+        teamSavingsEl.textContent = `Save $${Math.round(annualSavings)}/user`;
+      }
+    });
   });
 </script>

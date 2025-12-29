@@ -5,10 +5,14 @@ const links = [
   { name: 'Privacy Policy', href: '/privacy' },
   { name: 'Terms of Service', href: '/terms' },
 ]
+import backgroundImage from '../assets/Background-3.png';
 ---
 
-<footer class="border-t border-gray-800">
-  <div class="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
+<footer
+  class="relative overflow-hidden bg-transparent bg-cover bg-center bg-no-repeat bg-fixed"
+  style={`background-image: url(${backgroundImage.src});`}
+>
+  <div class="relative mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
     <div class="flex justify-center space-x-6 md:order-2">
       {
         links.map((link) => (
