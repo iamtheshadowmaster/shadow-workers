@@ -11,8 +11,8 @@ export default {
         'shadow-teal': '#14B8A6', // Success color
       },
       fontFamily: {
-        sans: ['Inter var', 'Inter', 'Nunito', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['SF Pro Display', 'Inter', 'Nunito', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Geist Variable', 'Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Geist Variable', 'Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
     },
   },

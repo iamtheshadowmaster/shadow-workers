@@ -1,0 +1,202 @@
+---
+import shadowIcon from '../assets/128x128.png';
+import TeamVisuals from './TeamVisuals.astro';
+
+const shadowIconSrc = shadowIcon.src;
+---
+
+<!-- Import the shared visuals -->
+<TeamVisuals />
+
+<!-- Scroll container that creates the scroll distance -->
+<div id="team-section" class="relative bg-black" style="height: 400vh;" data-shadow-icon={shadowIconSrc}>
+  <!-- Fixed/sticky content -->
+  <div id="team-sticky" class="sticky top-0 min-h-screen flex items-center bg-black py-16">
+    <div class="max-w-7xl mx-auto px-6 w-full">
+      <!-- Title -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 mb-6">
+          <div class="w-2 h-2 rounded-full bg-purple-500"></div>
+          <span class="text-sm font-medium text-purple-400 uppercase tracking-wider">Team Mode</span>
+        </div>
+        <h2 class="text-xl md:text-3xl lg:text-4xl font-medium text-white mb-6 leading-tight tracking-tight">
+          From scattered effort to synchronized execution.
+        </h2>
+      </div>
+
+      <div class="flex items-center gap-12">
+        <!-- Left: Content -->
+        <div class="flex-1 flex flex-col justify-between">
+          <div id="team-step-content" class="transition-opacity duration-700 ease-out" style="will-change: opacity;">
+            <!-- Step content will be dynamically shown here -->
+          </div>
+
+          <!-- Progress Indicator at bottom -->
+          <div class="mt-12">
+            <div class="flex items-center">
+              <div class="team-step-indicator flex items-center" data-step="1">
+                <div class="team-step-dot w-3 h-3 rounded-full transition-all duration-500 ease-out bg-white border-2 border-gray-600" style="will-change: background-color, border-color;"></div>
+                <div class="team-step-line h-0.5 w-12 bg-gray-800 transition-all duration-500 ease-out" style="will-change: background-color;"></div>
+              </div>
+              <div class="team-step-indicator flex items-center" data-step="2">
+                <div class="team-step-dot w-3 h-3 rounded-full transition-all duration-500 ease-out bg-white border-2 border-gray-600" style="will-change: background-color, border-color;"></div>
+                <div class="team-step-line h-0.5 w-12 bg-gray-800 transition-all duration-500 ease-out" style="will-change: background-color;"></div>
+              </div>
+              <div class="team-step-indicator flex items-center" data-step="3">
+                <div class="team-step-dot w-3 h-3 rounded-full transition-all duration-500 ease-out bg-white border-2 border-gray-600" style="will-change: background-color, border-color;"></div>
+                <div class="team-step-line h-0.5 w-12 bg-gray-800 transition-all duration-500 ease-out" style="will-change: background-color;"></div>
+              </div>
+              <div class="team-step-indicator flex items-center" data-step="4">
+                <div class="team-step-dot w-3 h-3 rounded-full transition-all duration-500 ease-out bg-white border-2 border-gray-600" style="will-change: background-color, border-color;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Visual -->
+        <div class="flex-1 hidden lg:block">
+          <div id="team-step-image" class="rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 aspect-[4/3] overflow-hidden transition-all duration-700 ease-out" style="will-change: contents;">
+            <!-- Visual will be shown here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Get the icon paths from the data attributes
+  const shadowIconSrc = document.getElementById('team-section')?.getAttribute('data-shadow-icon') || '';
+
+  const teamSteps = [
+    {
+      number: 1,
+      title: "Control team alignment",
+      description: "Set teams-level system prompts and control user-level system prompts for your team. Shadow ensures everyone's AI assistant understands the same priorities and speaks the same strategic language.",
+      customRender: 'okrControl'
+    },
+    {
+      number: 2,
+      title: "Organize in projects",
+      description: "Create dedicated projects for different initiatives. Attach specific intructions and context to the project so Shadow can help everyone stay aligned on project goals and deliverables.",
+      customRender: 'groupChats'
+    },
+    {
+      number: 3,
+      title: "Import your context",
+      description: "Connect Slack, Notion, GitHub, Google Drive, and more. Shadow syncs your existing conversations, docs, and workflows to build comprehensive team context.",
+      customRender: 'contextGathering'
+    },
+    {
+      number: 4,
+      title: "Use native features",
+      description: "Leverage Shadow's built-in chat, calls, notes, and tasks for enhanced AI performance. Native features provide 3x better context retrieval and team coordination.",
+      customRender: 'nativeFeatures'
+    }
+  ];
+
+  let currentTeamStep = 0;
+
+  function renderTeamStep(index: number) {
+    const step = teamSteps[index];
+    const contentDiv = document.getElementById('team-step-content');
+    const imageDiv = document.getElementById('team-step-image');
+
+    if (contentDiv) {
+      contentDiv.innerHTML = `
+        <div class="mb-4">
+          <span class="text-sm font-medium text-gray-500">${step.number}/4</span>
+        </div>
+        <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">
+          ${step.title}
+        </h3>
+        <p class="text-xl text-gray-400 leading-relaxed max-w-xl">
+          ${step.description}
+        </p>
+      `;
+    }
+
+    if (imageDiv) {
+      // Use shared visual functions
+      const TeamVisuals = (window as any).TeamVisuals;
+      if (TeamVisuals) {
+        if (step.customRender === 'contextGathering') {
+          imageDiv.innerHTML = TeamVisuals.getContextGatheringVisual(shadowIconSrc);
+        } else if (step.customRender === 'okrControl') {
+          imageDiv.innerHTML = TeamVisuals.getOKRControlVisual(shadowIconSrc);
+        } else if (step.customRender === 'groupChats') {
+          imageDiv.innerHTML = TeamVisuals.getGroupChatsVisual(shadowIconSrc);
+        } else if (step.customRender === 'nativeFeatures') {
+          imageDiv.innerHTML = TeamVisuals.getNativeFeaturesVisual(shadowIconSrc);
+        }
+      }
+    }
+
+    // Update progress indicators
+    document.querySelectorAll('.team-step-indicator').forEach((indicator, i) => {
+      const stepDot = indicator.querySelector('.team-step-dot');
+      const stepLine = indicator.querySelector('.team-step-line');
+
+      if (i < index) {
+        // Completed steps
+        stepDot?.classList.remove('bg-white', 'border-gray-600');
+        stepDot?.classList.add('bg-black', 'border-white');
+        stepLine?.classList.remove('bg-gray-800');
+        stepLine?.classList.add('bg-white');
+      } else if (i === index) {
+        // Current step
+        stepDot?.classList.remove('bg-white', 'border-gray-600');
+        stepDot?.classList.add('bg-black', 'border-white');
+        stepLine?.classList.remove('bg-white');
+        stepLine?.classList.add('bg-gray-800');
+      } else {
+        // Future steps
+        stepDot?.classList.remove('bg-black', 'border-white');
+        stepDot?.classList.add('bg-white', 'border-gray-600');
+        stepLine?.classList.remove('bg-white');
+        stepLine?.classList.add('bg-gray-800');
+      }
+    });
+  }
+
+  let rafId: number | null = null;
+  let ticking = false;
+
+  function updateTeamStepBasedOnScroll() {
+    const section = document.getElementById('team-section') as HTMLElement;
+    if (!section) return;
+
+    const rect = section.getBoundingClientRect();
+    const sectionHeight = section.offsetHeight;
+    const viewportHeight = window.innerHeight;
+
+    // Calculate scroll progress through the section (0 to 1)
+    const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - viewportHeight)));
+
+    // Determine which step to show (0-3 for 4 steps)
+    const newStep = Math.min(3, Math.floor(scrollProgress * 4));
+
+    // Update step
+    if (newStep !== currentTeamStep) {
+      currentTeamStep = newStep;
+      renderTeamStep(currentTeamStep);
+    }
+
+    ticking = false;
+  }
+
+  function requestUpdate() {
+    if (!ticking) {
+      rafId = requestAnimationFrame(updateTeamStepBasedOnScroll);
+      ticking = true;
+    }
+  }
+
+  // Initialize
+  renderTeamStep(0);
+
+  // Update on scroll with RAF
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  // Initial update
+  updateTeamStepBasedOnScroll();
+</script>

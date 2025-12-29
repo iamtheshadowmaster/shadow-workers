@@ -2,42 +2,49 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
+import Stakes from '../components/Stakes.astro';
+import SoloMode from '../components/SoloMode.astro';
+import TeamModeCondensed from '../components/TeamModeCondensed.astro';
+import PricingPanel from '../components/PricingPanel.astro';
+import FAQ from '../components/FAQ.astro';
+import SocialProof from '../components/SocialProof.astro';
+import ProductFeatures from '../components/ProductFeatures.astro';
+import AIFeatures from '../components/AIFeatures.astro';
+import PlanningSection from '../components/PlanningSection.astro';
 import FeatureSection from '../components/FeatureSection.astro';
-import Value from '../components/Value.astro';
-import CallToAction from '../components/CallToAction.astro';
+import WorkflowSection from '../components/WorkflowSection.astro';
+import FinalCTA from '../components/FinalCTA.astro';
 import Footer from '../components/Footer.astro';
 
 ---
 
 <Layout>
   <Nav />
-  
-  <!-- Unified Background Container -->
-  <div class="bg-gradient-to-br from-gray-900 via-black to-gray-900">
+
+  <!-- Linear-Inspired Design System -->
+  <div class="bg-black">
+
+    <!-- 1. HERO: Purpose-built messaging -->
     <Hero />
-    
-    <!-- Feature Sections -->
-    <FeatureSection 
-      title="Every chat becomes a task"
-      subtitle="Shadow turns conversations into trackable work by creating tasks with full context and actionnable items"
-      video="/videos/feat1-sub1.mp4"
-      backgroundColor=""
-    />
-    
-    <FeatureSection 
-      title="Conversations become knowledge"
-      subtitle="AI sorts every message into Notes, Announcements, and Updates"
-      video="/videos/feat2.mp4"
-      backgroundColor=""
-    />
-    
-    <Value 
-      title="Stop losing track of everything"
-      subtitle="Never miss a deadline, forget a decision, or wonder 'what was that thing we talked about?' ever again"
-      backgroundColor=""
-    />
-    
-    <CallToAction />
+
+    <!-- 2. STAKES: What happens if nothing changes -->
+    <Stakes />
+
+    <!-- 3. THE PLAN: Solo Mode - How it works -->
+    <SoloMode />
+
+    <!-- 4. TEAM MODE: Multiply the impact -->
+    <TeamModeCondensed />
+
+    <!-- 5. PRICING PANEL: Choose your plan -->
+    <PricingPanel />
+
+    <!-- 6. FAQ: Frequently Asked Questions -->
+    <FAQ />
+
+    <!-- 8. FINAL CTA -->
+    <FinalCTA />
+
     <Footer />
   </div>
 </Layout>
