@@ -23,9 +23,12 @@
 </div>
 
 <script>
-  // Scroll-based word highlighting
+  // Scroll-based word highlighting with smooth RAF implementation
   const highlightWords = document.querySelectorAll('.highlight-word');
   const stakesSection = document.getElementById('stakes-section') as HTMLElement;
+
+  let rafId: number | null = null;
+  let ticking = false;
 
   function updateHighlights() {
     if (!stakesSection) return;
@@ -45,9 +48,11 @@
       const nextThreshold = (index + 1) / (totalWords); // When next word starts
 
       if (scrollProgress >= wordThreshold) {
-        // Calculate opacity for this word (0 to 1)
+        // Calculate opacity for this word (0 to 1) with smoother easing
         const wordProgress = Math.min(1, (scrollProgress - wordThreshold) / (nextThreshold - wordThreshold));
-        const opacity = 0.4 + (0.6 * wordProgress); // From 0.4 to 1.0
+        // Use ease-out cubic easing for smoother animation
+        const easedProgress = 1 - Math.pow(1 - wordProgress, 3);
+        const opacity = 0.4 + (0.6 * easedProgress); // From 0.4 to 1.0
 
         (word as HTMLElement).style.setProperty('--word-opacity', opacity.toString());
         word.classList.add('active');
@@ -56,10 +61,19 @@
         word.classList.remove('active');
       }
     });
+
+    ticking = false;
   }
 
-  // Update on scroll
-  window.addEventListener('scroll', updateHighlights);
+  function requestUpdate() {
+    if (!ticking) {
+      rafId = requestAnimationFrame(updateHighlights);
+      ticking = true;
+    }
+  }
+
+  // Update on scroll with RAF
+  window.addEventListener('scroll', requestUpdate, { passive: true });
   // Initial update
   updateHighlights();
 </script>
@@ -68,8 +82,9 @@
   .highlight-word {
     --word-opacity: 0.4;
     color: rgba(255, 255, 255, var(--word-opacity));
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    transition: color 0.6s cubic-bezier(0.4, 0, 0.2, 1), text-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline;
+    will-change: color, text-shadow;
   }
 
   .highlight-word.active {
