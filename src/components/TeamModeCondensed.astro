@@ -1,15 +1,20 @@
 ---
-import shadowIcon from '../assets/128x128.png';
-import TeamVisuals from './TeamVisuals.astro';
-
-const shadowIconSrc = shadowIcon.src;
+import OKRControlVisual from './visuals/OKRControlVisual.astro';
+import GroupChatsVisual from './visuals/GroupChatsVisual.astro';
+import ContextGatheringVisual from './visuals/ContextGatheringVisual.astro';
+import NativeFeaturesVisual from './visuals/NativeFeaturesVisual.astro';
 ---
 
-<!-- Import the shared visuals -->
-<TeamVisuals />
+<!-- Hidden containers for each visual that will be shown/hidden based on scroll -->
+<div id="team-visuals-container" style="display: none;">
+  <div data-visual="okrControl"><OKRControlVisual /></div>
+  <div data-visual="groupChats"><GroupChatsVisual /></div>
+  <div data-visual="contextGathering"><ContextGatheringVisual /></div>
+  <div data-visual="nativeFeatures"><NativeFeaturesVisual /></div>
+</div>
 
 <!-- Scroll container that creates the scroll distance -->
-<div id="team-section" class="relative bg-black" style="height: 400vh;" data-shadow-icon={shadowIconSrc}>
+<div id="team-section" class="relative bg-black" style="height: 400vh;">
   <!-- Fixed/sticky content -->
   <div id="team-sticky" class="sticky top-0 min-h-screen flex items-center bg-black py-16">
     <div class="max-w-7xl mx-auto px-6 w-full">
@@ -65,9 +70,6 @@ const shadowIconSrc = shadowIcon.src;
 </div>
 
 <script>
-  // Get the icon paths from the data attributes
-  const shadowIconSrc = document.getElementById('team-section')?.getAttribute('data-shadow-icon') || '';
-
   const teamSteps = [
     {
       number: 1,
@@ -117,18 +119,12 @@ const shadowIconSrc = shadowIcon.src;
     }
 
     if (imageDiv) {
-      // Use shared visual functions
-      const TeamVisuals = (window as any).TeamVisuals;
-      if (TeamVisuals) {
-        if (step.customRender === 'contextGathering') {
-          imageDiv.innerHTML = TeamVisuals.getContextGatheringVisual(shadowIconSrc);
-        } else if (step.customRender === 'okrControl') {
-          imageDiv.innerHTML = TeamVisuals.getOKRControlVisual(shadowIconSrc);
-        } else if (step.customRender === 'groupChats') {
-          imageDiv.innerHTML = TeamVisuals.getGroupChatsVisual(shadowIconSrc);
-        } else if (step.customRender === 'nativeFeatures') {
-          imageDiv.innerHTML = TeamVisuals.getNativeFeaturesVisual(shadowIconSrc);
-        }
+      // Get the pre-rendered visual from the container
+      const visualsContainer = document.getElementById('team-visuals-container');
+      const visualElement = visualsContainer?.querySelector(`[data-visual="${step.customRender}"]`);
+
+      if (visualElement) {
+        imageDiv.innerHTML = visualElement.innerHTML;
       }
     }
 
