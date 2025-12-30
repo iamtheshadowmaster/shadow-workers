@@ -1,0 +1,122 @@
+---
+import shadowIcon from '../../assets/128x128.png';
+import notionIcon from '../../assets/notion.png';
+
+const shadowIconSrc = shadowIcon.src;
+const notionIconSrc = notionIcon.src;
+---
+
+<style>
+  @keyframes float-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+  }
+
+  @keyframes float-2 {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    33% { transform: translate(-45%, -55%) scale(1.15); }
+    66% { transform: translate(-55%, -45%) scale(0.85); }
+  }
+
+  @keyframes float-3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-25px, 35px) scale(0.9); }
+    66% { transform: translate(25px, -25px) scale(1.1); }
+  }
+
+  .animate-float-1 { animation: float-1 20s ease-in-out infinite; }
+  .animate-float-2 { animation: float-2 25s ease-in-out infinite; }
+  .animate-float-3 { animation: float-3 22s ease-in-out infinite; }
+</style>
+
+<div class="rounded-xl bg-[#1a1a2e] p-5 h-full flex items-center justify-center shadow-2xl relative overflow-hidden border border-gray-700/30">
+  <!-- Multi-color gradient overlay effects -->
+  <div class="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-pink-600/20 to-orange-500/20 pointer-events-none"></div>
+  <div class="absolute top-0 left-0 w-96 h-96 bg-purple-500/15 rounded-full blur-3xl pointer-events-none animate-float-1"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-pink-600/20 rounded-full blur-3xl pointer-events-none animate-float-2"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl pointer-events-none animate-float-3"></div>
+
+  <!-- Content wrapper -->
+  <div class="relative z-10 flex flex-col w-full max-w-lg">
+    <!-- Integration Cards -->
+    <div class="bg-[#2a2a35] rounded-xl border border-gray-700/50 overflow-hidden mb-4">
+      <div class="px-4 py-3 border-b border-gray-700/50">
+        <h4 class="text-white font-semibold text-sm">Connected Data Sources</h4>
+        <p class="text-xs text-gray-400 mt-1">Building team-wide context</p>
+      </div>
+
+      <div class="p-4 space-y-3">
+        <!-- Slack Integration -->
+        <div class="flex items-center justify-between bg-[#35354a] rounded-lg p-3 border border-gray-700/50">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-[#4a154b] rounded flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 15a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2h2v2zm1 0a2 2 0 0 1 2-2a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-5zM9 6a2 2 0 0 1-2-2a2 2 0 0 1 2-2a2 2 0 0 1 2 2v2H9zm0 1a2 2 0 0 1 2 2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2a2 2 0 0 1 2-2h5zm9 2a2 2 0 0 1 2-2a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-2V9zm-1 0a2 2 0 0 1-2 2a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2a2 2 0 0 1 2 2v5zm-2 9a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-2h2zm0-1a2 2 0 0 1-2-2a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-5z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-white font-medium text-sm">Slack</div>
+              <div class="text-xs text-gray-400">12 channels synced</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span class="text-xs text-green-400">Active</span>
+          </div>
+        </div>
+
+        <!-- Notion Integration -->
+        <div class="flex items-center justify-between bg-[#35354a] rounded-lg p-3 border border-gray-700/50">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-white rounded flex items-center justify-center p-1.5 overflow-hidden">
+              <img src={notionIconSrc} alt="Notion" class="w-full h-full object-contain" />
+            </div>
+            <div>
+              <div class="text-white font-medium text-sm">Notion</div>
+              <div class="text-xs text-gray-400">Company wiki & OKRs</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span class="text-xs text-green-400">Active</span>
+          </div>
+        </div>
+
+        <!-- GitHub Integration -->
+        <div class="flex items-center justify-between bg-[#35354a] rounded-lg p-3 border border-gray-700/50">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-[#24292e] rounded flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-white font-medium text-sm">GitHub</div>
+              <div class="text-xs text-gray-400">3 repositories</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span class="text-xs text-green-400">Active</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Context Summary -->
+    <div class="bg-[#2a2a35] rounded-xl border border-gray-700/50 p-4">
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 rounded overflow-hidden flex-shrink-0 bg-white/5">
+          <img src={shadowIconSrc} alt="Shadow" class="w-full h-full object-cover" />
+        </div>
+        <div class="flex-1">
+          <div class="text-white font-semibold text-xs mb-2">Context Summary</div>
+          <div class="text-[13px] text-gray-300 leading-relaxed">
+            Analyzed <span class="text-purple-400 font-medium">2,847 messages</span>, <span class="text-pink-400 font-medium">124 docs</span>, and <span class="text-orange-400 font-medium">89 PRs</span>. Ready to create team-wide alignment around your Q1 OKRs.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

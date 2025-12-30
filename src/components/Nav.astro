@@ -4,9 +4,47 @@
 <nav id="main-nav" class="fixed w-full z-50 bg-transparent border-b border-transparent transition-all duration-300">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
-      <div class="flex items-center">
+      <div class="flex items-center gap-8">
         <a href="/" class="flex items-center space-x-2">
           <img src="/images/logo.svg" alt="Shadow Logo" class="w-24 h-24" />
+        </a>
+
+        <!-- Solutions Dropdown -->
+        <div class="relative group hidden md:block">
+          <button class="text-gray-300 hover:text-white text-sm transition-all duration-200 flex items-center gap-1">
+            Solutions
+            <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div class="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
+            <div class="bg-black/95 backdrop-blur-sm rounded-lg shadow-xl border border-gray-800 py-2">
+              <a href="/product-managers" class="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                PMs
+              </a>
+              <a href="/engineers" class="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                Engineers
+              </a>
+              <a href="/sales" class="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                Sales
+              </a>
+              <a href="/founders" class="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                Founders
+              </a>
+              <a href="/investors" class="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
+                Investors
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="/pricing" class="text-gray-300 hover:text-white text-sm transition-all duration-200 hidden md:block">
+          Pricing
+        </a>
+        <a href="/blog" class="text-gray-300 hover:text-white text-sm transition-all duration-200 hidden md:block">
+          Blog
         </a>
       </div>
       <div class="flex items-center">

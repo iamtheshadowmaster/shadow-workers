@@ -1,0 +1,118 @@
+---
+import shadowIcon from '../../assets/128x128.png';
+
+const shadowIconSrc = shadowIcon.src;
+---
+
+<style>
+  @keyframes float-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+  }
+
+  @keyframes float-2 {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    33% { transform: translate(-45%, -55%) scale(1.15); }
+    66% { transform: translate(-55%, -45%) scale(0.85); }
+  }
+
+  @keyframes float-3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-25px, 35px) scale(0.9); }
+    66% { transform: translate(25px, -25px) scale(1.1); }
+  }
+
+  .animate-float-1 { animation: float-1 20s ease-in-out infinite; }
+  .animate-float-2 { animation: float-2 25s ease-in-out infinite; }
+  .animate-float-3 { animation: float-3 22s ease-in-out infinite; }
+</style>
+
+<div class="rounded-xl bg-[#1a1a2e] p-5 h-full flex items-center justify-center shadow-2xl relative overflow-hidden border border-gray-700/30">
+  <!-- Multi-color gradient overlay effects -->
+  <div class="absolute inset-0 bg-gradient-to-br from-pink-600/20 via-purple-600/20 to-blue-500/20 pointer-events-none"></div>
+  <div class="absolute top-0 left-0 w-96 h-96 bg-pink-500/15 rounded-full blur-3xl pointer-events-none animate-float-1"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-3xl pointer-events-none animate-float-2"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/15 rounded-full blur-3xl pointer-events-none animate-float-3"></div>
+
+  <!-- Content wrapper -->
+  <div class="relative z-10 flex flex-col w-full max-w-lg">
+    <!-- Projects Sidebar Style -->
+    <div class="bg-[#2a2a35] rounded-xl border border-gray-700/50 overflow-hidden">
+      <!-- Header -->
+      <div class="px-4 py-3 border-b border-gray-700/50">
+        <div class="flex items-center justify-between">
+          <h4 class="text-white font-semibold text-sm">Team projects</h4>
+          <button class="text-xs text-purple-400 hover:text-purple-300 font-medium">
+            + New
+          </button>
+        </div>
+      </div>
+
+      <!-- Project Channels -->
+      <div class="p-3 space-y-1">
+        <!-- Enterprise Launch Project -->
+        <div class="bg-[#35354a] rounded-lg px-3 py-2.5 border border-purple-500/50 cursor-pointer hover:bg-[#3d3d52] transition-colors">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-2 h-2 bg-purple-500 rounded-full flex-shrink-0"></div>
+              <span class="text-white font-medium text-sm">Enterprise Launch</span>
+            </div>
+            <div class="flex -space-x-1.5">
+              <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 border border-[#35354a]"></div>
+              <div class="w-5 h-5 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 border border-[#35354a]"></div>
+              <div class="w-5 h-5 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 border border-[#35354a]"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sales Enablement Project -->
+        <div class="bg-[#35354a] rounded-lg px-3 py-2.5 border border-gray-700/50 cursor-pointer hover:bg-[#3d3d52] transition-colors">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
+              <span class="text-white font-medium text-sm">Sales Enablement</span>
+            </div>
+            <div class="flex -space-x-1.5">
+              <div class="w-5 h-5 rounded-full bg-gradient-to-br from-orange-500 to-red-500 border border-[#35354a]"></div>
+              <div class="w-5 h-5 rounded-full bg-gradient-to-br from-yellow-500 to-orange-500 border border-[#35354a]"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customer Success Project -->
+        <div class="bg-[#35354a] rounded-lg px-3 py-2.5 border border-gray-700/50 cursor-pointer hover:bg-[#3d3d52] transition-colors">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+              <span class="text-white font-medium text-sm">Customer Success</span>
+            </div>
+            <div class="flex -space-x-1.5">
+              <div class="w-5 h-5 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 border border-[#35354a]"></div>
+              <div class="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-blue-500 border border-[#35354a]"></div>
+              <div class="w-5 h-5 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 border border-[#35354a]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Chat Preview -->
+      <div class="border-t border-gray-700/50 bg-[#1f1f2e] p-3">
+        <div class="flex items-start gap-2">
+          <div class="w-6 h-6 rounded overflow-hidden flex-shrink-0 bg-white/5">
+            <img src={shadowIconSrc} alt="Shadow" class="w-full h-full object-cover" />
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-white font-semibold text-xs">Shadow</span>
+              <span class="text-[10px] text-gray-500">in Enterprise Launch</span>
+            </div>
+            <p class="text-[11px] text-gray-400 leading-relaxed">
+              The SSO integration is on track for Feb 10. Team alignment check: everyone clear on the auth flow changes?
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

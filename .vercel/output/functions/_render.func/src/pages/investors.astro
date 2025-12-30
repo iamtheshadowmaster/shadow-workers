@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import PersonaHero from '../components/PersonaHero.astro';
+import PersonaStakes from '../components/PersonaStakes.astro';
+import PersonaFeatures from '../components/PersonaFeatures.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
+
+const stakesCopy = `Keep <span class="highlight-word" data-index="0">missing deals buried in spreadsheets</span> while your <span class="highlight-word" data-index="1">portfolio companies struggle without support</span>, watching <span class="highlight-word" data-index="2">partners lose alignment on investment theses</span>, and <span class="highlight-word" data-index="3">leaving opportunities on the table</span> because you can't keep up with deal flow.`;
+
+const features = [
+  {
+    title: "Monitor portfolio health in real-time",
+    description: "Shadow tracks key metrics, team dynamics, and burn rate across your portfolio. Know which companies need attention before they ask."
+  },
+  {
+    title: "Spot warning signs early",
+    description: "Get alerts when momentum stalls, key hires leave, or runway tightens. Shadow helps you support founders before problems become crises."
+  },
+  {
+    title: "Manage deal flow without the chaos",
+    description: "Track prospects, research markets, and coordinate with partners. Shadow keeps your pipeline organized so you never miss the next breakout."
+  },
+  {
+    title: "Support founders strategically",
+    description: "Understand what's actually happening at each company. Shadow gives you the context to help founders win without sitting in every board meeting."
+  }
+];
+---
+
+<Layout>
+  <Nav />
+
+  <div class="bg-black">
+
+    <PersonaHero
+      headline="Track portfolio performance, spot opportunities, never miss a signal"
+      subheadline="The AI that helps investors manage deal flow, monitor portfolio health, and stay ahead without drowning in data."
+      persona="Investors"
+      dotColor="bg-pink-500"
+    />
+
+    <PersonaStakes stakesCopy={stakesCopy} />
+
+    <PersonaFeatures
+      sectionTitle="Your daily reality with Shadow"
+      features={features}
+    />
+
+    <FinalCTA />
+
+    <Footer />
+  </div>
+</Layout>

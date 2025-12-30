@@ -1,0 +1,94 @@
+---
+interface Props {
+  stakesCopy: string;
+}
+
+const { stakesCopy } = Astro.props;
+---
+
+<!-- Scroll container that creates the scroll distance -->
+<div id="persona-stakes-section" class="relative bg-black" style="height: 200vh;">
+  <!-- Fixed/sticky content -->
+  <div id="persona-stakes-sticky" class="sticky top-0 h-screen flex items-center justify-center">
+    <div class="max-w-5xl mx-auto px-6">
+      <!-- Headline -->
+      <h2 class="text-xl md:text-2xl lg:text-3xl font-medium text-white/60 text-center mb-16 leading-relaxed">
+        Or just keep going like this
+      </h2>
+
+      <!-- Scrolling Content with highlighted words -->
+      <div id="persona-stakes-content" class="text-2xl md:text-3xl lg:text-4xl font-normal text-white/40 text-center leading-relaxed max-w-4xl mx-auto" set:html={stakesCopy}>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Scroll-based word highlighting with smooth RAF implementation
+  const highlightWords = document.querySelectorAll('.highlight-word');
+  const stakesSection = document.getElementById('persona-stakes-section') as HTMLElement;
+
+  let rafId: number | null = null;
+  let ticking = false;
+
+  function updateHighlights() {
+    if (!stakesSection) return;
+
+    const rect = stakesSection.getBoundingClientRect();
+    const sectionHeight = stakesSection.offsetHeight;
+    const viewportHeight = window.innerHeight;
+
+    // Calculate scroll progress through the section (0 to 1)
+    const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - viewportHeight)));
+
+    // Determine which words should be highlighted based on scroll progress
+    const totalWords = highlightWords.length;
+
+    highlightWords.forEach((word, index) => {
+      const wordThreshold = index / (totalWords); // When this word should start highlighting (first word starts at 0)
+      const nextThreshold = (index + 1) / (totalWords); // When next word starts
+
+      if (scrollProgress >= wordThreshold) {
+        // Calculate opacity for this word (0 to 1) with smoother easing
+        const wordProgress = Math.min(1, (scrollProgress - wordThreshold) / (nextThreshold - wordThreshold));
+        // Use ease-out cubic easing for smoother animation
+        const easedProgress = 1 - Math.pow(1 - wordProgress, 3);
+        const opacity = 0.4 + (0.6 * easedProgress); // From 0.4 to 1.0
+
+        (word as HTMLElement).style.setProperty('--word-opacity', opacity.toString());
+        word.classList.add('active');
+      } else {
+        (word as HTMLElement).style.setProperty('--word-opacity', '0.4');
+        word.classList.remove('active');
+      }
+    });
+
+    ticking = false;
+  }
+
+  function requestUpdate() {
+    if (!ticking) {
+      rafId = requestAnimationFrame(updateHighlights);
+      ticking = true;
+    }
+  }
+
+  // Update on scroll with RAF
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  // Initial update
+  updateHighlights();
+</script>
+
+<style>
+  .highlight-word {
+    --word-opacity: 0.4;
+    color: rgba(255, 255, 255, var(--word-opacity));
+    transition: color 0.6s cubic-bezier(0.4, 0, 0.2, 1), text-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline;
+    will-change: color, text-shadow;
+  }
+
+  .highlight-word.active {
+    text-shadow: 0 0 20px rgba(255, 255, 255, calc(var(--word-opacity) * 0.3));
+  }
+</style>

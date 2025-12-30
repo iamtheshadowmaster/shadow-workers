@@ -1,0 +1,36 @@
+---
+interface Props {
+  number: number;
+  title: string;
+  description: string;
+  visualSlot?: any;
+}
+
+const { number, title, description } = Astro.props;
+---
+
+<div class="bg-black border border-gray-800 rounded-2xl p-8 md:p-10 hover:border-purple-500/50 transition-all duration-300">
+  <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+    <!-- Left: Content -->
+    <div class="flex-1 w-full">
+      <div class="mb-4">
+        <span class="text-sm font-medium text-gray-500">{number}/4</span>
+      </div>
+      <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
+        {title}
+      </h3>
+      <p class="text-lg text-gray-400 leading-relaxed">
+        {description}
+      </p>
+    </div>
+
+    <!-- Right: Visual Slot -->
+    {Astro.slots.has('visual') && (
+      <div class="flex-1 w-full">
+        <div class="rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 aspect-[4/3] overflow-hidden">
+          <slot name="visual" />
+        </div>
+      </div>
+    )}
+  </div>
+</div>

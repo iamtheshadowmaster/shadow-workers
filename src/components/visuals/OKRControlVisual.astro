@@ -1,0 +1,110 @@
+---
+import shadowIcon from '../../assets/128x128.png';
+
+const shadowIconSrc = shadowIcon.src;
+---
+
+<style>
+  @keyframes float-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+  }
+
+  @keyframes float-2 {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    33% { transform: translate(-45%, -55%) scale(1.15); }
+    66% { transform: translate(-55%, -45%) scale(0.85); }
+  }
+
+  @keyframes float-3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-25px, 35px) scale(0.9); }
+    66% { transform: translate(25px, -25px) scale(1.1); }
+  }
+
+  .animate-float-1 { animation: float-1 20s ease-in-out infinite; }
+  .animate-float-2 { animation: float-2 25s ease-in-out infinite; }
+  .animate-float-3 { animation: float-3 22s ease-in-out infinite; }
+</style>
+
+<div class="rounded-xl bg-[#1a1a2e] p-5 h-full flex items-center justify-center shadow-2xl relative overflow-hidden border border-gray-700/30">
+  <!-- Multi-color gradient overlay effects -->
+  <div class="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-blue-600/20 to-cyan-500/20 pointer-events-none"></div>
+  <div class="absolute top-0 left-0 w-96 h-96 bg-purple-500/15 rounded-full blur-3xl pointer-events-none animate-float-1"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-3xl pointer-events-none animate-float-2"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none animate-float-3"></div>
+
+  <!-- Content wrapper -->
+  <div class="relative z-10 flex flex-col w-full max-w-xl">
+    <!-- OKR Control Panel -->
+    <div class="bg-[#2a2a35] rounded-xl border border-gray-700/50 overflow-hidden">
+      <!-- Header -->
+      <div class="px-5 py-4 border-b border-gray-700/50">
+        <div class="flex items-center justify-between">
+          <div>
+            <h4 class="text-white font-semibold text-base">Team system prompts</h4>
+            <p class="text-xs text-gray-400 mt-1">Define strategic context for your team</p>
+          </div>
+          <button class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white text-xs font-medium rounded-lg transition-colors">
+            Push to Team
+          </button>
+        </div>
+      </div>
+
+      <!-- OKR Cards -->
+      <div class="p-5 space-y-3">
+        <!-- Q1 OKR -->
+        <div class="bg-[#35354a] rounded-lg border border-gray-700/50 overflow-hidden">
+          <div class="px-4 py-3 border-b border-gray-700/50 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span class="text-white font-semibold text-sm">Hit 2M$ ARR</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-purple-400 font-medium">Active for 8 members</span>
+              <div class="flex -space-x-1.5">
+                <div class="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 border-2 border-[#35354a]"></div>
+                <div class="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 border-2 border-[#35354a]"></div>
+                <div class="w-6 h-6 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 border-2 border-[#35354a]"></div>
+                <div class="w-6 h-6 rounded-full bg-gradient-to-br from-orange-500 to-red-500 border-2 border-[#35354a]"></div>
+                <div class="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 border-2 border-[#35354a] flex items-center justify-center">
+                  <span class="text-white text-[9px] font-bold">+4</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="px-4 py-3">
+            <div class="text-sm text-gray-300 leading-relaxed mb-3">
+              <span class="font-semibold text-white">Objective:</span> Launch enterprise tier and hit $2M ARR
+            </div>
+            <div class="space-y-2 text-xs">
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span class="text-gray-400">KR1: Ship SSO & RBAC by Feb 15</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                <span class="text-gray-400">KR2: Close 5 enterprise deals</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span class="text-gray-400">KR3: Reduce churn to &lt;3%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="px-5 py-3 bg-[#35354a] border-t border-gray-700/50 flex items-center justify-between">
+        <div class="text-xs text-gray-400">Last updated 2 hours ago</div>
+        <button class="text-xs text-purple-400 hover:text-purple-300 font-medium">
+          Edit prompts →
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
