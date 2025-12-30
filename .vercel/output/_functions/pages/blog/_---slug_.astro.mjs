@@ -2,7 +2,7 @@
 import { c as createComponent, e as createAstro, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_DAeaCg1L.mjs';
 import 'piccolore';
 import { $ as $$Layout, a as $$Nav } from '../../chunks/Nav_COGFT-m-.mjs';
-import { g as getCollection } from '../../chunks/_astro_content_D57QS5V9.mjs';
+import { g as getCollection } from '../../chunks/_astro_content_BUqh6AXr.mjs';
 /* empty css                                     */
 export { renderers } from '../../renderers.mjs';
 

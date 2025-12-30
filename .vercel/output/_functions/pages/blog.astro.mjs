@@ -3,7 +3,7 @@ import { c as createComponent, r as renderComponent, a as renderScript, b as ren
 import 'piccolore';
 import { $ as $$Layout, a as $$Nav } from '../chunks/Nav_COGFT-m-.mjs';
 import { $ as $$Footer } from '../chunks/Footer_DLRcZsmx.mjs';
-import { g as getCollection } from '../chunks/_astro_content_D57QS5V9.mjs';
+import { g as getCollection } from '../chunks/_astro_content_BUqh6AXr.mjs';
 /* empty css                                */
 export { renderers } from '../renderers.mjs';
 

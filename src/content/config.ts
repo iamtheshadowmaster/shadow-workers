@@ -6,7 +6,7 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     category: z.enum(['Product', 'Research', 'Company', 'News']),
-    date: z.date(),
+    date: z.coerce.date(),
     author: z.string().default('Shadow Team'),
   }),
 });
