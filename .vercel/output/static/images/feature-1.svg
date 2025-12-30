@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    .task {
+      animation: slideIn 0.5s ease-out forwards;
+      opacity: 0;
+    }
+    .task-1 { animation-delay: 0.2s; }
+    .task-2 { animation-delay: 0.4s; }
+    .task-3 { animation-delay: 0.6s; }
+    .task-bg { fill: rgba(0, 191, 255, 0.1); }
+    .task-border { stroke: #00BFFF; }
+    .task-text { fill: #FFFFFF; }
+    .checkmark { stroke: #FF007F; }
+  </style>
+
+  <!-- Task 1 -->
+  <g class="task task-1">
+    <rect x="50" y="80" width="300" height="60" rx="8" class="task-bg" />
+    <rect x="50" y="80" width="300" height="60" rx="8" class="task-border" stroke-width="2" />
+    <text x="70" y="118" class="task-text" font-family="system-ui" font-size="16">Answer RFP questions</text>
+    <path d="M320 110 L330 120 L340 100" class="checkmark" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Task 2 -->
+  <g class="task task-2">
+    <rect x="50" y="160" width="300" height="60" rx="8" class="task-bg" />
+    <rect x="50" y="160" width="300" height="60" rx="8" class="task-border" stroke-width="2" />
+    <text x="70" y="198" class="task-text" font-family="system-ui" font-size="16">Check the Acme sale pitch questions</text>
+    <path d="M320 190 L330 200 L340 180" class="checkmark" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Task 3 -->
+  <g class="task task-3">
+    <rect x="50" y="240" width="300" height="60" rx="8" class="task-bg" />
+    <rect x="50" y="240" width="300" height="60" rx="8" class="task-border" stroke-width="2" />
+    <text x="70" y="278" class="task-text" font-family="system-ui" font-size="16">HR review notes</text>
+    <path d="M320 270 L330 280 L340 260" class="checkmark" stroke-width="2" fill="none"/>
+  </g>
+</svg>

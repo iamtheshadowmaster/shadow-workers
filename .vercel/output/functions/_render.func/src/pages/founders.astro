@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import PersonaHero from '../components/PersonaHero.astro';
+import PersonaStakes from '../components/PersonaStakes.astro';
+import PersonaFeatures from '../components/PersonaFeatures.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
+
+const stakesCopy = `Keep <span class="highlight-word" data-index="0">drowning in reactive work</span> while your team <span class="highlight-word" data-index="1">loses faith in your direction</span>, watching <span class="highlight-word" data-index="2">quarters slip by at 15% completion</span> with investors getting nervous, and <span class="highlight-word" data-index="3">seeing everyone pull in different directions</span> because you're too buried to lead.`;
+
+const features = [
+  {
+    title: "Know what's actually happening",
+    description: "Shadow gives you a real-time view of team progress, blockers, and momentum across every function. No more surprise misses at the end of quarter."
+  },
+  {
+    title: "Align the whole company",
+    description: "Everyone knows the top 3 priorities and why they matter. Shadow keeps your team pulling in the same direction without constant check-ins."
+  },
+  {
+    title: "Stop firefighting, start building",
+    description: "Cut reactive work in half. Shadow handles the chaos so you can focus on strategy, hiring, and what actually builds the company."
+  },
+  {
+    title: "Hit goals without losing your mind",
+    description: "Track OKRs that matter and spot risks early. Shadow helps you lead with confidence instead of Sunday night anxiety."
+  }
+];
+---
+
+<Layout>
+  <Nav />
+
+  <div class="bg-black">
+
+    <PersonaHero
+      headline="Lead strategically, not reactively"
+      subheadline="The AI that helps founders focus on what builds the company, align their entire team, and hit quarterly goals without losing their minds."
+      persona="Founders"
+      dotColor="bg-purple-500"
+    />
+
+    <PersonaStakes stakesCopy={stakesCopy} />
+
+    <PersonaFeatures
+      sectionTitle="Your daily reality with Shadow"
+      features={features}
+    />
+
+    <FinalCTA />
+
+    <Footer />
+  </div>
+</Layout>

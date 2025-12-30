@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import PersonaHero from '../components/PersonaHero.astro';
+import PersonaStakes from '../components/PersonaStakes.astro';
+import PersonaFeatures from '../components/PersonaFeatures.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
+
+const stakesCopy = `Keep <span class="highlight-word" data-index="0">missing quota while working 70-hour weeks</span>, watching your <span class="highlight-word" data-index="1">top performers leave</span> because they don't trust your direction, and <span class="highlight-word" data-index="2">seeing your team chase the wrong deals</span> while leadership questions whether you can actually lead.`;
+
+const features = [
+  {
+    title: "Focus on deals that will close",
+    description: "Shadow analyzes pipeline health, buyer signals, and historical patterns to show you which deals deserve your time and which are stalling."
+  },
+  {
+    title: "Stop chasing dead leads",
+    description: "Get real-time alerts when deals go cold or competitors enter the picture. Shadow helps you course-correct before it's too late."
+  },
+  {
+    title: "Coach reps with real data",
+    description: "See exactly where deals are stuck and why. Shadow gives you the context to help your team win without sitting in every call."
+  },
+  {
+    title: "Hit quota without the burnout",
+    description: "Align your team on the right accounts, the right approach, and the right next steps. Shadow keeps everyone focused on revenue that matters."
+  }
+];
+---
+
+<Layout>
+  <Nav />
+
+  <div class="bg-black">
+
+    <PersonaHero
+      headline="Hit quota without burning out your team"
+      subheadline="The AI that helps sales leaders focus on the deals that close, align their team on what matters, and consistently over-deliver."
+      persona="Sales Managers"
+      dotColor="bg-orange-500"
+    />
+
+    <PersonaStakes stakesCopy={stakesCopy} />
+
+    <PersonaFeatures
+      sectionTitle="Your daily reality with Shadow"
+      features={features}
+    />
+
+    <FinalCTA />
+
+    <Footer />
+  </div>
+</Layout>

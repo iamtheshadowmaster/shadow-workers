@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import PersonaHero from '../components/PersonaHero.astro';
+import PersonaStakes from '../components/PersonaStakes.astro';
+import PersonaFeatures from '../components/PersonaFeatures.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
+
+const stakesCopy = `Watch your <span class="highlight-word" data-index="0">best engineers burn out and quit</span> while <span class="highlight-word" data-index="1">velocity plummets</span> and product blames you, <span class="highlight-word" data-index="2">becoming the bottleneck</span> instead of the enabler, and <span class="highlight-word" data-index="3">losing your team's trust</span> because they can't tell what's actually critical.`;
+
+const features = [
+  {
+    title: "Unblock PRs that move the needle",
+    description: "Shadow identifies which pull requests are blocking critical work and which can wait. Your team ships faster without the chaos."
+  },
+  {
+    title: "Protect deep work time",
+    description: "Cut context switching in half. Shadow handles status updates, answers questions, and keeps stakeholders informed so your team can focus."
+  },
+  {
+    title: "Spot burnout before it happens",
+    description: "Track workload patterns, meeting overload, and delivery pressure. Shadow alerts you when someone's heading for the edge."
+  },
+  {
+    title: "Lead with clarity, not micromanagement",
+    description: "Your team knows what's critical and why. Shadow keeps priorities clear and helps engineers self-organize around what matters most."
+  }
+];
+---
+
+<Layout>
+  <Nav />
+
+  <div class="bg-black">
+
+    <PersonaHero
+      headline="Protect your team's focus, ship faster, lead with clarity"
+      subheadline="The AI that helps engineering managers cut context switching, unblock the right work, and give their team the focus time they deserve."
+      persona="Engineering Managers"
+      dotColor="bg-green-500"
+    />
+
+    <PersonaStakes stakesCopy={stakesCopy} />
+
+    <PersonaFeatures
+      sectionTitle="Your daily reality with Shadow"
+      features={features}
+    />
+
+    <FinalCTA />
+
+    <Footer />
+  </div>
+</Layout>

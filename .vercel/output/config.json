@@ -1,0 +1,95 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"src": "^/_server-islands/([^/]+?)/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/_image/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/api/early-access/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/api/support/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/blog/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/blog(?:/(.*?))?/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/engineers/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/founders/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/investors/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/leaderboard/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/pricing/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/privacy/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/product-managers/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/sales/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/slack/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/solo/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/support/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/team/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/terms/?$",
+			"dest": "/_isr?x_astro_path=$0"
+		},
+		{
+			"src": "^/$",
+			"dest": "/_isr?x_astro_path=$0"
+		}
+	]
+}

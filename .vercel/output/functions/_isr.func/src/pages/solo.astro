@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import PageHero from '../components/PageHero.astro';
+import FeaturePanel from '../components/FeaturePanel.astro';
+import ChatVisual from '../components/visuals/ChatVisual.astro';
+import SystemPromptVisual from '../components/visuals/SystemPromptVisual.astro';
+import SlackNotificationVisual from '../components/visuals/SlackNotificationVisual.astro';
+import IntegrationsVisual from '../components/visuals/IntegrationsVisual.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Nav />
+
+  <div class="bg-black">
+    <PageHero
+      title="Zero setup. Instant value. Daily progress."
+      subtitle="Your personal AI sidekick that understands your goals and helps you make progress every day."
+      buttonText="Get early access"
+      buttonUrl="https://app.yourshadowai.com/sign-up"
+    />
+
+    <!-- Feature Panels Section -->
+    <section class="py-20 px-6">
+      <div class="max-w-7xl mx-auto space-y-8">
+        <!-- Feature 1: Instant onboarding -->
+        <FeaturePanel
+          number={1}
+          title="Instant onboarding"
+          description="Give Shadow your role, company URL and current biggest goal. Shadow starts gathering a comprehensive context, better than you ever would."
+        >
+          <ChatVisual slot="visual" />
+        </FeaturePanel>
+
+        <!-- Feature 2: Personal roadmap -->
+        <FeaturePanel
+          number={2}
+          title="Personal roadmap"
+          description="Shadow creates your personal system prompt—capturing your role, company context, and objectives into a strategic blueprint that persists across every conversation."
+        >
+          <SystemPromptVisual slot="visual" />
+        </FeaturePanel>
+
+        <!-- Feature 3: Daily reality check -->
+        <FeaturePanel
+          number={3}
+          title="Daily reality check"
+          description="Every morning, Shadow asks one targeted question about your goals. It's like having your smartest colleague tap you on the shoulder."
+        >
+          <SlackNotificationVisual slot="visual" />
+        </FeaturePanel>
+
+        <!-- Feature 4: Connect your tools -->
+        <FeaturePanel
+          number={4}
+          title="Connect your tools"
+          description="Connect Slack, Calendar, Gmail, Google Drive, Notion, GitHub, Salesforce, Linear and more so Shadow can read your patterns and help you work better."
+        >
+          <IntegrationsVisual slot="visual" />
+        </FeaturePanel>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <FinalCTA />
+
+    <Footer />
+  </div>
+</Layout>
