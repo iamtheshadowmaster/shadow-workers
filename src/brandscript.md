@@ -7,19 +7,21 @@
 **The customer is the hero, not our brand.**
 
 ### Who is the Hero?
-**Sales Managers, Product Managers, and Engineering Managers** who lead teams and are responsible for hitting ambitious quarterly goals.
+**Professionals who build and sell software** — product managers, engineers, engineering managers, sales teams, as well as founders and investors — **that are responsible for hitting ambitious quarterly goals.**
 
 ### What Do They Want?
-**To achieve their quarterly OKRs without drowning in chaos.**
+**They want to consistently crush their ambitious quarterly goals  without drowning in chaos.**
 
 The hero wants:
 - To focus on what truly moves the needle (conserving time)
 - To prove they're delivering results (gaining status)
+- To outperform their competition individually and as a team (winning)
+- To experience that rare team chemistry that makes them feel unstoppable (championship feeling)
 - To feel in control, not reactive (desiring meaning)
-- To protect their team from burnout while hitting targets (showing generosity)
+- To feel people love working with them (showing generosity)
 
 ### Story Question
-**"Can I hit my quarterly goals without losing my mind—or my team?"**
+**"Can I crush my goals AND build a team that operates like champions"**
 
 ---
 

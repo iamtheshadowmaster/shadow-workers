@@ -66,7 +66,7 @@ class ImmutableDataStore {
    */
   static async fromModule() {
     try {
-      const data = await import('./_astro_data-layer-content_D2E0WiOG.mjs');
+      const data = await import('./_astro_data-layer-content_DD42zojK.mjs');
       if (data.default instanceof Map) {
         return ImmutableDataStore.fromMap(data.default);
       }
@@ -286,7 +286,7 @@ async function renderEntry(entry) {
   }
   if (entry.deferredRender) {
     try {
-      const { default: contentModules } = await import('./content-modules_X2iXvV3o.mjs');
+      const { default: contentModules } = await import('./content-modules_DOAOfR_d.mjs');
       const renderEntryImport = contentModules.get(entry.filePath);
       return render({
         collection: "",
