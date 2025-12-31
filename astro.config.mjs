@@ -8,10 +8,6 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   integrations: [tailwind(), mdx()],
   output: 'server',
-  adapter: vercel({
-    isr: {
-      expiration: 60 * 60 * 24,
-    },
-  }),
+  adapter: vercel(),
 });
 
