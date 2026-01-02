@@ -7,24 +7,24 @@ import PersonaFeatures from '../components/PersonaFeatures.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import Footer from '../components/Footer.astro';
 
-const stakesCopy = `Watch your <span class="highlight-word" data-index="0">best engineers burn out and quit</span> while <span class="highlight-word" data-index="1">velocity plummets</span> and product blames you, <span class="highlight-word" data-index="2">becoming the bottleneck</span> instead of the enabler, and <span class="highlight-word" data-index="3">losing your team's trust</span> because they can't tell what's actually critical.`;
+const stakesCopy = `Keep shipping in <span class="highlight-word" data-index="0">constant emergency mode</span> while <span class="highlight-word" data-index="1">management compares you to Lovable demos</span>, watching <span class="highlight-word" data-index="2">tech debt pile up</span> as you <span class="highlight-word" data-index="3">execute unclear specs</span>, and <span class="highlight-word" data-index="4">burning out on AI tool chaos</span> you can't keep up with.`;
 
 const features = [
   {
-    title: "Unblock PRs that move the needle",
-    description: "Shadow identifies which pull requests are blocking critical work and which can wait. Your team ships faster without the chaos."
+    title: "Cut through AI tool chaos",
+    description: "New tools drop daily. Management hears 'engineers are useless now.' Non-technical folks demo no-code apps and expect production quality overnight. Know which AI tools actually work for your codebase, your quality standards, and your production constraints. Skip the FOMO and late-night tool testing."
   },
   {
-    title: "Protect deep work time",
-    description: "Cut context switching in half. Shadow handles status updates, answers questions, and keeps stakeholders informed so your team can focus."
+    title: "Say yes with the right scope and speed",
+    description: "Find the fastest path to ship quality. Know exactly what you can deliver in the timeframe, and propose better solutions when the ask doesn't fit. Be the facilitator, not the blocker."
   },
   {
-    title: "Spot burnout before it happens",
-    description: "Track workload patterns, meeting overload, and delivery pressure. Shadow alerts you when someone's heading for the edge."
+    title: "Fix process so it helps you ship, not blocks you",
+    description: "Stuck PRs, endless review cycles, unclear priorities. Turn process from friction into flow—so you ship fast and clean without the chaos."
   },
   {
-    title: "Lead with clarity, not micromanagement",
-    description: "Your team knows what's critical and why. Shadow keeps priorities clear and helps engineers self-organize around what matters most."
+    title: "Be the business enabler, not just the builder",
+    description: "Join customer calls with context. Understand market direction and competitive positioning. Drive what ships instead of just executing unclear specs. You're not waiting to be told what to build—you're the one who sees what matters and enables revenue."
   }
 ];
 ---
@@ -35,18 +35,93 @@ const features = [
   <div class="bg-black">
 
     <PersonaHero
-      headline="Protect your team's focus, ship faster, lead with clarity"
-      subheadline="The AI that helps engineering managers cut context switching, unblock the right work, and give their team the focus time they deserve."
-      persona="Engineering Managers"
+      headline="Ship fast and clean despite the AI chaos"
+      subheadline="The AI that helps engineers navigate tool overload, deliver with confidence, and become business enablers—not just code executors."
+      persona="Engineers"
       dotColor="bg-green-500"
     />
 
     <PersonaStakes stakesCopy={stakesCopy} />
 
     <PersonaFeatures
-      sectionTitle="Your daily reality with Shadow"
+      sectionTitle="Ship quality under pressure"
       features={features}
     />
+
+    <!-- The Plan Section -->
+    <section class="relative bg-black py-32">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 leading-tight">
+            How it works
+          </h2>
+        </div>
+
+        <div class="space-y-8">
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div class="flex items-start gap-6">
+              <div class="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
+                <span class="text-2xl font-bold text-green-500">1</span>
+              </div>
+              <div>
+                <h3 class="text-2xl font-semibold text-white mb-2">Answer questions</h3>
+                <p class="text-lg text-gray-400">Give us your role, company and biggest challenge this quarter. Shadow Agent will retrieve context like you've never seen before.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div class="flex items-start gap-6">
+              <div class="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
+                <span class="text-2xl font-bold text-green-500">2</span>
+              </div>
+              <div>
+                <h3 class="text-2xl font-semibold text-white mb-2">Get instructions</h3>
+                <p class="text-lg text-gray-400">Shadow builds a custom individual prompt tailored to your specific context and goals, providing precise instructions for your AI to follow.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div class="flex items-start gap-6">
+              <div class="flex-shrink-0 w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
+                <span class="text-2xl font-bold text-green-500">3</span>
+              </div>
+              <div>
+                <h3 class="text-2xl font-semibold text-white mb-2">Hit your goals</h3>
+                <p class="text-lg text-gray-400">Feel the magic of hitting your goals with less friction and more clarity. Connect your tools for more context and action power, invite your teammates, and be unstoppable.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explanatory Paragraph Section -->
+    <section class="relative bg-black py-32 border-t border-white/10">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="prose prose-lg prose-invert max-w-none">
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            You're coding in emergency mode. Sales needs "one quick feature" for a million-dollar deal. Your CTO pings you on Slack: "Ship this by next week or we're screwed." Management keeps asking why you can't build as fast as someone using Bolt or Lovable. And every week there's a new AI coding tool you're supposed to evaluate while somehow staying productive.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            Shadow becomes your engineering copilot with <strong>agentic context retrieval</strong>—you tell it your biggest delivery challenge in plain conversation, and Shadow automatically gathers context about your tech stack, team velocity, and production constraints. No forms, no configuration. It connects to GitHub, Jira, Slack, and calendar to understand your real world.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            Shadow builds a <strong>personal operating system</strong> that knows your role, goals, and constraints. When management pushes unrealistic timelines, you have data on complexity and dependencies to propose better solutions. When priorities shift again, Shadow maintains context across sprints so you're not rebuilding mental models every week. When AI tools drop daily, Shadow cuts through the hype and shows you what works for your quality bar.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            With <strong>task management and prioritization</strong>, Shadow turns conversations into tasks automatically ranked by what actually ships quality work. <strong>Proactive tracking</strong> means Shadow checks on you—"You said you'd review that PR by Friday. Still on track?"—so nothing falls through the cracks. And with <strong>autopilot</strong>, Shadow drafts updates, pulls data, and handles busywork so you focus on high-impact decisions.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            The result? You become the facilitator who says yes with the right scope and speed. You ship quality under pressure. You join customer calls with context. You drive what gets built instead of just executing unclear specs. You're not just coding—you're enabling revenue.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed font-semibold">
+            You're an engineer in 2026. Shadow helps you stay that way.
+          </p>
+        </div>
+      </div>
+    </section>
 
     <FinalCTA />
 

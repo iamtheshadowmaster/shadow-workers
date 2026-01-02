@@ -31,9 +31,9 @@ Description: "Stay ahead of your market. Identify product gaps and competitive s
 
 ### The Plan (3 steps - blended pre/post sales)
 
-1. **Answer questions** — Tell us your biggest product challenge, key metrics, and team structure
-2. **Get instructions** — Shadow analyzes your backlog, surfaces blockers, and creates your prioritization framework
-3. **Hit your goals** — Ship on time with aligned teams and clear data on what's actually working
+1. **Answer questions** — Give us your role, company and biggest challenge this quarter. Shadow Agent will retrieve context like you've never seen before.
+2. **Get instructions** — Shadow builds a custom individual prompt tailored to your specific context and goals, providing precise instructions for your AI to follow.
+3. **Hit your goals** — Feel the magic of hitting your goals with less friction and more clarity. Connect your tools for more context and action power, invite your teammates, and be unstoppable.
 
 ---
 
@@ -65,60 +65,64 @@ Answer a few questions about your backlog, sales requests, and key metrics. Shad
 
 ---
 
-## Engineering Managers
+## Engineering
 
 ### Value Proposition (Bento Grid - 4 blocks)
-**Section Title:** Protect focus, unblock the right work, lead with clarity
+**Section Title:** Ship quality under pressure
 
 **Block 1 (Large - 2×2):**
-Title: "Unblock what actually matters"
-Description: "Shadow identifies which pull requests are blocking critical work and which can wait. Your team ships faster without the chaos of constant reprioritization or wasting cycles on PRs that don't move the needle."
+Title: "Cut through AI tool chaos"
+Description: "New tools drop daily. Management hears 'engineers are useless now.' Non-technical folks demo no-code apps and expect production quality overnight. Know which AI tools actually work for your codebase, your quality standards, and your production constraints. Skip the FOMO and late-night tool testing."
 
 **Block 2 (Small - 1×1):**
-Title: "Cut context switching in half"
-Description: "Shadow handles status updates and stakeholder questions so your engineers get the deep work time they deserve."
+Title: "Say yes with the right scope and speed"
+Description: "Find the fastest path to ship quality. Know exactly what you can deliver in the timeframe, and propose better solutions when the ask doesn't fit. Be the facilitator, not the blocker."
 
 **Block 3 (Small - 1×1):**
-Title: "Spot burnout before they quit"
-Description: "Track workload patterns and meeting overload across your team. Get alerts when someone's heading for the edge."
+Title: "Fix process so it helps you ship, not blocks you"
+Description: "Stuck PRs, endless review cycles, unclear priorities. Turn process from friction into flow—so you ship fast and clean without the chaos."
 
 **Block 4 (Wide - 2×1):**
-Title: "Lead with clarity, not micromanagement"
-Description: "Your team knows what's critical and why. Shadow keeps priorities clear so engineers self-organize around what matters most."
+Title: "Be the business enabler, not just the builder"
+Description: "Understand customers, market direction, and competitive positioning. Drive what ships instead of just executing unclear specs. You're not waiting to be told what to build, you're the one who sees what matters and enables revenue."
 
 ---
 
 ### The Plan (3 steps - blended pre/post sales)
 
-1. **Answer questions** — Tell us about your team structure, current biggest bottlenecks, and delivery challenges
-2. **Get instructions** — Shadow maps your team's workload patterns, critical paths, and context-switching triggers
-3. **Hit your goals** — Ship faster with protected focus time and a team that trusts your direction
+1. **Answer questions** — Give us your role, company and biggest challenge this quarter. Shadow Agent will retrieve context like you've never seen before.
+2. **Get instructions** — Shadow builds a custom individual prompt tailored to your specific context and goals, providing precise instructions for your AI to follow.
+3. **Hit your goals** — Feel the magic of hitting your goals with less friction and more clarity. Connect your tools for more context and action power, invite your teammates, and be unstoppable.
 
 ---
 
 ### Explanatory Paragraph
 
-**How Shadow Works for Engineering Managers**
+**How Shadow Works for Engineering Teams**
 
-Shadow acts as your team health and delivery copilot. Start by sharing your team structure, current sprint goals, and biggest challenges—whether it's velocity, morale, or delivery confidence. Shadow connects to GitHub, Jira, Slack, and Calendar to build a complete picture of how your team actually works.
+You're coding in emergency mode. Sales needs "one quick feature" for a million-dollar deal. Your CTO pings you on Slack: "Ship this by next week or we're screwed." Management keeps asking why you can't build as fast as someone using Bolt or Lovable. And every week there's a new AI coding tool you're supposed to evaluate while somehow staying productive.
 
-The first thing Shadow does is identify which pull requests are blocking critical work and which can wait. This means your team ships faster without the chaos of constant reprioritization. Shadow also cuts context switching in half by handling status updates, answering stakeholder questions, and keeping everyone informed—so your engineers get the deep work time they deserve.
+Shadow becomes your engineering reality copilot. It connects to your GitHub, Jira, Slack, and calendar to understand your actual codebase, team velocity, and delivery constraints. When management pushes unrealistic timelines, Shadow shows the real complexity, dependencies, and risks—so you defend delivery dates with data, not arguments.
 
-Beyond velocity, Shadow spots burnout before it happens. It tracks workload patterns, meeting overload, and delivery pressure across your team, alerting you when someone's heading for the edge. This gives you the context to help proactively instead of reactively.
+For AI coding, Shadow cuts through the hype. It evaluates which tools actually work for your production environment, your quality bar, and your specific tech stack. No more FOMO over tools you'll never use. No more wasting nights testing frameworks that don't scale. Shadow shows you what's real and what's just demo magic.
 
-The result? You lead with clarity, not micromanagement. Your team knows what's critical and why, engineers self-organize around what matters most, and you can focus on coaching and strategy instead of being the information hub.
+On delivery, Shadow tracks what's blocking progress vs. what's just noise. PRs stuck in review? Shadow surfaces which ones block critical work. Priorities shifting again? Shadow maintains context so you're not rebuilding mental models every sprint. Emergency requests? Shadow helps you assess: is this actually urgent or just loud?
+
+The result? You ship quality under pressure. You stay on top of AI coding without the burnout. You defend your timeline with evidence. And when your PM changes direction for the third time this month, you've got the context to adapt without losing your mind.
+
+You're an engineer in 2026. Shadow helps you stay that way.
 
 ---
 
 ### Lead Generation Ad
 
-**Headline:** See your team's velocity blockers
+**Headline:** Get your AI coding reality check
 
 **Description:**
-Answer a few questions about your team and current sprint. Shadow will identify what's actually slowing you down and show you exactly how to protect your engineers' focus time.
+Answer a few questions about your stack, team, and current AI tools. Shadow will analyze which AI coding tools actually work for your codebase and show you where delivery pressure is forcing technical debt.
 
-**Offer:** Free team velocity audit + focus protection plan
-**CTA:** Find our blockers →
+**Offer:** Free AI tool audit + technical debt risk analysis
+**CTA:** See what's real →
 
 ---
 
