@@ -126,60 +126,72 @@ Answer a few questions about your stack, team, and current AI tools. Shadow will
 
 ---
 
-## Sales Managers
+## Sales
 
 ### Value Proposition (Bento Grid - 4 blocks)
-**Section Title:** Hit quota without burning out your team
+**Section Title:** Hit quota predictably without the chaos
 
 **Block 1 (Large - 2×2):**
-Title: "Focus on deals that will actually close"
-Description: "Shadow analyzes pipeline health, buyer signals, and historical win patterns to show you which deals deserve your time and which are stalling. Stop wasting cycles on opportunities that were never going to convert."
+Title: "Build consistent pipeline while closing deals"
+Description: "The worst quarter is closing $0. The second worst is scrambling for pipeline when you're empty, then ignoring it when you're full. Shadow helps you maintain quality pipeline aligned with your quota. Work strategically with marketing, track what's working, and never get caught empty again."
 
 **Block 2 (Small - 1×1):**
-Title: "Catch deals going cold"
-Description: "Get real-time alerts when buyers disengage or competitors enter. Course-correct before it's too late."
+Title: "Pitch perfectly to every buyer"
+Description: "Adapt your pitch to the room. Technical details for the CIO. Pure value for the CMO. The right features for each persona. Know your product, your competitors, and how to cut through the noise."
 
 **Block 3 (Small - 1×1):**
-Title: "Coach with real context"
-Description: "See exactly where deals are stuck and why. Help your reps win without sitting in every call."
+Title: "Commit with confidence, not gut feel"
+Description: "Know which deals to commit, when to commit them, and what it takes to get them over the line. Track purchase processes, forecast accurately, and look predictable to leadership."
 
 **Block 4 (Wide - 2×1):**
-Title: "Align your team on revenue that matters"
-Description: "Everyone focuses on the right accounts, the right approach, and the right next steps. Hit quota consistently without the burnout."
+Title: "Orchestrate complex deals like a project manager"
+Description: "Activate the right internal resources at the right moment—product, engineering, infosec, legal, SEs, customer references. Know internal processes as well as customer buying processes. Make it easier for prospects to buy from you than from competitors."
 
 ---
 
 ### The Plan (3 steps - blended pre/post sales)
 
-1. **Answer questions** — Tell us your quota, team structure, and biggest pipeline challenges
-2. **Get instructions** — Shadow analyzes your pipeline health, buyer signals, and historical win patterns
-3. **Hit your goals** — Close more deals with focused reps and clear visibility on what's actually moving
+1. **Answer questions** — Tell us your role and your quota. Shadow will gather context like you'fe never seen before.
+2. **Get instructions** — Shadow builds a custom individual prompt tailored to your specific context and goals, providing precise instructions for your AI to follow.
+3. **Hit your goals** — Feel the magic of hitting your quotas with less pain and more clarity. Connect your tools for more context and action power, invite your teammates, and be unstoppable.
 
 ---
 
 ### Explanatory Paragraph
 
-**How Shadow Works for Sales Managers**
+**How Shadow Works for Sales Professionals**
 
-Shadow becomes your pipeline intelligence and coaching copilot. Start by sharing your quota targets, team structure, and current pipeline challenges. Shadow connects to your CRM, email, and calendar to analyze deal health, buyer engagement, and historical win patterns across your entire team.
+You're juggling pipeline building and deal closing simultaneously. Quarter starts strong but pipeline's thin, so you scramble. Mid-quarter you're drowning in demos and can't build for next quarter. End of quarter hits and you're empty again. Classic cycle. And if you close $0 two quarters in a row, you're gone.
 
-The biggest value is focus. Shadow analyzes pipeline health, buyer signals, and historical patterns to show you which deals deserve your time and which are stalling. You get real-time alerts when deals go cold or competitors enter the picture, so you can course-correct before it's too late instead of finding out at the end of quarter.
+Shadow becomes your sales operating system. It connects to your CRM, email, calendar, and Slack to understand your deals, buyers, and pipeline in real-time. You can say "I'm at 67% quota with 3 weeks left" and Shadow pulls everything—current deal stages, buyer engagement levels, historical close patterns, pipeline coverage, what's committed vs. best case. No dashboard hunting. No manual updates. Shadow retrieves context automatically so you can focus on selling, not data entry.
 
-For coaching, Shadow shows you exactly where deals are stuck and why—giving you the context to help your reps win without sitting in every call. You can see patterns across your team: which objections are killing deals, which approaches are working, and where each rep needs support.
+Shadow builds a living playbook that knows your quota, your territory, your product, your competitors, and your buyers. When you ask "Should I commit this deal?" Shadow already knows your commit history, the buyer's engagement signals, and what it typically takes to close in your segment. It updates as deals progress—you don't rebuild mental context every morning, Shadow maintains it.
 
-The result? Your team aligns on the right accounts, the right approach, and the right next steps. Everyone focuses on revenue that matters, you hit quota consistently, and your reps trust your direction because it's based on data, not gut feel.
+For daily execution, Shadow tracks every action item from calls, emails, and internal meetings—then shows you what actually moves deals. "Send security questionnaire to CIO" gets surfaced before "Update forecast notes" because Shadow knows which one unblocks the deal. You always know what to work on next. No decision fatigue, no guessing at priorities.
+
+Shadow also keeps you honest: "You said you'd follow up with the VP by Friday—still on track?" or "This deal has gone silent for 8 days, competitors might be circling." It alerts you when buyer engagement drops, when deals stall, or when you need to activate internal resources. You course-correct before deals die, not after.
+
+For pitching, Shadow adapts to every buyer. Pitching a CIO? It surfaces technical details, security posture, and integration complexity. Marketing leader? Pure business value, zero jargon. Shadow knows your product and which features matter to each persona—so you're not overwhelming buyers with your entire platform, just what closes them. It also tracks competitive intel so you know how to position against whoever else is in the deal.
+
+On complex deals, you're orchestrating internally as much as selling externally. Shadow helps you identify the right internal stakeholders to activate (product for roadmap questions, legal for redlines, SEs for technical deep dives, infosec for security reviews, customer references for proof points) and tracks what's needed at each stage of the buyer's process. The busywork—drafting follow-ups, pulling usage data for renewals, scheduling executive briefings, updating CRM notes, prepping QBRs—Shadow handles while you focus on closing.
+
+For forecasting, Shadow tracks deal signals, buyer engagement, and historical patterns so you commit with confidence instead of gut feel. You know which deals are real, when to commit them, and what it takes to get them over the line. Your CRM stays clean, your notes are readable, and leadership trusts your forecast because it's based on evidence, not hope.
+
+If you're an account manager, Shadow helps you expand accounts without burning relationships. It spots upsell opportunities based on usage patterns, engagement, and customer health—so you can operate smoothly across your book and grow revenue strategically instead of reactively.
+
+The result? You build pipeline consistently. You close deals predictably. You adapt your pitch to every buyer. And you orchestrate complex deals like the project manager you actually are.
 
 ---
 
 ### Lead Generation Ad
 
-**Headline:** Get your pipeline health score
+**Headline:** Get your pipeline reality check
 
 **Description:**
-Answer a few questions about your quota and current deals. Shadow will analyze which opportunities are actually closing and show you where to focus your team's energy.
+Answer a few questions about your quota, current pipeline, and deal complexity. Shadow will show you where your pipeline gaps are, which deals are actually closing, and what internal resources you need to activate.
 
-**Offer:** Free pipeline health audit + deal focus plan
-**CTA:** See what's really closing →
+**Offer:** Free pipeline health audit + commit confidence score
+**CTA:** See what's real →
 
 ---
 

@@ -7,24 +7,24 @@ import PersonaFeatures from '../components/PersonaFeatures.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import Footer from '../components/Footer.astro';
 
-const stakesCopy = `Keep <span class="highlight-word" data-index="0">missing quota while working 70-hour weeks</span>, watching your <span class="highlight-word" data-index="1">top performers leave</span> because they don't trust your direction, and <span class="highlight-word" data-index="2">seeing your team chase the wrong deals</span> while leadership questions whether you can actually lead.`;
+const stakesCopy = `Keep <span class="highlight-word" data-index="0">closing $0 in a quarter</span>, <span class="highlight-word" data-index="1">scrambling for pipeline when you're empty</span> while ignoring it when you're full, and <span class="highlight-word" data-index="2">committing deals that never close</span> while leadership questions your forecast.`;
 
 const features = [
   {
-    title: "Focus on deals that will close",
-    description: "Shadow analyzes pipeline health, buyer signals, and historical patterns to show you which deals deserve your time and which are stalling."
+    title: "Build consistent pipeline while closing deals",
+    description: "The worst quarter is closing $0. The second worst is scrambling for pipeline when you're empty, then ignoring it when you're full. Shadow helps you maintain quality pipeline aligned with your quota—no matter where you are in the quarter. Work strategically with marketing (even if you don't want to), track what's working, and never get caught empty again."
   },
   {
-    title: "Stop chasing dead leads",
-    description: "Get real-time alerts when deals go cold or competitors enter the picture. Shadow helps you course-correct before it's too late."
+    title: "Pitch perfectly to every buyer",
+    description: "Adapt your pitch to the room. Technical details for the CIO. Pure value for the CMO. The right features for each persona. Know your product, your competitors, and how to cut through the noise."
   },
   {
-    title: "Coach reps with real data",
-    description: "See exactly where deals are stuck and why. Shadow gives you the context to help your team win without sitting in every call."
+    title: "Commit with confidence, not gut feel",
+    description: "Know which deals to commit, when to commit them, and what it takes to get them over the line. Track purchase processes, forecast accurately, and look predictable to leadership."
   },
   {
-    title: "Hit quota without the burnout",
-    description: "Align your team on the right accounts, the right approach, and the right next steps. Shadow keeps everyone focused on revenue that matters."
+    title: "Orchestrate complex deals like a project manager",
+    description: "Activate the right internal resources at the right moment—product, engineering, infosec, legal, SEs, customer references. Know internal processes as well as customer buying processes. Make it easier for prospects to buy from you than from competitors."
   }
 ];
 ---
@@ -35,18 +35,93 @@ const features = [
   <div class="bg-black">
 
     <PersonaHero
-      headline="Hit quota without burning out your team"
-      subheadline="The AI that helps sales leaders focus on the deals that close, align their team on what matters, and consistently over-deliver."
-      persona="Sales Managers"
+      headline="Hit quota predictably without the chaos"
+      subheadline="The AI that helps sales professionals build consistent pipeline, pitch perfectly, and close complex deals—whether you're hunting new logos or expanding accounts."
+      persona="Sales Professionals"
       dotColor="bg-orange-500"
     />
 
     <PersonaStakes stakesCopy={stakesCopy} />
 
     <PersonaFeatures
-      sectionTitle="Your daily reality with Shadow"
+      sectionTitle="Hit quota predictably without the chaos"
       features={features}
     />
+
+    <!-- The Plan Section -->
+    <section class="relative bg-black py-32">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 leading-tight">
+            How it works
+          </h2>
+        </div>
+
+        <div class="space-y-8">
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div class="flex items-start gap-6">
+              <div class="flex-shrink-0 w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center">
+                <span class="text-2xl font-bold text-orange-500">1</span>
+              </div>
+              <div>
+                <h3 class="text-2xl font-semibold text-white mb-2">Answer questions</h3>
+                <p class="text-lg text-gray-400">Tell us your role and your quota. Shadow will gather context like you've never seen before.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div class="flex items-start gap-6">
+              <div class="flex-shrink-0 w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center">
+                <span class="text-2xl font-bold text-orange-500">2</span>
+              </div>
+              <div>
+                <h3 class="text-2xl font-semibold text-white mb-2">Get instructions</h3>
+                <p class="text-lg text-gray-400">Shadow builds a custom individual prompt tailored to your specific context and goals, providing precise instructions for your AI to follow.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div class="flex items-start gap-6">
+              <div class="flex-shrink-0 w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center">
+                <span class="text-2xl font-bold text-orange-500">3</span>
+              </div>
+              <div>
+                <h3 class="text-2xl font-semibold text-white mb-2">Hit your goals</h3>
+                <p class="text-lg text-gray-400">Feel the magic of hitting your quotas with less pain and more clarity. Connect your tools for more context and action power, invite your teammates, and be unstoppable.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explanatory Paragraph Section -->
+    <section class="relative bg-black py-32 border-t border-white/10">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="prose prose-lg prose-invert max-w-none">
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            You're juggling pipeline building and deal closing simultaneously. Quarter starts strong but pipeline's thin, so you scramble. Mid-quarter you're drowning in demos and can't build for next quarter. End of quarter hits and you're empty again. Classic cycle. And if you close $0 two quarters in a row, you're gone.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            Shadow becomes your sales operating system. It connects to your CRM, email, calendar, and Slack to understand your deals, buyers, and pipeline in real-time. You can say "I'm at 67% quota with 3 weeks left" and Shadow pulls everything—current deal stages, buyer engagement levels, historical close patterns, pipeline coverage, what's committed vs. best case. No dashboard hunting. Shadow retrieves context automatically so you can focus on selling, not data entry.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            Shadow builds a living playbook that knows your quota, your territory, your product, your competitors, and your buyers. When you ask "Should I commit this deal?" Shadow already knows your commit history, the buyer's engagement signals, and what it typically takes to close in your segment. For daily execution, Shadow tracks every action item from calls and meetings—then shows you what actually moves deals. "Send security questionnaire to CIO" gets surfaced before "Update forecast notes" because Shadow knows which one unblocks the deal.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            Shadow keeps you honest: "You said you'd follow up with the VP by Friday—still on track?" or "This deal has gone silent for 8 days, competitors might be circling." You course-correct before deals die, not after. For pitching, Shadow adapts to every buyer—technical details for the CIO, pure value for marketing leaders. It tracks competitive intel so you know how to position against whoever else is in the deal.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            On complex deals, you're orchestrating internally as much as selling externally. Shadow helps you activate the right internal stakeholders (product, legal, SEs, infosec, customer references) and tracks what's needed at each stage. The busywork—drafting follow-ups, pulling usage data, scheduling briefings, updating CRM notes, prepping QBRs—Shadow handles while you focus on closing.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed font-semibold">
+            The result? You build pipeline consistently. You close deals predictably. You adapt your pitch to every buyer. And you orchestrate complex deals like the project manager you actually are.
+          </p>
+        </div>
+      </div>
+    </section>
 
     <FinalCTA />
 
