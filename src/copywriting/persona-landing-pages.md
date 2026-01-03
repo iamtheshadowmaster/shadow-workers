@@ -198,31 +198,31 @@ Answer a few questions about your quota, current pipeline, and deal complexity. 
 ## Founders
 
 ### Value Proposition (Bento Grid - 4 blocks)
-**Section Title:** Lead strategically, not reactively
+**Section Title:** Move fast to success or failure—not stuck in the middle
 
 **Block 1 (Large - 2×2):**
-Title: "See what's actually happening"
-Description: "Shadow gives you real-time visibility into progress, blockers, and momentum across every function. No more surprise misses at the end of quarter. No more wondering why things are slipping. See reality, not filtered status updates."
+Title: "Generate revenue, not just activity"
+Description: "You can geek out on your website, improve your product, refine the pitch deck—and still make zero progress. The only metric that matters early is revenue you actually generate. Shadow keeps you focused on closing deals, not hiding in busy work. Get to success or failure fast, then push or pivot."
 
 **Block 2 (Small - 1×1):**
-Title: "Align the whole company"
-Description: "Everyone knows the top 3 priorities and why they matter. Shadow keeps your team pulling in the same direction."
+Title: "Build your opportunity pipeline"
+Description: "Generate opportunities everywhere—recruiting, selling, financing. Shadow helps you create, track, and activate the right opportunities when you need them."
 
 **Block 3 (Small - 1×1):**
-Title: "Cut reactive work in half"
-Description: "Shadow handles the chaos so you can focus on strategy, hiring, and what actually builds the company."
+Title: "Kill overwhelming priorities"
+Description: "Building product, closing customers, recruiting, managing ops, raising capital. Shadow cuts through the noise and shows you what moves the needle right now."
 
 **Block 4 (Wide - 2×1):**
-Title: "Hit goals without losing your mind"
-Description: "Track OKRs that matter, spot risks early, and lead with confidence instead of Sunday night anxiety."
+Title: "Pitch with clarity, iterate with speed"
+Description: "Your message needs to be clear, tested, and validated fast. Shadow helps you refine your pitch, track feedback, and iterate at the speed required to find product-market fit—not in 3 years, but in 3 months."
 
 ---
 
 ### The Plan (3 steps - blended pre/post sales)
 
-1. **Answer questions** — Tell us your top 3 company priorities, team structure, and biggest execution gaps
-2. **Get instructions** — Shadow maps real-time progress, blockers, and momentum across every function
-3. **Hit your goals** — Hit quarterly targets with aligned teams and the headspace to actually build
+1. **Answer questions** — Tell us your current stage, biggest doubt, and what success looks like this quarter
+2. **Get instructions** — Shadow builds your custom founder operating system focused on revenue, recruiting, and rapid iteration
+3. **Hit your goals** — Move faster to success or failure. Generate opportunities, close deals, and lead with clarity instead of overwhelm
 
 ---
 
@@ -230,56 +230,64 @@ Description: "Track OKRs that matter, spot risks early, and lead with confidence
 
 **How Shadow Works for Founders**
 
-Shadow becomes your company operating system—giving you real visibility and strategic leverage. Start by sharing your top priorities, team structure, and current execution gaps. Shadow connects across every tool your company uses—Slack, GitHub, Notion, CRM, project management—to build a complete picture of what's actually happening.
+You know this is a 10-year ride with terrible odds. You're trying to prove something—to the market, to investors, maybe to yourself. The doubt never goes away, but you thrive under it. You just need to know if what you're building is what people actually want. And you need to find out fast.
 
-The first thing you get is real-time visibility. Shadow shows you team progress, blockers, and momentum across every function. No more surprise misses at the end of quarter. No more wondering why things are slipping. You see reality, not filtered status updates.
+Shadow becomes your operating system for speed and clarity. The trap every technical founder falls into is hiding in the work you're good at—building the product, tweaking the website, polishing the deck. It feels productive, but it doesn't move you toward success or failure. It just keeps you comfortable in the middle. Shadow cuts through that. It shows you the difference between activity and progress, between what feels important and what actually drives revenue.
 
-Beyond visibility, Shadow ensures alignment. Everyone in your company knows the top 3 priorities and why they matter. Shadow keeps your team pulling in the same direction without you being in constant check-ins and status meetings. This frees you to focus on what actually builds the company: strategy, hiring, fundraising, and product vision.
+Early stage? The only thing that matters is closing your first deal. Then your first 10. Shadow helps you track outreach, refine your pitch based on real feedback, and close revenue faster. It doesn't let you hide in product work when you should be selling. You get to success or failure fast—then either push harder or pivot with conviction.
 
-Shadow also helps you cut reactive work in half. It handles the chaos—answering questions, routing requests, keeping stakeholders updated—so you can lead instead of being an information hub. Track OKRs that matter, spot risks early, and hit goals without Sunday night anxiety.
+As you grow, the work becomes overwhelming. You're recruiting, managing the team, closing customers, building product, raising capital, handling ops. It's impossible to keep priorities straight. Shadow keeps you focused on what moves the needle right now. Not what's loud. Not what feels urgent. What actually matters.
+
+For team leadership, Shadow helps you hire fast and fire fast. You can't afford to wait 6 months to realize someone isn't working. Shadow tracks performance signals and helps you make calls quickly—because speed to success or failure applies to recruiting too.
+
+On ambition, Shadow keeps you honest. First-time founders lack ambition. You're aiming too small. Succeeding at a big ambition isn't harder than a small one—it just requires clarity on what you're actually going after. Shadow helps you define that, communicate it, and track whether your team is aligned or drifting.
+
+The doubt never disappears. Even after product-market fit, you're still wondering if you can scale without killing the company. Bad hire? Too much capital? Wrong market timing? Shadow doesn't eliminate doubt—it helps you act decisively despite it. You see where opportunities are being created, where revenue is stalling, where your pitch is landing or failing. You lead with data and speed instead of hope and hesitation.
+
+You're a founder. You don't need a dashboard. You need an operating system that helps you move faster toward success or failure, generate opportunities at scale, and lead your team with the clarity they need—even when you're drowning in doubt. Shadow gives you that.
 
 ---
 
 ### Lead Generation Ad
 
-**Headline:** Get your company execution score
+**Headline:** Are you building or just busy?
 
 **Description:**
-Answer a few questions about your priorities and team. Shadow will analyze your execution gaps and show you exactly where momentum is stalling across your company.
+Answer a few questions about your current revenue, team, and biggest bottleneck. Shadow will show you whether you're making progress toward success/failure or just spinning in place.
 
-**Offer:** Free execution audit + quarterly goal plan
-**CTA:** See where we're stuck →
+**Offer:** Free founder reality check + revenue acceleration plan
+**CTA:** See what's real →
 
 ---
 
 ## Investors
 
 ### Value Proposition (Bento Grid - 4 blocks)
-**Section Title:** Track portfolio performance, spot opportunities, never miss a signal
+**Section Title:** Protect your reputation, deploy capital wisely, deliver returns
 
 **Block 1 (Large - 2×2):**
-Title: "Monitor portfolio health in real-time"
-Description: "Shadow tracks key metrics, team dynamics, and burn rate across every investment. Know which companies need attention before they ask. Spot warning signs when momentum stalls, key hires leave, or runway tightens."
+Title: "Source and evaluate deals faster than competing funds"
+Description: "Talk to every founder in your thesis. Judge teams, markets, and ideas at speed. Repeat founders, ex-FAANG talent, sold their last startup—Shadow helps you identify the signals that matter and compete for the best deals. Know which startups can 10-100x and get to the next round fast."
 
 **Block 2 (Small - 1×1):**
-Title: "Catch problems early"
-Description: "Get alerts before struggles become crises. Support founders proactively instead of reactively."
+Title: "Track portfolio health without drowning in reports"
+Description: "Monitor metrics, team dynamics, and burn rate across every investment. Know which companies need attention before they implode. Spot momentum stalls, key hire departures, and runway issues early."
 
 **Block 3 (Small - 1×1):**
-Title: "Manage deal flow effortlessly"
-Description: "Track prospects, research markets, and coordinate with partners. Never miss the next breakout."
+Title: "Support founders where it actually matters"
+Description: "Help with financing strategy and commercial growth. Connect them to customers, open your network, and get them to the next round at higher valuations. Skip the useless board advice."
 
 **Block 4 (Wide - 2×1):**
-Title: "Support founders strategically"
-Description: "Understand what's actually happening at each company. Help them win without sitting in every board meeting."
+Title: "Manage exits and LP reporting without the chaos"
+Description: "Know when to push for the next round, when to refund, when to sell, when to kill. Handle legal and business complexity of exits while keeping LPs updated on portfolio performance. Protect your reputation and deliver the returns your fund needs."
 
 ---
 
 ### The Plan (3 steps - blended pre/post sales)
 
-1. **Answer questions** — Tell us about your portfolio, investment thesis, and current tracking challenges
-2. **Get instructions** — Shadow monitors key metrics, team dynamics, and market signals across your portfolio
-3. **Hit your goals** — Support founders strategically and catch opportunities before competitors do
+1. **Answer questions** — Tell us your fund stage, investment thesis, portfolio size, and whether you're hands-on or spray-and-pray
+2. **Get instructions** — Shadow builds your custom investment operating system for sourcing, evaluating, supporting, and exiting
+3. **Hit your goals** — Deploy capital confidently, support founders strategically, and deliver returns that protect your reputation
 
 ---
 
@@ -287,25 +295,37 @@ Description: "Understand what's actually happening at each company. Help them wi
 
 **How Shadow Works for Investors**
 
-Shadow becomes your portfolio intelligence and deal flow copilot. Start by sharing your portfolio companies, investment thesis, and current tracking challenges. Shadow connects to the data sources that matter—company metrics, team communications, market signals, and competitive intelligence.
+Your reputation is always at stake. Fail a fund and you're finding another line of business. The job is simple in theory: raise money from wealthy people, deploy it into startups that can 10-100x, and deliver solid returns (3x minimum, ideally much more) in 7-10 years. In practice, it's chaos—sourcing deals, competing with other funds, judging teams and markets at speed, supporting portfolio companies, managing exits, and reporting to LPs. All while navigating questions like: Is AI a bubble or the next platform shift? Are we backing the right founders? Can we get them to the next round before they run out of cash?
 
-For portfolio monitoring, Shadow tracks key metrics, team dynamics, and burn rate across every investment. You know which companies need attention before they ask. Shadow alerts you when momentum stalls, key hires leave, or runway tightens—giving you the context to support founders before problems become crises.
+Shadow becomes your investment operating system across the entire lifecycle.
 
-On the deal flow side, Shadow helps you track prospects, research markets, and coordinate with partners. Your pipeline stays organized, you never miss the next breakout, and you can evaluate opportunities faster because Shadow has already done the initial research and pattern matching.
+**Fundraising:** Before you deploy a dollar, you need to raise the fund. Shadow helps you track your network, identify who to pitch (based on LP fit, past investments, and relationship strength), refine your thesis, and articulate your track record clearly. Whether you sold a startup, backed unicorns as an angel, or have deep domain expertise, Shadow helps you communicate competency and close your target amount in 6 months or less.
 
-The result? You support founders strategically with real context on what's actually happening at each company. You spot opportunities and risks early. And you manage everything without drowning in data or sitting in every board meeting.
+**Deal sourcing and evaluation:** Once you're deploying capital, Shadow connects to your network, tracks every founder in your thesis, and helps you evaluate teams, markets, and ideas at speed. Repeat founders? Sold their last company? Ex-Meta, ex-Google with a killer idea? Shadow surfaces the signals that matter. You judge teams first (rock-solid teams can pivot on ideas), then market size (can this 10-100x?), then competitive positioning. Shadow also tracks competing funds on hot deals so you know when to move fast and what terms win.
+
+**Understanding market shifts:** Shadow helps you stay on top of emerging trends—especially in AI. Is this a bubble or a generational platform shift? Which startups are building real businesses vs. demos that don't scale? Shadow tracks market signals, technical feasibility, and competitive landscape so you invest with conviction instead of FOMO.
+
+**Hands-on support (if that's your strategy):** Some funds spread small checks and hope for outliers. Others write bigger checks and go hands-on. If you're the latter, Shadow helps you support founders where it actually matters—financing strategy (how much to raise, what valuation, what ARR targets in what timeframe) and commercial growth (opening your network, connecting them to customers, helping them close deals). Shadow tracks which portfolio companies need what support and when, so you're proactive instead of reactive.
+
+**Portfolio monitoring and board work:** Shadow monitors metrics, team dynamics, and burn rate across every investment. You know which companies need attention before they ask. Key hire left? Momentum stalling? Runway tightening? Customer churn spiking? Shadow alerts you so you can intervene before struggles become crises. For board meetings, Shadow keeps context on what's actually happening at each company—so when you give advice, it's useful instead of generic VC platitudes.
+
+**LP reporting:** Every month or quarter, you need to update LPs on portfolio performance. Shadow tracks key metrics, milestones, risks, and progress across your entire portfolio so you can generate clear, accurate reports without drowning in spreadsheets.
+
+**Exits and fund management:** As the fund matures, you need to manage exits—next round at higher valuation, secondary sale, acquisition, or wind-down. Shadow helps you track exit timing, legal complexity, buyer interest, and valuation scenarios. You know when to push for the next round, when to sell your position, when to refund, and when to cut losses. The goal is maximizing returns while protecting your reputation.
+
+The deepest fear? Ending a fund with no returns. Shadow doesn't eliminate risk, but it gives you the intelligence, context, and speed to deploy capital wisely, support founders strategically, and deliver the returns your LPs expect. Your reputation depends on it.
 
 ---
 
 ### Lead Generation Ad
 
-**Headline:** Get your portfolio risk analysis
+**Headline:** Get your portfolio risk and opportunity analysis
 
 **Description:**
-Answer a few questions about your portfolio and tracking methods. Shadow will analyze which companies might need support soon and where you're missing signals.
+Answer a few questions about your fund stage, thesis, and current portfolio. Shadow will show you which companies need support, where you're missing deal flow, and how to position for strong returns.
 
-**Offer:** Free portfolio health analysis + monitoring plan
-**CTA:** See portfolio risks →
+**Offer:** Free portfolio health analysis + deal flow optimization plan
+**CTA:** Protect your reputation →
 
 ---
 
