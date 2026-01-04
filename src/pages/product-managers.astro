@@ -7,24 +7,24 @@ import PersonaFeatures from '../components/PersonaFeatures.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import Footer from '../components/Footer.astro';
 
-const stakesCopy = `Keep <span class="highlight-word" data-index="0">shipping features nobody uses</span> while engineering <span class="highlight-word" data-index="1">loses trust in your roadmap</span>, <span class="highlight-word" data-index="2">watching launches slip another quarter</span> as leadership questions your ability to deliver, and <span class="highlight-word" data-index="3">seeing your team drift apart</span> because nobody knows what done actually means.`;
+const stakesCopy = `Keep shipping features <span class="highlight-word" data-index="0">nobody uses</span> while engineering <span class="highlight-word" data-index="1">loses trust</span> in your roadmap, watching launches <span class="highlight-word" data-index="2">slip another quarter</span> as leadership questions your <span class="highlight-word" data-index="3">ability to deliver</span>, and seeing your <span class="highlight-word" data-index="4">team drift apart</span> because nobody knows what done actually means.`;
 
 const features = [
   {
-    title: "Prioritize features by actual impact",
-    description: "Stop guessing. Shadow analyzes user data, engineering capacity, and business goals to rank your backlog by what will actually move metrics."
+    title: "Defend your roadmap with conviction, not politics",
+    description: "You're the CEO of your product line. Cut through competing demands—sales pushing custom features, management wanting shiny AI, users needing unglamorous fixes. Know what actually drives adoption and revenue. Execute your vision despite the noise."
   },
   {
-    title: "Keep specs current without the friction",
-    description: "Shadow updates docs as decisions change, surfaces blockers before standups, and answers engineering questions instantly."
+    title: "Engineering trusts your direction",
+    description: "Your team stays focused on what matters. No more scope creep derailing sprints. No more losing credibility over shifting priorities."
   },
   {
-    title: "Align engineering without endless meetings",
-    description: "Your team knows what's critical and why. Shadow keeps everyone synchronized on priorities, context, and tradeoffs."
+    title: "Enable sales without blind commits",
+    description: "Help close deals without sacrificing your roadmap. Know which features unlock revenue vs. which are one-off distractions."
   },
   {
-    title: "Ship on time, prove the impact",
-    description: "Track metrics that matter. Shadow connects launches to business outcomes automatically so you can show what's working."
+    title: "Spot opportunities before they're obvious",
+    description: "Stay ahead of your market. Identify product gaps and competitive shifts while others are still catching up. Ship what matters next, not what mattered last quarter."
   }
 ];
 ---
@@ -44,9 +44,81 @@ const features = [
     <PersonaStakes stakesCopy={stakesCopy} />
 
     <PersonaFeatures
-      sectionTitle="Your daily reality with Shadow"
+      sectionTitle="Own vision, ship with scarce resources, keep everyone aligned"
       features={features}
     />
+
+    <!-- The Plan Section -->
+    <section class="relative bg-black py-32">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 leading-tight">
+            How it works
+          </h2>
+        </div>
+
+        <div class="space-y-8">
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div class="flex items-start gap-6">
+              <div class="flex-shrink-0 w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                <span class="text-2xl font-bold text-blue-500">1</span>
+              </div>
+              <div>
+                <h3 class="text-2xl font-semibold text-white mb-2">Answer questions</h3>
+                <p class="text-lg text-gray-400">Give us your role, company and biggest challenge this quarter. Shadow Agent will retrieve context like you've never seen before.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div class="flex items-start gap-6">
+              <div class="flex-shrink-0 w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                <span class="text-2xl font-bold text-blue-500">2</span>
+              </div>
+              <div>
+                <h3 class="text-2xl font-semibold text-white mb-2">Get instructions</h3>
+                <p class="text-lg text-gray-400">Shadow builds a custom individual prompt tailored to your specific context and goals, providing precise instructions for your AI to follow.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div class="flex items-start gap-6">
+              <div class="flex-shrink-0 w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                <span class="text-2xl font-bold text-blue-500">3</span>
+              </div>
+              <div>
+                <h3 class="text-2xl font-semibold text-white mb-2">Hit your goals</h3>
+                <p class="text-lg text-gray-400">Feel the magic of hitting your goals with less friction and more clarity. Connect your tools for more context and action power, invite your teammates, and be unstoppable.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explanatory Paragraph Section -->
+    <section class="relative bg-black py-32 border-t border-white/10">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="prose prose-lg prose-invert max-w-none">
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            You're conducting an orchestra with scarce resources, impossible demands, and competing agendas. Sales wants "just 3 features" for a $1M ARR deal. Management wants the sexy AI feature that looks good in board decks. Engineering needs you to prioritize tech debt. Users need unglamorous fixes that don't make headlines. And you need to say yes to everyone without actually saying yes to everyone.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            Shadow becomes your strategic command center. It connects your backlog, user data, sales pipeline, competitive intelligence, and market signals into one coherent view. When sales pushes for custom features, Shadow shows you whether this is a pattern worth building for or a one-off distraction. When management wants innovation, Shadow helps you balance shiny new features against the product gaps that actually block adoption.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            For engineering alignment, Shadow maintains context across your roadmap so your team understands why priorities shift, what's truly blocking users, and how to push back on scope creep without losing trust. It surfaces blockers before standups and keeps specs current as decisions evolve—you're the conductor, not the bottleneck.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            The real power? Anticipation. Shadow tracks your market, competitors, and emerging user patterns so you spot product gaps and opportunities before they become obvious. You can defend your vision with data, execute despite noise, and prove impact when you ship—whether it's an AI feature or an unglamorous fix that drives adoption.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed font-semibold">
+            You're the CEO of your product line. Shadow helps you act like it.
+          </p>
+        </div>
+      </div>
+    </section>
 
     <FinalCTA />
 

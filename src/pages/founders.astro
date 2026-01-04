@@ -7,26 +7,27 @@ import PersonaFeatures from '../components/PersonaFeatures.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import Footer from '../components/Footer.astro';
 
-const stakesCopy = `Keep <span class="highlight-word" data-index="0">drowning in reactive work</span> while your team <span class="highlight-word" data-index="1">loses faith in your direction</span>, watching <span class="highlight-word" data-index="2">quarters slip by at 15% completion</span> with investors getting nervous, and <span class="highlight-word" data-index="3">seeing everyone pull in different directions</span> because you're too buried to lead.`;
+const stakesCopy = `Keep <span class="highlight-word" data-index="0">hiding in product work and pitch decks</span> while <span class="highlight-word" data-index="1">revenue stays at zero</span>, burning through runway on <span class="highlight-word" data-index="2">activity that doesn't move you to success or failure</span>, and <span class="highlight-word" data-index="3">leading with hope instead of data</span> while the doubt gets louder every week.`;
 
 const features = [
   {
-    title: "Know what's actually happening",
-    description: "Shadow gives you a real-time view of team progress, blockers, and momentum across every function. No more surprise misses at the end of quarter."
+    title: "Generate revenue, not just activity",
+    description: "You can geek out on your website, improve your product, refine the pitch deck—and still make zero progress. The only metric that matters early is revenue you actually generate. Shadow keeps you focused on closing deals, not hiding in busy work. Get to success or failure fast, then push or pivot."
   },
   {
-    title: "Align the whole company",
-    description: "Everyone knows the top 3 priorities and why they matter. Shadow keeps your team pulling in the same direction without constant check-ins."
+    title: "Build your opportunity pipeline",
+    description: "Generate opportunities everywhere—recruiting, selling, financing. Shadow helps you create, track, and activate the right opportunities when you need them."
   },
   {
-    title: "Stop firefighting, start building",
-    description: "Cut reactive work in half. Shadow handles the chaos so you can focus on strategy, hiring, and what actually builds the company."
+    title: "Kill overwhelming priorities",
+    description: "Building product, closing customers, recruiting, managing ops, raising capital. Shadow cuts through the noise and shows you what moves the needle right now."
   },
   {
-    title: "Hit goals without losing your mind",
-    description: "Track OKRs that matter and spot risks early. Shadow helps you lead with confidence instead of Sunday night anxiety."
+    title: "Pitch with clarity, iterate with speed",
+    description: "Your message needs to be clear, tested, and validated fast. Shadow helps you refine your pitch, track feedback, and iterate at the speed required to find product-market fit—not in 3 years, but in 3 months."
   }
 ];
+
 ---
 
 <Layout>
@@ -35,8 +36,8 @@ const features = [
   <div class="bg-black">
 
     <PersonaHero
-      headline="Lead strategically, not reactively"
-      subheadline="The AI that helps founders focus on what builds the company, align their entire team, and hit quarterly goals without losing their minds."
+      headline="Move fast to success or failure"
+      subheadline="The AI operating system that helps founders generate revenue, build opportunity pipelines, and lead with clarity even when drowning in doubt."
       persona="Founders"
       dotColor="bg-purple-500"
     />
@@ -44,9 +45,81 @@ const features = [
     <PersonaStakes stakesCopy={stakesCopy} />
 
     <PersonaFeatures
-      sectionTitle="Your daily reality with Shadow"
+      sectionTitle="Your operating system for speed and clarity"
       features={features}
     />
+
+    <!-- The Plan Section -->
+    <section class="relative bg-black py-32">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 leading-tight">
+            How it works
+          </h2>
+        </div>
+
+        <div class="space-y-8">
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div class="flex items-start gap-6">
+              <div class="flex-shrink-0 w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center">
+                <span class="text-2xl font-bold text-purple-500">1</span>
+              </div>
+              <div>
+                <h3 class="text-2xl font-semibold text-white mb-2">Answer questions</h3>
+                <p class="text-lg text-gray-400">Tell us your current stage, biggest doubt, and what success looks like this quarter</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div class="flex items-start gap-6">
+              <div class="flex-shrink-0 w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center">
+                <span class="text-2xl font-bold text-purple-500">2</span>
+              </div>
+              <div>
+                <h3 class="text-2xl font-semibold text-white mb-2">Get instructions</h3>
+                <p class="text-lg text-gray-400">Shadow builds your custom founder operating system focused on revenue, recruiting, and rapid iteration</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div class="flex items-start gap-6">
+              <div class="flex-shrink-0 w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center">
+                <span class="text-2xl font-bold text-purple-500">3</span>
+              </div>
+              <div>
+                <h3 class="text-2xl font-semibold text-white mb-2">Hit your goals</h3>
+                <p class="text-lg text-gray-400">Move faster to success or failure. Generate opportunities, close deals, and lead with clarity instead of overwhelm</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explanatory Paragraph Section -->
+    <section class="relative bg-black py-32 border-t border-white/10">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="prose prose-lg prose-invert max-w-none">
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            You know this is a 10-year ride with terrible odds. You're trying to prove something—to the market, to investors, maybe to yourself. The doubt never goes away, but you thrive under it. You just need to know if what you're building is what people actually want. And you need to find out fast.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            Shadow becomes your operating system for speed and clarity. The trap every technical founder falls into is hiding in the work you're good at—building the product, tweaking the website, polishing the deck. It feels productive, but it doesn't move you toward success or failure. Shadow cuts through that. It pulls context from your pitch meetings, customer conversations, and revenue pipeline—then shows you the difference between activity and progress, between what feels important and what actually drives revenue.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            Early stage? The only thing that matters is closing your first deal. Then your first 10. Shadow tracks outreach, refines your pitch based on real feedback patterns, and surfaces which conversations are moving toward revenue. It doesn't let you hide in product work when you should be selling. For team leadership, Shadow monitors performance signals across recruiting, sales, and product—helping you hire fast, fire fast, and keep everyone aligned on what moves the needle right now.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed mb-6">
+            Shadow keeps you honest with proactive check-ins: "You said you'd follow up with that investor by Friday—still on track?" or "Three customer calls went cold this week—pivot the pitch?" The busywork—drafting investor updates, pulling revenue reports, scheduling recruiter calls, tracking OKRs—Shadow handles on autopilot while you focus on the decisions that actually matter.
+          </p>
+          <p class="text-xl text-gray-300 leading-relaxed font-semibold">
+            You're a founder. You don't need a dashboard. You need an operating system that helps you move faster toward success or failure, generate opportunities at scale, and lead your team with clarity—even when you're drowning in doubt. Shadow gives you that.
+          </p>
+        </div>
+      </div>
+    </section>
 
     <FinalCTA />
 

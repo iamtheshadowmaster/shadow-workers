@@ -25,14 +25,23 @@ const { stakesCopy } = Astro.props;
 
 <script>
   // Scroll-based word highlighting with smooth RAF implementation
-  const highlightWords = document.querySelectorAll('.highlight-word');
-  const stakesSection = document.getElementById('persona-stakes-section') as HTMLElement;
-
+  let highlightWords: NodeListOf<Element>;
+  let stakesSection: HTMLElement | null;
   let rafId: number | null = null;
   let ticking = false;
 
+  function initHighlights() {
+    highlightWords = document.querySelectorAll('#persona-stakes-content .highlight-word');
+    stakesSection = document.getElementById('persona-stakes-section');
+
+    console.log('PersonaStakes: Found', highlightWords.length, 'highlight words');
+
+    // Initial update
+    updateHighlights();
+  }
+
   function updateHighlights() {
-    if (!stakesSection) return;
+    if (!stakesSection || !highlightWords || highlightWords.length === 0) return;
 
     const rect = stakesSection.getBoundingClientRect();
     const sectionHeight = stakesSection.offsetHeight;
@@ -40,6 +49,8 @@ const { stakesCopy } = Astro.props;
 
     // Calculate scroll progress through the section (0 to 1)
     const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - viewportHeight)));
+
+    console.log('Scroll progress:', scrollProgress.toFixed(2));
 
     // Determine which words should be highlighted based on scroll progress
     const totalWords = highlightWords.length;
@@ -73,14 +84,19 @@ const { stakesCopy } = Astro.props;
     }
   }
 
+  // Wait for DOM to be ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHighlights);
+  } else {
+    initHighlights();
+  }
+
   // Update on scroll with RAF
   window.addEventListener('scroll', requestUpdate, { passive: true });
-  // Initial update
-  updateHighlights();
 </script>
 
-<style>
-  .highlight-word {
+<style is:global>
+  #persona-stakes-content .highlight-word {
     --word-opacity: 0.4;
     color: rgba(255, 255, 255, var(--word-opacity));
     transition: color 0.6s cubic-bezier(0.4, 0, 0.2, 1), text-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -88,7 +104,7 @@ const { stakesCopy } = Astro.props;
     will-change: color, text-shadow;
   }
 
-  .highlight-word.active {
+  #persona-stakes-content .highlight-word.active {
     text-shadow: 0 0 20px rgba(255, 255, 255, calc(var(--word-opacity) * 0.3));
   }
 </style>
