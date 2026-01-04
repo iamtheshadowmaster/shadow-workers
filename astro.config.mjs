@@ -6,8 +6,12 @@ import icon from "astro-icon";
 import mdx from '@astrojs/mdx';
 
 export default defineConfig({
-  integrations: [tailwind(), mdx()],
+  integrations: [tailwind(), mdx(), icon()],
   output: 'server',
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: {
+      enabled: false
+    }
+  }),
 });
 
