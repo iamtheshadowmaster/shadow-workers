@@ -53,13 +53,6 @@ import backgroundImage from '../assets/Background-2.png';
         >
           Founders
         </button>
-        <button
-          type="button"
-          data-role="investor"
-          class="role-chip px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
-        >
-          Investors
-        </button>
       </div>
 
       <form id="hero-form" class="relative">
@@ -220,13 +213,6 @@ import backgroundImage from '../assets/Background-2.png';
       "How do I get my entire team pulling in the same direction?",
       "Sunday night anxiety about next quarter. How do I break this cycle?",
       "How do I lead strategically instead of just firefighting?"
-    ],
-    investor: [
-      "I need to source 10 Series A startups per quarter. Where do I start?",
-      "How do I track deal flow without drowning in spreadsheets?",
-      "Which portfolio companies need my attention right now?",
-      "How do I keep my partners aligned on investment theses?",
-      "I'm missing opportunities because I can't keep up. Help."
     ]
   };
 
@@ -296,7 +282,7 @@ import backgroundImage from '../assets/Background-2.png';
   let userHasSelectedRole = false; // Track if user manually selected a role
   let currentPlaceholderIndex = 0;
   let currentRoleIndex = 0;
-  const roles = ['product', 'engineering', 'sales', 'founder', 'investor'];
+  const roles = ['product', 'engineering', 'sales', 'founder'];
 
   function updateActiveChip(role: string) {
     // Only update chip highlights if user hasn't manually selected one
