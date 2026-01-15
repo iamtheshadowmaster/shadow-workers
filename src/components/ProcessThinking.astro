@@ -3,6 +3,19 @@
 import NotionIcon from './icons/notion.svg';
 import GoogleDocsIcon from './icons/googledocs.svg';
 import SlackIcon from './icons/slack.svg';
+import GoogleCalendarIcon from './icons/googlecalendar.svg';
+import LinearIcon from './icons/linear.svg';
+import GmailIcon from './icons/gmail.svg';
+import GoogleTasksIcon from './icons/googletasks.svg';
+import JiraIcon from './icons/jirasoftware.svg';
+import TrelloIcon from './icons/trello.svg';
+import EllipsisIcon from './icons/ellipsis.svg';
+import GoogleGeminiIcon from './icons/googlegemini.svg';
+import LinkedInIcon from './icons/linkedin.svg';
+import GoogleIcon from './icons/google.svg';
+import LinkIcon from './icons/link.svg';
+import CrunchbaseIcon from './icons/crunchbase.svg';
+import ClaudeIcon from './icons/claude.svg';
 ---
 
 <div class="process-thinking-container max-w-2xl mx-auto">
@@ -24,19 +37,69 @@ import SlackIcon from './icons/slack.svg';
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-line"></div>
-        <span class="timeline-text">Create user context</span>
+        <div class="timeline-content-wrapper">
+          <span class="timeline-text">Create user context</span>
+
+          <!-- Icons row -->
+          <div class="integration-icons">
+            <!-- Google Gemini Icon -->
+            <div class="icon-item" data-tooltip="Google Gemini">
+              <img src={GoogleGeminiIcon.src} alt="Google Gemini" width="16" height="16" />
+            </div>
+
+            <!-- LinkedIn Icon -->
+            <div class="icon-item" data-tooltip="LinkedIn">
+              <img src={LinkedInIcon.src} alt="LinkedIn" width="16" height="16" />
+            </div>
+
+            <!-- Google Icon -->
+            <div class="icon-item" data-tooltip="Google">
+              <img src={GoogleIcon.src} alt="Google" width="16" height="16" />
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-line"></div>
-        <span class="timeline-text">Create company context</span>
+        <div class="timeline-content-wrapper">
+          <span class="timeline-text">Create company context</span>
+
+          <!-- Icons row -->
+          <div class="integration-icons">
+            <!-- Link Icon -->
+            <div class="icon-item" data-tooltip="Website">
+              <img src={LinkIcon.src} alt="Website" width="16" height="16" />
+            </div>
+
+            <!-- Crunchbase Icon -->
+            <div class="icon-item" data-tooltip="Crunchbase">
+              <img src={CrunchbaseIcon.src} alt="Crunchbase" width="16" height="16" />
+            </div>
+
+            <!-- Google Gemini Icon -->
+            <div class="icon-item" data-tooltip="Google Gemini">
+              <img src={GoogleGeminiIcon.src} alt="Google Gemini" width="16" height="16" />
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-line"></div>
-        <span class="timeline-text">Create user system prompt</span>
+        <div class="timeline-content-wrapper">
+          <span class="timeline-text">Create user system prompt</span>
+
+          <!-- Icons row -->
+          <div class="integration-icons">
+            <!-- Claude Icon -->
+            <div class="icon-item" data-tooltip="Claude">
+              <img src={ClaudeIcon.src} alt="Claude" width="16" height="16" />
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="timeline-item">
@@ -84,9 +147,8 @@ import SlackIcon from './icons/slack.svg';
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-line"></div>
         <div class="timeline-content-wrapper">
-          <span class="timeline-text">Sync chat conversations</span>
+          <span class="timeline-text">Connect your noise (slack, google calendar, linear, and more)</span>
 
           <!-- Icons row -->
           <div class="integration-icons">
@@ -94,23 +156,53 @@ import SlackIcon from './icons/slack.svg';
             <div class="icon-item" data-tooltip="Slack">
               <img src={SlackIcon.src} alt="Slack" width="16" height="16" />
             </div>
+
+            <!-- Google Calendar Icon -->
+            <div class="icon-item" data-tooltip="Google Calendar">
+              <img src={GoogleCalendarIcon.src} alt="Google Calendar" width="16" height="16" />
+            </div>
+
+            <!-- Linear Icon -->
+            <div class="icon-item" data-tooltip="Linear">
+              <img src={LinearIcon.src} alt="Linear" width="16" height="16" />
+            </div>
+
+            <!-- Gmail Icon -->
+            <div class="icon-item" data-tooltip="Gmail">
+              <img src={GmailIcon.src} alt="Gmail" width="16" height="16" />
+            </div>
+
+            <!-- Google Tasks Icon -->
+            <div class="icon-item" data-tooltip="Google Tasks">
+              <img src={GoogleTasksIcon.src} alt="Google Tasks" width="16" height="16" />
+            </div>
+
+            <!-- Jira Icon -->
+            <div class="icon-item" data-tooltip="Jira">
+              <img src={JiraIcon.src} alt="Jira" width="16" height="16" />
+            </div>
+
+            <!-- Trello Icon -->
+            <div class="icon-item" data-tooltip="Trello">
+              <img src={TrelloIcon.src} alt="Trello" width="16" height="16" />
+            </div>
+
+            <!-- More Icon -->
+            <div class="icon-item more-icon" data-tooltip="And more...">
+              <img src={EllipsisIcon.src} alt="More integrations" width="16" height="16" />
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <span class="timeline-text">Import tasks and workflows</span>
       </div>
     </div>
   </div>
 
-  <!-- Step 3: Get daily actionable insights -->
+  <!-- Step 3: Get daily action plans that take you closer to your goals -->
   <div class="thinking-box">
     <div class="main-step" id="main-step-toggle-3">
       <div class="step-dot green"></div>
       <div class="step-content">
-        <h3 class="step-title">Get daily actionable insights and tasks</h3>
+        <h3 class="step-title">Get daily action plans that take you closer to your goals</h3>
       </div>
       <div class="step-chevron" id="chevron-icon-3">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -123,18 +215,18 @@ import SlackIcon from './icons/slack.svg';
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-line"></div>
-        <span class="timeline-text">Analyze context and patterns</span>
+        <span class="timeline-text">Receive clear insights on what matters today</span>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-line"></div>
-        <span class="timeline-text">Generate personalized insights</span>
+        <span class="timeline-text">Get 3 suggested tasks aligned with your goals</span>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <span class="timeline-text">Deliver prioritized action items</span>
+        <span class="timeline-text">Chat your way through tasks in your Shadow space</span>
       </div>
     </div>
   </div>
@@ -335,6 +427,15 @@ import SlackIcon from './icons/slack.svg';
 
   .icon-item:hover::after {
     opacity: 1;
+  }
+
+  .more-icon {
+    background: #3a3a3a;
+    border: 1px dashed #666;
+  }
+
+  .more-icon img {
+    filter: invert(0.7);
   }
 
   /* Responsive adjustments */
