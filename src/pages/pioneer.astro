@@ -1,0 +1,326 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
+import FaultyTerminal from '../components/FaultyTerminal.jsx';
+import Folder from '../components/Folder.jsx';
+import ProcessThinking from '../components/ProcessThinking.astro';
+import backgroundImage from '../assets/Background-3.png';
+
+const problemCopy = `You're doing <span class="highlight-word" data-index="0">something big</span>. But you're hitting the <span class="highlight-word" data-index="1">same blockers</span>. You need <span class="highlight-word" data-index="2">execution support</span>, not more advice. Someone who's <span class="highlight-word" data-index="3">done it before</span> and will work alongside you until <span class="highlight-word" data-index="4">it's done</span>.`;
+---
+
+<Layout>
+  <Nav />
+
+  <div class="bg-black">
+    <!-- Hero Section with Faulty Terminal Background -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <!-- Faulty Terminal Background -->
+      <div class="absolute inset-0 bg-black">
+        <FaultyTerminal
+          client:load
+          className="faulty-terminal"
+          dpr={2}
+          scale={4}
+          gridMul={[1, 0.5]}
+          digitSize={0.8}
+          timeScale={1}
+          pause={false}
+          scanlineIntensity={0.5}
+          glitchAmount={0.1}
+          flickerAmount={0.2}
+          noiseAmp={1}
+          chromaticAberration={0}
+          dither={0}
+          curvature={1}
+          tint="#a855f7"
+          mouseReact={true}
+          mouseStrength={0.5}
+          pageLoadAnimation={false}
+          brightness={0.6}
+          style={{ width: '100%', height: '100%', position: 'absolute' }}
+        />
+      </div>
+
+      <!-- Hero Content -->
+      <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+        <!-- Pioneer Badge Chip -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full mb-8">
+          <div class="w-2 h-2 rounded-full bg-purple-500"></div>
+          <span class="text-sm font-medium text-black uppercase tracking-wider">Shadow Pioneer Program</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-medium text-white mb-8 leading-tight tracking-tight max-w-5xl mx-auto">
+          Get a team that helps you deliver.
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="text-lg md:text-2xl text-white/80 mb-12 max-w-3xl mx-auto font-normal leading-relaxed">
+          Shadow AI early access + founder support. Lock in 50€/month forever. 12-month journey.
+        </p>
+
+        <!-- CTA Button -->
+        <div class="flex items-center justify-center">
+          <a
+            href="https://app.yourshadowai.com/sign-up"
+            class="px-6 py-2.5 bg-white text-black rounded-lg text-sm font-semibold hover:bg-gray-100 transition-all duration-200 shadow-lg"
+          >
+            Subscribe now
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Problem Section (Stakes Style) -->
+    <div id="pioneer-stakes-section" class="relative bg-black" style="height: 200vh;">
+      <!-- Fixed/sticky content -->
+      <div id="pioneer-stakes-sticky" class="sticky top-0 h-screen flex items-center justify-center">
+        <div class="max-w-5xl mx-auto px-6">
+          <!-- Headline -->
+          <h2 class="text-xl md:text-2xl lg:text-3xl font-medium text-white/60 text-center mb-16 leading-relaxed">
+            Sound familiar?
+          </h2>
+
+          <!-- Scrolling Content with highlighted words -->
+          <div id="pioneer-stakes-content" class="text-2xl md:text-3xl lg:text-4xl font-normal text-white/40 text-center leading-relaxed max-w-4xl mx-auto" set:html={problemCopy}>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What You Get Section -->
+    <section class="relative bg-black py-20">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-semibold text-white mb-6 text-center">
+          What pioneers get
+        </h2>
+
+        <p class="text-xl text-gray-300 leading-relaxed mb-12 text-center max-w-3xl mx-auto">
+          You're not buying a tool. You're getting early access to the product + temporary human support while we build it to work autonomously.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+            <h3 class="text-xl font-semibold text-white mb-3">Early access to Shadow AI</h3>
+            <p class="text-gray-400">Full platform access before public launch. All features unlocked forever. No usage limits.</p>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+            <h3 class="text-xl font-semibold text-white mb-3">Lifetime pioneer rate</h3>
+            <p class="text-gray-400">Buy at 50€/month, forever. If we ever make it, you'll never pay more.</p>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+            <h3 class="text-xl font-semibold text-white mb-3">Weekly calls with founders</h3>
+            <p class="text-gray-400">We help you achieve your goals until Shadow does. You help us train the AI, we help you succeed.</p>
+          </div>
+
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+            <h3 class="text-xl font-semibold text-white mb-3">Direct chat with community</h3>
+            <p class="text-gray-400">Get support from us and other pioneers in our private community.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <!-- The Plan Section -->
+    <section class="relative bg-black py-20 border-t border-white/10">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 leading-tight">
+            The process
+          </h2>
+        </div>
+
+        <ProcessThinking />
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="relative bg-black py-20 border-t border-white/10">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-semibold text-white mb-8 text-center">
+          Investment
+        </h2>
+
+        <div class="bg-gradient-to-br from-purple-900/20 to-gray-950/50 border border-purple-500/30 rounded-2xl p-8 max-w-2xl mx-auto">
+          <div class="text-center mb-6">
+            <div class="mb-4">
+              <span class="text-5xl font-bold text-white">50€</span>
+              <span class="text-gray-400 text-lg">/month</span>
+            </div>
+            <p class="text-gray-400 mb-6">12-month commitment. Paid monthly via Stripe.</p>
+          </div>
+
+          <div class="space-y-4">
+            <div class="bg-white/5 rounded-xl p-6">
+              <h3 class="text-lg font-semibold text-white mb-2">Why 12 months?</h3>
+              <p class="text-gray-300 leading-relaxed">
+                Months 1-3: We train the AI on your needs. Months 4-8: AI takes over. Months 9-12: You're shipping autonomously. Transformation takes time.
+              </p>
+            </div>
+
+            <div class="bg-white/5 rounded-xl p-6">
+              <h3 class="text-lg font-semibold text-white mb-2">What happens after?</h3>
+              <p class="text-gray-300 leading-relaxed">
+                You keep your 50€ founding rate forever. New users pay 150€/month. You helped build it, you get lifetime discount.
+              </p>
+            </div>
+          </div>
+
+          <!-- Stripe Payment Button -->
+          <div class="mt-8 text-center">
+            <a
+              href="https://buy.stripe.com/9B6bJ160n6DU9ua2wRebu00"
+              class="inline-block px-8 py-4 text-lg font-semibold text-gray-900 bg-white rounded-xl hover:bg-gray-50 shadow-lg transition-colors"
+            >
+              Subscribe now - 50€/month
+            </a>
+            <p class="text-sm text-gray-400 mt-4">
+              Secure payment powered by Stripe
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Final CTA Section -->
+    <section
+      class="relative py-40 overflow-hidden bg-cover bg-center bg-no-repeat bg-fixed"
+      style={`background-image: url(${backgroundImage.src});`}
+    >
+      <div class="relative max-w-5xl mx-auto px-6 text-center">
+        <h2 class="text-5xl md:text-6xl lg:text-7xl font-medium text-white mb-8 leading-tight">
+          Stop planning.<br/>
+          <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            Start shipping.
+          </span>
+        </h2>
+
+        <p class="text-xl md:text-2xl text-white/70 mb-6 max-w-3xl mx-auto leading-relaxed">
+          Join the first 20 pioneers. Get Shadow AI + weekly founder support for 50€/month. Lock in your rate forever.
+        </p>
+
+        <div class="flex justify-center items-center mt-12">
+          <a
+            href="https://buy.stripe.com/9B6bJ160n6DU9ua2wRebu00"
+            class="inline-block px-8 py-4 text-lg font-semibold text-gray-900 bg-white rounded-xl hover:bg-gray-50 shadow-2xl transition-all duration-200"
+          >
+            Subscribe now - 50€/month
+          </a>
+        </div>
+
+        <p class="text-white/50 mt-8 text-sm">
+          Questions? <a href="mailto:contact@yourshadowai.com" class="text-purple-400 hover:text-purple-300 underline">contact@yourshadowai.com</a>
+        </p>
+      </div>
+    </section>
+
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+  /* Stakes highlighting styles */
+  #pioneer-stakes-content .highlight-word {
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.6s cubic-bezier(0.4, 0, 0.2, 1), text-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline;
+    will-change: color, text-shadow;
+  }
+
+  #pioneer-stakes-content .highlight-word.active {
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    // Scroll-based word highlighting for the problem section
+    let highlightWords;
+    let stakesSection;
+    let ticking = false;
+
+    function initHighlights() {
+      highlightWords = document.querySelectorAll('#pioneer-stakes-content .highlight-word');
+      stakesSection = document.getElementById('pioneer-stakes-section');
+      console.log('Pioneer: Found', highlightWords.length, 'highlight words');
+      console.log('Pioneer: Stakes section', stakesSection);
+
+      if (highlightWords.length === 0) {
+        console.log('Pioneer: No highlight words found, retrying...');
+        // Retry after a short delay to ensure Astro has rendered the content
+        setTimeout(initHighlights, 100);
+        return;
+      }
+
+      updateHighlights();
+    }
+
+    function updateHighlights() {
+      if (!stakesSection || !highlightWords || highlightWords.length === 0) {
+        console.log('Pioneer: Missing elements', {stakesSection, highlightWords: highlightWords?.length});
+        return;
+      }
+
+      const rect = stakesSection.getBoundingClientRect();
+      const sectionHeight = stakesSection.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      // Calculate scroll progress through the section (0 to 1)
+      const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - viewportHeight)));
+
+      console.log('Pioneer: Scroll progress:', scrollProgress);
+
+      // Determine which words should be highlighted based on scroll progress
+      const totalWords = highlightWords.length;
+
+      highlightWords.forEach((word, index) => {
+        const wordThreshold = index / totalWords;
+        const nextThreshold = (index + 1) / totalWords;
+
+        if (scrollProgress >= wordThreshold) {
+          const wordProgress = Math.min(1, (scrollProgress - wordThreshold) / (nextThreshold - wordThreshold));
+          const easedProgress = 1 - Math.pow(1 - wordProgress, 3);
+          const opacity = 0.4 + (0.6 * easedProgress);
+
+          word.style.color = `rgba(255, 255, 255, ${opacity})`;
+          word.classList.add('active');
+          console.log('Pioneer: Activating word', index, 'opacity:', opacity);
+        } else {
+          word.style.color = 'rgba(255, 255, 255, 0.4)';
+          word.classList.remove('active');
+        }
+      });
+
+      ticking = false;
+    }
+
+    function requestUpdate() {
+      if (!ticking) {
+        requestAnimationFrame(updateHighlights);
+        ticking = true;
+      }
+    }
+
+    // Initialize on load with a delay to ensure content is rendered
+    function init() {
+      setTimeout(initHighlights, 50);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+    // Update on scroll
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+  })();
+</script>
