@@ -1,0 +1,358 @@
+---
+// ProcessThinking component - mimics the AI tool call thinking UI with timeline
+import NotionIcon from './icons/notion.svg';
+import GoogleDocsIcon from './icons/googledocs.svg';
+import SlackIcon from './icons/slack.svg';
+---
+
+<div class="process-thinking-container max-w-2xl mx-auto">
+  <!-- Step 1: Set initial user context -->
+  <div class="thinking-box">
+    <div class="main-step" id="main-step-toggle-1">
+      <div class="step-dot green"></div>
+      <div class="step-content">
+        <h3 class="step-title">Set initial user context</h3>
+      </div>
+      <div class="step-chevron" id="chevron-icon-1">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="timeline" id="timeline-steps-1">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+        <span class="timeline-text">Create user context</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+        <span class="timeline-text">Create company context</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+        <span class="timeline-text">Create user system prompt</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-text">Retrieve and organize objectives</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2: Give access to critical context -->
+  <div class="thinking-box">
+    <div class="main-step" id="main-step-toggle-2">
+      <div class="step-dot green"></div>
+      <div class="step-content">
+        <h3 class="step-title">Give access to your critical context</h3>
+      </div>
+      <div class="step-chevron" id="chevron-icon-2">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="timeline" id="timeline-steps-2">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+        <div class="timeline-content-wrapper">
+          <span class="timeline-text">Connect playbooks and documentation</span>
+
+          <!-- Icons row -->
+          <div class="integration-icons">
+            <!-- Notion Icon -->
+            <div class="icon-item" data-tooltip="Notion">
+              <img src={NotionIcon.src} alt="Notion" width="16" height="16" />
+            </div>
+
+            <!-- Google Docs Icon -->
+            <div class="icon-item" data-tooltip="Google Docs">
+              <img src={GoogleDocsIcon.src} alt="Google Docs" width="16" height="16" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+        <div class="timeline-content-wrapper">
+          <span class="timeline-text">Sync chat conversations</span>
+
+          <!-- Icons row -->
+          <div class="integration-icons">
+            <!-- Slack Icon -->
+            <div class="icon-item" data-tooltip="Slack">
+              <img src={SlackIcon.src} alt="Slack" width="16" height="16" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-text">Import tasks and workflows</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3: Get daily actionable insights -->
+  <div class="thinking-box">
+    <div class="main-step" id="main-step-toggle-3">
+      <div class="step-dot green"></div>
+      <div class="step-content">
+        <h3 class="step-title">Get daily actionable insights and tasks</h3>
+      </div>
+      <div class="step-chevron" id="chevron-icon-3">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="timeline" id="timeline-steps-3">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+        <span class="timeline-text">Analyze context and patterns</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+        <span class="timeline-text">Generate personalized insights</span>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-text">Deliver prioritized action items</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Setup toggle for each thinking box
+    for (let i = 1; i <= 3; i++) {
+      const toggle = document.getElementById(`main-step-toggle-${i}`);
+      const timeline = document.getElementById(`timeline-steps-${i}`);
+      const chevron = document.getElementById(`chevron-icon-${i}`);
+
+      if (toggle && timeline && chevron) {
+        toggle.addEventListener('click', () => {
+          timeline.classList.toggle('collapsed');
+          chevron.classList.toggle('collapsed');
+        });
+      }
+    }
+  });
+</script>
+
+<style>
+  .process-thinking-container {
+    padding: 1rem 0;
+  }
+
+  .thinking-box {
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    border-radius: 12px;
+    padding: 0;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .thinking-box:last-child {
+    margin-bottom: 0;
+  }
+
+  .main-step {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  .main-step:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .step-dot {
+    width: 8px;
+    height: 8px;
+    background: #666;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .step-dot.green {
+    background: #10b981;
+  }
+
+  .step-content {
+    flex: 1;
+  }
+
+  .step-title {
+    font-size: 15px;
+    font-weight: 400;
+    color: #d4d4d4;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .step-chevron {
+    color: #666;
+  }
+
+  .step-chevron svg {
+    transform: rotate(90deg);
+  }
+
+  .step-chevron.collapsed svg {
+    transform: rotate(0deg);
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 20px 24px 24px 32px;
+    background: #252525;
+  }
+
+  .timeline.collapsed {
+    display: none;
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    min-height: 36px;
+  }
+
+  .timeline-item:last-child {
+    min-height: auto;
+  }
+
+  .timeline-dot {
+    width: 8px;
+    height: 8px;
+    background: #666;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+    z-index: 2;
+    position: relative;
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 3.5px;
+    top: 14px;
+    width: 1px;
+    height: calc(100% - 8px);
+    background: #444;
+    z-index: 1;
+  }
+
+  .timeline-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-left: 14px;
+  }
+
+  .timeline-text {
+    font-size: 14px;
+    color: #b4b4b4;
+    line-height: 1.5;
+    font-weight: 400;
+    padding-top: 2px;
+  }
+
+  .timeline-item:not(:has(.timeline-content-wrapper)) .timeline-text {
+    margin-left: 14px;
+  }
+
+  .integration-icons {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+  }
+
+  .icon-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: #ffffff;
+    border-radius: 50%;
+    padding: 4px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .icon-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* Tooltip styles */
+  .icon-item::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    margin-bottom: 4px;
+  }
+
+  .icon-item:hover::after {
+    opacity: 1;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .thinking-box {
+      border-radius: 10px;
+    }
+
+    .timeline {
+      padding: 16px 20px 20px 28px;
+    }
+
+    .timeline-text {
+      font-size: 13px;
+    }
+
+    .step-title {
+      font-size: 14px;
+    }
+  }
+</style>

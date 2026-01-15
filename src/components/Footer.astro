@@ -1,9 +1,10 @@
 ---
 const links = [
-  { name: 'Slack', href: '/slack' },
+  { name: 'Pioneer Program', href: '/pioneer' },
+  { name: 'Community', href: '/slack' },
   { name: 'Support', href: '/support' },
-  { name: 'Privacy Policy', href: '/privacy' },
-  { name: 'Terms of Service', href: '/terms' },
+  { name: 'Privacy', href: '/privacy' },
+  { name: 'Terms', href: '/terms' },
 ]
 import backgroundImage from '../assets/Background-3.png';
 ---
@@ -12,19 +13,19 @@ import backgroundImage from '../assets/Background-3.png';
   class="relative overflow-hidden bg-transparent bg-cover bg-center bg-no-repeat bg-fixed"
   style={`background-image: url(${backgroundImage.src});`}
 >
-  <div class="relative mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
-    <div class="flex justify-center space-x-6 md:order-2">
+  <div class="relative mx-auto max-w-7xl px-6 py-16 md:flex md:items-center md:justify-between lg:px-8">
+    <div class="flex justify-center space-x-8 md:order-2 flex-wrap gap-y-4">
       {
         links.map((link) => (
-          <a href={link.href} class="text-gray-400 hover:text-shadow-blue transition-colors">
+          <a href={link.href} class="text-gray-400 hover:text-white transition-colors text-sm">
             {link.name}
           </a>
         ))
       }
     </div>
     <div class="mt-8 md:order-1 md:mt-0">
-      <p class="text-center text-xs leading-5 text-gray-400">
-        &copy; {new Date().getFullYear()} Shadow. All rights reserved baby.
+      <p class="text-center text-sm leading-5 text-gray-500">
+        &copy; {new Date().getFullYear()} Shadow. Built for builders.
       </p>
     </div>
   </div>

@@ -5,8 +5,12 @@ import vercel from '@astrojs/vercel';
 import icon from "astro-icon";
 import mdx from '@astrojs/mdx';
 
+import react from '@astrojs/react';
+
 export default defineConfig({
-  integrations: [tailwind(), mdx(), icon()],
+  integrations: [tailwind(), mdx(), icon(), react({
+    include: ['**/react/*', '**/FaultyTerminal.jsx']
+  })],
   output: 'server',
   adapter: vercel({
     webAnalytics: {
@@ -14,4 +18,3 @@ export default defineConfig({
     }
   }),
 });
-

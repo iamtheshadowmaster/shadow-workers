@@ -1,85 +1,223 @@
 ---
 ---
 
-<nav id="main-nav" class="fixed w-full z-50 bg-transparent border-b border-transparent transition-all duration-300">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="flex h-16 items-center justify-between">
-      <div class="flex items-center gap-8">
-        <a href="/" class="flex items-center space-x-2">
-          <img src="/images/logo.svg" alt="Shadow Logo" class="w-24 h-24" />
-        </a>
+<nav id="main-nav" class="glass-nav">
+  <div class="glass-nav-container">
+    <div class="glass-surface">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="flex h-20 items-center justify-between">
+          <div class="flex items-center gap-8">
+            <a href="/" class="flex items-center space-x-2 nav-logo">
+              <img src="/images/logo.svg" alt="Shadow Logo" class="w-24 h-24 drop-shadow-lg" />
+            </a>
 
-        <!-- Solutions Dropdown -->
-        <div class="relative group hidden md:block">
-          <button class="text-gray-300 hover:text-white text-sm transition-all duration-200 flex items-center gap-1">
-            Solutions
-            <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
+            <!-- Solutions Dropdown -->
+            <div class="relative group hidden md:block">
+              <button class="nav-link flex items-center gap-1.5">
+                Solutions
+                <svg class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
 
-          <!-- Dropdown Menu -->
-          <div class="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
-            <div class="bg-black/95 backdrop-blur-sm rounded-lg shadow-xl border border-gray-800 py-2">
-              <a href="/product-managers" class="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
-                PMs
-              </a>
-              <a href="/engineers" class="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
-                Engineers
-              </a>
-              <a href="/sales" class="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
-                Sales
-              </a>
-              <a href="/founders" class="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
-                Founders
-              </a>
-              <a href="/investors" class="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors">
-                Investors
-              </a>
+              <!-- Dropdown Menu -->
+              <div class="absolute left-0 mt-3 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
+                <div class="glass-dropdown">
+                  <a href="/product-managers" class="dropdown-item">
+                    Product Managers
+                  </a>
+                  <a href="/engineers" class="dropdown-item">
+                    Engineers
+                  </a>
+                  <a href="/sales" class="dropdown-item">
+                    Sales
+                  </a>
+                  <a href="/founders" class="dropdown-item">
+                    Founders
+                  </a>
+                  <a href="/investors" class="dropdown-item">
+                    Investors
+                  </a>
+                </div>
+              </div>
             </div>
+
+            <a href="/pricing" class="nav-link hidden md:block">
+              Pricing
+            </a>
+            <a href="/blog" class="nav-link hidden md:block">
+              Blog
+            </a>
+          </div>
+          <div class="flex items-center gap-4">
+            <a
+              href="https://app.yourshadowai.com/sign-in"
+              class="nav-link">
+              Log in
+            </a>
+            <a
+              href="https://app.yourshadowai.com/sign-up"
+              class="glass-button">
+              Early access
+            </a>
           </div>
         </div>
-
-        <a href="/pricing" class="text-gray-300 hover:text-white text-sm transition-all duration-200 hidden md:block">
-          Pricing
-        </a>
-        <a href="/blog" class="text-gray-300 hover:text-white text-sm transition-all duration-200 hidden md:block">
-          Blog
-        </a>
-      </div>
-      <div class="flex items-center">
-        <a
-          href="https://app.yourshadowai.com/sign-in"
-          class="text-gray-300 hover:text-white mr-4 text-sm transition-all duration-200">
-          Log in
-        </a>
-        <a
-          href="https://app.yourshadowai.com/sign-up"
-          class="bg-white text-black px-4 py-2 rounded-md text-sm font-semibold hover:bg-gray-100 transition-all duration-200">
-          Early access
-        </a>
       </div>
     </div>
   </div>
 </nav>
 
+<style>
+  .glass-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    width: 100%;
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  .glass-nav-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .glass-surface {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  }
+
+  .glass-nav.scrolled .glass-surface {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-logo {
+    /* Logo hover effects removed */
+  }
+
+  .nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0.5));
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: #ffffff;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .glass-dropdown {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37),
+                0 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+    overflow: hidden;
+    padding: 0.5rem;
+  }
+
+  .dropdown-item {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .dropdown-item:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-button {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    color: #000;
+    padding: 0.625rem 1.5rem;
+    border-radius: 99px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2),
+                0 0 1px rgba(255, 255, 255, 0.5) inset;
+  }
+
+  /* Mobile responsive adjustments */
+  @media (max-width: 768px) {
+    .glass-nav {
+      padding: 1rem 1rem 0;
+    }
+
+    .glass-surface {
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .glass-nav {
+      padding: 0.75rem 0.75rem 0;
+    }
+  }
+</style>
+
 <script>
-  // Add scroll listener to change nav background
+  // Add scroll listener to enhance glass effect
   const nav = document.getElementById('main-nav');
 
   function handleScroll() {
-    if (window.scrollY > 50) {
-      nav?.classList.add('bg-black/80', 'border-gray-800', 'backdrop-blur-sm');
-      nav?.classList.remove('bg-transparent', 'border-transparent');
+    if (window.scrollY > 20) {
+      nav?.classList.add('scrolled');
     } else {
-      nav?.classList.remove('bg-black/80', 'border-gray-800', 'backdrop-blur-sm');
-      nav?.classList.add('bg-transparent', 'border-transparent');
+      nav?.classList.remove('scrolled');
     }
   }
 
   // Run on load
   handleScroll();
 
-  // Run on scroll
-  window.addEventListener('scroll', handleScroll);
+  // Run on scroll with throttle for performance
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        handleScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
 </script>
