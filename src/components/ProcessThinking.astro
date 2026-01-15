@@ -494,7 +494,7 @@ You are the only person in the room who ignores the noise, focuses on first prin
     openFileButtons.forEach(button => {
       button.addEventListener('click', (e) => {
         e.stopPropagation(); // Prevent triggering the timeline collapse
-        const fileType = button.getAttribute('data-file');
+        const fileType = button.getAttribute('data-file') as keyof typeof fileContent;
         const fileData = fileContent[fileType];
 
         if (fileData && modal && modalTitle && modalContent) {
@@ -571,7 +571,7 @@ You are the only person in the room who ignores the noise, focuses on first prin
     });
 
     // Basic markdown to HTML converter
-    function convertMarkdownToHTML(markdown) {
+    function convertMarkdownToHTML(markdown: string): string {
       let html = markdown;
 
       // Code blocks (must be first to protect content)
