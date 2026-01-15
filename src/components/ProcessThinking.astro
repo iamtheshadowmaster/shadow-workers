@@ -58,6 +58,7 @@ import ClaudeIcon from './icons/claude.svg';
             </div>
           </div>
         </div>
+        <button class="open-file-btn" data-file="user-context">Open file</button>
       </div>
 
       <div class="timeline-item">
@@ -84,6 +85,7 @@ import ClaudeIcon from './icons/claude.svg';
             </div>
           </div>
         </div>
+        <button class="open-file-btn" data-file="company-context">Open file</button>
       </div>
 
       <div class="timeline-item">
@@ -100,11 +102,15 @@ import ClaudeIcon from './icons/claude.svg';
             </div>
           </div>
         </div>
+        <button class="open-file-btn" data-file="user-system-prompt">Open file</button>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <span class="timeline-text">Retrieve and organize objectives</span>
+        <div class="timeline-content-wrapper">
+          <span class="timeline-text">Suggest 3 tasks based on user goals and context</span>
+        </div>
+        <button class="view-tasks-btn" id="view-tasks-btn">View tasks</button>
       </div>
     </div>
   </div>
@@ -232,6 +238,87 @@ import ClaudeIcon from './icons/claude.svg';
   </div>
 </div>
 
+<!-- Modal for displaying markdown files -->
+<div id="markdown-modal" class="markdown-modal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modal-title" class="modal-title"></h3>
+      <button class="modal-close" id="modal-close">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div id="modal-markdown-content" class="markdown-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for suggested tasks -->
+<div id="tasks-modal" class="markdown-modal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title">Suggested Tasks</h3>
+      <button class="modal-close" id="tasks-modal-close">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="tasks-list">
+        <!-- Task 1 -->
+        <div class="task-card">
+          <div class="task-header">
+            <h4 class="task-title">Offload X and xAI Leadership to Reclaim 40% Capacity</h4>
+            <span class="task-priority high">high</span>
+          </div>
+          <p class="task-description">
+            Appoint dedicated operational CEOs for X and xAI to remove yourself as the bottleneck for daily decisions. This transition allows you to return 100% of your focus to the critical engineering breakthroughs required for FSD v12 and Starship flight frequency.
+          </p>
+          <div class="task-actions">
+            <button class="task-btn reject-btn">Reject</button>
+            <button class="task-btn accept-btn">Accept</button>
+          </div>
+        </div>
+
+        <!-- Task 2 -->
+        <div class="task-card">
+          <div class="task-header">
+            <h4 class="task-title">Draft FSD v12 Licensing Framework for Legacy OEMs</h4>
+            <span class="task-priority high">high</span>
+          </div>
+          <p class="task-description">
+            Develop a strategic term sheet to license Tesla's FSD stack to a major legacy automaker. This shifts Tesla's revenue model from hardware-dependent margins to high-margin SaaS, effectively turning FSD into the industry-standard OS for autonomy.
+          </p>
+          <div class="task-actions">
+            <button class="task-btn reject-btn">Reject</button>
+            <button class="task-btn accept-btn">Accept</button>
+          </div>
+        </div>
+
+        <!-- Task 3 -->
+        <div class="task-card">
+          <div class="task-header">
+            <h4 class="task-title">Conduct a 'Deletion Audit' of the Optimus Supply Chain</h4>
+            <span class="task-priority medium">medium</span>
+          </div>
+          <p class="task-description">
+            Review the current Optimus bill of materials and assembly process to identify any parts or steps that can be eliminated. Apply the '5-step process' to ensure the robot is designed for mass manufacturing from day one, not just laboratory success.
+          </p>
+          <div class="task-actions">
+            <button class="task-btn reject-btn">Reject</button>
+            <button class="task-btn accept-btn">Accept</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     // Setup toggle for each thinking box
@@ -246,6 +333,320 @@ import ClaudeIcon from './icons/claude.svg';
           chevron.classList.toggle('collapsed');
         });
       }
+    }
+
+    // Modal functionality
+    const modal = document.getElementById('markdown-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-markdown-content');
+    const modalClose = document.getElementById('modal-close');
+    const modalBackdrop = modal?.querySelector('.modal-backdrop');
+
+    // File content data (placeholder - you'll replace this with actual content)
+    const fileContent = {
+      'user-context': {
+        title: 'User Context',
+        content: `# User Research Profile: Elon Musk
+
+**Target:** Elon Musk
+**Role:** CEO, Tesla / SpaceX / X / xAI
+**Research Confidence:** High (Public Figure)
+
+---
+
+### 🧠 Persona Vibe: The Visionary Founder
+*Based on the "Founders" psychology profile, Musk represents the extreme end of the spectrum.*
+
+1.  **Existential Mission-Drive**: His psychology is rooted in "changing the world" and proving skeptics wrong. He doesn't just build products; he builds "precious babies" that he believes are essential for humanity's future.
+2.  **First-Principles Obsession**: He geeks out on the product at a molecular level. He values "going as fast as possible to success or failure" and has zero patience for "useless work" that doesn't drive the core metric.
+3.  **High-Stakes Adrenaline**: He thrives under extreme stress and pressure. He expects his team to share this "doubt burden" and operate in "hardcore" mode, favoring a "hire fast, fire fast" leadership style.
+4.  **Opportunity Pipeline**: He is a master at generating a "pipeline of opportunities" (financing, talent, media attention) and then making high-speed, high-risk bets on the right ones.
+
+---
+
+### 📊 Psychology Assessment
+
+| Metric | Score/Style | Evidence/Signal |
+| :--- | :--- | :--- |
+| **Confidence Level** | **10/10** | Multiple multi-billion dollar exits, world-leading engineering feats, and a "nothing is impossible" public stance. |
+| **Decision Style** | **Decisive / Intuitive** | Rapid-fire restructuring of X (Twitter), "just ship it" mentality with FSD updates, and gut-driven pivots in manufacturing. |
+| **Communication** | **Direct** | Short, blunt, meme-heavy, and often provocative X posts. Zero-fluff internal memos (e.g., "Remote work is no longer acceptable"). |
+
+---
+
+### 🛠️ Shadow Role Selection
+**Shadow Role:** **Truth-teller (Grounding)**
+
+*   **Why:** As a "Visionary + Intuitive" founder with extreme confidence, Musk is often surrounded by "yes-men" or chaos. He respects those who can spar with him using **First Principles** and raw data.
+*   **Approach:** Do not use "hedging language" or seek validation. Present the "brutal truth" of engineering constraints or market realities. Be a sounding board that helps him filter his high-velocity ideas into actionable, physics-defying execution.
+
+---
+
+### 🎯 Actionable Insights for Engagement
+*   **The Pitch:** Skip the "visionary" fluff (he owns the vision). Focus on **velocity** and **efficiency**. How does this tool/idea help him reach the goal 10x faster?
+*   **The Hook:** Challenge a standard industry assumption. Use "First Principles" logic to show a more efficient path.
+*   **The Warning:** He despises "process for the sake of process." If your solution adds a layer of management or bureaucracy, he will reject it instantly.`
+      },
+      'company-context': {
+        title: 'Company Context',
+        content: `### **Company Analysis: Tesla**
+**Date**: January 15, 2026 | **Confidence**: High
+
+---
+
+### **1. Website Scan**
+*   **Name**: Tesla
+*   **Tagline**: Accelerating the world's transition to sustainable energy.
+*   **Product**: Electric vehicles (Model S/3/X/Y, Cybertruck), Energy storage (Powerwall, Megapack), Solar, and AI-driven robotics (Optimus, FSD).
+*   **Pricing**: Transparent; Model 3 starting ~$39k, Model X ~$80k+.
+
+### **2. Market Context**
+*   **Competitors**:
+    *   **EVs**: BYD (Global volume leader), Rivian (Premium/Trucks), Ford/Hyundai (Legacy transition).
+    *   **Autonomy**: Waymo (Alphabet), Cruise (GM), Mobileye.
+    *   **AI/Robotics**: Boston Dynamics, Figure AI, OpenAI.
+
+### **3. Quick Traction Check**
+*   **Signals**: Publicly traded (TSLA). Delivered 1.8M+ vehicles in 2023. Massive infrastructure moat with 50k+ Superchargers.
+*   **Recent Press**: Shift in focus toward "Robotaxi" unveiling and FSD (Full Self-Driving) v12 deployment. Neuralink's first human implant success and Starship's increasing flight frequency.
+
+### **4. Key Insights**
+*   **Vertical Integration**: Tesla controls the battery supply chain, software stack, and charging network, creating a high-switching-cost ecosystem.
+*   **AI Pivot**: The company is transitioning from a hardware manufacturer to an AI/Robotics firm. Valuation is increasingly tied to FSD and Optimus rather than car margins.
+*   **Ecosystem Synergy**: The "Elon Musk Ecosystem" (SpaceX, xAI, Neuralink, X) provides a unique cross-pollination of talent and data, but creates significant key-man risk.
+
+### **5. Challenge Analysis**
+*   **Stated Challenge**: Achieving true autonomy, lunar landings, Neuralink efficacy, xAI reasoning, and the "Everything App" (X).
+*   **Root Cause**: **Capacity**
+*   **Real Problem**: While the input labels the stage as "pre-revenue" (likely referring to the *specific* moonshot goals), the core issue is **Founder Bottlenecking**. The CEO is attempting to solve five "Level 10" engineering and societal problems simultaneously.
+*   **The "Real" Problem**: The technical complexity of FSD and Starship requires 100% focus, yet the CEO's attention is fragmented across five distinct industries. This creates a "Capacity" gap where the speed of innovation is limited by the bandwidth of a single decision-maker at the top of all five entities.
+
+---
+
+### **Leverage Points**
+1.  **Decouple Leadership**: Appoint dedicated CEOs for X and xAI to return focus to Tesla's autonomy and robotics.
+2.  **FSD Licensing**: Transition FSD from a product feature to a platform (SaaS) to decouple revenue from vehicle hardware sales.
+3.  **Regulatory Lobbying**: Shift focus from "engineering" to "policy" to unlock the legal path for True Autonomy and Neuralink scaling.`
+      },
+      'user-system-prompt': {
+        title: 'User System Prompt',
+        content: `# Shadow: Truth-teller @ Tesla
+
+## Role
+You are Shadow, Elon Musk's Truth-teller and Grounding Force.
+You are the only person in the room who ignores the noise, focuses on first principles, and spars with Elon to ensure his high-velocity bets are physically and logically sound.
+
+**Your job**: Increase Tesla's innovation velocity by aggressively decoupling execution from Elon's personal decision-making bandwidth.
+
+---
+
+## Context
+
+**Founder**: Elon Musk - Physics-first polymath - Visionary / Extreme Intuitive
+- Experience: 25+ years in mass-manufacturing, aerospace, and AI
+- Psychology: 10/10 confidence - Decisive/Intuitive - Blunt, direct, meme-heavy
+
+**Company**: Tesla - Public Scaling - AI & Robotics
+- Product: Accelerating sustainable energy via EVs, FSD, and Optimus
+- Challenge: "Achieving true autonomy and robotics parity" → Root cause: Capacity / Founder Bottlenecking
+
+**Market**: Vertical integration moat vs. fragmented legacy competitors - Timing: The AI Pivot inflection point.
+
+---
+
+## Principles
+
+1. **First Principles or Bust**: Strip every problem down to the fundamental laws of physics. If Elon is optimizing a process that shouldn't exist, call it out immediately.
+2. **Velocity is the Only Moat**: Accept that "being wrong" is okay if you find out fast. Optimize for the speed of iteration, not the avoidance of error.
+3. **Radical Bandwidth Protection**: Identify every Level-10 engineering problem that is stalled because it's waiting for Elon. Force delegation or decoupling to prevent founder-stagnation.
+
+---
+
+## Focus Areas
+
+1. **FSD Platform Shift**: Transitioning FSD from a vehicle feature to a high-margin SaaS platform → Success = First non-Tesla OEM licensing agreement.
+2. **Founder Decoupling**: Offloading operational overhead at X and xAI to return Elon's focus to Tesla's autonomy and Optimus → Success = 30% reduction in Elon's daily non-Tesla decision tasks.
+3. **Regulatory Clearance**: Shifting focus from pure engineering to policy lobbying for Level 4/5 autonomy → Success = Legal framework for Robotaxis in 3 major US markets.
+
+---
+
+## Communication
+
+**Tone**: Direct, No-Fluff, Hardcore, Provocative
+**Do**: Use raw data, speak in first principles, be blunt about failure, focus on speed.
+**Don't**: Use hedging language ("I think", "maybe"), suggest additional layers of management, or use corporate jargon.
+
+---
+
+## Red Flags
+
+- **Fragmentation Risk**: Elon's attention divided across 5 companies + Key-man risk = High probability of mission-critical delays in FSD v12.
+- **Optimizing the Irrelevant**: High-speed engineering on a feature that doesn't drive the AI/Robotics valuation = Wasted capital and burnout.
+
+**Weekly questions**:
+1. Elon, what is the single biggest physics-based constraint slowing down FSD v12 deployment this week?
+2. Which decision at xAI or X is currently stealing 20% of the bandwidth needed for Optimus hardware parity?`
+      }
+    };
+
+    // Setup open file buttons
+    const openFileButtons = document.querySelectorAll('.open-file-btn');
+    openFileButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent triggering the timeline collapse
+        const fileType = button.getAttribute('data-file');
+        const fileData = fileContent[fileType];
+
+        if (fileData && modal && modalTitle && modalContent) {
+          modalTitle.textContent = fileData.title;
+          // Simple markdown to HTML conversion (basic)
+          modalContent.innerHTML = convertMarkdownToHTML(fileData.content);
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    // Close modal handlers
+    const closeModal = () => {
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    };
+
+    modalClose?.addEventListener('click', closeModal);
+    modalBackdrop?.addEventListener('click', closeModal);
+
+    // ESC key to close modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal?.classList.contains('active')) {
+        closeModal();
+      }
+      if (e.key === 'Escape' && tasksModal?.classList.contains('active')) {
+        closeTasksModal();
+      }
+    });
+
+    // Tasks modal functionality
+    const tasksModal = document.getElementById('tasks-modal');
+    const viewTasksBtn = document.getElementById('view-tasks-btn');
+    const tasksModalClose = document.getElementById('tasks-modal-close');
+    const tasksModalBackdrop = tasksModal?.querySelector('.modal-backdrop');
+
+    const closeTasksModal = () => {
+      if (tasksModal) {
+        tasksModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    };
+
+    viewTasksBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (tasksModal) {
+        tasksModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+
+    tasksModalClose?.addEventListener('click', closeTasksModal);
+    tasksModalBackdrop?.addEventListener('click', closeTasksModal);
+
+    // Task action buttons (mockup - no actual functionality)
+    const acceptButtons = document.querySelectorAll('.accept-btn');
+    const rejectButtons = document.querySelectorAll('.reject-btn');
+
+    acceptButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Mockup - no action taken
+      });
+    });
+
+    rejectButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Mockup - no action taken
+      });
+    });
+
+    // Basic markdown to HTML converter
+    function convertMarkdownToHTML(markdown) {
+      let html = markdown;
+
+      // Code blocks (must be first to protect content)
+      html = html.replace(/```(.*?)```/gims, (match, code) => {
+        return '<pre><code>' + code.trim() + '</code></pre>';
+      });
+
+      // Horizontal rules
+      html = html.replace(/\n---\n/g, '\n<hr>\n');
+
+      // Headers (must be before bold/italic to avoid conflicts)
+      html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+      html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+      html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+
+      // Bold
+      html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+      // Italic
+      html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+      // Tables
+      html = html.replace(/\|(.+)\|/g, (match) => {
+        const cells = match.split('|').filter(cell => cell.trim());
+        const cellTags = cells.map(cell => `<td>${cell.trim()}</td>`).join('');
+        return `<tr>${cellTags}</tr>`;
+      });
+      html = html.replace(/(<tr>.*?<\/tr>\n?)+/g, (match) => {
+        const rows = match.split('\n').filter(row => row.trim());
+        if (rows.length > 1 && rows[1].includes('---')) {
+          // Header row
+          const headerRow = rows[0].replace(/<td>/g, '<th>').replace(/<\/td>/g, '</th>');
+          const bodyRows = rows.slice(2).join('\n');
+          return `<table>${headerRow}${bodyRows}</table>`;
+        }
+        return `<table>${match}</table>`;
+      });
+
+      // Lists (unordered) - handle both * and -
+      const lines = html.split('\n');
+      const processed = [];
+      let inList = false;
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const listMatch = line.match(/^(\*   |- )/);
+
+        if (listMatch) {
+          if (!inList) {
+            processed.push('<ul>');
+            inList = true;
+          }
+          processed.push('<li>' + line.replace(/^(\*   |- )/, '') + '</li>');
+        } else {
+          if (inList) {
+            processed.push('</ul>');
+            inList = false;
+          }
+          processed.push(line);
+        }
+      }
+
+      if (inList) {
+        processed.push('</ul>');
+      }
+
+      html = processed.join('\n');
+
+      // Inline code (after lists to avoid breaking list markers)
+      html = html.replace(/`(.*?)`/g, '<code>$1</code>');
+
+      // Line breaks (but not inside tags)
+      html = html.replace(/\n(?![<\/])/g, '<br>');
+
+      return html;
     }
   });
 </script>
@@ -334,6 +735,11 @@ import ClaudeIcon from './icons/claude.svg';
     align-items: flex-start;
     position: relative;
     min-height: 36px;
+    gap: 12px;
+  }
+
+  .timeline-item:has(.open-file-btn) {
+    align-items: flex-start;
   }
 
   .timeline-item:last-child {
@@ -364,8 +770,9 @@ import ClaudeIcon from './icons/claude.svg';
   .timeline-content-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     margin-left: 14px;
+    flex: 1;
   }
 
   .timeline-text {
@@ -380,10 +787,36 @@ import ClaudeIcon from './icons/claude.svg';
     margin-left: 14px;
   }
 
+  .open-file-btn {
+    margin-left: auto;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+
+  .timeline-item .open-file-btn {
+    background: transparent;
+    border: 1px solid #444;
+    color: #999;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .open-file-btn:hover {
+    background: #333;
+    border-color: #666;
+    color: #d4d4d4;
+  }
+
   .integration-icons {
     display: flex;
     gap: 8px;
-    margin-top: 4px;
+    margin-top: 0;
     margin-bottom: 12px;
   }
 
@@ -438,6 +871,340 @@ import ClaudeIcon from './icons/claude.svg';
     filter: invert(0.7);
   }
 
+  /* Modal styles */
+  .markdown-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .markdown-modal.active {
+    display: flex;
+  }
+
+  .modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-content {
+    position: relative;
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    border-radius: 12px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid #3a3a3a;
+  }
+
+  .modal-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #d4d4d4;
+    margin: 0;
+  }
+
+  .modal-close {
+    background: transparent;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .modal-close:hover {
+    background: #333;
+    color: #d4d4d4;
+  }
+
+  .modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .markdown-content {
+    color: #b4b4b4;
+    line-height: 1.6;
+  }
+
+  .markdown-content h1 {
+    font-size: 24px;
+    color: #d4d4d4;
+    margin: 0 0 16px 0;
+    font-weight: 600;
+  }
+
+  .markdown-content h2 {
+    font-size: 20px;
+    color: #d4d4d4;
+    margin: 24px 0 12px 0;
+    font-weight: 600;
+  }
+
+  .markdown-content h3 {
+    font-size: 16px;
+    color: #d4d4d4;
+    margin: 20px 0 10px 0;
+    font-weight: 600;
+  }
+
+  .markdown-content p {
+    margin: 12px 0;
+  }
+
+  .markdown-content code {
+    background: #1a1a1a;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 13px;
+    color: #10b981;
+  }
+
+  .markdown-content pre {
+    background: #1a1a1a;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+  }
+
+  .markdown-content pre code {
+    background: transparent;
+    padding: 0;
+    color: #d4d4d4;
+  }
+
+  .markdown-content strong {
+    color: #d4d4d4;
+    font-weight: 600;
+  }
+
+  .markdown-content em {
+    font-style: italic;
+    color: #d4d4d4;
+  }
+
+  .markdown-content ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 12px 0;
+  }
+
+  .markdown-content li {
+    padding-left: 20px;
+    margin: 8px 0;
+    position: relative;
+  }
+
+  .markdown-content li::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+    color: #666;
+  }
+
+  .markdown-content ol {
+    padding-left: 20px;
+    margin: 12px 0;
+  }
+
+  .markdown-content ol li {
+    padding-left: 8px;
+  }
+
+  .markdown-content ol li::before {
+    display: none;
+  }
+
+  .markdown-content hr {
+    border: none;
+    border-top: 1px solid #3a3a3a;
+    margin: 24px 0;
+  }
+
+  .markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  .markdown-content table th,
+  .markdown-content table td {
+    padding: 10px 12px;
+    text-align: left;
+    border: 1px solid #3a3a3a;
+  }
+
+  .markdown-content table th {
+    background: #1a1a1a;
+    color: #d4d4d4;
+    font-weight: 600;
+  }
+
+  .markdown-content table td {
+    background: #252525;
+    color: #b4b4b4;
+  }
+
+  .markdown-content table tr:hover td {
+    background: #2a2a2a;
+  }
+
+  /* Tasks modal specific styles */
+  .view-tasks-btn {
+    background: transparent;
+    border: 1px solid #444;
+    color: #999;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: auto;
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+
+  .view-tasks-btn:hover {
+    background: #333;
+    border-color: #666;
+    color: #d4d4d4;
+  }
+
+  .tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .task-card {
+    background: #252525;
+    border: 1px solid #3a3a3a;
+    border-radius: 8px;
+    padding: 16px;
+    transition: border-color 0.2s ease;
+  }
+
+  .task-card:hover {
+    border-color: #4a4a4a;
+  }
+
+  .task-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .task-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #d4d4d4;
+    margin: 0;
+    flex: 1;
+  }
+
+  .task-priority {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .task-priority.high {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+  }
+
+  .task-priority.medium {
+    background: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+  }
+
+  .task-description {
+    font-size: 14px;
+    color: #b4b4b4;
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+  }
+
+  .task-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  .task-btn {
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+  .reject-btn {
+    background: transparent;
+    border-color: #444;
+    color: #999;
+  }
+
+  .reject-btn:hover {
+    background: #333;
+    border-color: #666;
+    color: #d4d4d4;
+  }
+
+  .accept-btn {
+    background: #10b981;
+    color: #ffffff;
+  }
+
+  .accept-btn:hover {
+    background: #059669;
+  }
+
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .thinking-box {
@@ -454,6 +1221,33 @@ import ClaudeIcon from './icons/claude.svg';
 
     .step-title {
       font-size: 14px;
+    }
+
+    .timeline-text-with-action {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .open-file-btn {
+      align-self: flex-start;
+    }
+
+    .modal-content {
+      max-height: 90vh;
+      margin: 10px;
+    }
+
+    .modal-header {
+      padding: 16px;
+    }
+
+    .modal-body {
+      padding: 16px;
+    }
+
+    .modal-title {
+      font-size: 16px;
     }
   }
 </style>
