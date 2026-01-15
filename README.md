@@ -3,6 +3,7 @@
 ## Release
 - 26-12-2025: support page
 - 15-12-2025: Slack page
+- 2026-01-15: pioneer program
 
 # Shadow Landing Page
 
