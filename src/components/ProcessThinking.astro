@@ -108,9 +108,9 @@ import ClaudeIcon from './icons/claude.svg';
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content-wrapper">
-          <span class="timeline-text">Suggest 3 tasks based on user goals and context</span>
+          <span class="timeline-text">Recommend 3 custom skills based on your workflows</span>
         </div>
-        <button class="view-tasks-btn" id="view-tasks-btn">View tasks</button>
+        <button class="view-tasks-btn" id="view-tasks-btn">View skills</button>
       </div>
     </div>
   </div>
@@ -203,12 +203,12 @@ import ClaudeIcon from './icons/claude.svg';
     </div>
   </div>
 
-  <!-- Step 3: Get daily action plans that take you closer to your goals -->
+  <!-- Step 3: Use your skills to automate work -->
   <div class="thinking-box">
     <div class="main-step" id="main-step-toggle-3">
       <div class="step-dot green"></div>
       <div class="step-content">
-        <h3 class="step-title">Get daily action plans that take you closer to your goals</h3>
+        <h3 class="step-title">Use your custom skills with Claude to automate work</h3>
       </div>
       <div class="step-chevron" id="chevron-icon-3">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -221,18 +221,18 @@ import ClaudeIcon from './icons/claude.svg';
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-line"></div>
-        <span class="timeline-text">Receive clear insights on what matters today</span>
+        <span class="timeline-text">Skills appear in your Claude interface, ready to use</span>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-line"></div>
-        <span class="timeline-text">Get 3 suggested tasks aligned with your goals</span>
+        <span class="timeline-text">Your team runs automations with simple prompts—no coding</span>
       </div>
 
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <span class="timeline-text">Chat your way through tasks in your Shadow space</span>
+        <span class="timeline-text">We refine skills based on usage and build new ones monthly</span>
       </div>
     </div>
   </div>
@@ -256,12 +256,12 @@ import ClaudeIcon from './icons/claude.svg';
   </div>
 </div>
 
-<!-- Modal for suggested tasks -->
+<!-- Modal for suggested skills -->
 <div id="tasks-modal" class="markdown-modal">
   <div class="modal-backdrop"></div>
   <div class="modal-content">
     <div class="modal-header">
-      <h3 class="modal-title">Suggested Tasks</h3>
+      <h3 class="modal-title">Recommended Custom Skills</h3>
       <button class="modal-close" id="tasks-modal-close">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -270,48 +270,48 @@ import ClaudeIcon from './icons/claude.svg';
     </div>
     <div class="modal-body">
       <div class="tasks-list">
-        <!-- Task 1 -->
+        <!-- Skill 1 -->
         <div class="task-card">
           <div class="task-header">
-            <h4 class="task-title">Offload X and xAI Leadership to Reclaim 40% Capacity</h4>
-            <span class="task-priority high">high</span>
+            <h4 class="task-title">Auto-summarize Executive Meetings</h4>
+            <span class="task-priority high">high impact</span>
           </div>
           <p class="task-description">
-            Appoint dedicated operational CEOs for X and xAI to remove yourself as the bottleneck for daily decisions. This transition allows you to return 100% of your focus to the critical engineering breakthroughs required for FSD v12 and Starship flight frequency.
+            Automatically pull meeting notes from Google Calendar + Slack, generate executive summaries with action items, and post them to your team Notion page. Your team just prompts Claude: "Summarize today's exec meeting."
           </p>
           <div class="task-actions">
-            <button class="task-btn reject-btn">Reject</button>
-            <button class="task-btn accept-btn">Accept</button>
+            <button class="task-btn reject-btn">Pass</button>
+            <button class="task-btn accept-btn">Build this</button>
           </div>
         </div>
 
-        <!-- Task 2 -->
+        <!-- Skill 2 -->
         <div class="task-card">
           <div class="task-header">
-            <h4 class="task-title">Draft FSD v12 Licensing Framework for Legacy OEMs</h4>
-            <span class="task-priority high">high</span>
+            <h4 class="task-title">Competitive Intelligence Reporter</h4>
+            <span class="task-priority high">high impact</span>
           </div>
           <p class="task-description">
-            Develop a strategic term sheet to license Tesla's FSD stack to a major legacy automaker. This shifts Tesla's revenue model from hardware-dependent margins to high-margin SaaS, effectively turning FSD into the industry-standard OS for autonomy.
+            Monitor competitor websites, funding announcements, and product launches. Weekly digest delivered to Slack with analysis of strategic threats and opportunities. Simply ask Claude: "What did our competitors ship this week?"
           </p>
           <div class="task-actions">
-            <button class="task-btn reject-btn">Reject</button>
-            <button class="task-btn accept-btn">Accept</button>
+            <button class="task-btn reject-btn">Pass</button>
+            <button class="task-btn accept-btn">Build this</button>
           </div>
         </div>
 
-        <!-- Task 3 -->
+        <!-- Skill 3 -->
         <div class="task-card">
           <div class="task-header">
-            <h4 class="task-title">Conduct a 'Deletion Audit' of the Optimus Supply Chain</h4>
-            <span class="task-priority medium">medium</span>
+            <h4 class="task-title">Customer Feedback Analyzer</h4>
+            <span class="task-priority medium">medium impact</span>
           </div>
           <p class="task-description">
-            Review the current Optimus bill of materials and assembly process to identify any parts or steps that can be eliminated. Apply the '5-step process' to ensure the robot is designed for mass manufacturing from day one, not just laboratory success.
+            Aggregate customer support tickets, reviews, and feedback from multiple sources. Extract patterns, categorize by urgency, and create monthly insight reports. Ask Claude: "What are customers complaining about most?"
           </p>
           <div class="task-actions">
-            <button class="task-btn reject-btn">Reject</button>
-            <button class="task-btn accept-btn">Accept</button>
+            <button class="task-btn reject-btn">Pass</button>
+            <button class="task-btn accept-btn">Build this</button>
           </div>
         </div>
       </div>
@@ -494,7 +494,7 @@ You are the only person in the room who ignores the noise, focuses on first prin
     openFileButtons.forEach(button => {
       button.addEventListener('click', (e) => {
         e.stopPropagation(); // Prevent triggering the timeline collapse
-        const fileType = button.getAttribute('data-file');
+        const fileType = button.getAttribute('data-file') as keyof typeof fileContent;
         const fileData = fileContent[fileType];
 
         if (fileData && modal && modalTitle && modalContent) {
@@ -571,7 +571,7 @@ You are the only person in the room who ignores the noise, focuses on first prin
     });
 
     // Basic markdown to HTML converter
-    function convertMarkdownToHTML(markdown) {
+    function convertMarkdownToHTML(markdown: string): string {
       let html = markdown;
 
       // Code blocks (must be first to protect content)
