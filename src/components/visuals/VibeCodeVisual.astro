@@ -1,0 +1,61 @@
+---
+// No imports needed
+---
+
+<style>
+  @keyframes typing-cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .typing-cursor {
+    animation: typing-cursor 1s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .typing-cursor {
+      animation: none;
+      opacity: 1;
+    }
+  }
+</style>
+
+<div class="rounded-2xl bg-white p-6 sm:p-8 h-[600px] flex items-center justify-center border border-gray-100 relative overflow-hidden">
+  <!-- Content wrapper -->
+  <div class="w-full max-w-lg space-y-6">
+    <!-- User Input (right-aligned with dark background) -->
+    <div class="flex justify-end">
+      <div class="bg-gray-900 text-white rounded-2xl px-4 py-3 max-w-[85%]">
+        <p class="text-[15px] leading-relaxed">
+          Write me a skill that tracks product features
+        </p>
+      </div>
+    </div>
+
+    <!-- AI Response -->
+    <div class="space-y-4">
+      <p class="text-[15px] text-gray-900 leading-relaxed">
+        I'll create a skill that:
+      </p>
+      <ul class="space-y-2.5 text-[15px] text-gray-700 leading-relaxed">
+        <li class="flex items-start gap-3">
+          <span class="text-gray-300 select-none">•</span>
+          <span class="flex-1">Monitors feature status in Notion</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-gray-300 select-none">•</span>
+          <span class="flex-1">Updates roadmap automatically</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-gray-300 select-none">•</span>
+          <span class="flex-1">Sends weekly progress reports</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Status -->
+    <div class="flex items-center gap-3 text-[13px] text-gray-500">
+      <div class="w-1.5 h-1.5 rounded-full bg-gray-900 typing-cursor"></div>
+      <span>Generating skill…</span>
+    </div>
+  </div>
+</div>

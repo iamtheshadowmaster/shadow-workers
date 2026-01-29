@@ -1,0 +1,490 @@
+---
+import backgroundImage from '../assets/Background-2.png';
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <img src={backgroundImage.src} alt="" class="w-full h-full object-cover" />
+  </div>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+
+    <!-- Main Headline -->
+    <h1 class="text-xl md:text-3xl lg:text-4xl font-medium text-white mb-6 leading-tight tracking-tight">
+      Hit your quarterly goals without the chaos
+    </h1>
+
+    <!-- Subheadline -->
+    <p class="text-l md:text-xl text-white/90 mb-12 max-w-2xl mx-auto font-normal">
+      The purpose-built AI that helps software teams deliver. <br>No setup. No prompt engineering.
+    </p>
+
+    <!-- Input Bar Container -->
+    <div class="max-w-3xl mx-auto">
+      <!-- Role Chips -->
+      <div class="flex items-center gap-2 mb-3 flex-wrap">
+        <button
+          type="button"
+          data-role="product"
+          class="role-chip px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
+        >
+          PMs
+        </button>
+        <button
+          type="button"
+          data-role="engineering"
+          class="role-chip px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
+        >
+          Engineers
+        </button>
+        <button
+          type="button"
+          data-role="sales"
+          class="role-chip px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
+        >
+          Sales
+        </button>
+        <button
+          type="button"
+          data-role="founder"
+          class="role-chip px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
+        >
+          Founders
+        </button>
+      </div>
+
+      <form id="hero-form" class="relative">
+        <!-- Input Bar with dark background -->
+        <div class="relative bg-[#2a2a2a] rounded-[32px] p-4 shadow-2xl">
+
+          <!-- Input Field -->
+          <input
+            type="text"
+            id="hero-input"
+            placeholder=""
+            autofocus
+            class="w-full bg-transparent text-white text-base md:text-lg px-4 py-3 outline-none placeholder-gray-400 border-none focus:ring-0"
+          />
+
+          <!-- Bottom Bar with Buttons -->
+          <div class="flex items-center justify-between mt-2">
+            <!-- Left Side Buttons -->
+            <div class="flex items-center gap-2">
+              <!-- Mention Button -->
+              <button
+                type="button"
+                id="mention-button"
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-transparent hover:bg-white/10 text-gray-400 hover:text-white transition-colors text-sm"
+                aria-label="Mention"
+              >
+                <span class="text-lg font-medium">@</span>
+                <span>Mention</span>
+              </button>
+
+              <!-- Attach Button -->
+              <button
+                type="button"
+                id="attach-button"
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-transparent hover:bg-white/10 text-gray-400 hover:text-white transition-colors text-sm"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
+                </svg>
+                <span>Attach</span>
+              </button>
+            </div>
+
+            <!-- Right Side Buttons -->
+            <div class="flex items-center gap-3">
+              <!-- Audio Button with waveform icon -->
+              <button
+                type="button"
+                class="w-9 h-9 rounded-full bg-transparent hover:bg-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+                aria-label="Voice input"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 10v3"/>
+                  <path d="M6 6v11"/>
+                  <path d="M10 3v18"/>
+                  <path d="M14 8v7"/>
+                  <path d="M18 5v13"/>
+                  <path d="M22 10v3"/>
+                </svg>
+              </button>
+
+              <!-- Submit Button (Arrow Up) -->
+              <button
+                type="submit"
+                id="submit-button"
+                class="w-9 h-9 rounded-full bg-gray-600 hover:bg-gray-500 flex items-center justify-center transition-all shadow-lg"
+                aria-label="Send message"
+              >
+                <svg id="submit-icon" class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Mention Modal Overlay -->
+  <div id="mention-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="mention-backdrop"></div>
+    <div class="relative bg-black rounded-3xl shadow-2xl max-w-md w-full overflow-hidden border border-white/10">
+      <!-- Close button -->
+      <button id="mention-close" class="absolute top-4 right-4 text-white/60 hover:text-white transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- Modal content -->
+      <div class="p-8">
+        <div class="mb-6">
+          <div class="text-4xl mb-4">@</div>
+          <h2 class="text-white text-2xl font-semibold mb-2">Mention for context</h2>
+          <p class="text-white/70 text-base leading-relaxed">
+            Mention your teammates, tasks, or notes to give Shadow additional context for better results.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Attach Modal Overlay -->
+  <div id="attach-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="attach-backdrop"></div>
+    <div class="relative bg-black rounded-3xl shadow-2xl max-w-md w-full overflow-hidden border border-white/10">
+      <!-- Close button -->
+      <button id="attach-close" class="absolute top-4 right-4 text-white/60 hover:text-white transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- Modal content -->
+      <div class="p-8">
+        <div class="mb-6">
+          <svg class="w-8 h-8 text-white mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
+          </svg>
+          <h2 class="text-white text-2xl font-semibold mb-2">Attach files</h2>
+          <p class="text-white/70 text-base leading-relaxed">
+            Import context from PDFs, Google Drive, and Notion files to help Shadow understand your needs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Placeholders for each role based on the brandscript
+  const placeholders = {
+    product: [
+      "Which features should I actually ship first?",
+      "Engineering is frustrated with me because specs keep changing...",
+      "I'm juggling 5 features across 3 teams. What's most important?",
+      "How do I get my whole squad aligned on the same OKR?",
+      "Another launch slipping a quarter. How do I prevent this?"
+    ],
+    engineering: [
+      "My team has 83 open PRs. Which ones should I unblock first?",
+      "My best devs are drowning in meetings and context-switching...",
+      "How do I protect my team's focus time without looking like I'm making excuses?",
+      "Velocity is plummeting. How do I get us back on track?",
+      "How do I help my team self-organize around what's critical?"
+    ],
+    sales: [
+      "I have 47 deals in my pipeline. Which ones should I focus on?",
+      "I'm working 60-hour weeks but still behind on quota...",
+      "How do I get my whole team aligned on the right deals?",
+      "My top performers don't trust my direction. How do I fix this?",
+      "How do I hit 112% of quota without burning out my team?"
+    ],
+    founder: [
+      "Can I hit my quarterly goals without losing my mind—or my team?",
+      "I'm in back-to-back meetings but my OKRs are at 15%...",
+      "How do I get my entire team pulling in the same direction?",
+      "Sunday night anxiety about next quarter. How do I break this cycle?",
+      "How do I lead strategically instead of just firefighting?"
+    ]
+  };
+
+  // Typewriter effect function
+  let currentTimeout: number | null = null;
+  let isTyping = false;
+
+  function typeWriter(element: HTMLInputElement, text: string, callback?: () => void) {
+    isTyping = true;
+    let i = 0;
+    element.placeholder = '';
+
+    function type() {
+      if (i < text.length) {
+        element.placeholder += text.charAt(i);
+        i++;
+        currentTimeout = window.setTimeout(type, 30); // Typing speed
+      } else {
+        isTyping = false;
+        if (callback) {
+          currentTimeout = window.setTimeout(callback, 3000); // Pause before next placeholder
+        }
+      }
+    }
+
+    type();
+  }
+
+  function eraseText(element: HTMLInputElement, callback?: () => void) {
+    isTyping = true;
+    const text = element.placeholder;
+    let i = text.length;
+
+    function erase() {
+      if (i > 0) {
+        element.placeholder = text.substring(0, i - 1);
+        i--;
+        currentTimeout = window.setTimeout(erase, 15); // Erasing speed (faster)
+      } else {
+        isTyping = false;
+        if (callback) {
+          currentTimeout = window.setTimeout(callback, 500); // Brief pause before typing next
+        }
+      }
+    }
+
+    erase();
+  }
+
+  // Handle form submission to redirect to signup page
+  const heroForm = document.getElementById('hero-form');
+  if (heroForm) {
+    heroForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Redirect to signup/signin page - adjust URL as needed
+      window.location.href = 'https://app.yourshadowai.com/sign-up';
+    });
+  }
+
+  // Handle role chip clicks and placeholder rotation
+  const roleChips = document.querySelectorAll('.role-chip');
+  const heroInput = document.getElementById('hero-input') as HTMLInputElement;
+  const submitButton = document.getElementById('submit-button');
+  const submitIcon = document.getElementById('submit-icon');
+
+  let selectedRole: string | null = null;
+  let userHasSelectedRole = false; // Track if user manually selected a role
+  let currentPlaceholderIndex = 0;
+  let currentRoleIndex = 0;
+  const roles = ['product', 'engineering', 'sales', 'founder'];
+
+  function updateActiveChip(role: string) {
+    // Only update chip highlights if user hasn't manually selected one
+    if (!userHasSelectedRole) {
+      roleChips.forEach(chip => {
+        const chipRole = chip.getAttribute('data-role');
+        if (chipRole === role) {
+          chip.classList.add('active');
+        } else {
+          chip.classList.remove('active');
+        }
+      });
+    }
+  }
+
+  function rotatePlaceholder() {
+    if (!heroInput) return;
+
+    // Clear any existing timeout
+    if (currentTimeout) {
+      window.clearTimeout(currentTimeout);
+    }
+
+    let textToShow: string;
+    let currentRole: string;
+
+    if (selectedRole) {
+      // User has selected a role: rotate within that role's placeholders
+      currentRole = selectedRole;
+      const rolePlaceholders = placeholders[selectedRole as keyof typeof placeholders];
+      textToShow = rolePlaceholders[currentPlaceholderIndex % rolePlaceholders.length];
+      currentPlaceholderIndex++;
+    } else {
+      // No role selected: rotate one placeholder per role
+      currentRole = roles[currentRoleIndex % roles.length];
+      const rolePlaceholders = placeholders[currentRole as keyof typeof placeholders];
+      textToShow = rolePlaceholders[currentPlaceholderIndex % rolePlaceholders.length];
+
+      currentRoleIndex++;
+      if (currentRoleIndex % roles.length === 0) {
+        currentPlaceholderIndex++;
+      }
+    }
+
+    // Erase current text first
+    eraseText(heroInput, () => {
+      // After erasing, switch chip and wait 1 second before typing new placeholder
+      updateActiveChip(currentRole);
+
+      currentTimeout = window.setTimeout(() => {
+        typeWriter(heroInput, textToShow, rotatePlaceholder);
+      }, 1000); // 1 second delay after chip switches
+    });
+  }
+
+  roleChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      // Mark that user has manually selected a role
+      userHasSelectedRole = true;
+
+      // Remove active class from all chips
+      roleChips.forEach(c => c.classList.remove('active'));
+
+      // Add active class to clicked chip
+      chip.classList.add('active');
+
+      // Update selected role
+      selectedRole = chip.getAttribute('data-role');
+      currentPlaceholderIndex = 0;
+
+      // Restart rotation with new role
+      if (currentTimeout) {
+        window.clearTimeout(currentTimeout);
+      }
+      rotatePlaceholder();
+    });
+  });
+
+  // Handle submit button color change based on input
+  if (heroInput && submitButton && submitIcon) {
+    heroInput.addEventListener('input', () => {
+      if (heroInput.value.length > 0) {
+        submitButton.classList.remove('bg-gray-600', 'hover:bg-gray-500');
+        submitButton.classList.add('bg-white', 'hover:bg-gray-100');
+        submitIcon.classList.remove('text-white');
+        submitIcon.classList.add('text-black');
+      } else {
+        submitButton.classList.remove('bg-white', 'hover:bg-gray-100');
+        submitButton.classList.add('bg-gray-600', 'hover:bg-gray-500');
+        submitIcon.classList.remove('text-black');
+        submitIcon.classList.add('text-white');
+      }
+    });
+
+    // Start the placeholder rotation on page load
+    rotatePlaceholder();
+  }
+
+  // Handle Mention and Attach modal toggles
+  const mentionButton = document.getElementById('mention-button');
+  const attachButton = document.getElementById('attach-button');
+  const mentionModal = document.getElementById('mention-modal');
+  const attachModal = document.getElementById('attach-modal');
+  const mentionClose = document.getElementById('mention-close');
+  const attachClose = document.getElementById('attach-close');
+  const mentionBackdrop = document.getElementById('mention-backdrop');
+  const attachBackdrop = document.getElementById('attach-backdrop');
+
+  function closeMentionModal() {
+    if (mentionModal) {
+      mentionModal.classList.add('hidden');
+    }
+  }
+
+  function closeAttachModal() {
+    if (attachModal) {
+      attachModal.classList.add('hidden');
+    }
+  }
+
+  if (mentionButton && mentionModal) {
+    mentionButton.addEventListener('click', () => {
+      mentionModal.classList.remove('hidden');
+      closeAttachModal();
+    });
+  }
+
+  if (attachButton && attachModal) {
+    attachButton.addEventListener('click', () => {
+      attachModal.classList.remove('hidden');
+      closeMentionModal();
+    });
+  }
+
+  // Close buttons
+  if (mentionClose) {
+    mentionClose.addEventListener('click', closeMentionModal);
+  }
+
+  if (attachClose) {
+    attachClose.addEventListener('click', closeAttachModal);
+  }
+
+  // Close on backdrop click
+  if (mentionBackdrop) {
+    mentionBackdrop.addEventListener('click', closeMentionModal);
+  }
+
+  if (attachBackdrop) {
+    attachBackdrop.addEventListener('click', closeAttachModal);
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeMentionModal();
+      closeAttachModal();
+    }
+  });
+</script>
+
+<style>
+  /* Remove autofill background color */
+  #hero-input:-webkit-autofill,
+  #hero-input:-webkit-autofill:hover,
+  #hero-input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #2a2a2a inset;
+    -webkit-text-fill-color: white;
+  }
+
+  /* Active chip styling */
+  .role-chip.active {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: white;
+  }
+
+  /* Ensure placeholder text doesn't get truncated */
+  #hero-input::placeholder {
+    text-overflow: clip;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  /* For WebKit browsers */
+  #hero-input::-webkit-input-placeholder {
+    text-overflow: clip;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  /* For Firefox */
+  #hero-input::-moz-placeholder {
+    text-overflow: clip;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  /* For Edge */
+  #hero-input::-ms-input-placeholder {
+    text-overflow: clip;
+    overflow: visible;
+    white-space: normal;
+  }
+</style>
+

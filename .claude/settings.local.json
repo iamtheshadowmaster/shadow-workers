@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__ide__getDiagnostics",
+      "Bash(yarn add resend)",
+      "Bash(npm install:*)",
+      "Bash(/opt/homebrew/bin/yarn add resend)",
+      "Bash(/usr/local/bin/yarn add:*)",
+      "Bash(~/.yarn/bin/yarn add:*)",
+      "Bash(command -v:*)",
+      "Bash(test -f /Users/thomasmaitre/website/src/components/Plan.astro)",
+      "Bash(test -f /Users/thomasmaitre/website/src/pages/team.astro)",
+      "Bash(npm run dev:*)",
+      "Bash(rm:*)",
+      "Bash(yarn install)",
+      "Bash(npm run build)",
+      "Bash(test -f /Users/thomasmaitre/website/src/components/Hero.astro)",
+      "Bash(git stash push:*)",
+      "Bash(git checkout:*)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)",
+      "Bash(yarn add @astrojs/mdx)",
+      "Bash(wait)",
+      "Bash(for file in /Users/thomasmaitre/website/src/content/blog/*.mdx)",
+      "Bash(done)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(curl:*)",
+      "Bash(git branch:*)",
+      "Bash(git reset:*)",
+      "Bash(test:*)",
+      "Bash(npm uninstall:*)",
+      "Skill(web-design-guidelines)",
+      "Skill(web-design-guidelines:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

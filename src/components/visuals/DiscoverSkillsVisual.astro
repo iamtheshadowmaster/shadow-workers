@@ -1,0 +1,93 @@
+---
+// No imports needed
+---
+
+<style>
+  @keyframes float-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+  }
+
+  @keyframes float-2 {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    33% { transform: translate(-45%, -55%) scale(1.15); }
+    66% { transform: translate(-55%, -45%) scale(0.85); }
+  }
+
+  @keyframes float-3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-25px, 35px) scale(0.9); }
+    66% { transform: translate(25px, -25px) scale(1.1); }
+  }
+
+  .animate-float-1 { animation: float-1 20s ease-in-out infinite; }
+  .animate-float-2 { animation: float-2 25s ease-in-out infinite; }
+  .animate-float-3 { animation: float-3 22s ease-in-out infinite; }
+</style>
+
+<div class="rounded-2xl bg-white p-6 sm:p-8 h-[600px] flex items-center justify-center border border-gray-100 relative overflow-hidden">
+  <!-- Content wrapper -->
+  <div class="w-full max-w-lg space-y-3">
+    <!-- Main Title -->
+    <div class="mb-4 flex items-center gap-2">
+      <div class="w-2 h-4 bg-gray-900 animate-pulse"></div>
+      <h3 class="text-lg font-semibold text-gray-900">Shadow recommends these skills</h3>
+    </div>
+
+    <!-- Skill Item 1 -->
+    <div class="flex items-center gap-3 p-4 rounded-lg bg-gray-50 border border-gray-200 hover:border-gray-300 transition-colors group cursor-pointer">
+      <div class="flex-1">
+        <div class="text-sm font-medium text-gray-900 mb-1">Track product features</div>
+        <div class="text-xs text-gray-500">Keep track of your development pipeline</div>
+      </div>
+      <button class="px-3 py-1.5 bg-black text-white text-xs font-medium rounded-md hover:bg-gray-800 transition-colors">
+        Add
+      </button>
+    </div>
+
+    <!-- Skill Item 2 -->
+    <div class="flex items-center gap-3 p-4 rounded-lg bg-gray-50 border border-gray-200 hover:border-gray-300 transition-colors group cursor-pointer">
+      <div class="flex-1">
+        <div class="text-sm font-medium text-gray-900 mb-1">Fetch all invoices</div>
+        <div class="text-xs text-gray-500">Retrieve billing data from your system</div>
+      </div>
+      <button class="px-3 py-1.5 bg-black text-white text-xs font-medium rounded-md hover:bg-gray-800 transition-colors">
+        Add
+      </button>
+    </div>
+
+    <!-- Skill Item 3 -->
+    <div class="flex items-center gap-3 p-4 rounded-lg bg-gray-50 border border-gray-200 hover:border-gray-300 transition-colors group cursor-pointer">
+      <div class="flex-1">
+        <div class="text-sm font-medium text-gray-900 mb-1">Write next 4 blog articles</div>
+        <div class="text-xs text-gray-500">Automate content creation for your audience</div>
+      </div>
+      <button class="px-3 py-1.5 bg-black text-white text-xs font-medium rounded-md hover:bg-gray-800 transition-colors">
+        Add
+      </button>
+    </div>
+
+    <!-- Skill Item 4 -->
+    <div class="flex items-center gap-3 p-4 rounded-lg bg-gray-50 border border-gray-200 hover:border-gray-300 transition-colors group cursor-pointer">
+      <div class="flex-1">
+        <div class="text-sm font-medium text-gray-900 mb-1">Generate sales report</div>
+        <div class="text-xs text-gray-500">Analyze performance metrics automatically</div>
+      </div>
+      <button class="px-3 py-1.5 bg-black text-white text-xs font-medium rounded-md hover:bg-gray-800 transition-colors">
+        Add
+      </button>
+    </div>
+
+    <!-- Skill Item 5 -->
+    <div class="flex items-center gap-3 p-4 rounded-lg bg-gray-50 border border-gray-200 hover:border-gray-300 transition-colors group cursor-pointer">
+      <div class="flex-1">
+        <div class="text-sm font-medium text-gray-900 mb-1">Update roadmap status</div>
+        <div class="text-xs text-gray-500">Sync project milestones in real-time</div>
+      </div>
+      <button class="px-3 py-1.5 bg-black text-white text-xs font-medium rounded-md hover:bg-gray-800 transition-colors">
+        Add
+      </button>
+    </div>
+  </div>
+</div>

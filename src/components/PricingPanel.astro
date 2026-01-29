@@ -2,530 +2,320 @@
 ---
 
 <!-- Pricing Panel Section -->
-<div id="pricing-section" class="relative bg-black py-32">
-  <div class="max-w-7xl mx-auto px-6">
+<div id="pricing-section" class="relative bg-[#111111] pt-48 pb-16 overflow-hidden">
+  <!-- Ambient background effects -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-1/4 -left-1/4 w-96 h-96 bg-white/3 rounded-full blur-3xl animate-pulse-slow"></div>
+    <div class="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-white/2 rounded-full blur-3xl animate-pulse-slow-delayed"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 relative">
 
     <!-- Section Header -->
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-4 leading-tight tracking-tight">
-        Pricing
-      </h2>
-      <p class="text-gray-400 text-lg">Start free and scale as you grow</p>
-    </div>
-
-    <!-- Individual vs Team/Enterprise Switcher -->
-    <div class="flex justify-center mb-12">
-      <div class="inline-flex items-center gap-2 bg-gray-900/50 border border-gray-800 rounded-full p-1">
-        <button
-          id="individual-tab"
-          class="tab-toggle active px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300"
-        >
-          Individual
-        </button>
-        <button
-          id="team-enterprise-tab"
-          class="tab-toggle px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300"
-        >
-          Team & Enterprise
-        </button>
+    <div class="text-center mb-20 animate-fade-in-up">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-sm rounded-full mb-6 shadow-lg">
+        <div class="w-2 h-2 rounded-full bg-black animate-pulse-gentle"></div>
+        <span class="text-sm font-semibold text-black uppercase tracking-wider">Pricing</span>
       </div>
+      <h2 class="text-xl md:text-3xl lg:text-4xl font-semibold text-white mb-6 leading-tight tracking-tight">
+        Simple, transparent pricing
+      </h2>
+      <p class="text-gray-400 text-lg">Supercharge Claude for your entire team</p>
     </div>
 
-    <!-- Individual Plans -->
-    <div id="individual-plans" class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    <!-- Pricing Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
 
-      <!-- Free Plan -->
-      <div class="relative bg-gradient-to-br from-gray-900/50 to-gray-950/50 border border-gray-800 rounded-2xl p-8 hover:border-gray-600/50 transition-all duration-300">
+      <!-- Starter Plan -->
+      <div class="relative bg-gradient-to-br from-gray-900/50 to-gray-950/50 border border-gray-800 rounded-2xl p-8 hover:border-gray-600/50 transition-all duration-300 backdrop-blur-sm">
 
         <!-- Plan Header -->
         <div class="mb-6">
           <h3 class="text-2xl font-bold text-white mb-2">Free</h3>
-          <p class="text-gray-400 text-sm mb-6">Discover what Shadow can do for you</p>
+          <p class="text-gray-400 text-sm mb-6">For individual professionals exploring AI</p>
 
           <!-- Price -->
-          <div class="mb-2">
-            <span class="text-5xl font-bold text-white">$0</span>
-            <span class="text-gray-400 text-lg">per month</span>
+          <div class="mb-2 h-[60px] flex items-center">
+            <div>
+              <span class="text-5xl font-bold text-white">$0</span>
+              <span class="text-gray-400 text-lg">/month</span>
+            </div>
           </div>
           <p class="text-sm text-gray-400">No credit card required</p>
         </div>
 
-        <!-- Period Row (Static Text) -->
-        <div class="flex items-center justify-between mb-6 h-10">
-          <span class="text-sm text-gray-500">Free forever</span>
-        </div>
-
         <!-- CTA Button -->
         <a
-          href="https://accounts.yourshadowai.com/waitlist"
-          class="block w-full text-center bg-white hover:bg-gray-100 text-black font-semibold px-6 py-3.5 rounded-lg transition-all duration-300 mb-8"
+          href="https://app.yourshadowai.com/sign-up"
+          class="block w-full text-center bg-white hover:bg-gray-100 text-black font-medium px-5 py-2.5 rounded-full transition-all duration-300 mb-8 text-sm"
         >
-          Get Started
+          Get Free
         </a>
 
         <!-- Features -->
         <div class="space-y-3">
-          <p class="text-sm font-semibold text-white mb-4">Features:</p>
+          <p class="text-sm font-semibold text-white mb-4">What's included:</p>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">Basic goal tracking and daily check-ins</span>
+            <span class="text-gray-300 text-sm">3 active skills</span>
           </div>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">AI-powered task generation</span>
+            <span class="text-gray-300 text-sm">No MCP integrations</span>
           </div>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">Personal system prompt</span>
+            <span class="text-gray-300 text-sm">Vibe editing skills</span>
           </div>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">Unlimited conversations</span>
+            <span class="text-gray-300 text-sm">One-click Chrome extension</span>
           </div>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">Web, iOS, and Android access</span>
+            <span class="text-gray-300 text-sm">Email support</span>
           </div>
         </div>
       </div>
 
-      <!-- Pro Plan -->
-      <div class="relative bg-gradient-to-br from-purple-900/20 to-gray-950/50 border border-purple-500/30 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-300">
+      <!-- Pro Plan (Highlighted) -->
+      <div class="relative pricing-card-pro rounded-2xl p-[2px] animate-gradient-border">
+        <!-- Animated gradient border background -->
+        <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500 animate-gradient-x"></div>
+
+        <!-- Inner card content -->
+        <div class="relative bg-[#111111] rounded-2xl p-8 h-full">
 
         <!-- Plan Header -->
         <div class="mb-6">
           <h3 class="text-2xl font-bold text-white mb-2">Pro</h3>
-          <p class="text-gray-400 text-sm mb-6">For daily productivity</p>
+          <p class="text-gray-400 text-sm mb-6">For teams who want to work smarter</p>
 
           <!-- Price -->
-          <div class="mb-2">
-            <span class="text-5xl font-bold text-white pro-monthly-price" data-base-price="25">$50</span>
-            <span class="text-5xl font-bold text-white pro-annual-price hidden" data-base-price="20">$20</span>
-            <span class="text-gray-400 text-lg"> per month</span>
+          <div class="mb-2 h-[60px] flex items-center">
+            <div>
+              <span class="text-5xl font-bold text-white">$39</span>
+              <span class="text-gray-400 text-lg">/user/month</span>
+            </div>
           </div>
-          <p class="text-sm text-gray-400 pro-monthly-billing">Billed monthly</p>
-          <p class="text-sm text-gray-400 pro-annual-billing hidden">Billed annually (<span class="pro-annual-total">$240</span>/year)</p>
-        </div>
-
-        <!-- Period Row with Toggle -->
-        <div class="flex items-center justify-between mb-6 h-10">
-          <label class="relative inline-flex items-center cursor-pointer">
-            <input type="checkbox" class="sr-only peer pro-period-toggle" data-plan="pro">
-            <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
-            <span class="ms-3 text-sm text-gray-300">Annual</span>
-          </label>
-          <span class="text-sm text-green-400 pro-savings hidden" data-base-savings="60">Save $60</span>
+          <p class="text-sm text-gray-400">Billed monthly</p>
         </div>
 
         <!-- CTA Button -->
         <a
-          href="https://accounts.yourshadowai.com/waitlist"
-          class="block w-full text-center bg-white hover:bg-gray-100 text-black font-semibold px-6 py-3.5 rounded-lg transition-all duration-300 mb-6"
+          href="https://app.yourshadowai.com/sign-up"
+          class="block w-full text-center bg-white hover:bg-gray-100 text-black font-medium px-5 py-2.5 rounded-full transition-all duration-300 mb-8 text-sm"
         >
-          Get Started
+          Get Pro
         </a>
-
-        <!-- Credits Dropdown -->
-        <div class="mb-8">
-          <label class="block text-sm text-gray-400 mb-2">Credits per month</label>
-          <select id="pro-credits" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-purple-500 transition-all">
-            <option value="100" data-monthly-price="25" data-annual-price="20">100 credits</option>
-            <option value="200" data-monthly-price="45" data-annual-price="36">200 credits (+$20/month)</option>
-            <option value="500" data-monthly-price="70" data-annual-price="56">500 credits (+$45/month)</option>
-            <option value="1000" data-monthly-price="110" data-annual-price="88">1000 credits (+$85/month)</option>
-          </select>
-        </div>
 
         <!-- Features -->
         <div class="space-y-3">
-          <p class="text-sm font-semibold text-white mb-4">Everything in Free, plus:</p>
+          <p class="text-sm font-semibold text-white mb-4">Everything in Starter, plus:</p>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">Advanced AI model with extended thinking</span>
+            <span class="text-gray-300 text-sm"><strong class="text-white">Unlimited skills</strong></span>
           </div>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">Unlimited projects to organize goals</span>
+            <span class="text-gray-300 text-sm"><strong class="text-white">Unlimited MCP integrations</strong></span>
           </div>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">Connect Google Workspace, Slack, GitHub</span>
+            <span class="text-gray-300 text-sm"><strong class="text-white">Team management</strong></span>
           </div>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">Advanced search and filtering</span>
+            <span class="text-gray-300 text-sm">Usage analytics</span>
           </div>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">Custom integrations with MCP</span>
-          </div>
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-            </svg>
-            <span class="text-gray-300 text-sm">Analytics dashboard</span>
-          </div>
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-            </svg>
-            <span class="text-gray-300 text-sm">Priority support</span>
+            <span class="text-gray-300 text-sm">Chat support</span>
           </div>
         </div>
-      </div>
-
-    </div>
-
-    <!-- Team & Enterprise Plans -->
-    <div id="team-enterprise-plans" class="hidden grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-
-      <!-- Team Plan -->
-      <div class="relative bg-gradient-to-br from-blue-900/20 to-gray-950/50 border border-blue-500/30 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300">
-
-        <!-- Plan Header -->
-        <div class="mb-6">
-          <h3 class="text-2xl font-bold text-white mb-2">Team</h3>
-          <p class="text-gray-400 text-sm mb-6">For teams that want to collaborate</p>
-
-          <!-- Price -->
-          <div class="mb-2">
-            <span class="text-5xl font-bold text-white team-monthly-price" data-base-price="35">$35</span>
-            <span class="text-5xl font-bold text-white team-annual-price hidden" data-base-price="28">$28</span>
-            <span class="text-gray-400 text-lg"> per month/user</span>
-          </div>
-          <p class="text-sm text-gray-400 team-monthly-billing">Billed monthly</p>
-          <p class="text-sm text-gray-400 team-annual-billing hidden">Billed annually (<span class="team-annual-total">$336</span>/user/year)</p>
-        </div>
-
-        <!-- Period Row with Toggle -->
-        <div class="flex items-center justify-between mb-6 h-10">
-          <label class="relative inline-flex items-center cursor-pointer">
-            <input type="checkbox" class="sr-only peer team-period-toggle" data-plan="team">
-            <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-            <span class="ms-3 text-sm text-gray-300">Annual</span>
-          </label>
-          <span class="text-sm text-green-400 team-savings hidden" data-base-savings="84">Save $84/user</span>
-        </div>
-
-        <!-- CTA Button -->
-        <a
-          href="https://accounts.yourshadowai.com/waitlist"
-          class="block w-full text-center bg-white hover:bg-gray-100 text-black font-semibold px-6 py-3.5 rounded-lg transition-all duration-300 mb-6"
-        >
-          Get Started
-        </a>
-
-        <!-- Credits Dropdown -->
-        <div class="mb-8">
-          <label class="block text-sm text-gray-400 mb-2">Credits per month</label>
-          <select id="team-credits" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-blue-500 transition-all">
-            <option value="100" data-monthly-price="35" data-annual-price="28">100 credits/user</option>
-            <option value="200" data-monthly-price="50" data-annual-price="40">200 credits/user (+$15/month)</option>
-            <option value="500" data-monthly-price="70" data-annual-price="56">500 credits/user (+$35/month)</option>
-            <option value="1000" data-monthly-price="100" data-annual-price="80">1000 credits/user (+$65/month)</option>
-          </select>
-        </div>
-
-        <!-- Features -->
-        <div class="space-y-3">
-          <p class="text-sm font-semibold text-white mb-4">Everything in Pro, plus:</p>
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-            </svg>
-            <span class="text-gray-300 text-sm">Shared OKRs across the team</span>
-          </div>
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-            </svg>
-            <span class="text-gray-300 text-sm">Team collaboration with shared projects</span>
-          </div>
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-            </svg>
-            <span class="text-gray-300 text-sm">Centralized admin console</span>
-          </div>
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-            </svg>
-            <span class="text-gray-300 text-sm">Unified billing and seat management</span>
-          </div>
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-            </svg>
-            <span class="text-gray-300 text-sm">Team analytics and insights</span>
-          </div>
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-            </svg>
-            <span class="text-gray-300 text-sm">SSO and advanced security</span>
-          </div>
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-            </svg>
-            <span class="text-gray-300 text-sm">Dedicated support</span>
-          </div>
         </div>
       </div>
 
       <!-- Enterprise Plan -->
-      <div class="relative bg-gradient-to-br from-gray-900/50 to-gray-950/50 border border-gray-800 rounded-2xl p-8 hover:border-gray-600/50 transition-all duration-300">
+      <div class="relative bg-gradient-to-br from-gray-900/50 to-gray-950/50 border border-gray-800 rounded-2xl p-8 hover:border-gray-600/50 transition-all duration-300 backdrop-blur-sm">
 
         <!-- Plan Header -->
         <div class="mb-6">
           <h3 class="text-2xl font-bold text-white mb-2">Enterprise</h3>
-          <p class="text-gray-400 text-sm mb-6">For organizations that need more</p>
+          <p class="text-gray-400 text-sm mb-6">For organizations at scale</p>
 
           <!-- Price -->
-          <div class="mb-2">
-            <span class="text-5xl font-bold text-white">Custom</span>
+          <div class="mb-2 h-[60px] flex items-center">
+            <span class="text-4xl font-bold text-white">Custom</span>
           </div>
-          <p class="text-sm text-gray-400">Contact us for a quote</p>
-        </div>
-
-        <!-- Period Row (Static Text) -->
-        <div class="flex items-center justify-between mb-6 h-10">
-          <span class="text-sm text-gray-500">Flexible plans</span>
+          <p class="text-sm text-gray-400">Contact us for pricing</p>
         </div>
 
         <!-- CTA Button -->
         <a
           href="https://calendar.app.google/fHXfuSwxM5rviNRC8"
-          class="block w-full text-center bg-white hover:bg-gray-100 text-black font-semibold px-6 py-3.5 rounded-lg transition-all duration-300 mb-8"
+          class="block w-full text-center bg-gray-800 hover:bg-gray-700 text-white font-medium px-5 py-2.5 rounded-full transition-all duration-300 mb-8 text-sm"
         >
-          Book a Demo
+          Get a meeting
         </a>
 
         <!-- Features -->
         <div class="space-y-3">
-          <p class="text-sm font-semibold text-white mb-4">Everything in Team, plus:</p>
+          <p class="text-sm font-semibold text-white mb-4">Everything in Professional, plus:</p>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">Unlimited usage for large teams</span>
+            <span class="text-gray-300 text-sm">SSO/SAML authentication</span>
           </div>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">SSO (SAML) and SCIM</span>
+            <span class="text-gray-300 text-sm">Private skill marketplace</span>
           </div>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">Advanced security and audit logs</span>
+            <span class="text-gray-300 text-sm">Dedicated onboarding & training</span>
           </div>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">On-premise deployment available</span>
+            <span class="text-gray-300 text-sm">Custom skill development support</span>
           </div>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">Dedicated support and SLAs</span>
+            <span class="text-gray-300 text-sm">SLA & dedicated account manager</span>
           </div>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">Custom training for teams</span>
+            <span class="text-gray-300 text-sm">Advanced security & compliance</span>
           </div>
           <div class="flex items-start gap-3">
             <svg class="w-5 h-5 text-gray-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span class="text-gray-300 text-sm">Flexible contract terms</span>
+            <span class="text-gray-300 text-sm">Custom integrations</span>
           </div>
         </div>
       </div>
 
     </div>
 
+
     <!-- Footer Note -->
-    <div class="text-center mt-12">
-      <p class="text-sm text-gray-500">Prices shown do not include applicable taxes. Usage limits apply.</p>
+    <div class="text-center mt-16">
+      <p class="text-sm text-gray-500">All plans require a Claude Pro or Max subscription.</p>
+      <p class="text-sm text-gray-500 mt-2">14-day free trial on Professional plan. No credit card required.</p>
     </div>
 
   </div>
 </div>
 
 <style>
-  .tab-toggle {
-    color: #9ca3af;
+  /* Animations from design system */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  .tab-toggle.active {
-    background: #374151;
-    color: white;
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.1); }
   }
 
-  .tab-toggle:hover:not(.active) {
-    color: white;
+  @keyframes pulse-slow-delayed {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.15); }
+  }
+
+  @keyframes pulse-gentle {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 8s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow-delayed {
+    animation: pulse-slow-delayed 10s ease-in-out infinite;
+  }
+
+  .animate-pulse-gentle {
+    animation: pulse-gentle 2s ease-in-out infinite;
+  }
+
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 3s ease infinite;
+  }
+
+  /* Pricing cards stagger animation */
+  #pricing-section .grid > div:nth-child(1) {
+    animation: fade-in-up 0.6s ease-out 0.1s both;
+  }
+
+  #pricing-section .grid > div:nth-child(2) {
+    animation: fade-in-up 0.6s ease-out 0.2s both;
+  }
+
+  #pricing-section .grid > div:nth-child(3) {
+    animation: fade-in-up 0.6s ease-out 0.3s both;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    #pricing-section {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
   }
 </style>
 
-<script>
-  // Wait for the DOM so listeners reliably attach when Astro hoists scripts
-  document.addEventListener('DOMContentLoaded', () => {
-    // Main tab switching (Individual vs Team/Enterprise)
-    const individualTab = document.getElementById('individual-tab');
-    const teamEnterpriseTab = document.getElementById('team-enterprise-tab');
-    const individualPlans = document.getElementById('individual-plans');
-    const teamEnterprisePlans = document.getElementById('team-enterprise-plans');
-
-    individualTab?.addEventListener('click', () => {
-      individualTab.classList.add('active');
-      teamEnterpriseTab?.classList.remove('active');
-      individualPlans?.classList.remove('hidden');
-      individualPlans?.classList.add('grid');
-      teamEnterprisePlans?.classList.remove('grid');
-      teamEnterprisePlans?.classList.add('hidden');
-    });
-
-    teamEnterpriseTab?.addEventListener('click', () => {
-      teamEnterpriseTab.classList.add('active');
-      individualTab?.classList.remove('active');
-      teamEnterprisePlans?.classList.remove('hidden');
-      teamEnterprisePlans?.classList.add('grid');
-      individualPlans?.classList.remove('grid');
-      individualPlans?.classList.add('hidden');
-    });
-
-    // Pro plan period toggle
-    const proToggle = document.querySelector('.pro-period-toggle');
-    proToggle?.addEventListener('change', (e) => {
-      const target = e.target;
-      if (!(target instanceof HTMLInputElement)) return;
-      const isAnnual = target.checked;
-
-      if (isAnnual) {
-        // Show annual pricing
-        document.querySelectorAll('.pro-monthly-price').forEach(el => el.classList.add('hidden'));
-        document.querySelectorAll('.pro-annual-price').forEach(el => el.classList.remove('hidden'));
-        document.querySelectorAll('.pro-monthly-billing').forEach(el => el.classList.add('hidden'));
-        document.querySelectorAll('.pro-annual-billing').forEach(el => el.classList.remove('hidden'));
-        document.querySelectorAll('.pro-savings').forEach(el => el.classList.remove('hidden'));
-      } else {
-        // Show monthly pricing
-        document.querySelectorAll('.pro-annual-price').forEach(el => el.classList.add('hidden'));
-        document.querySelectorAll('.pro-monthly-price').forEach(el => el.classList.remove('hidden'));
-        document.querySelectorAll('.pro-annual-billing').forEach(el => el.classList.add('hidden'));
-        document.querySelectorAll('.pro-monthly-billing').forEach(el => el.classList.remove('hidden'));
-        document.querySelectorAll('.pro-savings').forEach(el => el.classList.add('hidden'));
-      }
-    });
-
-    // Team plan period toggle
-    const teamToggle = document.querySelector('.team-period-toggle');
-    teamToggle?.addEventListener('change', (e) => {
-      const target = e.target;
-      if (!(target instanceof HTMLInputElement)) return;
-      const isAnnual = target.checked;
-
-      if (isAnnual) {
-        // Show annual pricing
-        document.querySelectorAll('.team-monthly-price').forEach(el => el.classList.add('hidden'));
-        document.querySelectorAll('.team-annual-price').forEach(el => el.classList.remove('hidden'));
-        document.querySelectorAll('.team-monthly-billing').forEach(el => el.classList.add('hidden'));
-        document.querySelectorAll('.team-annual-billing').forEach(el => el.classList.remove('hidden'));
-        document.querySelectorAll('.team-savings').forEach(el => el.classList.remove('hidden'));
-      } else {
-        // Show monthly pricing
-        document.querySelectorAll('.team-annual-price').forEach(el => el.classList.add('hidden'));
-        document.querySelectorAll('.team-monthly-price').forEach(el => el.classList.remove('hidden'));
-        document.querySelectorAll('.team-annual-billing').forEach(el => el.classList.add('hidden'));
-        document.querySelectorAll('.team-monthly-billing').forEach(el => el.classList.remove('hidden'));
-        document.querySelectorAll('.team-savings').forEach(el => el.classList.add('hidden'));
-      }
-    });
-
-    // Pro credits dropdown change handler
-    const proCreditsSelect = document.getElementById('pro-credits');
-    proCreditsSelect?.addEventListener('change', (e) => {
-      const target = e.target;
-      if (!(target instanceof HTMLSelectElement)) return;
-      const selectedOption = target.options[target.selectedIndex];
-      const monthlyPriceAttr = selectedOption.getAttribute('data-monthly-price');
-      const annualPriceAttr = selectedOption.getAttribute('data-annual-price');
-      if (!monthlyPriceAttr || !annualPriceAttr) return;
-      const monthlyPrice = parseFloat(monthlyPriceAttr);
-      const annualPrice = parseFloat(annualPriceAttr);
-
-      // Update prices
-      const proMonthlyPriceEl = document.querySelector('.pro-monthly-price');
-      const proAnnualPriceEl = document.querySelector('.pro-annual-price');
-      const proAnnualTotalEl = document.querySelector('.pro-annual-total');
-      const proSavingsEl = document.querySelector('.pro-savings');
-
-      if (proMonthlyPriceEl) proMonthlyPriceEl.textContent = `$${monthlyPrice}`;
-      if (proAnnualPriceEl) proAnnualPriceEl.textContent = `$${annualPrice}`;
-      if (proAnnualTotalEl) proAnnualTotalEl.textContent = `$${annualPrice * 12}`;
-
-      // Calculate and update savings (20% of annual total)
-      const annualSavings = (monthlyPrice * 12) - (annualPrice * 12);
-      if (proSavingsEl) {
-        proSavingsEl.textContent = `Save $${Math.round(annualSavings)}`;
-      }
-    });
-
-    // Team credits dropdown change handler
-    const teamCreditsSelect = document.getElementById('team-credits');
-    teamCreditsSelect?.addEventListener('change', (e) => {
-      const target = e.target;
-      if (!(target instanceof HTMLSelectElement)) return;
-      const selectedOption = target.options[target.selectedIndex];
-      const monthlyPriceAttr = selectedOption.getAttribute('data-monthly-price');
-      const annualPriceAttr = selectedOption.getAttribute('data-annual-price');
-      if (!monthlyPriceAttr || !annualPriceAttr) return;
-      const monthlyPrice = parseFloat(monthlyPriceAttr);
-      const annualPrice = parseFloat(annualPriceAttr);
-
-      // Update prices
-      const teamMonthlyPriceEl = document.querySelector('.team-monthly-price');
-      const teamAnnualPriceEl = document.querySelector('.team-annual-price');
-      const teamAnnualTotalEl = document.querySelector('.team-annual-total');
-      const teamSavingsEl = document.querySelector('.team-savings');
-
-      if (teamMonthlyPriceEl) teamMonthlyPriceEl.textContent = `$${monthlyPrice}`;
-      if (teamAnnualPriceEl) teamAnnualPriceEl.textContent = `$${annualPrice}`;
-      if (teamAnnualTotalEl) teamAnnualTotalEl.textContent = `$${annualPrice * 12}`;
-
-      // Calculate and update savings (20% of annual total)
-      const annualSavings = (monthlyPrice * 12) - (annualPrice * 12);
-      if (teamSavingsEl) {
-        teamSavingsEl.textContent = `Save $${Math.round(annualSavings)}/user`;
-      }
-    });
-  });
-</script>
