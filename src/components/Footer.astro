@@ -4,25 +4,21 @@ const links = [
   { name: 'Privacy', href: '/privacy' },
   { name: 'Terms', href: '/terms' },
 ]
-import backgroundImage from '../assets/Background-3.png';
 ---
 
-<footer
-  class="relative overflow-hidden bg-transparent bg-cover bg-center bg-no-repeat bg-fixed"
-  style={`background-image: url(${backgroundImage.src});`}
->
+<footer class="relative overflow-hidden bg-[#111111] border-t border-white/10">
   <div class="relative mx-auto max-w-7xl px-6 py-16 md:flex md:items-center md:justify-between lg:px-8">
     <div class="flex justify-center space-x-8 md:order-2 flex-wrap gap-y-4">
       {
         links.map((link) => (
-          <a href={link.href} class="text-gray-400 hover:text-white transition-colors text-sm">
+          <a href={link.href} class="text-white/60 hover:text-white transition-colors text-sm font-medium">
             {link.name}
           </a>
         ))
       }
     </div>
     <div class="mt-8 md:order-1 md:mt-0">
-      <p class="text-center text-sm leading-5 text-gray-500">
+      <p class="text-center text-sm leading-5 text-white/40">
         &copy; {new Date().getFullYear()} Shadow. Built for builders.
       </p>
     </div>

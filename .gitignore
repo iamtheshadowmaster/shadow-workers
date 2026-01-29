@@ -27,3 +27,39 @@ pnpm-debug.log*
 #context
 shadow-instructions.md
 
+# AI Coding Tools - only track Claude Code and shared agents
+.claude/scratchpad/
+.claude/temp/
+.claude/*.tmp
+
+# Ignore all other AI tool directories (skill installer creates these)
+.agent/
+.cline/
+.codebuddy/
+.codex/
+.commandcode/
+.continue/
+.crush/
+.cursor/
+.factory/
+.gemini/
+.github/
+.goose/
+.junie/
+.kilocode/
+.kiro/
+.kode/
+.mcpjam/
+.mux/
+.neovate/
+.opencode/
+.openhands/
+.pi/
+.pochi/
+.qoder/
+.qwen/
+.roo/
+.trae/
+.windsurf/
+.zencoder/
+skills/

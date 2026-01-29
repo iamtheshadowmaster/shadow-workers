@@ -12,11 +12,11 @@
       <div class="flex flex-col justify-center space-y-8">
         <!-- Main Headline -->
         <div>
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-4 leading-tight">
+          <h1 class="text-6xl md:text-5xl lg:text-6xl font-semibold text-white mb-4 leading-tight">
             <span id="decrypted-text" class="inline-block">Supercharge Claude.</span><br>
             <span class="text-white/80">Zero setup.</span>
           </h1>
-          <p class="text-xl md:text-2xl text-white/70 font-light">
+          <p class="text-3xl md:text-2xl text-white/70 font-light">
             Discover, create, and deploy Claude skills. All in one place
           </p>
         </div>
@@ -33,7 +33,7 @@
       </div>
 
       <!-- Right Side: Video -->
-      <div class="flex items-center justify-center">
+      <div class="hidden lg:flex items-center justify-center">
         <div class="relative w-full max-w-md aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-orange-200 to-orange-400">
           <video
             autoplay
@@ -60,6 +60,7 @@
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+';
     const speed = 80; // milliseconds (slower)
     const maxIterations = 15; // more iterations for smoother effect
+    const waitBetweenLoops = 3000; // 3 seconds wait between animations
 
     let interval: number | null = null;
     let iteration = 0;
@@ -68,6 +69,12 @@
       if (iteration >= maxIterations) {
         decryptedTextElement.textContent = originalText;
         if (interval) clearInterval(interval);
+
+        // Wait 3 seconds, then restart the animation
+        setTimeout(() => {
+          iteration = 0;
+          interval = window.setInterval(animateText, speed);
+        }, waitBetweenLoops);
         return;
       }
 
@@ -109,8 +116,8 @@
 
   @media (max-width: 768px) {
     h1 {
-      font-size: 2.5rem;
-      line-height: 1.2;
+      font-size: 3.75rem;
+      line-height: 1.1;
     }
   }
 

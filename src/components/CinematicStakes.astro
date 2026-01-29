@@ -1,0 +1,263 @@
+---
+---
+
+<!-- Scroll container with extended height for cinematic experience -->
+<div id="cinematic-stakes" class="relative" style="height: 600vh;">
+  <!-- Fixed/sticky viewport -->
+  <div class="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+
+    <!-- Dynamic background that transitions from dark to white and back -->
+    <div id="bg-layer" class="fixed inset-0 transition-colors duration-1000 ease-out bg-black"></div>
+
+    <!-- Content container -->
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6">
+
+      <!-- Phase 1 & 2: Heading stays visible, examples fade in below -->
+      <div id="phase-1-2" class="absolute inset-0 opacity-0">
+        <!-- Heading stays visible throughout phase 1 and 2 -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center px-6">
+          <h2 id="main-heading" class="text-4xl md:text-6xl lg:text-7xl font-light leading-tight max-w-4xl mx-auto" style="font-family: 'Söhne', system-ui, -apple-system, sans-serif; letter-spacing: -0.02em; font-size: clamp(2.5rem, 5vw, 4.5rem);">
+            Still using Claude for <span class="font-normal">basic work?</span>
+          </h2>
+        </div>
+        <!-- Examples text positioned independently below center -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 w-full text-center px-6" style="margin-top: 6rem;">
+          <p id="examples-text" class="text-xl md:text-2xl lg:text-3xl text-black/40 font-light max-w-4xl mx-auto opacity-0" style="font-family: 'Söhne', system-ui, -apple-system, sans-serif;">
+            <span id="animated-text"></span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Phase 3: Solution panel with gradient background -->
+      <div id="phase-3" class="absolute inset-0 flex items-center justify-center opacity-0">
+        <div class="relative w-full max-w-4xl mx-auto">
+          <!-- Gradient card -->
+          <div class="relative rounded-3xl p-12 md:p-16 overflow-hidden" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
+            <!-- Animated gradient overlay -->
+            <div class="absolute inset-0 opacity-30" style="background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.3) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(255,255,255,0.2) 0%, transparent 50%);"></div>
+
+            <!-- Content -->
+            <div class="relative z-10 text-center">
+              <h2 class="text-4xl md:text-6xl lg:text-7xl font-light text-white mb-6 leading-tight" style="font-family: 'Söhne', system-ui, -apple-system, sans-serif; letter-spacing: -0.02em; font-size: clamp(2rem, 4.5vw, 3.75rem);">
+                Shadow unlocks Claude's full power<br>for you and your team, <span class="font-normal italic">effortlessly</span>
+              </h2>
+            </div>
+
+            <!-- Decorative elements -->
+            <div class="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const section = document.getElementById('cinematic-stakes') as HTMLElement;
+  const bgLayer = document.getElementById('bg-layer') as HTMLElement;
+  const phase12 = document.getElementById('phase-1-2') as HTMLElement;
+  const phase3 = document.getElementById('phase-3') as HTMLElement;
+  const mainHeading = document.getElementById('main-heading') as HTMLElement;
+  const examplesText = document.getElementById('examples-text') as HTMLElement;
+  const animatedText = document.getElementById('animated-text') as HTMLElement;
+
+  const fullText = "Translating sentences, correcting emails, summarizing PDFs...";
+  const textLength = fullText.length;
+
+  let ticking = false;
+
+  // Smooth easing functions for natural motion
+  function easeOutCubic(x: number): number {
+    return 1 - Math.pow(1 - x, 3);
+  }
+
+  function easeInOutCubic(x: number): number {
+    return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+  }
+
+  function easeOutQuart(x: number): number {
+    return 1 - Math.pow(1 - x, 4);
+  }
+
+  function easeInOutQuart(x: number): number {
+    return x < 0.5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2;
+  }
+
+  // Interpolate between two RGB colors
+  function lerpColor(progress: number, from: number, to: number): number {
+    return Math.round(from + (to - from) * progress);
+  }
+
+  function updateCinematicEffect() {
+    if (!section) return;
+
+    const rect = section.getBoundingClientRect();
+    const sectionHeight = section.offsetHeight;
+    const viewportHeight = window.innerHeight;
+
+    // Calculate scroll progress through the section (0 to 1)
+    const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - viewportHeight)));
+
+    // Background color transitions with smooth easing
+    // 0-0.2: Dark to white transition (extended for smoother feel)
+    // 0.2-0.8: Stay white
+    // 0.8-1.0: White to dark transition
+    let bgR = 17, bgG = 17, bgB = 17;
+    let textR = 255, textG = 255, textB = 255;
+    let textSecondaryAlpha = 0.4;
+
+    if (scrollProgress > 0 && scrollProgress < 0.2) {
+      // Transitioning to white with smooth easing
+      const fadeProgress = easeInOutQuart(scrollProgress / 0.2);
+      bgR = bgG = bgB = lerpColor(fadeProgress, 17, 255);
+      textR = textG = textB = lerpColor(fadeProgress, 255, 0);
+    } else if (scrollProgress >= 0.2 && scrollProgress < 0.8) {
+      // Stay white
+      bgR = bgG = bgB = 255;
+      textR = textG = textB = 0;
+    } else if (scrollProgress >= 0.8) {
+      // Transitioning back to dark with smooth easing
+      const fadeProgress = easeInOutQuart((scrollProgress - 0.8) / 0.2);
+      bgR = bgG = bgB = lerpColor(fadeProgress, 255, 17);
+      textR = textG = textB = lerpColor(fadeProgress, 0, 255);
+    }
+
+    // Batch all style updates together to prevent layout thrashing
+    const bgColor = `rgb(${bgR}, ${bgG}, ${bgB})`;
+    const textColor = `rgb(${textR}, ${textG}, ${textB})`;
+    const textColorSecondary = `rgba(${textR}, ${textG}, ${textB}, ${textSecondaryAlpha})`;
+
+    bgLayer.style.backgroundColor = bgColor;
+
+    // Update heading color
+    if (mainHeading) mainHeading.style.color = textColor;
+    if (animatedText) animatedText.style.color = textColorSecondary;
+
+    // Phase 1-2: 0-0.62 - heading fades in and stays, examples appear later
+    let phase12Opacity = 0;
+    let examplesOpacity = 0;
+    let currentText = '';
+
+    // Heading appears and stays visible from 0-0.62
+    if (scrollProgress >= 0 && scrollProgress < 0.15) {
+      // Heading fades in smoothly
+      phase12Opacity = easeOutQuart(scrollProgress / 0.15);
+    } else if (scrollProgress >= 0.15 && scrollProgress < 0.62) {
+      // Heading stays fully visible
+      phase12Opacity = 1;
+
+      // Examples text starts appearing at 0.25 and stays visible
+      if (scrollProgress >= 0.25 && scrollProgress < 0.30) {
+        // Examples fade in
+        examplesOpacity = easeOutQuart((scrollProgress - 0.25) / 0.05);
+      } else if (scrollProgress >= 0.30) {
+        // Examples stay fully visible from 0.30 onwards
+        examplesOpacity = 1;
+      }
+
+      // Reveal text character by character with smooth easing
+      if (scrollProgress >= 0.32 && scrollProgress <= 0.55) {
+        const textProgress = easeOutCubic((scrollProgress - 0.32) / 0.23);
+        const charsToShow = Math.floor(textProgress * textLength);
+        currentText = fullText.substring(0, charsToShow);
+      } else if (scrollProgress >= 0.55) {
+        // Keep full text visible once revealed
+        currentText = fullText;
+      }
+    } else if (scrollProgress >= 0.62 && scrollProgress < 0.65) {
+      // Everything fades out together
+      const fadeOut = easeInOutQuart(1 - ((scrollProgress - 0.62) / 0.03));
+      phase12Opacity = fadeOut;
+      examplesOpacity = fadeOut;
+      currentText = fullText;
+    }
+
+    phase12.style.opacity = phase12Opacity.toString();
+    examplesText.style.opacity = examplesOpacity.toString();
+    if (animatedText.textContent !== currentText) {
+      animatedText.textContent = currentText;
+    }
+
+    // Phase 3: 0.65-1.0 - dramatic smooth entrance
+    let phase3Opacity = 0;
+    let phase3Scale = 0.95;
+
+    if (scrollProgress >= 0.65 && scrollProgress < 0.75) {
+      const phaseProgress = easeOutQuart((scrollProgress - 0.65) / 0.1);
+      phase3Opacity = phaseProgress;
+      phase3Scale = 0.95 + (0.05 * phaseProgress); // Scale from 0.95 to 1.0
+    } else if (scrollProgress >= 0.75) {
+      phase3Opacity = 1;
+      phase3Scale = 1.0;
+    }
+
+    phase3.style.opacity = phase3Opacity.toString();
+    phase3.style.transform = `scale(${phase3Scale})`;
+
+    ticking = false;
+  }
+
+  function requestUpdate() {
+    if (!ticking) {
+      requestAnimationFrame(updateCinematicEffect);
+      ticking = true;
+    }
+  }
+
+  // Honor prefers-reduced-motion
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReducedMotion) {
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    updateCinematicEffect();
+  } else {
+    // Show all content statically if reduced motion is preferred
+    if (phase12) phase12.style.opacity = '1';
+    if (examplesText) examplesText.style.opacity = '1';
+    if (phase3) phase3.style.opacity = '1';
+    if (animatedText) animatedText.textContent = fullText;
+  }
+</script>
+
+<style>
+  /* Smooth text rendering */
+  h2, p {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Prevent layout shifts and ensure stable sizing */
+  #main-heading,
+  #phase-3 h2 {
+    transform: translateZ(0); /* Force GPU acceleration */
+    backface-visibility: hidden; /* Prevent flickering */
+  }
+
+  /* Optimize animations with GPU acceleration */
+  #phase-1-2, #phase-3, #examples-text {
+    will-change: opacity, transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+  }
+
+  #animated-text {
+    display: inline-block;
+    will-change: contents;
+  }
+
+  #bg-layer {
+    will-change: background-color;
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Apply balanced text wrapping to headings */
+  h2 {
+    text-wrap: balance;
+  }
+
+  /* Remove CSS transitions - we handle all animation via JS RAF for smoothness */
+  /* This prevents conflicts between CSS transitions and scroll-driven animations */
+</style>
