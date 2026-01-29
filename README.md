@@ -5,7 +5,7 @@
 - 15-12-2025: Slack page
 - 2026-01-15: pioneer program
 - 2026-01-27: repositioning as AI enablers
-
+- 2026-01-29: repositioning homepage
 
 # Shadow Landing Page
 
