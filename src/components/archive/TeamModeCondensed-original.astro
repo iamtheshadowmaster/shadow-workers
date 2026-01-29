@@ -14,7 +14,7 @@ import NativeFeaturesVisual from './visuals/NativeFeaturesVisual.astro';
 </div>
 
 <!-- Scroll container that creates the scroll distance -->
-<div id="team-section" class="relative bg-black" style="height: 300vh;">
+<div id="team-section" class="relative bg-black" style="height: 400vh;">
   <!-- Fixed/sticky content -->
   <div id="team-sticky" class="sticky top-0 min-h-screen flex items-center bg-black py-16">
     <div class="max-w-7xl mx-auto px-6 w-full">
@@ -22,10 +22,10 @@ import NativeFeaturesVisual from './visuals/NativeFeaturesVisual.astro';
       <div class="text-center mb-12">
         <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full mb-6">
           <div class="w-2 h-2 rounded-full bg-purple-500"></div>
-          <span class="text-sm font-medium text-black uppercase tracking-wider">For Teams</span>
+          <span class="text-sm font-medium text-black uppercase tracking-wider">Team Mode</span>
         </div>
         <h2 class="text-xl md:text-3xl lg:text-4xl font-medium text-white mb-6 leading-tight tracking-tight">
-          Deploy skills across your entire team
+          From scattered effort to synchronized execution.
         </h2>
       </div>
 
@@ -49,6 +49,10 @@ import NativeFeaturesVisual from './visuals/NativeFeaturesVisual.astro';
               </div>
               <div class="team-step-indicator flex items-center" data-step="3">
                 <div class="team-step-dot w-3 h-3 rounded-full transition-all duration-500 ease-out bg-white border-2 border-gray-600" style="will-change: background-color, border-color;"></div>
+                <div class="team-step-line h-0.5 w-12 bg-gray-800 transition-all duration-500 ease-out" style="will-change: background-color;"></div>
+              </div>
+              <div class="team-step-indicator flex items-center" data-step="4">
+                <div class="team-step-dot w-3 h-3 rounded-full transition-all duration-500 ease-out bg-white border-2 border-gray-600" style="will-change: background-color, border-color;"></div>
               </div>
             </div>
           </div>
@@ -69,21 +73,27 @@ import NativeFeaturesVisual from './visuals/NativeFeaturesVisual.astro';
   const teamSteps = [
     {
       number: 1,
-      title: "Create shared skill libraries",
-      description: "Build a centralized repository of vetted skills for your team. Ensure everyone has access to the best Claude skills for their role.",
-      customRender: 'contextGathering'
-    },
-    {
-      number: 2,
-      title: "Deploy with one click",
-      description: "Push skills to individual team members or entire departments instantly. No technical setup required—skills appear in everyone's Claude automatically.",
+      title: "Control team alignment",
+      description: "Set system prompts at team and individual levels. Shadow ensures everyone's AI assistant understands the same priorities and speaks the same strategic language.",
       customRender: 'okrControl'
     },
     {
-      number: 3,
-      title: "Maintain consistency",
-      description: "Keep your whole team working with the same high-quality skills. Update skills once, and changes propagate to everyone automatically.",
+      number: 2,
+      title: "Organize in projects",
+      description: "Create dedicated projects for different initiatives. Attach specific intructions and context to the project so Shadow can help everyone stay aligned on project goals and deliverables.",
       customRender: 'groupChats'
+    },
+    {
+      number: 3,
+      title: "Import your context",
+      description: "Connect Slack, Notion, GitHub, Google Drive, and more. Shadow syncs your existing conversations, docs, and workflows to build comprehensive team context.",
+      customRender: 'contextGathering'
+    },
+    {
+      number: 4,
+      title: "Use native features",
+      description: "Leverage Shadow's built-in chat, calls, notes, and tasks for enhanced AI performance. Native features provide 3x better context retrieval and team coordination.",
+      customRender: 'nativeFeatures'
     }
   ];
 
@@ -97,7 +107,7 @@ import NativeFeaturesVisual from './visuals/NativeFeaturesVisual.astro';
     if (contentDiv) {
       contentDiv.innerHTML = `
         <div class="mb-4">
-          <span class="text-sm font-medium text-gray-500">${step.number}/3</span>
+          <span class="text-sm font-medium text-gray-500">${step.number}/4</span>
         </div>
         <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">
           ${step.title}
@@ -159,8 +169,8 @@ import NativeFeaturesVisual from './visuals/NativeFeaturesVisual.astro';
     // Calculate scroll progress through the section (0 to 1)
     const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - viewportHeight)));
 
-    // Determine which step to show (0-2 for 3 steps)
-    const newStep = Math.min(2, Math.floor(scrollProgress * 3));
+    // Determine which step to show (0-3 for 4 steps)
+    const newStep = Math.min(3, Math.floor(scrollProgress * 4));
 
     // Update step
     if (newStep !== currentTeamStep) {

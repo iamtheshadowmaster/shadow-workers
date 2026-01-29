@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/archive/Hero-original.astro';
+import Stakes from '../components/archive/Stakes-original.astro';
+import SoloMode from '../components/archive/SoloMode-original.astro';
+import TeamModeCondensed from '../components/archive/TeamModeCondensed-original.astro';
+import FinalCTA from '../components/archive/FinalCTA-original.astro';
+import Footer from '../components/Footer.astro';
+
+---
+
+<Layout>
+  <Nav />
+
+  <!-- Linear-Inspired Design System -->
+  <div class="bg-black">
+
+    <!-- 1. HERO: Purpose-built messaging -->
+    <Hero />
+
+    <!-- 2. STAKES: What happens if nothing changes -->
+    <Stakes />
+
+    <!-- 3. THE PLAN: Solo Mode - How it works -->
+    <SoloMode />
+
+    <!-- 4. TEAM MODE: Multiply the impact -->
+    <TeamModeCondensed />
+
+    <!-- 8. FINAL CTA -->
+    <FinalCTA />
+
+    <Footer />
+  </div>
+</Layout>
