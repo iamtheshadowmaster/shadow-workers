@@ -30,16 +30,16 @@
 
       <!-- Phase 3: Solution panel with gradient background -->
       <div id="phase-3" class="absolute inset-0 flex items-center justify-center opacity-0">
-        <div class="relative w-full max-w-4xl mx-auto">
+        <div class="relative w-full gradient-card-container">
           <!-- Gradient card -->
-          <div class="relative rounded-3xl p-12 md:p-16 overflow-hidden" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
+          <div class="gradient-card relative rounded-3xl p-12 md:p-16 overflow-hidden" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
             <!-- Animated gradient overlay -->
             <div class="absolute inset-0 opacity-30" style="background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.3) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(255,255,255,0.2) 0%, transparent 50%);"></div>
 
             <!-- Content -->
             <div class="relative z-10 text-center">
-              <h2 class="text-4xl md:text-6xl lg:text-7xl font-light text-white mb-6 leading-tight" style="font-family: 'Söhne', system-ui, -apple-system, sans-serif; letter-spacing: -0.02em; font-size: clamp(2rem, 4.5vw, 3.75rem);">
-                Shadow unlocks Claude's full power<br>for you and your team, <span class="font-normal italic">effortlessly</span>
+              <h2 class="gradient-card-heading text-4xl md:text-6xl lg:text-7xl font-light text-white mb-6 leading-tight" style="font-family: 'Söhne', system-ui, -apple-system, sans-serif; letter-spacing: -0.02em; font-size: clamp(2rem, 4.5vw, 3.75rem);">
+                Shadow unlocks Claude's full power<br class="hidden md:block">for you and your team, <span class="font-normal italic">effortlessly</span>
               </h2>
             </div>
 
@@ -256,6 +256,52 @@
   /* Apply balanced text wrapping to headings */
   h2 {
     text-wrap: balance;
+  }
+
+  /* Desktop: max-width container */
+  .gradient-card-container {
+    max-width: 64rem; /* 4xl */
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Mobile: Full viewport card */
+  @media (max-width: 768px) {
+    .gradient-card-container {
+      padding: 0;
+      max-width: 100%;
+      height: 100vh;
+      height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gradient-card {
+      min-height: 100vh;
+      min-height: 100svh;
+      width: 100%;
+      border-radius: 0 !important;
+      padding: 2rem 1.5rem !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gradient-card-heading {
+      font-size: 2.25rem !important; /* 36px */
+      line-height: 1.2 !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .gradient-card {
+      padding: 2rem 1.25rem !important;
+    }
+
+    .gradient-card-heading {
+      font-size: 2rem !important; /* 32px */
+    }
   }
 
   /* Remove CSS transitions - we handle all animation via JS RAF for smoothness */
