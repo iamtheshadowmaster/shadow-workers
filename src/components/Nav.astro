@@ -11,22 +11,66 @@
               <img src="/images/logo.svg" alt="Shadow Logo" class="w-24 h-24 drop-shadow-lg" />
             </a>
 
-            <a href="/pricing" class="nav-link hidden md:block">
+            <a href="/pricing" class="nav-link hidden lg:block">
               Pricing
             </a>
-            <a href="/blog" class="nav-link hidden md:block">
+            <a href="/blog" class="nav-link hidden lg:block">
               Blog
             </a>
           </div>
           <div class="flex items-center gap-4">
             <a
               href="https://app.yourshadowai.com/sign-in"
-              class="nav-link">
+              class="nav-link hidden lg:block">
               Log in
             </a>
             <a
               href="https://app.yourshadowai.com/sign-up"
-              class="glass-button">
+              class="glass-button hidden lg:block">
+              Sign up
+            </a>
+
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="lg:hidden mobile-menu-button" aria-label="Toggle menu">
+              <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+              <svg class="close-icon hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile menu panel -->
+        <div id="mobile-menu" class="mobile-menu">
+          <div class="mobile-menu-content">
+            <a href="/pricing" class="mobile-menu-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path>
+                <path d="M12 18V6"></path>
+              </svg>
+              Pricing
+            </a>
+            <a href="https://app.yourshadowai.com/sign-in" class="mobile-menu-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                <polyline points="10 17 15 12 10 7"></polyline>
+                <line x1="15" y1="12" x2="3" y2="12"></line>
+              </svg>
+              Log in
+            </a>
+            <a href="https://app.yourshadowai.com/sign-up" class="mobile-menu-item mobile-menu-cta">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <line x1="19" y1="8" x2="19" y2="14"></line>
+                <line x1="22" y1="11" x2="16" y2="11"></line>
+              </svg>
               Sign up
             </a>
           </div>
@@ -161,6 +205,124 @@
       padding: 0.75rem 0.75rem 0;
     }
   }
+
+  /* Mobile Menu Button */
+  .mobile-menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: rgba(255, 255, 255, 0.85);
+    transition: all 0.3s ease;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+  }
+
+  @media (min-width: 1024px) {
+    .mobile-menu-button {
+      display: none !important;
+    }
+  }
+
+  .mobile-menu-button:hover {
+    color: #ffffff;
+  }
+
+  .mobile-menu-button.active .menu-icon {
+    display: none;
+  }
+
+  .mobile-menu-button.active .close-icon {
+    display: block;
+  }
+
+  /* Mobile Menu Panel */
+  .mobile-menu {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    right: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s ease;
+    opacity: 0;
+    z-index: 49;
+    padding: 0 1.5rem;
+  }
+
+  .mobile-menu.active {
+    max-height: 400px;
+    opacity: 1;
+  }
+
+  .mobile-menu-content {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37),
+                0 0 1px 0 rgba(255, 255, 255, 0.1) inset;
+    overflow: hidden;
+    padding: 0.75rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .mobile-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 16px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .mobile-menu-item:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .mobile-menu-item svg {
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+
+  .mobile-menu-item:hover svg {
+    opacity: 1;
+  }
+
+  .mobile-menu-cta {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08));
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 0.5rem;
+  }
+
+  .mobile-menu-cta:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.12));
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  @media (max-width: 640px) {
+    .mobile-menu {
+      top: 85px;
+      padding: 0 0.75rem;
+    }
+
+    .mobile-menu-content {
+      border-radius: 20px;
+    }
+  }
 </style>
 
 <script>
@@ -187,6 +349,53 @@
         ticking = false;
       });
       ticking = true;
+    }
+  });
+
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    const isActive = mobileMenu?.classList.toggle('active');
+    mobileMenuButton.classList.toggle('active');
+
+    // Prevent body scroll when menu is open
+    if (isActive) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Close menu when clicking a link
+  const mobileMenuItems = document.querySelectorAll('.mobile-menu-item');
+  mobileMenuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      mobileMenu?.classList.remove('active');
+      mobileMenuButton?.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (mobileMenu?.classList.contains('active') &&
+        !mobileMenu.contains(target) &&
+        !mobileMenuButton?.contains(target)) {
+      mobileMenu.classList.remove('active');
+      mobileMenuButton?.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Close menu on resize to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024) {
+      mobileMenu?.classList.remove('active');
+      mobileMenuButton?.classList.remove('active');
+      document.body.style.overflow = '';
     }
   });
 </script>

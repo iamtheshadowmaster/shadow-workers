@@ -2,9 +2,9 @@
 // No imports needed
 ---
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#111111] pt-24">
+<section class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden bg-[#111111]">
   <!-- Hero Content Container -->
-  <div class="relative z-10 w-full" style="max-width: 1000px; margin: 0 auto; padding-left: 1.5rem; padding-right: 1.5rem;">
+  <div class="relative z-10 w-full hero-container">
     <!-- Split Layout Grid -->
     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
@@ -17,7 +17,7 @@
             <span class="text-white/80">Zero setup.</span>
           </h1>
           <p class="text-3xl md:text-2xl text-white/70 font-light">
-            Discover, create, and deploy Claude skills. All in one place
+            Discover, create, and deploy Claude skills and MCPs. All in one place
           </p>
         </div>
 
@@ -106,6 +106,47 @@
 </script>
 
 <style>
+  .hero-section {
+    padding-top: 6rem; /* Space for fixed nav */
+  }
+
+  .hero-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* Mobile: Full viewport height with proper centering */
+  @media (max-width: 768px) {
+    .hero-section {
+      min-height: 100vh;
+      min-height: 100svh; /* Safari support */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 100px; /* Nav height */
+      padding-bottom: 2rem;
+    }
+
+    .hero-container {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-section {
+      padding-top: 85px; /* Smaller nav on very small screens */
+      padding-bottom: 1.5rem;
+    }
+
+    .hero-container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
   /* Responsive adjustments */
   @media (max-width: 1024px) {
     h1 {
