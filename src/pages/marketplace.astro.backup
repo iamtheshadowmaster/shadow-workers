@@ -1,0 +1,441 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+// Generate 100+ skills across categories
+const skillsData = [
+  // Sales Skills (25)
+  { name: "Lead Scoring AI", category: "Sales", description: "Automatically score and prioritize leads based on engagement and fit", details: "Advanced AI-powered lead scoring that analyzes multiple signals to help you focus on the hottest opportunities.", whatItDoes: ["Analyzes lead behavior across email, web, and product interactions", "Assigns priority scores based on engagement, company fit, and buying signals", "Automatically updates CRM with real-time lead scores"], tools: ["Salesforce", "HubSpot", "Pipedrive", "Apollo"] },
+  { name: "Pipeline Analytics", category: "Sales", description: "Real-time visibility into your sales pipeline health and velocity", details: "Get instant insights into pipeline performance with AI-driven analytics that predict close rates and identify bottlenecks.", whatItDoes: ["Tracks deal progression across all stages with velocity metrics", "Predicts close probability using historical patterns", "Identifies stalled deals and suggests next actions"], tools: ["Salesforce", "HubSpot", "Close", "Copper"] },
+  { name: "Email Outreach Studio", category: "Sales", description: "Personalized outreach at scale with AI-powered copywriting", details: "Craft compelling, personalized outreach emails that get responses.", whatItDoes: ["Generates personalized email copy based on prospect data", "A/B tests subject lines and messaging automatically", "Optimizes send times for maximum open rates"], tools: ["Gmail", "Outlook", "Salesloft", "Outreach"] },
+  { name: "Cold Call Analyzer", category: "Sales", description: "Transcribe and analyze sales calls for coaching insights", details: "AI-powered call analysis that identifies winning patterns and coaching opportunities.", whatItDoes: ["Transcribes calls in real-time with speaker identification", "Scores calls based on key conversation metrics", "Provides personalized coaching recommendations"], tools: ["Gong", "Chorus", "Zoom", "Dialpad"] },
+  { name: "Deal Risk Detector", category: "Sales", description: "Predict deal outcomes and identify at-risk opportunities", details: "Early warning system for deals that might slip or close.", whatItDoes: ["Analyzes engagement patterns to predict close probability", "Flags at-risk deals based on historical data", "Suggests specific actions to move deals forward"], tools: ["Salesforce", "HubSpot", "Clari"] },
+  { name: "Competitor Intelligence", category: "Sales", description: "Track competitors and get battle card recommendations", details: "Stay ahead with real-time competitive intelligence.", whatItDoes: ["Monitors competitor product changes and pricing", "Generates battle cards for common objections", "Alerts on competitive threats in your deals"], tools: ["Klue", "Crayon", "Salesforce"] },
+  { name: "Quote Generator", category: "Sales", description: "Create professional quotes and proposals instantly", details: "Generate accurate quotes with smart pricing and discounting.", whatItDoes: ["Pulls pricing from your product catalog", "Applies discount rules automatically", "Creates branded proposals in seconds"], tools: ["Salesforce CPQ", "PandaDoc", "DocuSign"] },
+  { name: "Meeting Scheduler", category: "Sales", description: "Eliminate back-and-forth with smart scheduling", details: "AI-powered scheduling that finds the perfect meeting time.", whatItDoes: ["Suggests optimal meeting times based on calendars", "Handles timezone conversions automatically", "Sends reminders and follow-ups"], tools: ["Calendly", "Chili Piper", "Google Calendar"] },
+  { name: "Territory Planner", category: "Sales", description: "Optimize territory assignments and coverage", details: "Data-driven territory design for maximum revenue.", whatItDoes: ["Analyzes account distribution and potential", "Balances territories by size and opportunity", "Recommends territory adjustments"], tools: ["Salesforce", "Geopointe", "MapAnything"] },
+  { name: "Win/Loss Analyzer", category: "Sales", description: "Learn from closed deals to improve win rates", details: "Systematic analysis of what wins and loses deals.", whatItDoes: ["Categorizes win/loss reasons automatically", "Identifies patterns in successful deals", "Generates actionable insights for sales teams"], tools: ["Clozd", "Salesforce", "Gong"] },
+  { name: "Proposal Writer", category: "Sales", description: "Generate winning proposals from templates", details: "AI-assisted proposal writing that wins more business.", whatItDoes: ["Adapts proposal content to prospect needs", "Pulls in relevant case studies and testimonials", "Ensures brand consistency across documents"], tools: ["PandaDoc", "Proposify", "Qwilr"] },
+  { name: "Account Enrichment", category: "Sales", description: "Automatically enrich CRM records with fresh data", details: "Keep your CRM updated with the latest account information.", whatItDoes: ["Finds and adds missing contact information", "Updates job titles and company data", "Identifies buying committee members"], tools: ["Clearbit", "ZoomInfo", "Salesforce"] },
+  { name: "Sales Forecaster", category: "Sales", description: "Predict revenue with machine learning models", details: "Accurate revenue forecasting powered by AI.", whatItDoes: ["Analyzes historical patterns to predict future revenue", "Adjusts for seasonality and market conditions", "Provides confidence intervals for forecasts"], tools: ["Clari", "Salesforce", "Anaplan"] },
+  { name: "Objection Handler", category: "Sales", description: "Get real-time suggestions for handling objections", details: "AI coaching during live calls and emails.", whatItDoes: ["Recognizes common objections in real-time", "Suggests proven responses based on past wins", "Adapts to your product and industry"], tools: ["Gong", "Chorus", "Salesforce"] },
+  { name: "Contract Reviewer", category: "Sales", description: "Review contracts for standard terms and red flags", details: "Legal AI that speeds up contract review.", whatItDoes: ["Highlights non-standard terms and risks", "Suggests alternative language", "Tracks approval workflows"], tools: ["DocuSign", "PandaDoc", "Ironclad"] },
+  { name: "Referral Engine", category: "Sales", description: "Automate referral requests and tracking", details: "Turn customers into your best sales channel.", whatItDoes: ["Identifies customers likely to refer", "Automates referral request campaigns", "Tracks referral pipeline and attribution"], tools: ["Referral Rock", "Ambassador", "HubSpot"] },
+  { name: "Social Seller", category: "Sales", description: "Optimize LinkedIn outreach and engagement", details: "AI-powered LinkedIn sales automation.", whatItDoes: ["Finds ideal prospects on LinkedIn", "Crafts personalized connection requests", "Tracks engagement and suggests follow-ups"], tools: ["LinkedIn Sales Navigator", "Dux-Soup", "Phantombuster"] },
+  { name: "Demo Recorder", category: "Sales", description: "Create personalized video demos at scale", details: "Record once, personalize for every prospect.", whatItDoes: ["Records your screen and webcam", "Adds personalized intro/outro for each prospect", "Tracks video views and engagement"], tools: ["Loom", "Vidyard", "Wistia"] },
+  { name: "Pricing Optimizer", category: "Sales", description: "Test and optimize your pricing strategy", details: "Data-driven pricing recommendations.", whatItDoes: ["Analyzes deal data to find optimal price points", "Tests pricing changes with A/B experiments", "Models revenue impact of pricing changes"], tools: ["Salesforce", "ProfitWell", "Chargebee"] },
+  { name: "Renewal Manager", category: "Sales", description: "Automate renewal processes and reduce churn", details: "Never miss a renewal opportunity.", whatItDoes: ["Tracks renewal dates and sends alerts", "Identifies at-risk renewals early", "Automates renewal outreach and follow-ups"], tools: ["Salesforce", "Gainsight", "ChurnZero"] },
+  { name: "Sales Content Hub", category: "Sales", description: "Centralize and track all sales collateral", details: "Find the right content for every deal stage.", whatItDoes: ["Organizes content by use case and stage", "Tracks which content drives wins", "Suggests relevant content for each deal"], tools: ["Seismic", "Highspot", "Showpad"] },
+  { name: "Multi-Threading Coach", category: "Sales", description: "Build relationships across buying committees", details: "AI guidance for complex enterprise sales.", whatItDoes: ["Maps organizational structure and influence", "Identifies key stakeholders you haven't reached", "Suggests multi-threading strategies"], tools: ["Salesforce", "LinkedIn", "Affinity"] },
+  { name: "ROI Calculator", category: "Sales", description: "Create custom ROI calculators for prospects", details: "Show value with personalized ROI models.", whatItDoes: ["Builds interactive ROI calculators", "Customizes assumptions for each prospect", "Generates shareable reports"], tools: ["Salesforce", "HubSpot", "Outreach"] },
+  { name: "Call Disposition Assistant", category: "Sales", description: "Auto-log call outcomes and next steps", details: "Eliminate manual CRM data entry.", whatItDoes: ["Suggests call disposition based on conversation", "Extracts action items and next steps", "Auto-updates CRM fields"], tools: ["Gong", "Salesforce", "Outreach"] },
+  { name: "Commission Calculator", category: "Sales", description: "Track earnings and commission accuracy", details: "Transparent commission tracking for reps.", whatItDoes: ["Calculates commissions in real-time", "Shows projected earnings by quarter", "Flags commission disputes"], tools: ["Salesforce", "Xactly", "QuotaPath"] },
+
+  // Product Skills (25)
+  { name: "User Research Hub", category: "Product", description: "Centralize and analyze user feedback from all sources", details: "Aggregate user insights from support tickets, interviews, and surveys.", whatItDoes: ["Automatically categorizes and tags feedback", "Identifies trending pain points", "Links feedback to product areas"], tools: ["Intercom", "Zendesk", "Typeform", "Dovetail"] },
+  { name: "Feature Prioritization", category: "Product", description: "Data-driven framework for deciding what to build next", details: "Score and prioritize features using customizable frameworks.", whatItDoes: ["Scores features using RICE or ICE frameworks", "Integrates customer feedback volume", "Visualizes trade-offs between initiatives"], tools: ["Linear", "Jira", "Asana", "Productboard"] },
+  { name: "A/B Testing Engine", category: "Product", description: "Run experiments and ship winning variants", details: "Full-stack experimentation platform.", whatItDoes: ["Creates and manages A/B tests", "Calculates statistical significance", "Ships winning variants automatically"], tools: ["PostHog", "Amplitude", "Mixpanel", "Optimizely"] },
+  { name: "User Interview Scheduler", category: "Product", description: "Recruit and schedule user research sessions", details: "Find the right users to talk to, automatically.", whatItDoes: ["Identifies users matching research criteria", "Sends recruitment emails and schedules calls", "Tracks research participation"], tools: ["Calendly", "User Interviews", "Notion"] },
+  { name: "Product Analytics", category: "Product", description: "Understand user behavior and product usage", details: "Event tracking and analysis for product teams.", whatItDoes: ["Tracks custom events and user properties", "Builds funnels and cohorts", "Identifies drop-off points"], tools: ["Amplitude", "Mixpanel", "PostHog", "Heap"] },
+  { name: "Release Notes Generator", category: "Product", description: "Auto-generate release notes from commits", details: "Turn code changes into user-friendly updates.", whatItDoes: ["Parses git commits and PRs", "Groups changes by feature and impact", "Publishes to changelog and email"], tools: ["GitHub", "Linear", "Notion"] },
+  { name: "Feedback Widget", category: "Product", description: "Collect in-app feedback with one click", details: "Capture user feedback at the moment it happens.", whatItDoes: ["Embeds feedback button in your app", "Collects screenshots and session data", "Routes feedback to the right team"], tools: ["Canny", "Productboard", "UserVoice"] },
+  { name: "Roadmap Builder", category: "Product", description: "Create and share beautiful product roadmaps", details: "Communicate your product vision clearly.", whatItDoes: ["Builds timeline or kanban-style roadmaps", "Syncs with project management tools", "Shares public roadmaps with customers"], tools: ["Productboard", "Aha!", "Roadmunk"] },
+  { name: "Session Replay", category: "Product", description: "Watch real user sessions to understand behavior", details: "See exactly how users interact with your product.", whatItDoes: ["Records user sessions with privacy controls", "Highlights rage clicks and errors", "Segments sessions by user properties"], tools: ["PostHog", "FullStory", "LogRocket"] },
+  { name: "Feature Flag Manager", category: "Product", description: "Control feature rollouts with feature flags", details: "Ship confidently with gradual rollouts.", whatItDoes: ["Creates and manages feature flags", "Targets flags by user segment", "Integrates with CI/CD pipelines"], tools: ["LaunchDarkly", "PostHog", "Unleash"] },
+  { name: "Usability Tester", category: "Product", description: "Run remote usability tests with real users", details: "Get qualitative feedback on designs and prototypes.", whatItDoes: ["Recruits participants from your criteria", "Records screen and audio during tests", "Generates highlights and insights"], tools: ["UserTesting", "Maze", "Lookback"] },
+  { name: "NPS Tracker", category: "Product", description: "Measure and improve Net Promoter Score", details: "Track customer satisfaction over time.", whatItDoes: ["Sends NPS surveys at optimal times", "Segments scores by user cohort", "Identifies drivers of satisfaction"], tools: ["Delighted", "SurveyMonkey", "Qualtrics"] },
+  { name: "Prototype Tester", category: "Product", description: "Test Figma prototypes with real users", details: "Validate designs before writing code.", whatItDoes: ["Shares Figma prototypes with testers", "Tracks clicks and navigation patterns", "Collects qualitative feedback"], tools: ["Maze", "Figma", "UsabilityHub"] },
+  { name: "Beta Program Manager", category: "Product", description: "Manage beta users and feature access", details: "Run structured beta programs.", whatItDoes: ["Invites and onboards beta users", "Controls feature access by cohort", "Collects feedback from beta users"], tools: ["LaunchDarkly", "Beamer", "ProductBoard"] },
+  { name: "Heatmap Analyzer", category: "Product", description: "Visualize where users click and scroll", details: "Understand user attention and engagement.", whatItDoes: ["Generates click and scroll heatmaps", "Identifies ignored UI elements", "Compares heatmaps across segments"], tools: ["Hotjar", "Crazy Egg", "Lucky Orange"] },
+  { name: "Churn Predictor", category: "Product", description: "Identify users at risk of churning", details: "Prevent churn before it happens.", whatItDoes: ["Scores users by churn risk", "Identifies behaviors that predict churn", "Triggers interventions for at-risk users"], tools: ["Amplitude", "Mixpanel", "ChurnZero"] },
+  { name: "Competitor Tracker", category: "Product", description: "Monitor competitor product changes", details: "Stay on top of the competitive landscape.", whatItDoes: ["Tracks competitor product updates", "Alerts on new features and pricing", "Compares features side-by-side"], tools: ["Kompyte", "Crayon", "Klue"] },
+  { name: "Survey Builder", category: "Product", description: "Create and distribute user surveys", details: "Gather quantitative feedback at scale.", whatItDoes: ["Builds multi-question surveys", "Distributes via email or in-app", "Analyzes results with charts"], tools: ["Typeform", "SurveyMonkey", "Google Forms"] },
+  { name: "Jobs-to-be-Done Analyzer", category: "Product", description: "Understand why users hire your product", details: "JTBD framework applied automatically.", whatItDoes: ["Analyzes feedback for jobs and outcomes", "Identifies underserved jobs", "Maps features to jobs"], tools: ["Productboard", "Dovetail", "Notion"] },
+  { name: "Onboarding Optimizer", category: "Product", description: "Improve user activation and retention", details: "Data-driven onboarding improvements.", whatItDoes: ["Tracks onboarding funnel completion", "Identifies drop-off steps", "A/B tests onboarding flows"], tools: ["Appcues", "Pendo", "Userflow"] },
+  { name: "Product Metrics Dashboard", category: "Product", description: "Track key product metrics in one place", details: "Custom dashboards for product health.", whatItDoes: ["Pulls data from multiple sources", "Visualizes metrics with charts", "Alerts on metric changes"], tools: ["Amplitude", "Mixpanel", "Metabase"] },
+  { name: "User Segmentation", category: "Product", description: "Create and analyze user segments", details: "Understand different user types.", whatItDoes: ["Builds segments from user properties", "Compares metrics across segments", "Exports segments for targeting"], tools: ["Amplitude", "Segment", "Customer.io"] },
+  { name: "Interview Transcriber", category: "Product", description: "Transcribe and analyze user interviews", details: "Turn interviews into insights.", whatItDoes: ["Transcribes audio with high accuracy", "Highlights key quotes and themes", "Tags insights by topic"], tools: ["Otter.ai", "Dovetail", "Grain"] },
+  { name: "Changelog Publisher", category: "Product", description: "Keep users informed of product updates", details: "Beautiful changelogs for your product.", whatItDoes: ["Publishes updates to hosted changelog", "Sends email digests to users", "Embeds in-app notifications"], tools: ["Beamer", "Canny", "Headway"] },
+  { name: "Product Idea Voting", category: "Product", description: "Let users vote on feature requests", details: "Crowdsource your roadmap.", whatItDoes: ["Collects and displays feature requests", "Lets users vote and comment", "Syncs top requests to your backlog"], tools: ["Canny", "Productboard", "UserVoice"] },
+
+  // Founders Skills (25)
+  { name: "Pitch Deck Analyzer", category: "Founders", description: "Get expert feedback on your investor pitch deck", details: "AI trained on thousands of successful fundraising decks.", whatItDoes: ["Analyzes deck structure and story flow", "Scores clarity of problem and solution", "Benchmarks against successful decks"], tools: ["Google Slides", "Figma", "Pitch", "PowerPoint"] },
+  { name: "Investor Outreach", category: "Founders", description: "Find and connect with the right investors", details: "Research investors and manage your fundraising pipeline.", whatItDoes: ["Identifies investors matching your profile", "Maps warm introduction paths", "Tracks investor conversations"], tools: ["LinkedIn", "Crunchbase", "AngelList", "Airtable"] },
+  { name: "Market Analysis AI", category: "Founders", description: "Competitive intelligence and market sizing", details: "Get comprehensive market analysis in minutes.", whatItDoes: ["Generates TAM/SAM/SOM calculations", "Maps competitive landscape", "Identifies market trends"], tools: ["Crunchbase", "SimilarWeb", "G2", "CB Insights"] },
+  { name: "Financial Modeler", category: "Founders", description: "Build investor-ready financial models", details: "3-statement models with scenario planning.", whatItDoes: ["Creates P&L, balance sheet, and cash flow", "Models different growth scenarios", "Calculates runway and burn rate"], tools: ["Google Sheets", "Excel", "Causal"] },
+  { name: "Cap Table Manager", category: "Founders", description: "Manage equity and option grants", details: "Keep your cap table accurate and compliant.", whatItDoes: ["Tracks equity ownership by stakeholder", "Models dilution from new rounds", "Generates option grant documents"], tools: ["Carta", "Pulley", "Shareworks"] },
+  { name: "Fundraising Tracker", category: "Founders", description: "Manage your fundraising process", details: "CRM for fundraising with pipeline tracking.", whatItDoes: ["Tracks investor pipeline by stage", "Logs meetings and follow-ups", "Shares updates with your team"], tools: ["Airtable", "Notion", "Affinity"] },
+  { name: "Startup Metrics Calculator", category: "Founders", description: "Calculate key SaaS and startup metrics", details: "MRR, ARR, CAC, LTV, and more.", whatItDoes: ["Calculates growth and unit economics", "Tracks metrics over time", "Benchmarks against industry standards"], tools: ["Google Sheets", "ChartMogul", "Baremetrics"] },
+  { name: "Board Deck Builder", category: "Founders", description: "Create board meeting presentations", details: "Professional board decks in minutes.", whatItDoes: ["Pulls metrics from your data sources", "Builds slides following best practices", "Highlights key decisions needed"], tools: ["Google Slides", "Notion", "Docsend"] },
+  { name: "Burn Rate Monitor", category: "Founders", description: "Track cash and extend runway", details: "Real-time visibility into your burn.", whatItDoes: ["Connects to your bank accounts", "Projects runway based on current burn", "Alerts when burn increases"], tools: ["Pilot", "Bench", "QuickBooks"] },
+  { name: "Hiring Plan Builder", category: "Founders", description: "Plan your team growth and costs", details: "Model headcount against budget.", whatItDoes: ["Plans hires by role and timing", "Calculates fully-loaded costs", "Models impact on runway"], tools: ["Google Sheets", "Ashby", "Greenhouse"] },
+  { name: "Investor Update Writer", category: "Founders", description: "Draft monthly investor updates", details: "AI-assisted update emails.", whatItDoes: ["Pulls key metrics and highlights", "Suggests narrative structure", "Formats for email distribution"], tools: ["Notion", "Docsend", "Gmail"] },
+  { name: "Due Diligence Checklist", category: "Founders", description: "Prepare for investor due diligence", details: "Never miss a DD requirement.", whatItDoes: ["Provides checklist of required documents", "Tracks completion status", "Organizes files for investor access"], tools: ["Notion", "Docsend", "Google Drive"] },
+  { name: "Valuation Calculator", category: "Founders", description: "Estimate company valuation", details: "Multiple valuation methodologies.", whatItDoes: ["Calculates valuation using DCF and comps", "Models post-money valuation scenarios", "Shows dilution impact"], tools: ["Google Sheets", "Excel"] },
+  { name: "Term Sheet Reviewer", category: "Founders", description: "Review and compare term sheets", details: "Understand investor terms.", whatItDoes: ["Highlights non-standard terms", "Explains legal implications", "Compares multiple term sheets"], tools: ["Notion", "Carta", "Clerky"] },
+  { name: "Founder Equity Calculator", category: "Founders", description: "Split equity fairly among co-founders", details: "Data-driven equity allocation.", whatItDoes: ["Evaluates contribution factors", "Suggests fair equity splits", "Models vesting schedules"], tools: ["Slicing Pie", "Carta", "Pulley"] },
+  { name: "Accelerator Application Helper", category: "Founders", description: "Apply to YC, Techstars, and more", details: "Strengthen your accelerator applications.", whatItDoes: ["Reviews application for completeness", "Suggests improvements to answers", "Tracks application deadlines"], tools: ["Notion", "Google Docs"] },
+  { name: "Go-to-Market Planner", category: "Founders", description: "Plan your product launch and GTM strategy", details: "Structured GTM planning framework.", whatItDoes: ["Defines target segments and positioning", "Plans launch channels and tactics", "Sets goals and success metrics"], tools: ["Notion", "Airtable", "Google Sheets"] },
+  { name: "Press Kit Generator", category: "Founders", description: "Create media kit for PR and launches", details: "Professional press materials.", whatItDoes: ["Generates boilerplate and founder bios", "Creates downloadable press kit", "Suggests pitch angles for media"], tools: ["Notion", "Canva", "Google Docs"] },
+  { name: "Runway Extension Planner", category: "Founders", description: "Strategies to extend runway without fundraising", details: "Tactical advice for capital efficiency.", whatItDoes: ["Identifies cost reduction opportunities", "Models impact of changes on runway", "Suggests revenue acceleration tactics"], tools: ["Google Sheets", "QuickBooks"] },
+  { name: "Board Meeting Scheduler", category: "Founders", description: "Schedule and prepare for board meetings", details: "Never miss a board obligation.", whatItDoes: ["Tracks board meeting cadence", "Sends reminders and agenda requests", "Collects materials from team"], tools: ["Google Calendar", "Notion", "Docsend"] },
+  { name: "Option Pool Calculator", category: "Founders", description: "Size your employee option pool", details: "Balance dilution and retention.", whatItDoes: ["Recommends pool size by stage", "Models dilution impact", "Calculates shares per role"], tools: ["Carta", "Pulley", "Google Sheets"] },
+  { name: "Competitive Positioning", category: "Founders", description: "Define your unique market position", details: "Differentiation strategy framework.", whatItDoes: ["Maps competitive positioning", "Identifies differentiation opportunities", "Tests positioning with target users"], tools: ["Notion", "Miro", "FigJam"] },
+  { name: "Exit Scenario Modeler", category: "Founders", description: "Model acquisition and IPO scenarios", details: "Understand potential outcomes.", whatItDoes: ["Models exit valuations by scenario", "Calculates per-share payouts", "Shows dilution through exit"], tools: ["Google Sheets", "Carta"] },
+  { name: "Advisor Equity Calculator", category: "Founders", description: "Determine fair advisor equity grants", details: "Standard advisor compensation.", whatItDoes: ["Recommends equity based on involvement", "Suggests vesting schedules", "Generates advisor agreements"], tools: ["Carta", "Clerky", "Pulley"] },
+  { name: "Founder Burnout Monitor", category: "Founders", description: "Track wellbeing and prevent burnout", details: "Self-care for founders.", whatItDoes: ["Daily check-ins on stress and energy", "Identifies burnout risk factors", "Suggests interventions and support"], tools: ["Notion", "Reflectly", "Calm"] },
+
+  // Customer Skills (25)
+  { name: "Smart Ticket Routing", category: "Customer", description: "Route support tickets to the right person instantly", details: "AI-powered routing based on content and context.", whatItDoes: ["Analyzes ticket content for type and urgency", "Routes based on team expertise", "Escalates high-priority issues"], tools: ["Zendesk", "Intercom", "Front", "Help Scout"] },
+  { name: "Sentiment Analysis", category: "Customer", description: "Understand customer emotions in conversations", details: "Real-time sentiment tracking.", whatItDoes: ["Analyzes sentiment across tickets and chats", "Flags negative sentiment for attention", "Predicts churn risk"], tools: ["Zendesk", "Intercom", "Delighted", "Qualtrics"] },
+  { name: "Knowledge Base AI", category: "Customer", description: "Auto-generate help docs from conversations", details: "Build knowledge base from support tickets.", whatItDoes: ["Identifies common questions", "Auto-generates help articles", "Updates articles based on new tickets"], tools: ["Notion", "GitBook", "Zendesk", "Intercom"] },
+  { name: "Chatbot Builder", category: "Customer", description: "Create AI chatbots for common questions", details: "Deflect tickets with intelligent automation.", whatItDoes: ["Trains on your knowledge base", "Answers common questions automatically", "Escalates to humans when needed"], tools: ["Intercom", "Drift", "Ada", "Zendesk"] },
+  { name: "CSAT Survey Automation", category: "Customer", description: "Collect customer satisfaction scores", details: "Automated post-interaction surveys.", whatItDoes: ["Sends CSAT surveys after ticket resolution", "Tracks satisfaction trends", "Alerts on low scores"], tools: ["Zendesk", "Delighted", "SurveyMonkey"] },
+  { name: "Macro Library", category: "Customer", description: "Save and share support response templates", details: "Speed up responses with templates.", whatItDoes: ["Creates reusable response templates", "Tracks template usage", "Suggests templates based on ticket content"], tools: ["Zendesk", "Intercom", "Front"] },
+  { name: "Live Chat Analytics", category: "Customer", description: "Analyze chat conversations for insights", details: "Understand chat performance and quality.", whatItDoes: ["Tracks response time and CSAT by agent", "Identifies conversation patterns", "Suggests coaching opportunities"], tools: ["Intercom", "Drift", "LiveChat"] },
+  { name: "Customer Health Score", category: "Customer", description: "Track customer health and engagement", details: "Identify at-risk customers early.", whatItDoes: ["Scores customers by engagement and satisfaction", "Flags at-risk accounts", "Triggers outreach workflows"], tools: ["Gainsight", "ChurnZero", "Vitally"] },
+  { name: "Ticket Volume Forecaster", category: "Customer", description: "Predict support volume for staffing", details: "Right-size your support team.", whatItDoes: ["Forecasts ticket volume by time and season", "Models staffing needs", "Alerts on volume spikes"], tools: ["Zendesk", "Playvox", "Assembled"] },
+  { name: "SLA Monitor", category: "Customer", description: "Track and enforce SLA compliance", details: "Never miss an SLA.", whatItDoes: ["Monitors ticket SLAs in real-time", "Alerts agents of approaching breaches", "Reports on SLA performance"], tools: ["Zendesk", "Freshdesk", "Front"] },
+  { name: "Escalation Manager", category: "Customer", description: "Manage escalated customer issues", details: "Structured escalation workflows.", whatItDoes: ["Routes escalations to senior staff", "Tracks escalation status", "Ensures timely resolution"], tools: ["Zendesk", "Jira Service Desk", "PagerDuty"] },
+  { name: "Customer Portal", category: "Customer", description: "Self-service portal for customers", details: "Let customers help themselves.", whatItDoes: ["Provides knowledge base search", "Shows ticket status and history", "Enables customer community"], tools: ["Zendesk", "Freshdesk", "HelpDocs"] },
+  { name: "Response Time Optimizer", category: "Customer", description: "Improve first response time", details: "Data-driven response time improvements.", whatItDoes: ["Tracks response time by channel", "Identifies bottlenecks", "Suggests staffing changes"], tools: ["Zendesk", "Intercom", "Klaus"] },
+  { name: "Customer Interview Recruiter", category: "Customer", description: "Find customers for research interviews", details: "Easy customer research recruitment.", whatItDoes: ["Identifies customers matching criteria", "Sends recruitment emails", "Schedules interviews"], tools: ["User Interviews", "Calendly", "Zendesk"] },
+  { name: "Refund Processor", category: "Customer", description: "Automate refund approvals and processing", details: "Streamline refund workflows.", whatItDoes: ["Routes refund requests by amount", "Auto-approves within policy", "Processes refunds in payment system"], tools: ["Stripe", "Chargebee", "Zendesk"] },
+  { name: "Customer Onboarding", category: "Customer", description: "Guide new customers through setup", details: "Structured onboarding workflows.", whatItDoes: ["Sends onboarding email sequences", "Tracks onboarding progress", "Triggers interventions for stuck users"], tools: ["Intercom", "Userpilot", "Appcues"] },
+  { name: "Bug Report Manager", category: "Customer", description: "Collect and route bug reports", details: "Bridge support and engineering.", whatItDoes: ["Collects structured bug reports", "Deduplicates similar issues", "Creates tickets in engineering tools"], tools: ["Zendesk", "Jira", "Linear"] },
+  { name: "Cancellation Flow", category: "Customer", description: "Reduce churn with smart cancellation flows", details: "Retain customers considering cancellation.", whatItDoes: ["Surfaces retention offers", "Collects cancellation feedback", "Offers pause or downgrade options"], tools: ["Stripe", "Chargebee", "ProfitWell"] },
+  { name: "Support Analytics", category: "Customer", description: "Comprehensive support metrics dashboard", details: "All your support metrics in one place.", whatItDoes: ["Tracks ticket volume, CSAT, and response time", "Compares agent performance", "Identifies trending issues"], tools: ["Zendesk", "Tableau", "Looker"] },
+  { name: "Customer Feedback Loop", category: "Customer", description: "Close the loop on customer feedback", details: "Show customers you're listening.", whatItDoes: ["Notifies customers when issues are fixed", "Requests feedback on solutions", "Tracks feedback implementation"], tools: ["Productboard", "Canny", "Zendesk"] },
+  { name: "Email Support Parser", category: "Customer", description: "Extract structured data from support emails", details: "Turn emails into actionable tickets.", whatItDoes: ["Parses email content for key data", "Populates ticket fields automatically", "Extracts attachments and links"], tools: ["Zendesk", "Front", "Zapier"] },
+  { name: "Customer Success Playbooks", category: "Customer", description: "Automate customer success workflows", details: "Proactive customer success.", whatItDoes: ["Triggers playbooks based on customer health", "Guides CSMs through outreach", "Tracks playbook effectiveness"], tools: ["Gainsight", "ChurnZero", "Vitally"] },
+  { name: "Chat Translation", category: "Customer", description: "Support customers in any language", details: "Real-time chat translation.", whatItDoes: ["Translates customer messages to agent language", "Translates agent responses back", "Supports 100+ languages"], tools: ["Intercom", "Zendesk", "Google Translate"] },
+  { name: "VIP Customer Identifier", category: "Customer", description: "Flag and prioritize VIP customers", details: "White-glove service for your best customers.", whatItDoes: ["Identifies high-value customers", "Routes VIP tickets to senior agents", "Tracks VIP satisfaction"], tools: ["Zendesk", "Intercom", "Salesforce"] },
+  { name: "Proactive Support Alerts", category: "Customer", description: "Reach out before customers contact you", details: "Prevent issues proactively.", whatItDoes: ["Monitors product for issues", "Sends proactive notifications to affected users", "Reduces inbound ticket volume"], tools: ["Intercom", "Zendesk", "PagerDuty"] },
+
+  // Engineering Skills (25)
+  { name: "Code Review Assistant", category: "Engineering", description: "AI-powered code reviews for quality and bugs", details: "Intelligent code review that understands your codebase.", whatItDoes: ["Reviews PRs for bugs and security issues", "Suggests improvements based on patterns", "Auto-approves low-risk changes"], tools: ["GitHub", "GitLab", "Bitbucket", "Linear"] },
+  { name: "Performance Monitor", category: "Engineering", description: "Real-time performance tracking and optimization", details: "Monitor app performance in production.", whatItDoes: ["Tracks Core Web Vitals and metrics", "Identifies performance regressions", "Suggests specific optimizations"], tools: ["Datadog", "New Relic", "Sentry", "Vercel"] },
+  { name: "API Design Studio", category: "Engineering", description: "Design consistent, developer-friendly APIs", details: "Generate OpenAPI specs and validate design.", whatItDoes: ["Generates OpenAPI specs", "Validates against best practices", "Ensures naming consistency"], tools: ["Postman", "Swagger", "Stoplight", "Insomnia"] },
+  { name: "Test Generator", category: "Engineering", description: "Auto-generate unit tests for your code", details: "AI-powered test generation.", whatItDoes: ["Analyzes code to generate test cases", "Writes unit and integration tests", "Ensures code coverage targets"], tools: ["Jest", "Pytest", "JUnit", "GitHub"] },
+  { name: "Dependency Updater", category: "Engineering", description: "Keep dependencies up-to-date automatically", details: "Automated dependency management.", whatItDoes: ["Monitors for dependency updates", "Creates PRs with updates", "Runs tests before merging"], tools: ["Dependabot", "Renovate", "GitHub"] },
+  { name: "Bug Prioritizer", category: "Engineering", description: "Prioritize bugs by impact and urgency", details: "Data-driven bug triage.", whatItDoes: ["Scores bugs by user impact", "Considers business priority", "Suggests fix order"], tools: ["Linear", "Jira", "Sentry"] },
+  { name: "Database Query Optimizer", category: "Engineering", description: "Optimize slow database queries", details: "AI-powered query performance tuning.", whatItDoes: ["Identifies slow queries", "Suggests index optimizations", "Rewrites queries for performance"], tools: ["PostgreSQL", "MySQL", "Datadog"] },
+  { name: "Documentation Generator", category: "Engineering", description: "Auto-generate API and code documentation", details: "Keep docs in sync with code.", whatItDoes: ["Generates docs from code comments", "Creates API reference pages", "Updates docs on code changes"], tools: ["Readme", "GitBook", "Docusaurus"] },
+  { name: "Security Scanner", category: "Engineering", description: "Scan code for security vulnerabilities", details: "Automated security testing.", whatItDoes: ["Scans code for CVEs and vulnerabilities", "Checks for exposed secrets", "Provides fix recommendations"], tools: ["Snyk", "GitHub", "SonarQube"] },
+  { name: "CI/CD Pipeline Builder", category: "Engineering", description: "Build and optimize deployment pipelines", details: "Fast, reliable deployments.", whatItDoes: ["Creates CI/CD workflows", "Optimizes build times", "Adds testing and security checks"], tools: ["GitHub Actions", "CircleCI", "GitLab CI"] },
+  { name: "Log Analyzer", category: "Engineering", description: "Find patterns and issues in application logs", details: "Intelligent log analysis.", whatItDoes: ["Parses and structures log data", "Identifies error patterns", "Alerts on anomalies"], tools: ["Datadog", "Splunk", "LogRocket"] },
+  { name: "Load Tester", category: "Engineering", description: "Simulate traffic to test performance", details: "Stress test your application.", whatItDoes: ["Simulates concurrent user load", "Identifies performance bottlenecks", "Reports on throughput and latency"], tools: ["k6", "JMeter", "Locust"] },
+  { name: "Infrastructure as Code", category: "Engineering", description: "Manage infrastructure with code", details: "Automate infrastructure provisioning.", whatItDoes: ["Defines infrastructure in code", "Versions infrastructure changes", "Ensures environment consistency"], tools: ["Terraform", "Pulumi", "AWS CDK"] },
+  { name: "Error Tracker", category: "Engineering", description: "Track and resolve application errors", details: "Comprehensive error monitoring.", whatItDoes: ["Captures errors with stack traces", "Groups similar errors", "Assigns errors to developers"], tools: ["Sentry", "Rollbar", "Bugsnag"] },
+  { name: "Code Coverage Tracker", category: "Engineering", description: "Monitor test coverage across your codebase", details: "Ensure adequate test coverage.", whatItDoes: ["Calculates code coverage", "Tracks coverage over time", "Blocks PRs below threshold"], tools: ["Codecov", "Coveralls", "SonarQube"] },
+  { name: "API Rate Limiter", category: "Engineering", description: "Protect APIs with intelligent rate limiting", details: "Prevent abuse and ensure reliability.", whatItDoes: ["Implements rate limiting rules", "Adapts limits by user tier", "Provides rate limit analytics"], tools: ["Redis", "Kong", "AWS API Gateway"] },
+  { name: "Database Migration Manager", category: "Engineering", description: "Safely manage database schema changes", details: "Version-controlled database migrations.", whatItDoes: ["Creates and tracks migrations", "Previews schema changes", "Rolls back failed migrations"], tools: ["Flyway", "Liquibase", "Prisma"] },
+  { name: "Container Orchestrator", category: "Engineering", description: "Manage containerized applications", details: "Deploy and scale with Kubernetes.", whatItDoes: ["Deploys containers to clusters", "Auto-scales based on load", "Handles rolling updates"], tools: ["Kubernetes", "Docker", "Helm"] },
+  { name: "Secret Manager", category: "Engineering", description: "Securely store and rotate secrets", details: "Never commit secrets to code.", whatItDoes: ["Stores secrets encrypted", "Rotates secrets automatically", "Audits secret access"], tools: ["Vault", "AWS Secrets Manager", "1Password"] },
+  { name: "Incident Response", category: "Engineering", description: "Manage on-call and incident resolution", details: "Structured incident management.", whatItDoes: ["Routes alerts to on-call engineers", "Creates incident timelines", "Conducts post-mortems"], tools: ["PagerDuty", "Opsgenie", "Slack"] },
+  { name: "GraphQL Schema Designer", category: "Engineering", description: "Design and validate GraphQL schemas", details: "Build consistent GraphQL APIs.", whatItDoes: ["Designs GraphQL schemas", "Validates against best practices", "Generates resolvers"], tools: ["Apollo", "Hasura", "Postman"] },
+  { name: "Cache Optimizer", category: "Engineering", description: "Optimize caching strategy for performance", details: "Smart caching recommendations.", whatItDoes: ["Analyzes cache hit rates", "Suggests cache keys and TTLs", "Implements cache warming"], tools: ["Redis", "Memcached", "Cloudflare"] },
+  { name: "Service Mesh Manager", category: "Engineering", description: "Manage microservices communication", details: "Observability and control for microservices.", whatItDoes: ["Routes traffic between services", "Provides service-to-service security", "Monitors service health"], tools: ["Istio", "Linkerd", "Consul"] },
+  { name: "Feature Branch Deployer", category: "Engineering", description: "Deploy preview environments for every PR", details: "Test changes in isolation.", whatItDoes: ["Creates ephemeral environments", "Deploys PR branches automatically", "Tears down after merge"], tools: ["Vercel", "Netlify", "AWS"] },
+  { name: "Webhook Manager", category: "Engineering", description: "Manage webhook delivery and retries", details: "Reliable webhook infrastructure.", whatItDoes: ["Delivers webhooks reliably", "Retries failed deliveries", "Provides webhook logs"], tools: ["Svix", "Hookdeck", "AWS EventBridge"] },
+];
+
+// Add IDs to skills
+const skills = skillsData.map((skill, index) => ({
+  ...skill,
+  id: index + 1,
+}));
+
+const categories = ["All", "Sales", "Product", "Founders", "Customer", "Engineering"];
+---
+
+<Layout>
+  <Nav />
+
+  <div class="bg-black min-h-screen">
+    <!-- Hero Section -->
+    <section class="pt-48 pb-16">
+      <div class="marketplace-container">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          Marketplace
+        </h1>
+        <p class="text-lg md:text-xl text-white/60 mb-16 max-w-2xl">
+          AI-powered skills for founders, sales, product, customer success, and engineering teams
+        </p>
+
+        <!-- Search and Filters -->
+        <div class="flex flex-wrap gap-3 items-center">
+          <!-- Search Bar -->
+          <div class="relative w-full md:w-80">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="absolute left-5 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search skills..."
+              class="w-full h-12 pl-14 pr-5 bg-white/5 border border-white/10 rounded-full text-sm text-white placeholder-white/40 outline-none focus:border-white/25 transition-colors appearance-none"
+              style="box-shadow: none !important;"
+            />
+          </div>
+
+          <!-- Category Filters -->
+          {categories.map((category) => (
+            <button
+              class="category-filter h-12 px-5 rounded-full text-sm font-medium transition-colors"
+              data-category={category}
+              class:list={[
+                category === "All"
+                  ? "bg-white text-black"
+                  : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white/80"
+              ]}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Grid -->
+    <section class="pb-32">
+      <div class="marketplace-container">
+        <div id="skillsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skills.map((skill) => (
+            <div
+              class="skill-card group bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-white/20 transition-all cursor-pointer"
+              data-skill-id={skill.id}
+              data-category={skill.category}
+              data-name={skill.name.toLowerCase()}
+              data-description={skill.description.toLowerCase()}
+            >
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="text-lg font-semibold text-white group-hover:text-white/80 transition-colors">
+                  {skill.name}
+                </h3>
+                <span class="px-2 py-1 rounded-md text-xs font-medium bg-white/10 text-white/60 flex-shrink-0 ml-2">
+                  {skill.category}
+                </span>
+              </div>
+              <p class="text-sm text-white/50 leading-relaxed">
+                {skill.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="hidden text-center py-20">
+          <h3 class="text-xl font-bold text-white mb-2">No skills found</h3>
+          <p class="text-white/60">Try adjusting your search or filters</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal for Skill Details -->
+  <div id="skillModal" class="fixed inset-0 z-50 hidden items-center justify-center p-6 bg-black backdrop-blur-sm">
+    <div class="relative max-w-3xl w-full bg-black/95 rounded-2xl border border-white/20 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <button
+        id="closeModal"
+        class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 transition-all flex items-center justify-center text-white z-10"
+      >
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <div id="modalContent" class="p-8">
+        <!-- Content will be dynamically inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+
+  <style>
+    .search-input,
+    .search-input:focus,
+    .search-input:active {
+      outline: none !important;
+      box-shadow: none !important;
+      -webkit-appearance: none !important;
+      -moz-appearance: none !important;
+      appearance: none !important;
+    }
+
+    .marketplace-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .marketplace-container {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .marketplace-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+  </style>
+
+  <script define:vars={{ skills }}>
+    let currentCategory = "All";
+    let searchQuery = "";
+
+    const searchInput = document.getElementById('searchInput');
+    const categoryButtons = document.querySelectorAll('.category-filter');
+    const skillCards = document.querySelectorAll('.skill-card');
+    const skillsGrid = document.getElementById('skillsGrid');
+    const noResults = document.getElementById('noResults');
+    const modal = document.getElementById('skillModal');
+    const modalContent = document.getElementById('modalContent');
+    const closeModalBtn = document.getElementById('closeModal');
+
+    function filterAndSort() {
+      let visibleCards = 0;
+      const cardsArray = Array.from(skillCards);
+
+      cardsArray.forEach(card => {
+        const category = card.dataset.category;
+        const name = card.dataset.name;
+        const description = card.dataset.description;
+
+        const matchesCategory = currentCategory === "All" || category === currentCategory;
+        const matchesSearch = searchQuery === "" ||
+          name.includes(searchQuery.toLowerCase()) ||
+          description.includes(searchQuery.toLowerCase());
+
+        if (matchesCategory && matchesSearch) {
+          card.style.display = 'block';
+          visibleCards++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const visibleCardsArray = cardsArray.filter(card => card.style.display !== 'none');
+
+      visibleCardsArray.sort((a, b) => {
+        return a.dataset.name.localeCompare(b.dataset.name);
+      });
+
+      visibleCardsArray.forEach(card => {
+        skillsGrid.appendChild(card);
+      });
+
+      if (visibleCards === 0) {
+        noResults.classList.remove('hidden');
+      } else {
+        noResults.classList.add('hidden');
+      }
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      filterAndSort();
+    });
+
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        currentCategory = button.dataset.category;
+
+        categoryButtons.forEach(btn => {
+          if (btn.dataset.category === currentCategory) {
+            btn.classList.remove('bg-white/5', 'text-white/60', 'hover:bg-white/10', 'hover:text-white/80');
+            btn.classList.add('bg-white', 'text-black');
+          } else {
+            btn.classList.remove('bg-white', 'text-black');
+            btn.classList.add('bg-white/5', 'text-white/60', 'hover:bg-white/10', 'hover:text-white/80');
+          }
+        });
+
+        filterAndSort();
+      });
+    });
+
+    function openModal(skillId) {
+      const skill = skills.find(s => s.id === skillId);
+      if (!skill) return;
+
+      modalContent.innerHTML = `
+        <div class="mb-6">
+          <div class="flex items-center gap-3 mb-3">
+            <h2 class="text-3xl font-bold text-white">${skill.name}</h2>
+            <span class="px-3 py-1 rounded-lg text-xs font-medium bg-white/10 text-white/60">
+              ${skill.category}
+            </span>
+          </div>
+          <p class="text-white/60 text-lg mb-6">${skill.details}</p>
+
+          <h3 class="text-xl font-bold text-white mb-3">What it does</h3>
+          <ul class="space-y-2 mb-6">
+            ${skill.whatItDoes.map(item => `
+              <li class="flex gap-2 text-white/70 text-sm">
+                <svg class="w-5 h-5 text-white/40 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>${item}</span>
+              </li>
+            `).join('')}
+          </ul>
+
+          <h3 class="text-xl font-bold text-white mb-3">Connects with</h3>
+          <div class="flex flex-wrap gap-2 mb-8">
+            ${skill.tools.map(tool => `
+              <span class="px-3 py-1 rounded-lg bg-white/10 text-white/70 text-sm">
+                ${tool}
+              </span>
+            `).join('')}
+          </div>
+
+          <button class="w-full py-3 rounded-xl bg-white text-black font-semibold hover:bg-white/90 transition-all">
+            Install ${skill.name}
+          </button>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = 'auto';
+    }
+
+    skillCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const skillId = parseInt(card.dataset.skillId);
+        openModal(skillId);
+      });
+    });
+
+    closeModalBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    filterAndSort();
+  </script>
+</Layout>
