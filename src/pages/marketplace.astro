@@ -1,0 +1,305 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { skillsWithIds, categories } from '../data/marketplace-skills';
+
+const skills = skillsWithIds;
+---
+
+<Layout>
+  <Nav />
+
+  <div class="bg-black min-h-screen">
+    <!-- Hero Section -->
+    <section class="pt-48 pb-16">
+      <div class="marketplace-container">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          Marketplace
+        </h1>
+        <p class="text-lg md:text-xl text-white/60 mb-16 max-w-2xl">
+          AI-powered skills for founders, sales, product, customer success, and engineering teams
+        </p>
+
+        <!-- Search and Filters -->
+        <div class="flex flex-wrap gap-3 items-center">
+          <!-- Search Bar -->
+          <div class="relative w-full md:w-80">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="absolute left-5 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search skills..."
+              class="w-full h-12 pl-14 pr-5 bg-white/5 border border-white/10 rounded-full text-sm text-white placeholder-white/40 outline-none focus:border-white/25 transition-colors appearance-none"
+              style="box-shadow: none !important;"
+            />
+          </div>
+
+          <!-- Category Filters -->
+          {categories.map((category) => (
+            <button
+              class="category-filter h-12 px-5 rounded-full text-sm font-medium transition-colors"
+              data-category={category}
+              class:list={[
+                category === "All"
+                  ? "bg-white text-black"
+                  : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white/80"
+              ]}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Grid -->
+    <section class="pb-32">
+      <div class="marketplace-container">
+        <div id="skillsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skills.map((skill) => (
+            <div
+              class="skill-card group bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-white/20 transition-all cursor-pointer"
+              data-skill-id={skill.id}
+              data-category={skill.category}
+              data-name={skill.name.toLowerCase()}
+              data-description={skill.description.toLowerCase()}
+            >
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="text-lg font-semibold text-white group-hover:text-white/80 transition-colors">
+                  {skill.name}
+                </h3>
+                <span class="px-2 py-1 rounded-md text-xs font-medium bg-white/10 text-white/60 flex-shrink-0 ml-2">
+                  {skill.category}
+                </span>
+              </div>
+              <p class="text-sm text-white/50 leading-relaxed mb-4">
+                {skill.description}
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
+                {skill.tools.map((tool) => (
+                  <span class="px-2 py-0.5 rounded-md bg-white/5 text-white/40 text-xs">
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="hidden text-center py-20">
+          <h3 class="text-xl font-bold text-white mb-2">No skills found</h3>
+          <p class="text-white/60">Try adjusting your search or filters</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal for Skill Details -->
+  <div id="skillModal" class="fixed inset-0 z-50 hidden items-center justify-center p-6 bg-black/70 backdrop-blur-sm">
+    <div class="relative max-w-3xl w-full bg-black rounded-2xl border border-white/20 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <button
+        id="closeModal"
+        class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 transition-all flex items-center justify-center text-white z-10"
+      >
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <div id="modalContent" class="p-8">
+        <!-- Content will be dynamically inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+
+  <style>
+    .search-input,
+    .search-input:focus,
+    .search-input:active {
+      outline: none !important;
+      box-shadow: none !important;
+      -webkit-appearance: none !important;
+      -moz-appearance: none !important;
+      appearance: none !important;
+    }
+
+    .marketplace-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .marketplace-container {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .marketplace-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+  </style>
+
+  <script define:vars={{ skills }}>
+    let currentCategory = "All";
+    let searchQuery = "";
+
+    const searchInput = document.getElementById('searchInput');
+    const categoryButtons = document.querySelectorAll('.category-filter');
+    const skillCards = document.querySelectorAll('.skill-card');
+    const skillsGrid = document.getElementById('skillsGrid');
+    const noResults = document.getElementById('noResults');
+    const modal = document.getElementById('skillModal');
+    const modalContent = document.getElementById('modalContent');
+    const closeModalBtn = document.getElementById('closeModal');
+
+    function filterAndSort() {
+      let visibleCards = 0;
+      const cardsArray = Array.from(skillCards);
+
+      cardsArray.forEach(card => {
+        const category = card.dataset.category;
+        const name = card.dataset.name;
+        const description = card.dataset.description;
+
+        const matchesCategory = currentCategory === "All" || category === currentCategory;
+        const matchesSearch = searchQuery === "" ||
+          name.includes(searchQuery.toLowerCase()) ||
+          description.includes(searchQuery.toLowerCase());
+
+        if (matchesCategory && matchesSearch) {
+          card.style.display = 'block';
+          visibleCards++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const visibleCardsArray = cardsArray.filter(card => card.style.display !== 'none');
+
+      visibleCardsArray.sort((a, b) => {
+        return a.dataset.name.localeCompare(b.dataset.name);
+      });
+
+      visibleCardsArray.forEach(card => {
+        skillsGrid.appendChild(card);
+      });
+
+      if (visibleCards === 0) {
+        noResults.classList.remove('hidden');
+      } else {
+        noResults.classList.add('hidden');
+      }
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      filterAndSort();
+    });
+
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        currentCategory = button.dataset.category;
+
+        categoryButtons.forEach(btn => {
+          if (btn.dataset.category === currentCategory) {
+            btn.classList.remove('bg-white/5', 'text-white/60', 'hover:bg-white/10', 'hover:text-white/80');
+            btn.classList.add('bg-white', 'text-black');
+          } else {
+            btn.classList.remove('bg-white', 'text-black');
+            btn.classList.add('bg-white/5', 'text-white/60', 'hover:bg-white/10', 'hover:text-white/80');
+          }
+        });
+
+        filterAndSort();
+      });
+    });
+
+    function openModal(skillId) {
+      const skill = skills.find(s => s.id === skillId);
+      if (!skill) return;
+
+      modalContent.innerHTML = `
+        <div class="mb-6">
+          <div class="flex items-center gap-3 mb-3">
+            <h2 class="text-3xl font-bold text-white">${skill.name}</h2>
+            <span class="px-3 py-1 rounded-lg text-xs font-medium bg-white/10 text-white/60">
+              ${skill.category}
+            </span>
+          </div>
+          <p class="text-white/60 text-lg mb-6">${skill.details}</p>
+
+          <h3 class="text-xl font-bold text-white mb-3">What it does</h3>
+          <ul class="space-y-2 mb-6">
+            ${skill.whatItDoes.map(item => `
+              <li class="flex gap-2 text-white/70 text-sm">
+                <svg class="w-5 h-5 text-white/40 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>${item}</span>
+              </li>
+            `).join('')}
+          </ul>
+
+          <h3 class="text-xl font-bold text-white mb-3">Connects with</h3>
+          <div class="flex flex-wrap gap-2 mb-8">
+            ${skill.tools.map(tool => `
+              <span class="px-3 py-1 rounded-lg bg-white/10 text-white/70 text-sm">
+                ${tool}
+              </span>
+            `).join('')}
+          </div>
+
+          <button class="w-full py-3 rounded-xl bg-white text-black font-semibold hover:bg-white/90 transition-all">
+            Install ${skill.name}
+          </button>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = 'auto';
+    }
+
+    skillCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const skillId = parseInt(card.dataset.skillId);
+        openModal(skillId);
+      });
+    });
+
+    closeModalBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    filterAndSort();
+  </script>
+</Layout>

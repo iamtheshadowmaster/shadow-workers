@@ -149,6 +149,12 @@
   border-radius: 4px;
 }
 
+/* Remove blue outline for search input and preserve rounded corners */
+input.search-input:focus-visible {
+  outline: none !important;
+  border-radius: 9999px !important;
+}
+
 /* Optimize for touch devices */
 @media (hover: none) and (pointer: coarse) {
   .hover\:scale-105:hover {

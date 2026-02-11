@@ -13,11 +13,11 @@
         <!-- Main Headline -->
         <div>
           <h1 class="text-6xl md:text-5xl lg:text-6xl font-semibold text-white mb-4 leading-tight">
-            <span id="decrypted-text" class="inline-block">Supercharge Claude.</span><br>
-            <span class="text-white/80">Zero setup.</span>
+            <span id="decrypted-text" class="inline-block">Hire AI Workers.</span><br>
+            <span class="text-white/80 text-lg md:text-xl lg:text-2xl leading-tight">The best teams aren't all human.</span>
           </h1>
           <p class="text-3xl md:text-2xl text-white/70 font-light">
-            Discover, create, and deploy Claude skills and MCPs. All in one place
+            The first platform to hire, onboard, and manage autonomous AI workers.
           </p>
         </div>
 
@@ -27,7 +27,7 @@
             href="https://app.yourshadowai.com/sign-up"
             class="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-black bg-white hover:bg-gray-100 rounded-full transition-all shadow-lg hover:shadow-xl"
           >
-            Get early access
+            Hire your first worker
           </a>
         </div>
       </div>
@@ -52,25 +52,59 @@
 </section>
 
 <script>
-  // Decrypted text animation
+  // Decrypted text animation with fixed-width character spans
   const decryptedTextElement = document.getElementById('decrypted-text');
 
   if (decryptedTextElement) {
-    const originalText = 'Supercharge Claude.';
+    const originalText = 'Hire AI Workers.';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+';
-    const speed = 80; // milliseconds (slower)
-    const maxIterations = 15; // more iterations for smoother effect
-    const waitBetweenLoops = 3000; // 3 seconds wait between animations
+    const speed = 80;
+    const maxIterations = 15;
+    const waitBetweenLoops = 3000;
+
+    const charSpans: (HTMLSpanElement | null)[] = [];
+
+    const init = () => {
+      // Render final text first so the browser uses the correct font
+      decryptedTextElement.textContent = originalText;
+
+      // Build character spans, preserving spaces as text nodes for natural word-wrap
+      decryptedTextElement.innerHTML = '';
+
+      for (let i = 0; i < originalText.length; i++) {
+        const char = originalText[i];
+
+        if (char === ' ') {
+          decryptedTextElement.appendChild(document.createTextNode(' '));
+          charSpans.push(null);
+          continue;
+        }
+
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = char;
+        decryptedTextElement.appendChild(span);
+        charSpans.push(span);
+      }
+
+      // Measure and lock each character's rendered width
+      charSpans.forEach((span) => {
+        if (!span) return;
+        const width = span.getBoundingClientRect().width;
+        span.style.width = width + 'px';
+      });
+    };
 
     let interval: number | null = null;
     let iteration = 0;
 
     const animateText = () => {
       if (iteration >= maxIterations) {
-        decryptedTextElement.textContent = originalText;
+        charSpans.forEach((span, i) => {
+          if (span) span.textContent = originalText[i];
+        });
         if (interval) clearInterval(interval);
 
-        // Wait 3 seconds, then restart the animation
         setTimeout(() => {
           iteration = 0;
           interval = window.setInterval(animateText, speed);
@@ -78,30 +112,28 @@
         return;
       }
 
-      const scrambled = originalText
-        .split('')
-        .map((char, index) => {
-          if (char === ' ') return ' ';
-          if (char === '.') return '.';
+      charSpans.forEach((span, index) => {
+        if (!span) return;
+        const char = originalText[index];
+        if (char === '.') return;
 
-          // Gradually reveal characters
-          if (iteration >= maxIterations * (index / originalText.length)) {
-            return originalText[index];
-          }
+        if (iteration >= maxIterations * (index / originalText.length)) {
+          span.textContent = originalText[index];
+        } else {
+          span.textContent = characters[Math.floor(Math.random() * characters.length)];
+        }
+      });
 
-          // Random character
-          return characters[Math.floor(Math.random() * characters.length)];
-        })
-        .join('');
-
-      decryptedTextElement.textContent = scrambled;
       iteration++;
     };
 
-    // Start animation on page load
-    setTimeout(() => {
-      interval = window.setInterval(animateText, speed);
-    }, 500);
+    // Wait for fonts, then init and start
+    document.fonts.ready.then(() => {
+      init();
+      setTimeout(() => {
+        interval = window.setInterval(animateText, speed);
+      }, 500);
+    });
   }
 </script>
 
@@ -164,6 +196,11 @@
 
   #decrypted-text {
     font-variant-numeric: tabular-nums;
+  }
+
+  #decrypted-text .char {
+    display: inline-block;
+    text-align: center;
   }
 </style>
 
