@@ -1,0 +1,271 @@
+---
+---
+
+<div class="instructions-visual-root rounded-2xl bg-white p-6 sm:p-8 h-[600px] flex items-center justify-center border border-gray-100 relative overflow-hidden">
+  <div class="w-full max-w-lg">
+
+    <!-- Editor Window -->
+    <div class="w-full flex flex-col rounded-xl border border-gray-200 shadow-sm overflow-hidden h-[460px]">
+
+      <!-- Title Bar -->
+      <div class="flex items-center gap-2 px-4 py-2.5 bg-gray-50 border-b border-gray-100">
+        <div class="flex items-center gap-1.5">
+          <div class="w-3 h-3 rounded-full bg-red-300"></div>
+          <div class="w-3 h-3 rounded-full bg-amber-300"></div>
+          <div class="w-3 h-3 rounded-full bg-green-300"></div>
+        </div>
+        <div class="flex-1 text-center">
+          <span class="text-[11px] text-gray-400 font-medium">worker-instructions</span>
+        </div>
+      </div>
+
+      <!-- Editor Body -->
+      <div class="flex flex-1 min-h-0">
+
+        <!-- File Sidebar -->
+        <div class="w-[160px] sm:w-[180px] bg-gray-50/80 border-r border-gray-100 flex flex-col py-1.5 flex-shrink-0">
+          <div class="px-3 py-1.5 text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Instructions</div>
+
+          <button class="instruction-file active" data-file="role">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>Role</span>
+          </button>
+
+          <button class="instruction-file" data-file="okr">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="6"/>
+              <circle cx="12" cy="12" r="2"/>
+            </svg>
+            <span>OKR</span>
+          </button>
+
+          <button class="instruction-file" data-file="communication">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            <span>Communication</span>
+          </button>
+
+          <button class="instruction-file" data-file="feedback">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0">
+              <polyline points="23 4 23 10 17 10"/>
+              <polyline points="1 20 1 14 7 14"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+            <span>Feedback loop</span>
+          </button>
+
+          <button class="instruction-file" data-file="autonomy">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span>Autonomy</span>
+          </button>
+        </div>
+
+        <!-- File Content Area -->
+        <div class="flex-1 flex flex-col min-w-0">
+
+          <!-- Tab Bar -->
+          <div class="flex items-center bg-gray-50/50 border-b border-gray-100 px-1 flex-shrink-0">
+            <div class="instruction-tab active" data-file="role">
+              <span>Role</span>
+            </div>
+            <div class="instruction-tab" data-file="okr">
+              <span>OKR</span>
+            </div>
+            <div class="instruction-tab" data-file="communication">
+              <span>Communication</span>
+            </div>
+            <div class="instruction-tab" data-file="feedback">
+              <span>Feedback loop</span>
+            </div>
+            <div class="instruction-tab" data-file="autonomy">
+              <span>Autonomy</span>
+            </div>
+          </div>
+
+          <!-- Content Pages -->
+          <div class="flex-1 overflow-y-auto relative bg-white">
+
+            <!-- Role Content -->
+            <div class="instruction-content active" data-file="role">
+              <p>You are a Senior Growth Marketer named Marketing Strategist, specializing in B2B SaaS.</p>
+              <p>Your responsibilities include planning and executing campaigns, analyzing conversion funnels, optimizing ad spend ROI, and reporting weekly performance.</p>
+              <p>Maintain a data-driven and concise tone in all communications.</p>
+            </div>
+
+            <!-- OKR Content -->
+            <div class="instruction-content" data-file="okr">
+              <p>Your primary objective is to grow the pipeline by 40%.</p>
+              <p>Key results to focus on:</p>
+              <p>Increase MQLs to 500 per month (currently at 72% progress). Reduce customer acquisition cost below $120 (currently at 45%). Launch 3 new acquisition channels (currently at 33%).</p>
+              <p>Progress is reviewed on a bi-weekly cycle.</p>
+            </div>
+
+            <!-- Communication Content -->
+            <div class="instruction-content" data-file="communication">
+              <p>Keep a professional, to-the-point communication style. Default language is English.</p>
+              <p>Use Slack for quick updates and questions. Use email for weekly reports and summaries.</p>
+              <p>Never message before 9am. Always summarize rather than over-explain.</p>
+            </div>
+
+            <!-- Feedback Loop Content -->
+            <div class="instruction-content" data-file="feedback">
+              <p>You need approval before proceeding with any budget over $500, external-facing content, or new vendor contracts.</p>
+              <p>You can proceed autonomously with internal analytics reports, A/B test setup, and data pulls or dashboards.</p>
+              <p>When in doubt, escalate to @thomas.</p>
+            </div>
+
+            <!-- Autonomy Content -->
+            <div class="instruction-content" data-file="autonomy">
+              <p>You have a high level of autonomy.</p>
+              <p>You can schedule and publish posts, adjust bids under $200, and create reports on your own.</p>
+              <p>You cannot change brand guidelines, approve invoices, or contact customers directly.</p>
+              <p>Always stay within the established brand voice.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  /* File sidebar buttons */
+  .instruction-file {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 6px 12px;
+    border: none;
+    background: transparent;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .instruction-file:hover {
+    color: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .instruction-file.active {
+    color: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  .instruction-file svg {
+    opacity: 0.4;
+    width: 14px;
+    height: 14px;
+  }
+
+  .instruction-file.active svg {
+    opacity: 0.8;
+  }
+
+  /* Tab bar */
+  .instruction-tab {
+    display: none;
+    align-items: center;
+    padding: 8px 14px;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.4);
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .instruction-tab.active {
+    display: flex;
+    color: rgba(0, 0, 0, 0.9);
+    border-bottom-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  /* Content pages */
+  .instruction-content {
+    display: none;
+    padding: 16px 20px;
+  }
+
+  .instruction-content.active {
+    display: block;
+    animation: content-fade 0.2s ease;
+  }
+
+  @keyframes content-fade {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Plain text paragraphs */
+  .instruction-content p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 12px;
+  }
+
+  .instruction-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Blinking cursor on active content */
+  .instruction-content.active p:last-child::after {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+</style>
+
+<script>
+  // Instructions visual file switching - scoped per instance
+  document.querySelectorAll('.instructions-visual-root').forEach(root => {
+    const files = root.querySelectorAll<HTMLButtonElement>('.instruction-file');
+    const tabs = root.querySelectorAll<HTMLDivElement>('.instruction-tab');
+    const contents = root.querySelectorAll<HTMLDivElement>('.instruction-content');
+
+    files.forEach(file => {
+      file.addEventListener('click', () => {
+        const target = file.dataset.file;
+
+        files.forEach(f => f.classList.remove('active'));
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+
+        file.classList.add('active');
+
+        const tab = root.querySelector<HTMLDivElement>(`.instruction-tab[data-file="${target}"]`);
+        const content = root.querySelector<HTMLDivElement>(`.instruction-content[data-file="${target}"]`);
+
+        if (tab) tab.classList.add('active');
+        if (content) content.classList.add('active');
+      });
+    });
+  });
+</script>

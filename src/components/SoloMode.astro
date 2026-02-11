@@ -1,8 +1,9 @@
 ---
-import DiscoverSkillsVisual from './visuals/DiscoverSkillsVisual.astro';
+import ContextMemoryVisual from './visuals/ContextMemoryVisual.astro';
 import VibeCodeVisual from './visuals/VibeCodeVisual.astro';
-import OneClickInstallVisual from './visuals/OneClickInstallVisual.astro';
+import InstructionsVisual from './visuals/InstructionsVisual.astro';
 import ManageTeamVisual from './visuals/ManageTeamVisual.astro';
+import ChannelsVisual from './visuals/ChannelsVisual.astro';
 ---
 
 <section class="relative bg-[#111111] py-24 overflow-hidden">
@@ -20,7 +21,7 @@ import ManageTeamVisual from './visuals/ManageTeamVisual.astro';
         <span class="text-sm font-semibold text-black uppercase tracking-wider">How it works</span>
       </div>
       <h2 class="text-xl md:text-3xl lg:text-4xl font-semibold text-white mb-6 leading-tight tracking-tight">
-        Four steps to supercharge your Claude
+        How AI workers actually work
       </h2>
     </div>
 
@@ -29,133 +30,125 @@ import ManageTeamVisual from './visuals/ManageTeamVisual.astro';
 
       <!-- Left: Feature Menu (Accordion) -->
       <div class="features-menu">
-        <!-- Item 1: Discover -->
-        <div class="feature-wrapper" data-feature="discover">
-          <button class="feature-item active" data-feature="discover" data-index="1" style="animation-delay: 0ms">
+        <!-- Item 1: Context & Memory -->
+        <div class="feature-wrapper" data-feature="context">
+          <button class="feature-item active" data-feature="context" data-index="1" style="animation-delay: 0ms">
             <div class="feature-number">01</div>
             <div class="feature-header">
               <div class="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
-                  <path d="M20 3v4"/>
-                  <path d="M22 5h-4"/>
-                  <path d="M4 17v2"/>
-                  <path d="M5 18H3"/>
+                  <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/>
+                  <path d="M12 6v6l4 2"/>
+                  <circle cx="12" cy="12" r="1"/>
                 </svg>
               </div>
               <div class="feature-text">
-                <h3 class="feature-item-title">Choose skills made for you</h3>
+                <h3 class="feature-item-title">Context</h3>
                 <div class="feature-description-wrapper">
-                  <p class="feature-item-description">Get recommended skills based on your profile and company data</p>
+                  <p class="feature-item-description">The AI worker builds context about you and your company, and keeps it updated automatically over time</p>
                 </div>
               </div>
             </div>
             <div class="feature-glow"></div>
           </button>
-          <div class="mobile-visual-content active" data-visual="discover">
-            <DiscoverSkillsVisual />
+          <div class="mobile-visual-content active" data-visual="context">
+            <ContextMemoryVisual />
           </div>
         </div>
 
-        <!-- Item 2: Vibe -->
-        <div class="feature-wrapper" data-feature="vibe">
-          <button class="feature-item" data-feature="vibe" data-index="2" style="animation-delay: 100ms">
+        <!-- Item 2: Skills -->
+        <div class="feature-wrapper" data-feature="skills">
+          <button class="feature-item" data-feature="skills" data-index="2" style="animation-delay: 100ms">
             <div class="feature-number">02</div>
             <div class="feature-header">
               <div class="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 4h1a3 3 0 0 1 3 3 3 3 0 0 1 3-3h1"/>
-                  <path d="M13 20h-1a3 3 0 0 1-3-3 3 3 0 0 1-3 3H5"/>
-                  <path d="M5 16H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h1"/>
-                  <path d="M13 8h7a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-7"/>
-                  <path d="M9 7v10"/>
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
                 </svg>
               </div>
               <div class="feature-text">
-                <h3 class="feature-item-title">Vibe create new skills</h3>
+                <h3 class="feature-item-title">Skills</h3>
                 <div class="feature-description-wrapper">
-                  <p class="feature-item-description">Build custom skills by just talking to Shadow</p>
+                  <p class="feature-item-description">Each skill bundles instructions, tools, and integrations — everything the AI worker needs to get a job done end-to-end</p>
                 </div>
               </div>
             </div>
             <div class="feature-glow"></div>
           </button>
-          <div class="mobile-visual-content" data-visual="vibe">
+          <div class="mobile-visual-content" data-visual="skills">
             <VibeCodeVisual />
           </div>
         </div>
 
-        <!-- Item 3: Install -->
-        <div class="feature-wrapper" data-feature="install">
-          <button class="feature-item" data-feature="install" data-index="3" style="animation-delay: 200ms">
+        <!-- Item 3: Instructions -->
+        <div class="feature-wrapper" data-feature="instructions">
+          <button class="feature-item" data-feature="instructions" data-index="3" style="animation-delay: 200ms">
             <div class="feature-number">03</div>
             <div class="feature-header">
               <div class="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-                  <polyline points="16 6 12 2 8 6"/>
-                  <line x1="12" x2="12" y1="2" y2="15"/>
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" x2="8" y1="13" y2="13"/>
+                  <line x1="16" x2="8" y1="17" y2="17"/>
+                  <polyline points="10 9 9 9 8 9"/>
                 </svg>
               </div>
               <div class="feature-text">
-                <h3 class="feature-item-title">Install in one-click</h3>
+                <h3 class="feature-item-title">Instructions</h3>
                 <div class="feature-description-wrapper">
-                  <p class="feature-item-description">Install skills to Claude with our Chrome extension</p>
+                  <p class="feature-item-description">Each AI worker has and respects its goals, OKRs, guardrails, autonomy level, feedback loop, communication style and requirements</p>
                 </div>
               </div>
             </div>
             <div class="feature-glow"></div>
           </button>
-          <div class="mobile-visual-content" data-visual="install">
-            <OneClickInstallVisual />
+          <div class="mobile-visual-content" data-visual="instructions">
+            <InstructionsVisual />
           </div>
         </div>
 
-        <!-- Item 4: Manage -->
-        <div class="feature-wrapper" data-feature="manage">
-          <button class="feature-item" data-feature="manage" data-index="4" style="animation-delay: 300ms">
+        <!-- Item 4: Channels -->
+        <div class="feature-wrapper" data-feature="channels">
+          <button class="feature-item" data-feature="channels" data-index="4" style="animation-delay: 300ms">
             <div class="feature-number">04</div>
             <div class="feature-header">
               <div class="feature-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="18" cy="5" r="3"/>
-                  <circle cx="6" cy="12" r="3"/>
-                  <circle cx="18" cy="19" r="3"/>
-                  <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/>
-                  <line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/>
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                 </svg>
               </div>
               <div class="feature-text">
-                <h3 class="feature-item-title">Deploy to your teams</h3>
+                <h3 class="feature-item-title">Channels</h3>
                 <div class="feature-description-wrapper">
-                  <p class="feature-item-description">Deploy skills across your entire team</p>
+                  <p class="feature-item-description">Give your AI worker a way to chat (Slack app, email account, ...) so you can discuss with it both ways — proactive and reactive</p>
                 </div>
               </div>
             </div>
             <div class="feature-glow"></div>
           </button>
-          <div class="mobile-visual-content" data-visual="manage">
-            <ManageTeamVisual />
+          <div class="mobile-visual-content" data-visual="channels">
+            <ChannelsVisual />
           </div>
         </div>
       </div>
 
       <!-- Right: Visual Display (Desktop only) -->
       <div class="features-visual">
-        <div class="visual-content active" data-visual="discover">
-          <DiscoverSkillsVisual />
+        <div class="visual-content active" data-visual="context">
+          <ContextMemoryVisual />
         </div>
 
-        <div class="visual-content" data-visual="vibe">
+        <div class="visual-content" data-visual="skills">
           <VibeCodeVisual />
         </div>
 
-        <div class="visual-content" data-visual="install">
-          <OneClickInstallVisual />
+        <div class="visual-content" data-visual="instructions">
+          <InstructionsVisual />
         </div>
 
-        <div class="visual-content" data-visual="manage">
-          <ManageTeamVisual />
+        <div class="visual-content" data-visual="channels">
+          <ChannelsVisual />
         </div>
       </div>
 

@@ -1,0 +1,183 @@
+---
+import shadowIcon from '../../assets/128x128.png';
+import gmailIcon from '../../assets/gmail.png';
+const shadowIconSrc = shadowIcon.src;
+const gmailIconSrc = gmailIcon.src;
+---
+
+<style>
+  @keyframes slide-in-right {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes slide-in-left {
+    from { opacity: 0; transform: translateX(12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .msg-proactive-1 { animation: slide-in-right 0.6s ease-out 0.3s both; }
+  .msg-reactive-1 { animation: slide-in-left 0.6s ease-out 0.6s both; }
+  .msg-reactive-reply-1 { animation: slide-in-right 0.6s ease-out 0.9s both; }
+  .msg-reactive-2 { animation: slide-in-left 0.6s ease-out 1.2s both; }
+  .msg-reactive-reply-2 { animation: slide-in-right 0.6s ease-out 1.5s both; }
+
+  .pulse-green {
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+</style>
+
+<div class="rounded-2xl bg-white p-6 sm:p-8 h-[600px] flex items-center justify-center border border-gray-100 relative overflow-hidden">
+  <div class="w-full max-w-lg">
+
+    <!-- Connected Channels -->
+    <div class="mb-5">
+      <div class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3">Active channels</div>
+      <div class="flex gap-2.5">
+        <!-- Slack -->
+        <div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-50 border border-gray-200">
+          <div class="w-6 h-6 bg-[#4a154b] rounded-md flex items-center justify-center flex-shrink-0">
+            <svg class="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6 15a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2h2v2zm1 0a2 2 0 0 1 2-2a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-5zM9 6a2 2 0 0 1-2-2a2 2 0 0 1 2-2a2 2 0 0 1 2 2v2H9zm0 1a2 2 0 0 1 2 2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2a2 2 0 0 1 2-2h5zm9 2a2 2 0 0 1 2-2a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-2V9zm-1 0a2 2 0 0 1-2 2a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2a2 2 0 0 1 2 2v5zm-2 9a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-2h2zm0-1a2 2 0 0 1-2-2a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-5z"/>
+            </svg>
+          </div>
+          <span class="text-xs font-medium text-gray-900">Slack</span>
+          <div class="w-1.5 h-1.5 rounded-full bg-green-500 pulse-green"></div>
+        </div>
+
+        <!-- Email -->
+        <div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-50 border border-gray-200">
+          <div class="w-6 h-6 bg-white rounded-md flex items-center justify-center p-0.5 border border-gray-100 flex-shrink-0">
+            <img src={gmailIconSrc} alt="Gmail" class="w-full h-full object-contain" />
+          </div>
+          <span class="text-xs font-medium text-gray-900">Email</span>
+          <div class="w-1.5 h-1.5 rounded-full bg-green-500 pulse-green"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proactive Section -->
+    <div class="mb-4">
+      <div class="flex items-center gap-2 mb-2.5">
+        <div class="flex items-center justify-center w-5 h-5 rounded-full bg-blue-50">
+          <svg class="w-3 h-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17l9.2-9.2M17 17V7H7"/>
+          </svg>
+        </div>
+        <span class="text-[11px] font-semibold text-blue-600 uppercase tracking-wider">Proactive</span>
+      </div>
+
+      <div class="space-y-2">
+        <!-- Proactive Slack message -->
+        <div class="msg-proactive-1 flex items-start gap-2.5 px-3 py-2.5 rounded-lg bg-blue-50/60 border border-blue-100">
+          <div class="w-6 h-6 rounded overflow-hidden flex-shrink-0 mt-0.5">
+            <img src={shadowIconSrc} alt="Shadow" class="w-full h-full object-cover" />
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-1.5 mb-0.5">
+              <span class="text-[11px] font-semibold text-gray-900">Shadow</span>
+              <svg class="w-3 h-3 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-4-4 4 4-4 4"/></svg>
+              <span class="text-[11px] text-gray-500">#team-updates</span>
+            </div>
+            <p class="text-[12px] text-gray-600 leading-relaxed">Weekly recap: 3 deals closed this week, pipeline up 18%. Full breakdown in the doc.</p>
+          </div>
+          <div class="flex-shrink-0 mt-0.5">
+            <div class="w-4 h-4 bg-[#4a154b] rounded flex items-center justify-center">
+              <svg class="w-2.5 h-2.5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M6 15a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2h2v2zm1 0a2 2 0 0 1 2-2a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-5zM9 6a2 2 0 0 1-2-2a2 2 0 0 1 2-2a2 2 0 0 1 2 2v2H9zm0 1a2 2 0 0 1 2 2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2a2 2 0 0 1 2-2h5zm9 2a2 2 0 0 1 2-2a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-2V9zm-1 0a2 2 0 0 1-2 2a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2a2 2 0 0 1 2 2v5zm-2 9a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-2h2zm0-1a2 2 0 0 1-2-2a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-5z"/></svg>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- Reactive Section -->
+    <div>
+      <div class="flex items-center gap-2 mb-2.5">
+        <div class="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-50">
+          <svg class="w-3 h-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 7l-9.2 9.2M7 7v10h10"/>
+          </svg>
+        </div>
+        <span class="text-[11px] font-semibold text-emerald-600 uppercase tracking-wider">Reactive</span>
+      </div>
+
+      <div class="space-y-2">
+        <!-- Reactive Slack: incoming question -->
+        <div class="rounded-lg border border-gray-200 overflow-hidden">
+          <div class="msg-reactive-1 flex items-start gap-2.5 px-3 py-2.5 bg-gray-50">
+            <div class="w-6 h-6 rounded-full bg-gradient-to-br from-orange-400 to-pink-500 flex-shrink-0 mt-0.5 flex items-center justify-center">
+              <span class="text-[9px] font-bold text-white">JD</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-1.5 mb-0.5">
+                <span class="text-[11px] font-semibold text-gray-900">John</span>
+                <span class="text-[10px] text-gray-400">in #support</span>
+              </div>
+              <p class="text-[12px] text-gray-600 leading-relaxed">@Shadow What's our current NPS score?</p>
+            </div>
+            <div class="flex-shrink-0 mt-0.5">
+              <div class="w-4 h-4 bg-[#4a154b] rounded flex items-center justify-center">
+                <svg class="w-2.5 h-2.5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M6 15a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2h2v2zm1 0a2 2 0 0 1 2-2a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-5zM9 6a2 2 0 0 1-2-2a2 2 0 0 1 2-2a2 2 0 0 1 2 2v2H9zm0 1a2 2 0 0 1 2 2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2a2 2 0 0 1 2-2h5zm9 2a2 2 0 0 1 2-2a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-2V9zm-1 0a2 2 0 0 1-2 2a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2a2 2 0 0 1 2 2v5zm-2 9a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-2h2zm0-1a2 2 0 0 1-2-2a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-5z"/></svg>
+              </div>
+            </div>
+          </div>
+          <!-- Shadow reply -->
+          <div class="msg-reactive-reply-1 flex items-start gap-2.5 px-3 py-2.5 bg-emerald-50/50 border-t border-gray-100">
+            <div class="w-6 h-6 rounded overflow-hidden flex-shrink-0 mt-0.5">
+              <img src={shadowIconSrc} alt="Shadow" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-1.5 mb-0.5">
+                <span class="text-[11px] font-semibold text-gray-900">Shadow</span>
+                <span class="text-[10px] text-emerald-500 font-medium">replied</span>
+              </div>
+              <p class="text-[12px] text-gray-600 leading-relaxed">NPS is 67, up from 61 last month. Biggest driver: faster onboarding.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reactive Email: incoming question -->
+        <div class="rounded-lg border border-gray-200 overflow-hidden">
+          <div class="msg-reactive-2 flex items-start gap-2.5 px-3 py-2.5 bg-gray-50">
+            <div class="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex-shrink-0 mt-0.5 flex items-center justify-center">
+              <span class="text-[9px] font-bold text-white">LM</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-1.5 mb-0.5">
+                <span class="text-[11px] font-semibold text-gray-900">Lisa</span>
+                <span class="text-[10px] text-gray-400">via email</span>
+              </div>
+              <p class="text-[12px] text-gray-600 leading-relaxed">Can you send me the latest investor deck?</p>
+            </div>
+            <div class="flex-shrink-0 mt-0.5">
+              <div class="w-4 h-4 bg-white rounded flex items-center justify-center border border-gray-200">
+                <img src={gmailIconSrc} alt="Email" class="w-2.5 h-2.5 object-contain" />
+              </div>
+            </div>
+          </div>
+          <!-- Shadow reply -->
+          <div class="msg-reactive-reply-2 flex items-start gap-2.5 px-3 py-2.5 bg-emerald-50/50 border-t border-gray-100">
+            <div class="w-6 h-6 rounded overflow-hidden flex-shrink-0 mt-0.5">
+              <img src={shadowIconSrc} alt="Shadow" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-1.5 mb-0.5">
+                <span class="text-[11px] font-semibold text-gray-900">Shadow</span>
+                <span class="text-[10px] text-emerald-500 font-medium">replied</span>
+              </div>
+              <p class="text-[12px] text-gray-600 leading-relaxed">Sure! Here's the latest version from last Friday's board meeting.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
